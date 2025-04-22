@@ -6,14 +6,17 @@ import 'swiper/css';
 
 // bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '././assets/css/bootstrap-fixes.css'; // Correctifs pour bootstrap
 import 'bootstrap/dist/js/bootstrap.min.js';
-
 
 // fonts and icons
 import '././assets/css/icofont.min.css';
 import '././assets/css/animate.css';
 import '././assets/css/style.min.css';
 import '././assets/css/admin.css';
+
+// Font Awesome
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import {
   createBrowserRouter,
@@ -43,6 +46,7 @@ import CustomerManagement from './pages/Admin/CustomerManagement.jsx';
 import AdminReports from './pages/Admin/AdminReports.jsx';
 import AdminSettings from './pages/Admin/AdminSettings.jsx';
 import AdminProfile from './pages/Admin/AdminProfile.jsx';
+import BlogManagement from './pages/Admin/BlogManagement.jsx';
 
 const router = createBrowserRouter([
   {
@@ -108,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <ProductManagement />
+      },
+      {
+        path: "blog",
+        element: <BlogManagement />
       },
       {
         path: "orders",

@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/images/logo/logo.png";
@@ -113,7 +115,7 @@ const NavItems = () => {
                       Profil
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/admin">
-                      Panneau d'admin
+                      Panneau d&apos;admin
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item as={Link} to="/cart-page">Commandes</NavDropdown.Item>

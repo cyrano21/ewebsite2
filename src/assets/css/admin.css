@@ -1,26 +1,136 @@
-/* Admin Navigation Styles */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  /* Palette de couleurs principale */
+  --primary-color: #4e73df;
+  --primary-dark: #2e59d9;
+  --primary-light: #6f8be8;
+  --secondary-color: #1cc88a;
+  --secondary-dark: #13aa74;
+  --secondary-light: #3dd6a1;
+  --warning-color: #f6c23e;
+  --danger-color: #e74a3b;
+  --info-color: #36b9cc;
+  --dark-color: #2f3136;
+  --light-color: #f8f9fa;
+  --success-color: #1cc88a;
+  --muted-color: #6c757d;
+  
+  /* Arrière-plans et conteneurs */
+  --bg-white: #ffffff;
+  --bg-light: #f8f9fc;
+  --bg-gradient: linear-gradient(180deg, rgba(240, 242, 247, 0.4) 0%, rgba(240, 242, 247, 0) 100%);
+  
+  /* Ombres et effets */
+  --shadow-sm: 0 2px 6px rgba(46, 61, 73, 0.08);
+  --shadow-md: 0 4px 12px rgba(46, 61, 73, 0.12);
+  --shadow-lg: 0 8px 24px rgba(46, 61, 73, 0.16);
+  
+  /* Bordures et arrondis */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.4rem;
+  --border-radius-lg: 0.6rem;
+  --border-color: #e3e6f0;
+  
+  /* Polices et typographie */
+  --font-family-base: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: 'Nunito', sans-serif;
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.125rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+  
+  /* Espacement */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+  --transition-ease: ease-in-out;
+}
+
+/* Styles de base */
+body {
+  font-family: var(--font-family-base);
+  color: var(--dark-color);
+  background-color: var(--bg-light);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Admin Header Styles */
+.admin-header {
+  z-index: 1030;
+}
+
+/* Top Bar Styles */
+.admin-topbar {
+  box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+}
+
+.admin-topbar .navbar-brand {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.admin-topbar .navbar-brand i {
+  color: var(--primary-color);
+}
+
+/* Main Navbar Styles */
 .admin-navbar {
-  background-color: #f8f9fa !important;
-  border-bottom: 1px solid #e9ecef;
+  background-color: var(--bg-light);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.admin-navbar .navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+}
+
+.admin-navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+
+
+/* Navigation items */
+.admin-nav {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .admin-nav .nav-item {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  color: #6c757d;
-  transition: all 0.3s ease;
+  padding: 0.5rem 0.75rem;
+  margin: 0.125rem;
+  color: var(--dark-color);
   border-radius: 0.25rem;
+  transition: all 0.2s ease;
 }
 
 .admin-nav .nav-item:hover {
-  background-color: rgba(0, 123, 255, 0.1);
-  color: #007bff;
+  background-color: rgba(78, 115, 223, 0.1);
+  color: var(--primary-color);
 }
 
 .admin-nav .nav-item.active {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white !important;
+  font-weight: 500;
 }
 
 .admin-nav .nav-item.active i {
@@ -28,26 +138,94 @@
 }
 
 .admin-nav .nav-item i {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-right: 0.5rem;
 }
 
 .admin-nav .nav-label {
-  display: inline-block;
+  font-size: 0.9rem;
 }
 
-@media (max-width: 768px) {
-  .admin-nav .nav-label {
-    display: none;
+/* User dropdown */
+#admin-user-dropdown {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+#admin-user-dropdown:hover,
+#admin-user-dropdown:focus {
+  background-color: rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#admin-user-dropdown::after {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .admin-navbar .navbar-collapse {
+    background-color: #fff;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .admin-nav {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .admin-nav .nav-item {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 0.125rem 0;
   }
 }
 
-/* User Dropdown Styles */
-#admin-user-dropdown {
-  transition: all 0.3s ease;
+@media (max-width: 767.98px) {
+  .admin-topbar .navbar-brand span {
+    font-size: 0.95rem;
+  }
+  
+  .admin-topbar .btn {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  #admin-user-dropdown {
+    padding: 0.25rem;
+  }
 }
 
-#admin-user-dropdown:hover {
-  background-color: #f1f3f5;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+/* Dropdown Menus */
+.dropdown-menu {
+  padding: 0.5rem 0;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: rgba(78, 115, 223, 0.1);
+  color: var(--primary-color);
+}
+
+.dropdown-item i {
+  color: var(--muted-color);
+  width: 1.25rem;
+  text-align: center;
 }

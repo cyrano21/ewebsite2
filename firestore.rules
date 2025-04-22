@@ -2,6 +2,13 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Permettre l'accès à la collection blogs pour les opérations de lecture et d'écriture
+    match /blogs/{blogId} {
+      allow read: if true;  // Tout le monde peut lire les blogs
+      allow write: if true; // Tout le monde peut créer/modifier/supprimer des blogs (à ajuster selon vos besoins de sécurité)
+    }
+    
+    // Par défaut, bloquer l'accès aux autres collections
     match /{document=**} {
       allow read, write: if false;
     }

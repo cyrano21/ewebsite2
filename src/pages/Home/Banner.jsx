@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 import SelectCategory from "../Shop/SelectCategory";
@@ -6,10 +8,10 @@ import { Link } from "react-router-dom";
 
 const title = (
   <h2>
-    Search Your One From <span>Thousand</span> Of Products
+    Trouvez Votre Produit Parmi <span>Des Milliers</span> D&apos;articles
   </h2>
 );
-const desc = "We Have The Largest Collection of products";
+const desc = "Nous Avons La Plus Grande Collection de produits";
 
 const bannerList = [
   {
@@ -52,7 +54,7 @@ const Banner = () => {
             <input
               type="text"
               name="search"
-              placeholder="Search your product"
+              placeholder="Recherchez votre produit"
               value={searchInput}
               onChange={handleSearch}
             />

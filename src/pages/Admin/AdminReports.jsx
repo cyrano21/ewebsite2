@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form, Table } from 'react-bootstrap';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement, ArcElement } from 'chart.js';
-
-let Line, Bar, Pie;
-try {
-  const ReactChartJS = require('react-chartjs-2');
-  Line = ReactChartJS.Line;
-  Bar = ReactChartJS.Bar;
-  Pie = ReactChartJS.Pie;
-} catch (error) {
-  console.warn('Graphiques non disponibles', error);
-  Line = function NoLineChart() { return <div>Graphique non chargé</div>; };
-  Bar = function NoBarChart() { return <div>Graphique non chargé</div>; };
-  Pie = function NoPieChart() { return <div>Graphique non chargé</div>; };
-}
+import { Line, Bar, Pie } from 'react-chartjs-2';
 import PageHeader from '../../components/PageHeader';
 
 // Enregistrer les composants de Chart.js
