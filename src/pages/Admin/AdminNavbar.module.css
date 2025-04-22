@@ -71,3 +71,281 @@
       margin: 5px 0;
     }
   }
+
+/* Styles de base pour AdminNavbar */
+.admin-navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-scrolled {
+  padding: 0.25rem 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo et marque */
+.navbar-brand-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.brand-text {
+  color: #344054;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.brand-text-light {
+  color: #667085;
+  font-weight: normal;
+}
+
+/* Liens de navigation */
+.nav-link-animated {
+  position: relative;
+  padding: 0.675rem 1rem !important;
+  color: #667085 !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.nav-link-animated:hover {
+  color: #344054 !important;
+}
+
+.nav-link-animated:hover::after {
+  width: 30%;
+}
+
+.nav-link-animated.active {
+  color: #344054 !important;
+}
+
+.nav-link-animated.active::after {
+  width: 70%;
+}
+
+/* Boutons d'action */
+.navbar-actions {
+  gap: 0.5rem;
+}
+
+.nav-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  color: #667085;
+  background-color: #f9fafb !important;
+  border: 1px solid #eaecf0 !important;
+  transition: all 0.2s;
+}
+
+.nav-action-btn:hover {
+  background-color: #f0f2f5 !important;
+  color: #344054;
+}
+
+/* Barre de recherche */
+.search-container {
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+.search-form {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  opacity: 0;
+  width: 0;
+  transition: all 0.3s ease;
+  visibility: hidden;
+}
+
+.search-visible .search-form {
+  opacity: 1;
+  width: 250px;
+  right: 120%;
+  visibility: visible;
+}
+
+.search-input {
+  border-radius: 20px 0 0 20px !important;
+  border-right: none;
+}
+
+.search-submit {
+  border-radius: 0 20px 20px 0 !important;
+}
+
+/* Badge de notification */
+.notification-badge {
+  top: 0;
+  right: 0;
+  transform: translate(25%, -25%);
+  font-size: 0.65rem;
+}
+
+/* Menu déroulant des notifications */
+.dropdown-menu-animated {
+  animation: dropdownFadeIn 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eaecf0;
+  border-radius: 0.5rem;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-dropdown {
+  padding: 0.5rem 0;
+}
+
+.dropdown-header {
+  padding: 0.75rem 1rem;
+  color: #344054;
+  background-color: #f9fafb;
+}
+
+.notification-item {
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #f9fafb;
+}
+
+.notification-item.unread {
+  background-color: #f0f9ff;
+}
+
+.notification-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f0f2f5;
+}
+
+.notification-icon i {
+  font-size: 1.2rem;
+}
+
+/* Avatar utilisateur et menu profil */
+.user-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  background: transparent !important;
+  border: none !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+.user-dropdown-toggle::after {
+  display: none; /* Remove default dropdown arrow */
+}
+
+.user-dropdown-toggle:hover {
+  background-color: #f9fafb !important;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.user-avatar {
+  object-fit: cover;
+  border: 2px solid #ffffff;
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  border: 1px solid #ffffff;
+}
+
+.user-name {
+  color: #344054;
+  font-weight: 500;
+  margin-right: 0.25rem;
+}
+
+.dropdown-profile-header {
+  background-color: #f9fafb;
+}
+
+/* Animation pour les menus déroulants */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 992px) {
+  .search-visible .search-form {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .navbar-actions {
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .dropdown-menu-animated {
+    width: 100%;
+    position: fixed !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    max-height: 60vh;
+    bottom: 0;
+    border-radius: 1rem 1rem 0 0;
+    animation: slideUpMobile 0.3s ease;
+  }
+}
+
+@keyframes slideUpMobile {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
