@@ -123,6 +123,13 @@ const AdminNavbar = () => {
             >
               <i className="icofont-users-alt-5 me-1"></i> Clients
             </Nav.Link>
+            <Nav.Link 
+              as={Link} 
+              to="/admin/blog" 
+              className={`${styles['nav-link-animated']} ${isActive('/blog') ? styles.active : ''}`}
+            >
+              <i className="icofont-blog me-1"></i> Blog
+            </Nav.Link>
           </Nav>
           
           {/* Barre de recherche, notifs et profil */}

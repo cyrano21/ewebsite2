@@ -110,6 +110,10 @@ const router = createBrowserRouter([
         element: <AdminDashboard />
       },
       {
+        path: "dashboard", // Ajout de la route dashboard explicite
+        element: <AdminDashboard />
+      },
+      {
         path: "products",
         element: <ProductManagement />
       },
