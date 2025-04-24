@@ -1,95 +1,55 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import Rating from "../../components/Sidebar/Rating";
-import { 
-  categoryTab01, categoryTab02, categoryTab03, categoryTab04, 
-  categoryTab05, categoryTab06, categoryTab07, categoryTab08
-} from "../../utilis/imageImports";
 
 const title = "Nos Produits";
 
-
-const ProductData = [
-    {
-        imgUrl: categoryTab01,
-        cate: 'Chaussures',
-        title: 'Nike Premier X',
-        author: 'assets/images/course/author/01.jpg',
-        brand: 'Nike',
-        price: '199,00 €',
-        id: 1,
-    },
-    {
-        imgUrl: categoryTab02,
-        cate: 'Sacs',
-        title: 'Sacs Esthétiques',
-        author: 'assets/images/course/author/02.jpg',
-        brand: 'D&J Bags',
-        price: '199,00 €',
-        id: 2,
-    },
-    {
-        imgUrl: categoryTab03,
-        cate: 'Téléphones',
-        title: 'iPhone 12',
-        brand: 'Apple',
-        price: '199,00 €',
-        id: 3,
-    },
-    {
-        imgUrl: categoryTab04,
-        cate: 'Sacs',
-        title: 'Sac de Randonnée 15 Nh100',
-        author: 'assets/images/course/author/04.jpg',
-        brand: 'Gucci',
-        price: '199,00 €',
-        id: 4,
-    },
-    {
-        imgUrl: categoryTab05,
-        cate: 'Chaussures',
-        title: 'Chaussures de Sport Outdoor',
-        author: 'assets/images/course/author/05.jpg',
-        brand: 'Nike',
-        price: '199,00 €',
-        id: 5,
-    },
-    {
-        imgUrl: categoryTab06,
-        cate: 'Beauté',
-        title: 'COSRX Snail Mucin',
-        author: 'assets/images/course/author/06.jpg',
-        brand: 'Zaara',
-        price: '199,00 €',
-        id: 6,
-    },
-    {
-        imgUrl: categoryTab07,
-        cate: 'Sacs',
-        title: 'Sac style Chanel',
-        author: 'assets/images/course/author/01.jpg',
-        brand: 'Gucci',
-        price: '199,00 €',
-        id: 7,
-    },
-    {
-        imgUrl: categoryTab08,
-        cate: 'Chaussures',
-        title: 'Baskets Casual',
-        author: 'assets/images/course/author/02.jpg',
-        brand: 'Bata',
-        price: '199,00 €',
-        id: 8,
-    },
-]
-
-
 const CategoryShowCase = () => {
-    const [items, setItems] = useState(ProductData);
+    const [items, setItems] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Récupérer les produits depuis l'API
+        const fetchProducts = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch('/api/products');
+                
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                setAllProducts(data);
+                setItems(data);
+                
+                // Extraire les catégories uniques des produits
+                const uniqueCategories = [...new Set(data.map(product => product.cate))];
+                setCategories(uniqueCategories);
+                setLoading(false);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des produits:', error);
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     const filterItem = (categItem) => {
-        const updateItems = ProductData.filter((curElem) => {
-            return curElem.cate === categItem;
+        if (categItem === 'Tous') {
+            setItems(allProducts);
+            return;
+        }
+        
+        const updateItems = allProducts.filter((product) => {
+            return product.cate === categItem;
         });
+        
         setItems(updateItems);
     }
   return (
@@ -107,11 +67,10 @@ const CategoryShowCase = () => {
             <h2 className="title">{title}</h2>
             <div className="course-filter-group">
                 <ul className="lab-ul">
-                    <li onClick={() => setItems(ProductData) }>Tous</li>
-                    <li onClick={() => filterItem('Chaussures') }>Chaussures</li>
-                    <li onClick={() => filterItem('Sacs') }>Sacs</li>
-                    <li onClick={() => filterItem('Téléphones') }>Téléphones</li>
-                    <li onClick={() => filterItem('Beauté') }>Beauté</li>
+                    <li onClick={() => setItems(allProducts)}>Tous</li>
+                    {categories.map((category, index) => (
+                        <li key={index} onClick={() => filterItem(category)}>{category}</li>
+                    ))}
                 </ul>
             </div>
         </div>
@@ -139,10 +98,10 @@ const CategoryShowCase = () => {
 
                                     {/* content  */}
                                     <div className="course-content">
-                                        <Link to="/course-single"><h5>{title}</h5></Link>
+                                        <Link href={`/shop/${id}`}><h5>{title}</h5></Link>
                                         <div className="course-footer">
                                             <div className="course-author">
-                                                <Link to="/team-single" className="ca-name">{brand}</Link>
+                                                <span className="ca-name">{brand}</span>
                                             </div>
                                             <div className="course-price">{price}</div>
                                         </div>

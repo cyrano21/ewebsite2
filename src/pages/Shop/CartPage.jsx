@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import PageHeader from "../../components/PageHeader";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import delImgUrl from "../../assets/images/shop/del.png";
 import CheckoutPage from "./CheckoutPage";
-import { AuthContext } from "../../contexts/AuthProvider";
-import { useNotifications } from "../../contexts/NotificationContext";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import { useNotifications } from "../../../contexts/NotificationContext";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
-  // Obtenir les informations d'authentification de l'utilisateur
+  // Obtenir les informations d'authentification de l'utilsateur
   const { user } = useContext(AuthContext);
-  // Utiliser le contexte de notification
+  // utilser le contexte de notification
   const { addNotification } = useNotifications();
   
   // Pour simuler un rôle administrateur, normalement cela viendrait d'une vérification de rôle côté serveur
@@ -153,12 +153,12 @@ const CartPage = () => {
                     <tr key={indx}>
                       <td className="product-item cat-product">
                         <div className="p-thumb">
-                          <Link to="/shop-single">
+                          <Link href="/shop-single">
                             <img src={`${item.img}`} alt="" />
                           </Link>
                         </div>
                         <div className="p-content">
-                          <Link to="/shop-single">{item.name}</Link>
+                          <Link href="/shop-single">{item.name}</Link>
                         </div>
                       </td>
                       <td className="cat-price">${item.price}</td>
@@ -230,7 +230,7 @@ const CartPage = () => {
                 </form>
                 <form className="cart-checkout" action="/">
                   <input type="submit" value="Mettre à jour le panier" />
-                  {/* <Link to="/check-out"><input type="submit" value="Proceed to Checkout" /></Link> */}
+                  {/* <Link href="/check-out"><input type="submit" value="Proceed to Checkout" /></Link> */}
                   <div>
                     <CheckoutPage />
                   </div>
@@ -304,7 +304,7 @@ const CartPage = () => {
                       {/* Lien vers l'administration visible uniquement pour les administrateurs */}
                       {isAdmin && (
                         <div className="admin-link mt-4">
-                          <Link to="/admin/orders" className="lab-btn bg-primary" style={{ width: '100%', textAlign: 'center' }}>
+                          <Link href="/admin/orders" className="lab-btn bg-primary" style={{ width: '100%', textAlign: 'center' }}>
                             <i className="icofont-dashboard-web mr-2"></i> Gérer les commandes
                           </Link>
                         </div>

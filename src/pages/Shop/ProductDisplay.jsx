@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider";
+import Link from "next/link";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const desc =
   "Energistia an deliver atactica metrcs after avsionary Apropria trnsition enterpris an sources applications emerging 	psd template.";
@@ -13,12 +13,12 @@ const ProductDisplay = ({ item }) => {
   const [size, setSize] = useState("Select Size");
   const [color, setColor] = useState("Select Color");
   
-  // Obtenir les informations d'authentification de l'utilisateur
+  // Obtenir les informations d'authentification de l'utilsateur
   const { user } = useContext(AuthContext);
   
   // Pour simuler un rôle administrateur, normalement cela viendrait d'une vérification de rôle côté serveur
-  // Dans un environnement réel, vous vérifieriez si l'utilisateur a un rôle admin dans votre système d'authentification
-  const isAdmin = user ? true : false; // Pour la démo, tout utilisateur connecté est considéré comme admin
+  // Dans un environnement réel, vous vérifieriez si l'utilsateur a un rôle admin dans votre système d'authentification
+  const isAdmin = user ? true : false; // Pour la démo, tout utilsateur connecté est considéré comme admin
 
   const handleDecrease = () => {
     if (prequantity > 1) {
@@ -95,9 +95,9 @@ const ProductDisplay = ({ item }) => {
         <h6>{seller}</h6>
         <p>{desc}</p>
         
-        {/* Bouton d'administration visible uniquement pour les utilisateurs admin */}
+        {/* Bouton d'administration visible uniquement pour les utilsateurs admin */}
         {isAdmin && (
-          <Link to={`/admin/products?edit=${id}`} className="lab-btn bg-warning mb-3">
+          <Link href={`/admin/products?edit=${id}`} className="lab-btn bg-warning mb-3">
             <i className="icofont-ui-edit me-1"></i>
             <span>Gérer ce produit</span>
           </Link>
@@ -154,7 +154,7 @@ const ProductDisplay = ({ item }) => {
         <span>Add To Cart</span>
       </button>
 
-      <Link to="/cart-page" className="lab-btn bg-primary">
+      <Link href="/panier" className="lab-btn bg-primary">
         <span>Check Out</span>
       </Link>
     </form>

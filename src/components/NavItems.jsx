@@ -1,19 +1,38 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+console.log('NavItems.jsx: Chargement du fichier');
+
+console.log('NavItems.jsx: Avant imports');
+import Link from "next/link";
+import { useRouter } from "next/router";
+console.log('NavItems.jsx: Après imports de next');
+
+console.log('NavItems.jsx: Avant import logo');
 import logo from "../assets/images/logo/logo.png";
-import { AuthContext } from "../contexts/AuthProvider";
+console.log('NavItems.jsx: Logo importé:', typeof logo);
+
+console.log('NavItems.jsx: Avant import AuthContext');
+import { AuthContext } from "../../contexts/AuthProvider";
+console.log('NavItems.jsx: AuthContext importé:', typeof AuthContext);
+
+console.log('NavItems.jsx: Avant import NavDropdown');
 import { NavDropdown } from "react-bootstrap";
-import { clientAvatar } from "../utilis/imageImports";
+console.log('NavItems.jsx: NavDropdown importé:', typeof NavDropdown);
+
+console.log('NavItems.jsx: Avant import clientAvatar');
+import { clientAvatar } from "../utils/imageImports";
+console.log('NavItems.jsx: clientAvatar importé:', typeof clientAvatar);
 
 const NavItems = () => {
+  console.log('NavItems.jsx: Exécution du composant NavItems');
   const [menuToggle, setMenuToggle] = useState(false);
   const [socialToggle, setSocialToggle] = useState(false);
   const [headerFiexd, setHeaderFiexd] = useState(false);
 
   // check if user is register
   const { user, logOut } = useContext(AuthContext);
+  console.log('NavItems.jsx: AuthContext user:', user ? 'disponible' : 'null');
 
   const handleLogout = () => {
     logOut()
@@ -25,28 +44,51 @@ const NavItems = () => {
       });
   };
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-      setHeaderFiexd(true);
-    } else {
-      setHeaderFiexd(false);
-    }
-  });
+  // Déplacer l'écouteur d'événement de défilement dans useEffect pour l'exécuter uniquement côté client
+  useEffect(() => {
+    console.log('NavItems.jsx: useEffect pour scroll');
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setHeaderFiexd(true);
+      } else {
+        setHeaderFiexd(false);
+      }
+    };
 
+    // Ajouter l'écouteur d'événement
+    window.addEventListener("scroll", handleScroll);
+
+    // Nettoyage lors du démontage du composant
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Le tableau de dépendances vide signifie que cet effet ne s'exécute qu'une fois au montage
+
+  console.log('NavItems.jsx: Avant return');
   return (
     <header
-      className={`header-section style-4 ${
-        headerFiexd ? "header-fixed fadeInUp" : ""
-      }`}
+      className={`header-section style-4 ${headerFiexd ? "header-fixed fadeInUp" : ""}`}
+      style={{ position: 'sticky', top: 0, zIndex: 1000 }}
     >
       {/* ------ header top: first div ----- */}
       <div className={`header-top d-md-none ${socialToggle ? "open" : ""}`}>
         <div className="container">
           <div className="header-top-area">
-            <Link to="/signup" className="lab-btn me-3">
-              <span>Créer un compte</span>
-            </Link>
-            <Link to="/login">Connexion</Link>
+            {user ? (
+              <>
+                {user.photoURL ? (
+                  <img src={user.photoURL} className="nav-profile" />
+                ) : (
+                  <img src={clientAvatar} className="nav-profile" />
+                )}
+                <Link href="#" onClick={handleLogout}>Déconnexion</Link>
+              </>
+            ) : (
+              <>
+                <Link href="/sign-up" className="lab-btn me-3"><span>Créer un compte</span></Link>
+                <Link href="/login">Connexion</Link>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -60,7 +102,7 @@ const NavItems = () => {
             {/* logo  */}
             <div className="logo-search-acte">
               <div className="logo">
-                <Link to="/">
+                <Link href="/">
                   <img src={logo} alt="logo" />
                 </Link>
               </div>
@@ -71,20 +113,20 @@ const NavItems = () => {
               <div className="menu">
                 <ul className={`lab-ul ${menuToggle ? "active" : ""}`}>
                   <li>
-                    <Link to="/">Accueil</Link>
+                    <Link href="/">Accueil</Link>
                   </li>
                   <li>
-                    <Link to="shop">Boutique</Link>
+                    <Link href="/shop">Boutique</Link>
                   </li>
                   <li>
-                    <Link to="/blog">Blog</Link>
+                    <Link href="/blog">Blog</Link>
                   </li>
                   <li>
                     {" "}
-                    <NavLink to="/about">À propos</NavLink>
+                    <Link href="/about">À propos</Link>
                   </li>
                   <li>
-                    <NavLink to="/contact">Contact</NavLink>
+                    <Link href="/contact">Contact</Link>
                   </li>
                 </ul>
               </div>
@@ -105,33 +147,21 @@ const NavItems = () => {
                     )}
                   </div>
                   <NavDropdown id="basic-nav-dropdown">
-                    <NavDropdown.Item as={Link} to="#" onClick={handleLogout}>
-                      Déconnexion
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/cart-page">
-                      Panier
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/admin/profile">
-                      Profil
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/admin">
-                      Panneau d&apos;admin
-                    </NavDropdown.Item>
+                    <NavDropdown.Item as="button" onClick={handleLogout}>Déconnexion</NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/panier">Panier</NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/admin/profile">Profil</NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/admin">Panneau d&apos;admin</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item as={Link} to="/cart-page">Commandes</NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/panier">Commandes</NavDropdown.Item>
                   </NavDropdown>
                 </>
               ) : (
                 <>
                   <Link
-                    to="/sign-up"
+                    href="/sign-up"
                     className="lab-btn me-3 d-none d-md-block"
-                  >
-                    <span>Créer un compte</span>
-                  </Link>
-                  <Link to="/login" className="d-none d-md-block">
-                    Connexion
-                  </Link>
+                  ><span>Créer un compte</span></Link>
+                  <Link href="/login" className="d-none d-md-block">Connexion</Link>
                 </>
               )}
 
@@ -161,4 +191,5 @@ const NavItems = () => {
   );
 };
 
+console.log('NavItems.jsx: Exportation de NavItems');
 export default NavItems;

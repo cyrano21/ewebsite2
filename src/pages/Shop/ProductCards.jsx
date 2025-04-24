@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Rating from "../../components/Sidebar/Rating";
 
 const ProductCards = ({ products, GridList }) => {
@@ -19,20 +19,20 @@ const ProductCards = ({ products, GridList }) => {
                 <img src={`${product.img}`} alt={`${product.img}`} />
               </div>
               <div className="product-action-link">
-                <Link to={`/shop/${product.id}`}>
+                <Link href={`/shop/${product._id || product.id}`}>
                   <i className="icofont-eye"></i>
                 </Link>
                 <a href="#">
                   <i className="icofont-heart"></i>
                 </a>
-                <Link to="/cart-page">
+                <Link href="/panier">
                   <i className="icofont-cart-alt"></i>
                 </Link>
               </div>
             </div>
             <div className="product-content">
               <h5>
-                <Link to={`/shop/${product.id}`}>{product.name}</Link>
+                <Link href={`/shop/${product._id || product.id}`} className="product-name">{product.name}</Link>
               </h5>
               <p className="productRating">
                 <Rating />
@@ -46,19 +46,19 @@ const ProductCards = ({ products, GridList }) => {
                 <img src={`${product.img}`} alt={`${product.imgAlt}`} />
               </div>
               <div className="product-action-link">
-                <a href="#">
+                <Link href={`/shop/${product._id || product.id}`}>
                   <i className="icofont-eye"></i>
-                </a>
-                <a href="#">
+                </Link>
+                <Link href="#">
                   <i className="icofont-heart"></i>
-                </a>
-                <a href="#">
+                </Link>
+                <Link href="/panier">
                   <i className="icofont-cart-alt"></i>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="product-content">
-            <Link to={`/shop/${product.id}`}>{product.name}</Link>
+            <Link href={`/shop/${product._id || product.id}`}>{product.name}</Link>
               <p className="productRating">
                 <Rating />
               </p>

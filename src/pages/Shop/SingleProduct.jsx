@@ -4,8 +4,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import Tags from "./Tags";
-import { productImages } from "../../utilis/imageImports";
-import { AuthContext } from "../../contexts/AuthProvider";
+import { productImages } from "../../utils/imageImports";
+import { AuthContext } from "../../../contexts/AuthProvider";
 import { Row, Col, Card, Button } from "react-bootstrap";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,10 +26,10 @@ const SingleProduct = () => {
   const { user } = useContext(AuthContext);
 
   // Pour simuler un rôle administrateur, normalement cela viendrait d'une vérification de rôle côté serveur
-  const isAdmin = user ? true : false; // Pour la démo, tout utilisateur connecté est considéré comme admin
+  const isAdmin = user ? true : false; // Pour la démo, tout utilsateur connecté est considéré comme admin
 
   useEffect(() => {
-    // Utilisation d'un chemin relatif pour accéder au fichier JSON
+    // utilsation d'un chemin relatif pour accéder au fichier JSON
     fetch("/products.json")
       .then((res) => res.json())
       .then((data) => setProduct(data))

@@ -1,0 +1,329 @@
+/* Global CSS variables for light and dark themes */
+:root {
+  --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  --card-bg: #ffffff;
+  --card-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --bg-light: #f8f9fa;
+  --bg-body: #f8f9fa;
+
+  /* Ajout de variables CSS globales pour une meilleure cohérence visuelle */
+  --primary-color: #4e54c8;
+  --primary-dark: #3c40a3;
+  --primary-light: #8f94fb;
+  --secondary-color: #ff6b6b;
+  --accent-color: #feca57;
+  --text-color: #2c3e50;
+  --text-light: #7f8c8d;
+  --background-light: #f8f9fa;
+  --background-dark: #343a40;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --danger-color: #e74c3c;
+  --info-color: #3498db;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --max-width: 1200px;
+  --header-height: 80px;
+  --footer-height: 300px;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+}
+
+[data-bs-theme="dark"] {
+  --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  --card-bg: #343a40;
+  --card-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+  --text-primary: #f8f9fa;
+  --text-secondary: #ced4da;
+  --text-muted: #adb5bd;
+  --border-color: #495057;
+  --bg-light: #2b3035;
+  --bg-body: #212529;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--text-color);
+  background-color: var(--background-light);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Améliorations générales des boutons */
+.lab-btn, 
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+  border: none;
+  color: white;
+  border-radius: var(--border-radius);
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: var(--transition);
+  box-shadow: 0 2px 10px rgba(78, 84, 200, 0.2);
+}
+
+.lab-btn:hover, 
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(78, 84, 200, 0.3);
+  background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+}
+
+/* Amélioration des cartes */
+.card {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation de chargement de page */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Améliorations des formulaires */
+input, select, textarea {
+  border-radius: var(--border-radius);
+  border: 1px solid #e0e0e0;
+  padding: 10px 15px;
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.1);
+  outline: none;
+}
+
+/* Badges améliorés */
+.badge {
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+/* Navigation améliorée */
+.navbar {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background-color: white;
+}
+
+/* Amélioration des sections principales */
+.section-padding {
+  padding: 100px 0;
+}
+
+.section-title {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background: var(--primary-color);
+  bottom: -15px;
+  left: 0;
+}
+
+.section-title.text-center:after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Animation d'apparition des éléments */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Effets de survol pour les cartes produit */
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-card .product-image {
+  transition: var(--transition);
+}
+
+/* Amélioration du responsive */
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 60px 0;
+  }
+  
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+/* Améliorations spécifiques à la boutique */
+.shop-page .filter-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+/* Animation du panier lorsqu'un produit est ajouté */
+@keyframes cartBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.cart-bounce {
+  animation: cartBounce 0.5s ease;
+}
+
+/* Amélioration de l'affichage des étoiles d'évaluation */
+.star-rating .filled {
+  color: var(--accent-color);
+}
+
+.star-rating .empty {
+  color: #e0e0e0;
+}
+
+/* Style pour les modals */
+.custom-modal {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.custom-modal .modal-header {
+  background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+  color: white;
+  border: none;
+}
+
+.custom-modal .modal-footer {
+  border-top: none;
+}
+
+/* Effet de défilement fluide */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Amélioration du design de la page panier */
+.cart-page .cart-item {
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.cart-page .cart-item:hover {
+  background-color: rgba(78, 84, 200, 0.05);
+}
+
+.cart-page .quantity-selector {
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+/* Barre de recherche améliorée */
+.search-box {
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-box input {
+  border: none;
+  padding: 12px 20px;
+}
+
+.search-box button {
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  padding: 12px 20px;
+}
+
+/* Animation de chargement */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(78, 84, 200, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Boutons de catégorie améliorés */
+.category-btn {
+  padding: 8px 16px;
+  border-radius: 50px;
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  transition: var(--transition);
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Notifications toast améliorées */
+.toast-notification {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.toast-notification.success {
+  border-left: 4px solid var(--success-color);
+}
+
+.toast-notification.error {
+  border-left: 4px solid var(--danger-color);
+}
+
+.toast-notification.warning {
+  border-left: 4px solid var(--warning-color);
+}
+
+.toast-notification.info {
+  border-left: 4px solid var(--info-color);
+}

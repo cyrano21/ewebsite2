@@ -1,0 +1,97 @@
+/* TABLE ADMIN - Importé depuis Vite version pour Next.js global */
+
+.blog-table-container {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.blog-table {
+  margin-bottom: 0;
+}
+
+.blog-table thead {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.blog-table th {
+  padding: 1rem;
+  font-weight: 600;
+  border: none;
+}
+
+.blog-table td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+}
+
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortable-header:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.blog-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.blog-image-cell:hover .blog-thumbnail {
+  transform: scale(1.1);
+}
+
+.placeholder-image {
+  width: 50px;
+  height: 50px;
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+}
+
+.blog-title {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.predefined-badge {
+  font-weight: normal;
+  font-size: 0.7rem;
+}
+
+.category-badge {
+  font-weight: normal;
+  padding: 0.35rem 0.65rem;
+}
+
+.action-button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+}
+
+.edit-button {
+  background: var(--primary-gradient);
+  border: none;
+}

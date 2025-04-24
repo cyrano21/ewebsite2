@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Navbar, Container, Nav, Dropdown, Button, Badge, Form, InputGroup, Image } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthProvider';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import styles from './AdminNavbar.module.css';
 
 const AdminNavbar = () => {
@@ -14,7 +14,7 @@ const AdminNavbar = () => {
   // État pour suivre les routes actives
   const isActive = path => location.pathname.includes(path);
   
-  // Récupération des informations de l'utilisateur depuis le contexte d'authentification
+  // Récupération des informations de l'utilsateur depuis le contexte d'authentification
   const { user, logOut } = useContext(AuthContext);
   
   // Créer un objet adminUser à partir des données d'authentification
@@ -25,8 +25,8 @@ const AdminNavbar = () => {
   };
 
   // Log pour débogage
-  console.log('Informations utilisateur:', user);
-  console.log('Avatar utilisé:', adminUser.avatar);
+  console.log('Informations utilsateur:', user);
+  console.log('Avatar utilsé:', adminUser.avatar);
   
   const notifications = [
     { id: 1, type: 'order', message: 'Nouvelle commande #45678', time: 'Il y a 5 minutes', read: false },
@@ -211,7 +211,7 @@ const AdminNavbar = () => {
               </Dropdown.Menu>
             </Dropdown>
             
-            {/* Profil Utilisateur */}
+            {/* Profil utilsateur */}
             <Dropdown align="end">
               <Dropdown.Toggle as={Button} variant="light" className={styles['user-dropdown-toggle']}>
                 <div className="d-flex align-items-center">
@@ -263,7 +263,7 @@ const AdminNavbar = () => {
                   <i className="icofont-info-circle me-2"></i> Aide & Support
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => {
-                  // Utiliser la fonction logOut du contexte d'authentification qui a été récupérée au niveau du composant
+                  // utilser la fonction logOut du contexte d'authentification qui a été récupérée au niveau du composant
                   if (logOut) {
                     logOut().then(() => {
                       navigate('/');

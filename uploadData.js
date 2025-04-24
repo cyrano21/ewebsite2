@@ -6,7 +6,7 @@ admin.initializeApp({
     databaseURL: "https://your-firebase-project.firebaseio.com" // Remplacez par l'URL de votre projet Firebase
 });
 
-const db = admin.firestore();  // Utilisez admin.database() si vous utilisez Realtime Database
+const db = admin.firestore();  // utilsez admin.database() si vous utilsez Realtime Database
 
 const data = [
     {
@@ -1004,7 +1004,7 @@ async function uploadData() {
     const batch = db.batch();
 
     data.forEach(item => {
-        const docRef = collectionRef.doc(item.id);  // Utilisez item.id comme clé de document
+        const docRef = collectionRef.doc(item.id);  // utilsez item.id comme clé de document
         batch.set(docRef, item);
     });
 

@@ -1,0 +1,130 @@
+/* Styles pour le composant Banner */
+.banner-section.style-4 {
+  background-image: url('/assets/images/banner-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Créer un overlay pour améliorer la lisibilité du texte */
+.banner-section.style-4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+.banner-section.style-4 .container {
+  position: relative;
+  z-index: 1;
+}
+
+.banner-section.style-4 .banner-content {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+}
+
+.banner-section.style-4 .banner-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.banner-section.style-4 .banner-content h2 span {
+  color: #ff5b5b;
+}
+
+.banner-section.style-4 .banner-content p {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.banner-section.style-4 form {
+  background-color: #fff;
+  display: flex;
+  border-radius: 40px;
+  padding: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.banner-section.style-4 form select,
+.banner-section.style-4 form input {
+  border: none;
+  outline: none;
+  padding: 15px 20px;
+  border-radius: 40px 0 0 40px;
+}
+
+.banner-section.style-4 form select {
+  background-color: #f0f0f0;
+  width: 150px;
+}
+
+.banner-section.style-4 form input {
+  flex-grow: 1;
+}
+
+.banner-section.style-4 form button {
+  background: linear-gradient(to right, #ff5b5b, #ff8a8a);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-section.style-4 form button:hover {
+  background: linear-gradient(to right, #ff3838, #ff6b6b);
+  transform: scale(1.05);
+}
+
+.banner-section.style-4 .lab-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  left: 150px;
+  right: 50px;
+  z-index: 10;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner-section.style-4 .lab-ul li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.banner-section.style-4 .lab-ul li:hover {
+  background-color: #f9f9f9;
+}
+
+.banner-section.style-4 .lab-ul li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}

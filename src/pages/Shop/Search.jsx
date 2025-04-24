@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Search = ({ products, GridList }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,7 +25,7 @@ const Search = ({ products, GridList }) => {
 
       <div>
         {searchTerm && filteredProducts.map((product) => (
-          <Link key={product.id} to={`/shop/${product.id}`}>
+          <Link key={product.id} href={`/shop/${product.id}`}>
             <div className="d-flex gap-3 p-2">
             <div>
               <div className="pro-thumb h-25">
@@ -34,7 +34,7 @@ const Search = ({ products, GridList }) => {
             </div>
             <div className="product-content">
               <p>
-                <Link to={`/shop/${product.id}`}>{product.name}</Link>
+                <Link href={`/shop/${product.id}`}>{product.name}</Link>
               </p>
               <h6>${product.price}</h6>
             </div>

@@ -1,0 +1,60 @@
+/* Styles extraits de styles/banner.css pour usage local dans Banner.jsx */
+.banner {
+  position: relative;
+  background: #f8f9fa;
+  padding: 60px 0 40px 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.bannerTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #222;
+}
+.bannerDesc {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+.bannerList {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.bannerListItem {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #444;
+}
+.bannerListItem i {
+  font-size: 1.8rem;
+  color: #ffc107;
+  margin-right: 0.7rem;
+}
+.bannerSearch {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+}
+.bannerSearch input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+.bannerSearch button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.bannerSearch button:hover {
+  background: #0056b3;
+}

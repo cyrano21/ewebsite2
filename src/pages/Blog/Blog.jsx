@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
+/* stylelint-disable */
 import PageHeader from '../../components/PageHeader'
 import { Container, Row, Col, Card, Badge, Button, Form, InputGroup } from 'react-bootstrap'
-import blogList from '../../utilis/blogdata'
+// Les articles sont chargés depuis l'API au lieu d'être importés directement
 
 const Blog = () => {
   const [filteredBlogs, setFilteredBlogs] = useState([]);
@@ -12,39 +13,80 @@ const Blog = () => {
   const [viewType, setViewType] = useState('grid'); // 'grid' ou 'list'
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simuler un chargement
+  // Charger les articles depuis l'API
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
+    const fetchBlogs = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/blogs');
+        
+        if (!response.ok) {
+          throw new Error('Erreur lors du chargement des articles');
+        }
+        
+        const data = await response.json();
+        setFilteredBlogs(data);
+        
+        // Extraire les catégories uniques des articles
+        const uniqueCategories = [...new Set(data.flatMap(blog => 
+          blog.category ? [blog.category] : []
+        ))];
+        setCategories(['Tous', ...uniqueCategories.sort()]);
+        
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Erreur:', error);
+        setIsLoading(false);
+      }
+    };
+    
+    fetchBlogs();
   }, []);
 
-  // Extraire les catégories uniques des articles
-  useEffect(() => {
-    const uniqueCategories = [...new Set(blogList.flatMap(blog => 
-      blog.category ? [blog.category] : []
-    ))];
-    setCategories(['Tous', ...uniqueCategories.sort()]);
-  }, []);
+  // Les catégories sont maintenant extraites lors du chargement des articles
 
-  // Filtrer les articles
+  // Filtrer les articles (maintenant en utilsant l'API)
   useEffect(() => {
-    let results = [...blogList];
+    const fetchFilteredBlogs = async () => {
+      try {
+        setIsLoading(true);
+        
+        // Construire les paramètres de requête en fonction des filtres
+        let url = '/api/blogs';
+        const params = [];
+        
+        if (searchTerm) {
+          params.push(`search=${encodeURIComponent(searchTerm)}`);
+        }
+        
+        if (selectedCategory !== 'Tous') {
+          params.push(`category=${encodeURIComponent(selectedCategory)}`);
+        }
+        
+        if (params.length > 0) {
+          url += `?${params.join('&')}`;
+        }
+        
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error('Erreur lors du filtrage des articles');
+        }
+        
+        const data = await response.json();
+        setFilteredBlogs(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Erreur:', error);
+        setIsLoading(false);
+      }
+    };
     
-    // Filtrer par recherche
-    if (searchTerm) {
-      results = results.filter(blog => 
-        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.desc.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    // Si des filtres sont appliqués, faire un nouvel appel API
+    // sinon, ne pas recharger si on vient juste de charger les articles
+    if (searchTerm || selectedCategory !== 'Tous') {
+      fetchFilteredBlogs();
     }
-    
-    // Filtrer par catégorie
-    if (selectedCategory !== 'Tous') {
-      results = results.filter(blog => blog.category === selectedCategory);
-    }
-    
-    setFilteredBlogs(results);
   }, [searchTerm, selectedCategory]);
 
   // Gérer le changement de recherche
@@ -162,7 +204,7 @@ const Blog = () => {
                     <Col key={i} className="blog-item-col">
                       <Card className="h-100 blog-card shadow-sm border-0 hover-effect">
                         <div className="position-relative">
-                          <Link to={`/blog/${blog.id}`} className="img-link">
+                          <Link href={`/blog/${blog.id}`} className="img-link">
                             <Card.Img variant="top" src={blog.imgUrl} alt={blog.imgAlt} className="blog-img" />
                           </Link>
                           {blog.category && (
@@ -175,7 +217,7 @@ const Blog = () => {
                           )}
                         </div>
                         <Card.Body className="p-4">
-                          <Link to={`/blog/${blog.id}`} className="text-decoration-none">
+                          <Link href={`/blog/${blog.id}`} className="text-decoration-none">
                             <Card.Title as="h4" className="blog-title mb-3">{blog.title}</Card.Title>
                           </Link>
                           <div className="meta-post mb-3">
@@ -192,7 +234,7 @@ const Blog = () => {
                           </Card.Text>
                         </Card.Body>
                         <Card.Footer className="bg-white border-top d-flex justify-content-between align-items-center p-4 pt-0">
-                          <Link to={`/blog/${blog.id}`} className="read-more text-primary text-decoration-none">
+                          <Link href={`/blog/${blog.id}`} className="read-more text-primary text-decoration-none">
                             {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
                           </Link>
                           <div className="comments text-muted">
@@ -210,7 +252,7 @@ const Blog = () => {
                     <Card key={i} className="mb-4 blog-list-card shadow-sm border-0 hover-effect">
                       <Row className="g-0">
                         <Col md={4} className="position-relative">
-                          <Link to={`/blog/${blog.id}`} className="h-100 d-block">
+                          <Link href={`/blog/${blog.id}`} className="h-100 d-block">
                             <img 
                               src={blog.imgUrl} 
                               alt={blog.imgAlt} 
@@ -229,7 +271,7 @@ const Blog = () => {
                         </Col>
                         <Col md={8}>
                           <Card.Body className="d-flex flex-column h-100 p-4">
-                            <Link to={`/blog/${blog.id}`} className="text-decoration-none">
+                            <Link href={`/blog/${blog.id}`} className="text-decoration-none">
                               <Card.Title as="h4" className="blog-title mb-2">{blog.title}</Card.Title>
                             </Link>
                             <div className="meta-post mb-3">
@@ -245,7 +287,7 @@ const Blog = () => {
                               {blog.desc}
                             </Card.Text>
                             <div className="d-flex justify-content-between align-items-center mt-3">
-                              <Link to={`/blog/${blog.id}`} className="read-more btn btn-sm btn-outline-primary rounded-pill px-3">
+                              <Link href={`/blog/${blog.id}`} className="read-more btn btn-sm btn-outline-primary rounded-pill px-3">
                                 {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
                               </Link>
                               <div className="comments text-muted">
@@ -282,6 +324,7 @@ const Blog = () => {
       </section>
 
       {/* CSS personnalisé */}
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx>{`
         .blog-page .hover-effect {
           transition: transform 0.3s ease, box-shadow 0.3s ease;

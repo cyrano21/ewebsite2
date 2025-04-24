@@ -9,23 +9,7 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config, { isServer }) => {
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|svg)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            publicPath: '/_next/static/images',
-            outputPath: `${isServer ? '../' : ''}static/images`,
-            name: '[name].[hash].[ext]',
-          },
-        },
-      ],
-    });
-
-    return config;
-  },
+  // pas besoin ici de l'env, Next.js lit le .env.local tout seul
 };
 
 module.exports = nextConfig;

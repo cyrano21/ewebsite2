@@ -30,12 +30,13 @@ import SingleBlog from './pages/Blog/SingleBlog.jsx';
 import About from './pages/AboutPage/About.jsx';
 import Contact from './pages/ContactPage/Contact.jsx';
 import CartPage from './pages/Shop/CartPage.jsx';
+import SimpleCartPage from './pages/Shop/SimpleCartPage.jsx';
 import CheckoutPage from './pages/Shop/CheckoutPage.jsx';
 import Signup from './components/Signup.jsx';
 import Login from './components/Login.jsx';
 import ErrorPage from './components/ErrorPage.jsx';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
-import AuthProvider from './contexts/AuthProvider.jsx';
+import AuthProvider from '../contexts/AuthProvider.jsx';
 
 // Importation des composants Admin
 import AdminLayout from './pages/Admin/AdminLayout.jsx';
@@ -106,7 +107,7 @@ const router = createBrowserRouter([
     element: <PrivateRoute><AdminLayout /></PrivateRoute>,
     children: [
       {
-        index: true, // Utiliser index pour la route par défaut
+        index: true, // utilser index pour la route par défaut
         element: <AdminDashboard />
       },
       {

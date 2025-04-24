@@ -6,10 +6,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Badge, Button, Form, InputGroup } from 'react-bootstrap';
 import Tags from "../Shop/Tags";
 import PageHeader from "../../components/PageHeader";
-import { useParams, Link } from "react-router-dom";
-import blogList from "../../utilis/blogdata";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import MostPopularPost from "../../components/Sidebar/MostPopularPost";
-import { blogSingle01, blogSingle02 } from "../../utilis/imageImports";
 
 const socialList = [
   {
@@ -39,28 +38,48 @@ const socialList = [
   },
 ];
 
-const SingleBlog = () => {
-  const [blog, setBlog] = useState(blogList);
-  const { id } = useParams();
+const SingleBlog = ({ blogId }) => {
+  const [blog, setBlog] = useState(null);
   const [result, setResult] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-
-    const currentPost = blog.find(p => p.id === Number(id));
-    if (currentPost) {
-      setResult([currentPost]);
-      const related = blog
-        .filter(post => post.id !== Number(id))
-        .filter(post => post.category === currentPost.category || Math.random() > 0.7)
-        .slice(0, 3);
-      setRelatedPosts(related);
-    }
-  }, [id, blog]);
+    if (!blogId) return;
+    
+    const fetchBlogPost = async () => {
+      setIsLoading(true);
+      try {
+        // Récupérer l'article de blog via l'API
+        const response = await fetch(`/api/blogs/${blogId}`);
+        
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setBlog(data);
+        setResult([data]);
+        
+        // Récupérer les articles connexes via l'API
+        const relatedResponse = await fetch(`/api/blogs?category=${data.category}&exclude=${blogId}&limit=3`);
+        
+        if (relatedResponse.ok) {
+          const relatedData = await relatedResponse.json();
+          setRelatedPosts(relatedData);
+        }
+        
+      } catch (error) {
+        console.error('Erreur lors de la récupération de l\'article:', error);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchBlogPost();
+  }, [blogId]);
 
   const getCategoryColor = (category) => {
     const colors = {
@@ -74,7 +93,7 @@ const SingleBlog = () => {
     return colors[category] || 'dark';
   };
 
-  const currentIndex = blog.findIndex(p => p.id === Number(id));
+  const currentIndex = blog.findIndex(p => p.id === Number(blogId));
   const prevPost = currentIndex > 0 ? blog[currentIndex - 1] : null;
   const nextPost = currentIndex < blog.length - 1 ? blog[currentIndex + 1] : null;
 
@@ -121,15 +140,15 @@ const SingleBlog = () => {
                         <div className="meta-post d-flex flex-wrap gap-3 mb-3 text-muted small">
                           <div className="meta-item">
                             <i className="icofont-calendar me-1"></i>
-                            23 avril 2021
+                            {item.createdAt}
                           </div>
                           <div className="meta-item">
                             <i className="icofont-ui-user me-1"></i>
-                            Rajib Raj
+                            {item.author}
                           </div>
                           <div className="meta-item">
                             <i className="icofont-speech-comments me-1"></i>
-                            09 Commentaires
+                            {item.comments} Commentaires
                           </div>
                         </div>
 
@@ -137,42 +156,25 @@ const SingleBlog = () => {
                         
                         <div className="blog-content">
                           <p className="lead mb-4">
-                            La sérénité s'est emparée de mon âme entière en ces douces matinées de printemps que je savoure de tout mon cœur. Je me retrouve seul et ressens le charme de l'existence en ce lieu qui fait le bonheur des âmes comme la mienne.
+                            {item.description}
                           </p>
 
                           <p>
-                            Je suis si heureux, mon cher ami, absorbé par ce sentiment exquis, profitant de tout mon cœur seul et ressentant le charme de l'existence en ce lieu qui était le bonheur des âmes comme la mienne. Mon cher ami, absorbé par ce sentiment exquis, cette existence tranquille néglige mes talents, je serais incapable de dessiner une telle sérénité merveilleuse qui s'est emparée de mon âme entière en ces doux moments présents, et pourtant je sens que jamais je ne fus un plus grand artiste.
-                          </p>
-
-                          <blockquote className="fancy-blockquote my-5 p-4 p-lg-5 shadow-sm border-start border-5 border-primary">
-                            <p className="mb-2 fst-italic">
-                              "Transformez dynamiquement les technologies distribuées là où les canaux clés en main et offrez de manière monotone un accès à l'expertise de nivellement des ressources via des livrables mondiaux qui étendent de manière holistique les portails diversifiés."
-                            </p>
-                            <cite className="d-block text-end">
-                              — Melissa Hunter, <span className="text-muted">Experte en marketing</span>
-                            </cite>
-                          </blockquote>
-
-                          <p>
-                            De tout mon cœur, je me crée seul et ressens le charme de l'existence en ce lieu qui fait le bonheur des âmes comme la mienne. Je suis si heureux, mon cher ami, absorbé par ce sentiment exquis, profitant de tout mon cœur seul et ressentant le charme de l'existence en ce lieu qui était le bonheur des âmes comme la mienne.
+                            {item.content}
                           </p>
 
                           <div className="blog-image my-4 text-center">
                             <img
-                              src={blogSingle01}
+                              src={item.image || '/assets/images/blog/single/01.jpg'} 
                               alt="Image de l'article"
                               className="img-fluid rounded shadow-sm"
                             />
                             <small className="d-block text-muted mt-2">Photographie de montagne au lever du soleil</small>
                           </div>
 
-                          <p>
-                            La sérénité s'est emparée de mon âme entière en ces douces matinées de printemps que je savoure de tout mon cœur. Je me retrouve seul et ressens le charme de l'existence en ce lieu qui fait le bonheur des âmes comme la mienne. Je suis si heureux, mon cher ami, absorbé par ce sentiment exquis, profitant de tout mon cœur seul et ressentant le charme de l'existence en ce lieu qui était le bonheur des âmes comme la mienne.
-                          </p>
-
                           <div className="video-container my-5 position-relative rounded overflow-hidden shadow-sm">
                             <img
-                              src={blogSingle02}
+                              src={item.secondaryImage || '/assets/images/blog/single/02.jpg'} 
                               alt="Vidéo de l'article"
                               className="w-100"
                             />
@@ -231,7 +233,7 @@ const SingleBlog = () => {
 
                 <div className="post-navigation mt-4 d-flex flex-column flex-md-row gap-3">
                   {prevPost && (
-                    <Link to={`/blog/${prevPost.id}`} className="prev-post flex-grow-1">
+                    <Link href={`/blog/${prevPost.id}`} className="prev-post flex-grow-1">
                       <Card className="border-0 shadow-sm h-100 post-nav-card prev-card">
                         <Card.Body className="d-flex align-items-center p-3">
                           <div className="nav-icon me-3">
@@ -247,7 +249,7 @@ const SingleBlog = () => {
                   )}
 
                   {nextPost && (
-                    <Link to={`/blog/${nextPost.id}`} className="next-post flex-grow-1">
+                    <Link href={`/blog/${nextPost.id}`} className="next-post flex-grow-1">
                       <Card className="border-0 shadow-sm h-100 post-nav-card next-card text-end">
                         <Card.Body className="d-flex align-items-center justify-content-end p-3">
                           <div className="nav-content">
@@ -270,7 +272,7 @@ const SingleBlog = () => {
                       {relatedPosts.map((post, index) => (
                         <Col md={4} key={index}>
                           <Card className="border-0 shadow-sm h-100 related-post-card">
-                            <Link to={`/blog/${post.id}`} className="img-link">
+                            <Link href={`/blog/${post.id}`} className="img-link">
                               <div className="related-post-img">
                                 <img 
                                   src={post.imgUrl} 
@@ -280,7 +282,7 @@ const SingleBlog = () => {
                               </div>
                             </Link>
                             <Card.Body className="p-3">
-                              <Link to={`/blog/${post.id}`} className="text-decoration-none">
+                              <Link href={`/blog/${post.id}`} className="text-decoration-none">
                                 <h6 className="related-title mb-0">{post.title}</h6>
                               </Link>
                             </Card.Body>
