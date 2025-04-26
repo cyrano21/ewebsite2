@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import { Button, Modal, Form, Alert, Badge, Card, InputGroup, Row, Col } from "react-bootstrap";
+import { Button, Modal, Form, Alert, Badge } from "react-bootstrap";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import PropTypes from "prop-types";
 
 const CheckoutPage = ({ onOrderComplete }) => {
   const [show, setShow] = useState(false);
@@ -127,7 +127,7 @@ const CheckoutPage = ({ onOrderComplete }) => {
   };
 
   return (
-    <Container className="checkout-container py-4">
+    <div className="checkout-container">
       {/* Résumé de la commande avant le bouton de paiement */}
       {orderSummary && (
         <div className="order-quick-summary mb-4 p-3 border rounded bg-light">
@@ -211,41 +211,84 @@ const CheckoutPage = ({ onOrderComplete }) => {
                 id="visa"
                 role="tabpanel"
               >
-                <Card className="mb-4 shadow-sm border-0">
-                  <Card.Header className="bg-white border-0 text-center">
+                <div className="mx-4 mt-4">
+                  <div className="text-center mb-4">
                     <h5>Informations de carte de crédit</h5>
-                  </Card.Header>
-                  <Card.Body>
-                    <Form>
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text><i className="icofont-user"></i></InputGroup.Text>
-                        <Form.Control placeholder="Nom du titulaire" name="cardName" value={formData.cardName} onChange={handleInputChange} isInvalid={!!errors.cardName} />
-                        <Form.Control.Feedback type="invalid">{errors.cardName}</Form.Control.Feedback>
-                      </InputGroup>
-                      <InputGroup className="mb-3">
-                        <InputGroup.Text><i className="icofont-credit-card"></i></InputGroup.Text>
-                        <Form.Control placeholder="1234 5678 9012 3456" name="cardNumber" value={formData.cardNumber} onChange={handleInputChange} isInvalid={!!errors.cardNumber} />
-                        <Form.Control.Feedback type="invalid">{errors.cardNumber}</Form.Control.Feedback>
-                      </InputGroup>
-                      <Row>
-                        <Col md={6}>
-                          <InputGroup className="mb-3">
-                            <InputGroup.Text><i className="icofont-calendar"></i></InputGroup.Text>
-                            <Form.Control placeholder="MM/YY" name="cardExpiry" value={formData.cardExpiry} onChange={handleInputChange} isInvalid={!!errors.cardExpiry} />
-                            <Form.Control.Feedback type="invalid">{errors.cardExpiry}</Form.Control.Feedback>
-                          </InputGroup>
-                        </Col>
-                        <Col md={6}>
-                          <InputGroup className="mb-3">
-                            <InputGroup.Text><i className="icofont-ui-lock"></i></InputGroup.Text>
-                            <Form.Control placeholder="CVV" name="cardCVV" value={formData.cardCVV} onChange={handleInputChange} isInvalid={!!errors.cardCVV} />
-                            <Form.Control.Feedback type="invalid">{errors.cardCVV}</Form.Control.Feedback>
-                          </InputGroup>
-                        </Col>
-                      </Row>
-                    </Form>
-                  </Card.Body>
-                </Card>
+                  </div>
+                  <Form>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Nom du titulaire</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="cardName"
+                        value={formData.cardName}
+                        onChange={handleInputChange}
+                        isInvalid={!!errors.cardName}
+                      />
+                      {errors.cardName && (
+                        <Form.Control.Feedback type="invalid">
+                          {errors.cardName}
+                        </Form.Control.Feedback>
+                      )}
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3">
+                      <Form.Label>Numéro de carte</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="cardNumber"
+                        value={formData.cardNumber}
+                        onChange={handleInputChange}
+                        placeholder="1234 5678 9012 3456"
+                        isInvalid={!!errors.cardNumber}
+                      />
+                      {errors.cardNumber && (
+                        <Form.Control.Feedback type="invalid">
+                          {errors.cardNumber}
+                        </Form.Control.Feedback>
+                      )}
+                    </Form.Group>
+                    
+                    <div className="row">
+                      <div className="col-md-6">
+                        <Form.Group className="mb-3">
+                          <Form.Label>Date d&apos;expiration</Form.Label>
+                          <Form.Control
+                            type="text"
+                            name="cardExpiry"
+                            value={formData.cardExpiry}
+                            onChange={handleInputChange}
+                            placeholder="MM/YY"
+                            isInvalid={!!errors.cardExpiry}
+                          />
+                          {errors.cardExpiry && (
+                            <Form.Control.Feedback type="invalid">
+                              {errors.cardExpiry}
+                            </Form.Control.Feedback>
+                          )}
+                        </Form.Group>
+                      </div>
+                      <div className="col-md-6">
+                        <Form.Group className="mb-3">
+                          <Form.Label>CVV</Form.Label>
+                          <Form.Control
+                            type="text"
+                            name="cardCVV"
+                            value={formData.cardCVV}
+                            onChange={handleInputChange}
+                            placeholder="123"
+                            isInvalid={!!errors.cardCVV}
+                          />
+                          {errors.cardCVV && (
+                            <Form.Control.Feedback type="invalid">
+                              {errors.cardCVV}
+                            </Form.Control.Feedback>
+                          )}
+                        </Form.Group>
+                      </div>
+                    </div>
+                  </Form>
+                </div>
               </div>
               
               {/* PayPal Tab Content */}
@@ -414,17 +457,56 @@ const CheckoutPage = ({ onOrderComplete }) => {
         </Modal.Footer>
       </Modal>
       
-      {/* Scoped Styles for CheckoutPage */}
-      <style jsx>{`
-        .checkout-container { max-width: 600px; margin: auto; padding: 2rem; }
-        .checkout-button { transition: all 0.3s ease; border-radius: 0.25rem; font-weight: 600; }
-        .checkout-modal .modal-content { border-radius: 1rem; overflow: hidden; }
-        .order-quick-summary { border-left: 4px solid #007bff; padding-left: 1rem; margin-bottom: 1.5rem; }
-        .order-summary { border-left: 4px solid #28a745; padding: 1rem; background: #f8f9fa; }
-        .nav-tabs .nav-link { font-weight: 600; }
+      {/* Styles spécifiques pour améliorer l'apparence du composant */}
+      <style global="true">{`
+        .checkout-button {
+          transition: all 0.3s ease;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+        
+        .checkout-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .checkout-modal .modal-content {
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-tabs .nav-link {
+          border: 1px solid #dee2e6;
+          margin-right: 5px;
+          border-radius: 5px 5px 0 0;
+          padding: 10px 15px;
+          transition: all 0.2s ease;
+        }
+        
+        .nav-tabs .nav-link:hover {
+          background-color: #f8f9fa;
+        }
+        
+        .nav-tabs .nav-link.active {
+          border-bottom-color: #fff;
+          background-color: #fff;
+        }
+        
+        .order-quick-summary {
+          transition: all 0.3s ease;
+        }
+        
+        .order-quick-summary:hover {
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
       `}</style>
-    </Container>
+    </div>
   );
+};
+
+// Définir les PropTypes pour la validation des props
+CheckoutPage.propTypes = {
+  onOrderComplete: PropTypes.func
 };
 
 export default CheckoutPage;

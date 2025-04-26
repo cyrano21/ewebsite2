@@ -163,8 +163,14 @@ const Blog = () => {
                       <Card className="h-100 blog-card shadow-sm border-0 hover-effect">
                         <div className="position-relative">
                           <Link href={`/blog/${blog.id}`} className="img-link">
-  <Card.Img variant="top" src={blog.imgUrl} alt={blog.imgAlt} className="blog-img" />
-</Link>
+                            <Card.Img
+                              variant="top"
+                              src={blog.imgUrl || '/default-blog.jpg'}
+                              alt={blog.imgAlt}
+                              onError={e => e.currentTarget.src = '/default-blog.jpg'}
+                              className="blog-img"
+                            />
+                          </Link>
                           {blog.category && (
                             <Badge 
                               bg={getCategoryColor(blog.category)} 
@@ -176,8 +182,8 @@ const Blog = () => {
                         </div>
                         <Card.Body className="p-4">
                           <Link href={`/blog/${blog.id}`} className="text-decoration-none">
-  <Card.Title as="h4" className="blog-title mb-3">{blog.title}</Card.Title>
-</Link>
+                            <Card.Title as="h4" className="blog-title mb-3">{blog.title}</Card.Title>
+                          </Link>
                           <div className="meta-post mb-3">
                             <ul className="lab-ul d-flex flex-wrap gap-3 text-muted small">
                               {blog.metaList.map((val, i) => (
@@ -193,8 +199,8 @@ const Blog = () => {
                         </Card.Body>
                         <Card.Footer className="bg-white border-top d-flex justify-content-between align-items-center p-4 pt-0">
                           <Link href={`/blog/${blog.id}`} className="read-more text-primary text-decoration-none">
-  {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
-</Link>
+                            {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
+                          </Link>
                           <div className="comments text-muted">
                             <i className="icofont-comment me-1"></i>
                             <span className="comment-count">{blog.commentCount}</span>
@@ -211,13 +217,14 @@ const Blog = () => {
                       <Row className="g-0">
                         <Col md={4} className="position-relative">
                           <Link href={`/blog/${blog.id}`} className="h-100 d-block">
-  <img 
-    src={blog.imgUrl} 
-    alt={blog.imgAlt} 
-    className="img-fluid rounded-start h-100 w-100 blog-img" 
-    style={{ objectFit: 'cover' }}
-  />
-</Link>
+                            <img 
+                              src={blog.imgUrl || '/default-blog.jpg'} 
+                              alt={blog.imgAlt} 
+                              className="img-fluid rounded-start h-100 w-100 blog-img" 
+                              style={{ objectFit: 'cover' }}
+                              onError={e => e.currentTarget.src = '/default-blog.jpg'}
+                            />
+                          </Link>
                           {blog.category && (
                             <Badge 
                               bg={getCategoryColor(blog.category)} 
@@ -230,8 +237,8 @@ const Blog = () => {
                         <Col md={8}>
                           <Card.Body className="d-flex flex-column h-100 p-4">
                             <Link href={`/blog/${blog.id}`} className="text-decoration-none">
-  <Card.Title as="h4" className="blog-title mb-2">{blog.title}</Card.Title>
-</Link>
+                              <Card.Title as="h4" className="blog-title mb-2">{blog.title}</Card.Title>
+                            </Link>
                             <div className="meta-post mb-3">
                               <ul className="lab-ul d-flex flex-wrap gap-3 text-muted small">
                                 {blog.metaList.map((val, i) => (
@@ -246,8 +253,8 @@ const Blog = () => {
                             </Card.Text>
                             <div className="d-flex justify-content-between align-items-center mt-3">
                               <Link href={`/blog/${blog.id}`} className="read-more btn btn-sm btn-outline-primary rounded-pill px-3">
-  {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
-</Link>
+                                {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
+                              </Link>
                               <div className="comments text-muted">
                                 <i className="icofont-comment me-1"></i>
                                 <span className="comment-count">{blog.commentCount}</span>

@@ -267,3 +267,21 @@ input::-webkit-inner-spin-button {
         opacity: 0;
     }
 }
+
+/* CSS pour les icônes de produits */
+.product-action-link a.active i.icofont-heart {
+  color: #ff3366 !important; /* Couleur rouge pour les produits déjà dans la wishlist */
+}
+
+.product-action-link a:hover i.icofont-heart {
+  color: #ff3366 !important;
+}
+
+.product-action-link a:hover i.icofont-cart-alt {
+  color: #5cb85c !important; /* Couleur verte pour le panier au survol */
+}
+
+/* Feedback visuel lors du clic sur les icônes */
+.product-action-link a:active {
+  transform: scale(0.9);
+}

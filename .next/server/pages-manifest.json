@@ -1,12 +1,5 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/panier": "pages/panier.js",
-  "/checkout": "pages/checkout.js",
-  "/Shop/[id]": "pages/Shop/[id].js",
-  "/api/orders/[id]": "pages/api/orders/[id].js",
-  "/api/auth/me": "pages/api/auth/me.js",
-  "/api/users/[id]/cart": "pages/api/users/[id]/cart.js",
-  "/api/create-checkout-session": "pages/api/create-checkout-session.js"
+  "/_document": "pages/_document.js"
 }

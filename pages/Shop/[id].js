@@ -1,364 +1,549 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useMemo, useCallback } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Layout from "../../components/Layout"; // conservé pour getLayout
-import { Container, Row, Col, Card, Button, Badge, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import Link from "next/link";
-import Image from "next/image";
-import { useContext } from "react";
+
+import Layout from "../../components/Layout";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-const ProductPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [quantity, setQuantity] = useState(1);
-  const { user } = useContext(AuthContext);
+// --- IMPORT YOUR ACTUAL PRODUCT DATA ---
+import {
+    topDealsProducts,
+    topElectronicProducts,
+    bestOfferProducts,
+    allProducts,
+    suggestedProducts, // Importé pour l'exemple BoughtTogether
+} from '../../data/e-commerce/products'; // <--- VÉRIFIEZ CE CHEMIN
 
-  // Vérifier si l'utilisateur est admin (à adapter selon votre logique d'authentification)
-  const isAdmin = user && (user.email === "admin@example.com" || user.roles?.includes("admin"));
+// --- Import the new components ---
+import ProductImageGallery from "../../components/shop/ProductImageGallery";
+import ProductInfo from "../../components/shop/ProductInfo";
+import ProductTabs from "../../components/shop/ProductTabs";
+import BoughtTogether from "../../components/shop/BoughtTogether";
+import SimilarProducts from "../../components/shop/SimilarProducts";
 
-  useEffect(() => {
-    if (!id) return;
+// --- UPDATED DATA FETCH FUNCTION ---
+const fetchProductData = async (id) => {
+    console.log(`Fetching data for product ID: ${id}`);
 
-    const fetchProduct = async () => {
-      try {
-        setLoading(true);
-        // Essayer d'abord l'API
-        const response = await fetch(`/api/products/${id}`);
-        
-        if (response.ok) {
-          const data = await response.json();
-          setProduct(data);
-        } else {
-          // Si l'API échoue, essayer de charger depuis le fichier products.json
-          const productsResponse = await fetch('/products.json');
-          if (!productsResponse.ok) {
-            throw new Error("Impossible de charger les produits");
-          }
-          
-          const allProducts = await productsResponse.json();
-          const foundProduct = allProducts.find(p => p.id === id);
-          
-          if (!foundProduct) {
-            throw new Error("Produit non trouvé");
-          }
-          
-          setProduct(foundProduct);
-        }
-      } catch (err) {
-        console.error("Erreur lors du chargement du produit:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    // Combine all relevant product arrays into one master list
+    const allProductData = [
+        ...topDealsProducts,
+        ...topElectronicProducts,
+        ...bestOfferProducts,
+        ...allProducts,
+    ];
 
-    fetchProduct();
-  }, [id]);
+    // Find the product by ID (compare as strings)
+    const foundProduct = allProductData.find(p => String(p.id) === String(id));
 
-  // Gestion de l'ajout au panier
-  const handleAddToCart = () => {
-    if (!product) return;
-    
-    // Préparer le produit pour le panier
-    const cartItem = {
-      id: product.id,
-      name: product.name,
-      price: product.salePrice || product.price,
-      img: product.img,
-      quantity: quantity
-    };
-    
-    // Récupérer le panier existant ou initialiser un tableau vide
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    
-    // Vérifier si le produit est déjà dans le panier
-    const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
-    
-    if (existingItemIndex !== -1) {
-      // Mettre à jour la quantité si le produit existe déjà
-      existingCart[existingItemIndex].quantity += quantity;
+    if (foundProduct) {
+        console.log("Found product in local data:", foundProduct);
+
+        // --- EXEMPLE DONNÉES PLUS RICHES (Basé sur les données trouvées et des exemples) ---
+        const exampleThumbnails = [
+            foundProduct.image || '/assets/images/placeholder.jpg', // Image principale
+            // Ajoutez d'autres chemins d'images réelles si disponibles pour ce produit
+            // Sinon, laissez juste l'image principale ou ajoutez des placeholders
+             '/assets/images/products/02.jpg', // Exemple statique - A remplacer par de vraies données si possible
+             '/assets/images/products/03.jpg', // Exemple statique - A remplacer par de vraies données si possible
+        ];
+
+        // TODO: Implémenter une vraie logique pour les couleurs/tailles si elles existent
+        const exampleColors = [
+             { name: "Blue", hex: "#a0ced9", img: foundProduct.image }, // Adaptez si d'autres images existent
+             { name: "Green", hex: "#a8e6cf" },
+             // ... ajoutez d'autres couleurs si applicable pour ce produit
+        ];
+        const exampleSizes = ['44', '45', '46']; // Exemple statique - A remplacer par de vraies données
+
+        // TODO: Implémenter une vraie logique pour les badges
+        const exampleBadges = [
+            '#1 Best seller', // Exemple statique
+            foundProduct.offer ? `${foundProduct.offer} Off` : 'Popular Item', // Badge basé sur l'offre
+        ];
+
+        const exampleStock = 15; // TODO: Utiliser une vraie valeur de stock si disponible
+        const exampleDelivery = "Saturday, July 29th"; // TODO: Calculer une vraie date
+        const exampleOfferEnd = foundProduct.dealEndTime ? new Date(Date.now() + 23 * 60 * 60 * 1000).toISOString() : null; // Exemple
+
+        const exampleDescription = `Sample description for ${foundProduct.name}. Highlighting its key features and benefits. Replace with actual product description.`; // TODO: Utiliser une vraie description
+        const exampleSpecs = ["Feature 1", "Specification 2", "Detail 3"]; // TODO: Utiliser de vraies specs
+        const exampleReviews = [ // TODO: Utiliser de vrais avis
+             { id: 1, user: "Jane D.", rating: 5, comment: "Amazing machine!", date: "2023-07-15" },
+             { id: 2, user: "John S.", rating: 4, comment: "Very good, but expensive.", date: "2023-07-10" }
+         ];
+
+        // --- Logique d'exemple pour les produits liés/similaires ---
+        // Bought Together: Prend les 3 premiers suggérés (sauf le produit courant)
+        const relatedBoughtTogether = suggestedProducts
+            .filter(p => String(p.id) !== String(foundProduct.id)) // Exclut le produit courant
+            .slice(0, 3) // Prend les 3 premiers
+            .map(p => ({ // S'assure que le format correspond à BoughtTogetherItem
+                id: String(p.id),
+                name: p.name,
+                price: p.price,
+                img: p.img // Le chemin doit être correct dans products.ts
+            }));
+
+        // Similar Products: Prend les 4 premiers top deals (sauf le produit courant)
+        const relatedSimilarProducts = topDealsProducts
+             .filter(p => String(p.id) !== String(foundProduct.id)) // Exclut le produit courant
+             .slice(0, 4) // Prend les 4 premiers
+             .map(p => ({ // S'assure que le format correspond à ProductCarouselCard
+                id: String(p.id),
+                name: p.name,
+                price: p.price,
+                salePrice: p.salePrice,
+                img: p.image, // Le chemin doit être correct dans products.ts
+                ratings: p.rating,
+                ratingsCount: p.rated
+             }));
+        // --- FIN LOGIQUE D'EXEMPLE ---
+
+        // Assemblage de l'objet final passé au composant
+        const formattedProduct = {
+            id: String(foundProduct.id),
+            name: foundProduct.name || "Unnamed Product",
+            price: typeof foundProduct.price === 'number' ? foundProduct.price : (typeof foundProduct.salePrice === 'number' ? foundProduct.salePrice : 0),
+            salePrice: typeof foundProduct.salePrice === 'number' ? foundProduct.salePrice : undefined,
+            img: foundProduct.image, // Chemin corrigé dans products.ts
+            // Utilisation des données d'exemple ou des valeurs par défaut
+            thumbnails: exampleThumbnails,
+            ratings: typeof foundProduct.rating === 'number' ? foundProduct.rating : 4.5,
+            ratingsCount: typeof foundProduct.rated === 'number' ? foundProduct.rated : 0, // Utiliser 0 si non défini
+            categoryBreadcrumbs: ["Shop", "Example Category", foundProduct.name.substring(0, 20) + "..."], // TODO: Vraie logique de catégorie
+            badges: exampleBadges,
+            stock: exampleStock,
+            deliveryEstimate: exampleDelivery,
+            specialOfferEndDate: exampleOfferEnd,
+            colors: exampleColors,
+            sizes: exampleSizes,
+            description: exampleDescription,
+            specifications: exampleSpecs,
+            reviews: exampleReviews,
+            boughtTogether: relatedBoughtTogether,
+            similarProducts: relatedSimilarProducts,
+       };
+
+        console.log("Formatted product data:", formattedProduct);
+        return formattedProduct;
+
     } else {
-      // Ajouter le nouveau produit
-      existingCart.push(cartItem);
+        console.warn(`Product with ID ${id} not found.`);
+        return null; // Important de retourner null si non trouvé
     }
-    
-    // Sauvegarder le panier mis à jour
-    localStorage.setItem("cart", JSON.stringify(existingCart));
-    
-    // Message de confirmation
-    alert("Produit ajouté au panier !");
-    
-    // Option: rediriger vers le panier
-    // router.push('/panier');
-  };
-
-  if (loading) {
-    return (
-      <Container className="py-5 mt-5 text-center">
-        <Spinner animation="border" role="status" variant="primary">
-          <span className="visually-hidden">Chargement...</span>
-        </Spinner>
-        <p className="mt-3">Chargement du produit...</p>
-      </Container>
-    );
-  }
-
-  if (error) {
-    return (
-      <Container className="py-5 mt-5">
-        <Card className="border-0 shadow-sm">
-          <Card.Body className="text-center py-5">
-            <i className="icofont-warning-alt text-warning display-1"></i>
-            <h2 className="mt-3">Produit non trouvé</h2>
-            <p className="text-muted">Nous n&apos;avons pas pu trouver le produit que vous recherchez.</p>
-            <p className="small text- danger">{error}</p>
-            <Link href="/shop">
-              <Button variant="primary" className="mt-3">
-                <i className="icofont-shopping-cart me-2"></i>
-                Retour à la boutique
-              </Button>
-            </Link>
-          </Card.Body>
-        </Card>
-      </Container>
-    );
-  }
-
-  if (!product) {
-    return null;
-  }
-
-  return (
-    <>
-      <Head>
-        <title>{product.name} | Votre Boutique</title>
-        <meta name="description" content={`${product.name} - ${product.description?.substring(0, 160) || 'Détails du produit'}`} />
-      </Head>
-
-      <Container className="py-5 mt-5">
-        <Row>
-          <Col lg={7}>
-            <Card className="border-0 shadow-sm overflow-hidden">
-              <div className="position-relative">
-                <Image 
-                  src={product.img || "/assets/images/placeholder.jpg"} 
-                  alt={product.name}
-                  width={800}
-                  height={600}
-                  layout="responsive"
-                  className="product-main-image"
-                />
-                {product.stock <= 0 && (
-                  <div className="out-of-stock-overlay">
-                    <span>Rupture de stock</span>
-                  </div>
-                )}
-                {product.salePrice && (
-                  <Badge bg="danger" className="position-absolute top-0 end-0 m-3 py-2 px-3">
-                    -{Math.round(((product.price - product.salePrice) / product.price) * 100)}%
-                  </Badge>
-                )}
-              </div>
-
-              {/* Informations supplémentaires du produit */}
-              <Card.Body className="p-4">
-                <div className="mb-4">
-                  <h4>Description</h4>
-                  <p>{product.description || "Aucune description disponible pour ce produit."}</p>
-                </div>
-
-                {product.features && product.features.length > 0 && (
-                  <div className="mb-4">
-                    <h4>Caractéristiques</h4>
-                    <ul className="features-list">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Évaluations */}
-                <div className="product-ratings mb-4">
-                  <h4>Évaluations</h4>
-                  <div className="d-flex align-items-center mb-3">
-                    <div className="stars me-3">
-                      {[...Array(5)].map((_, i) => (
-                        <i 
-                          key={i} 
-                          className={`icofont-star ${i < Math.round(product.ratings || 0) ? "text-warning" : "text-muted"}`}
-                        ></i>
-                      ))}
-                    </div>
-                    <span className="rating-value">{product.ratings || 0}/5</span>
-                    <span className="text-muted ms-2">({product.ratingsCount || 0} avis)</span>
-                  </div>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col lg={5}>
-            <Card
-              className="border-0 shadow-sm"
-              style={{ position: 'sticky', top: '80px', zIndex: 0 }}
-            >
-              <Card.Body className="p-4">
-                <h2 className="product-title mb-1">{product.name}</h2>
-                
-                <div className="product-meta mb-3">
-                  <span className="text-muted me-3">Vendeur: {product.seller || "Non spécifié"}</span>
-                  <span className="text-muted">Catégorie: {product.category || "Non spécifié"}</span>
-                </div>
-                
-                <div className="product-price-block mb-4">
-                  {product.salePrice ? (
-                    <>
-                      <span className="regular-price text-decoration-line-through text-muted me-2">
-                        {product.price}€
-                      </span>
-                      <span className="sale-price h3 text-danger fw-bold">
-                        {product.salePrice}€
-                      </span>
-                    </>
-                  ) : (
-                    <span className="price h3 fw-bold">{product.price}€</span>
-                  )}
-                </div>
-                
-                <div className="stock-info mb-4">
-                  {product.stock > 0 ? (
-                    <p className="text-success mb-0">
-                      <i className="icofont-check-circled me-1"></i>
-                      En stock ({product.stock} disponibles)
-                    </p>
-                  ) : (
-                    <p className="text-danger mb-0">
-                      <i className="icofont-close-circled me-1"></i>
-                      Rupture de stock
-                    </p>
-                  )}
-                </div>
-
-                {product.stock > 0 && (
-                  <div className="add-to-cart-section mb-4">
-                    <div className="quantity-selector d-flex align-items-center mb-3">
-                      <span className="me-3">Quantité:</span>
-                      <div className="d-flex border rounded">
-                        <Button 
-                          variant="light" 
-                          className="border-0"
-                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        >
-                          <i className="icofont-minus"></i>
-                        </Button>
-                        <div className="px-3 py-2">{quantity}</div>
-                        <Button 
-                          variant="light" 
-                          className="border-0"
-                          onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                        >
-                          <i className="icofont-plus"></i>
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="d-grid gap-2">
-                      <Button 
-                        variant="primary" 
-                        size="lg" 
-                        onClick={handleAddToCart}
-                        disabled={product.stock <= 0}
-                      >
-                        <i className="icofont-shopping-cart me-2"></i>
-                        Ajouter au panier
-                      </Button>
-                      
-                      <Button variant="outline-primary" size="lg">
-                        <i className="icofont-heart me-2"></i>
-                        Ajouter aux favoris
-                      </Button>
-                    </div>
-                  </div>
-                )}
-
-                {isAdmin && (
-                  <div className="admin-actions mt-4 pt-3 border-top">
-                    <h5 className="mb-3">Actions administrateur</h5>
-                    <div className="d-grid gap-2">
-                      <Link href={`/admin/products?edit=${product.id}`}>
-                        <Button variant="warning" className="w-100">
-                          <i className="icofont-ui-edit me-2"></i>
-                          Modifier ce produit
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        {/* Produits connexes */}
-        <div className="related-products mt-5 pt-4 border-top">
-          <h3 className="mb-4">Produits similaires</h3>
-          <div className="d-flex justify-content-center">
-            <Link href="/shop">
-              <Button variant="primary" className="mt-3">
-                Voir tous les produits
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </Container>
-
-      <style jsx>{`
-        .product-main-image {
-          max-height: 500px;
-          object-fit: contain;
-          background-color: #f8f9fa;
-        }
-        .out-of-stock-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: rgba(0, 0, 0, 0.5);
-        }
-        .out-of-stock-overlay span {
-          background-color: #dc3545;
-          color: white;
-          padding: 10px 20px;
-          font-weight: bold;
-          text-transform: uppercase;
-          transform: rotate(-15deg);
-        }
-        .features-list {
-          list-style-type: none;
-          padding-left: 0;
-        }
-        .features-list li {
-          padding: 8px 0;
-          border-bottom: 1px solid #f0f0f0;
-        }
-        .features-list li:last-child {
-          border-bottom: none;
-        }
-      `}</style>
-    </>
-  );
 };
 
-// Wrap page with Layout via getLayout to avoid double navbar/footer
+
+// --- DÉFINITION DU COMPOSANT ProductPage ---
+const ProductPage = () => {
+    const router = useRouter();
+    const { id } = router.query;
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // --- États pour les interactions utilisateur ---
+    const [quantity, setQuantity] = useState(1);
+    const [selectedColor, setSelectedColor] = useState(null);
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [boughtTogetherChecked, setBoughtTogetherChecked] = useState({});
+
+    const { user } = useContext(AuthContext); // Contexte d'authentification
+
+    // --- Effet pour charger les données du produit ---
+    useEffect(() => {
+        // Ne rien faire si l'ID n'est pas encore disponible
+        if (!id) return;
+
+        const loadProduct = async () => {
+            setLoading(true);
+            setError(null);
+            setProduct(null);
+            // Réinitialiser les états d'interaction
+            setQuantity(1);
+            setSelectedColor(null);
+            setSelectedSize(null);
+            setSelectedImage(null);
+            setBoughtTogetherChecked({});
+
+            try {
+                const data = await fetchProductData(id); // Appel de la fonction mise à jour
+                if (data) {
+                    setProduct(data);
+                    // Initialiser les sélections par défaut
+                    setSelectedImage(data.img || data.thumbnails?.[0]);
+                    if (data.colors?.length > 0) {
+                        setSelectedColor(data.colors[0]);
+                        // Mettre à jour l'image si la couleur a une image spécifique
+                        if (data.colors[0].img) setSelectedImage(data.colors[0].img);
+                    }
+                    if (data.sizes?.length > 0) {
+                        setSelectedSize(data.sizes[0]);
+                    }
+                    // Initialiser l'état des checkboxes "Bought Together"
+                    const initialBoughtTogether = { [data.id]: true }; // L'article principal est coché
+                    data.boughtTogether?.forEach((item) => {
+                        if(item && item.id) {
+                           initialBoughtTogether[item.id] = false; // Les autres non cochés par défaut
+                        }
+                    });
+                    setBoughtTogetherChecked(initialBoughtTogether);
+
+                } else {
+                     setError("Product not found."); // Définir l'erreur si aucune donnée n'est retournée
+                }
+            } catch (err) {
+                console.error("Failed to load product:", err);
+                setError(err.message || "Failed to load product."); // Gérer les erreurs de fetch
+            } finally {
+                setLoading(false); // Arrêter le chargement dans tous les cas
+            }
+        };
+
+        loadProduct();
+    }, [id]); // Ré-exécuter l'effet si l'ID change
+
+    // --- Calculs mémorisés pour éviter les re-calculs inutiles ---
+    const discount = useMemo(() => {
+        if (!product || !product.salePrice || !product.price || product.price <= 0) return 0;
+        const priceNum = Number(product.price);
+        const salePriceNum = Number(product.salePrice);
+        if (isNaN(priceNum) || isNaN(salePriceNum) || priceNum <= 0) return 0;
+        return Math.round(((priceNum - salePriceNum) / priceNum) * 100);
+    }, [product]);
+
+    const totalBoughtTogetherPrice = useMemo(() => {
+        if (!product || !product.id) return '0.00';
+        let total = 0;
+        const mainPrice = Number(product.salePrice || product.price || 0);
+        if (boughtTogetherChecked[product.id] && !isNaN(mainPrice)) {
+             total += mainPrice;
+        }
+        product.boughtTogether?.forEach((item) => {
+            if (item && item.id && boughtTogetherChecked[item.id]) {
+                 const itemPrice = Number(item.price || 0);
+                 if(!isNaN(itemPrice)) {
+                     total += itemPrice;
+                 }
+            }
+        });
+        return total.toFixed(2);
+    }, [product, boughtTogetherChecked]);
+
+
+    // --- Fonctions de rappel pour les interactions utilisateur ---
+    const handleThumbnailSelect = useCallback((url) => {
+        setSelectedImage(url);
+    }, []);
+
+    const handleColorSelect = useCallback((color) => {
+        setSelectedColor(color);
+        if (color?.img) {
+            setSelectedImage(color.img);
+        } else if (product?.img) {
+            setSelectedImage(product.img);
+        }
+    }, [product]); // Dépend de product pour l'image par défaut
+
+    const handleSizeSelect = useCallback((size) => {
+        setSelectedSize(size);
+    }, []);
+
+    const handleQuantityChange = useCallback((newQuantity) => {
+        const maxQty = typeof product?.stock === 'number' ? product.stock : 1;
+        const validQuantity = Math.max(1, Math.min(newQuantity, maxQty));
+        setQuantity(validQuantity);
+    }, [product?.stock]); // Dépend du stock du produit
+
+    const handleToggleBoughtTogether = useCallback((itemId) => {
+        if(!itemId) return;
+        setBoughtTogetherChecked((prev) => ({
+            ...prev,
+            [itemId]: !prev[itemId],
+        }));
+    }, []);
+
+    // --- Fonctions pour Ajouter au Panier / Wishlist (Logique à implémenter) ---
+    const handleAddToCart = useCallback(() => {
+        if (!product) return;
+        // TODO: Remplacer alert par la vraie logique (contexte panier, API, etc.)
+        alert(`Ajouté ${quantity} x ${product.name} (Couleur: ${selectedColor?.name || 'N/A'}, Taille: ${selectedSize || 'N/A'}) au panier.`);
+        // Exemple: dispatch({ type: 'ADD_TO_CART', payload: { product, quantity, selectedColor, selectedSize } });
+    }, [product, quantity, selectedColor, selectedSize]);
+
+    const handleAddToWishlist = useCallback(() => {
+        if (!product) return;
+         // TODO: Remplacer alert par la vraie logique (contexte wishlist, API, etc.)
+        alert(`Ajouté ${product.name} à la wishlist.`);
+         // Exemple: addToWishlist(product);
+    }, [product]);
+
+
+    // --- Logique de Rendu ---
+
+    // Affichage pendant le chargement
+    if (loading) {
+        return (
+            <Layout>
+                <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </Container>
+            </Layout>
+        );
+    }
+
+    // Affichage en cas d'erreur
+    if (error) {
+        return (
+             <Layout>
+                <Container className="text-center py-5 mt-5">
+                    <p className="text-danger fs-5 mb-4">{error}</p>
+                     {/* Lien corrigé avec legacyBehavior */}
+                    <Link href="/shop" passHref legacyBehavior>
+                        <Button as="a" variant="primary">Retour à la boutique</Button>
+                    </Link>
+                </Container>
+            </Layout>
+        );
+    }
+
+    // Affichage si le produit n'est pas trouvé (après chargement)
+    if (!product || !product.id) {
+         return (
+            <Layout>
+                <Container className="text-center py-5 mt-5">
+                    <p className="text-danger fs-5 mb-4">Produit introuvable.</p>
+                     {/* Lien corrigé avec legacyBehavior */}
+                     <Link href="/shop" passHref legacyBehavior>
+                        <Button as="a" variant="primary">Retour à la boutique</Button>
+                     </Link>
+                 </Container>
+            </Layout>
+         );
+    }
+
+    // --- Rendu Principal de la Page Produit ---
+    return (
+        <>
+            <Head>
+                <title>{`${product.name || 'Product'} | Ma Boutique`}</title> {/* Adaptez le titre */}
+                <meta name="description" content={product.description?.substring(0, 160) || `Détails pour ${product.name || 'Product'}`} />
+            </Head>
+
+            <Container className="product-page-container pt-4 pb-5">
+                {/* Fil d'Ariane (Breadcrumbs) */}
+                <nav aria-label="breadcrumb" className="mb-3">
+                    <ol className="breadcrumb small text-muted mb-0">
+                         <li className="breadcrumb-item">
+                            <Link href="/" passHref legacyBehavior><a>Accueil</a></Link>
+                        </li>
+                        <li className="breadcrumb-item">
+                            <Link href="/shop" passHref legacyBehavior><a>Boutique</a></Link>
+                        </li>
+                         {/* Utilisation des données formatées */}
+                         {product.categoryBreadcrumbs?.map((crumb, index, arr) => (
+                            <li key={index} className={`breadcrumb-item ${index === arr.length - 1 ? 'active' : ''}`} aria-current={index === arr.length - 1 ? 'page' : undefined}>
+                                {index === arr.length - 1 ? (
+                                    crumb
+                                ) : (
+                                    <Link href={`/category/${String(crumb).toLowerCase().replace(/ /g, '-')}`} passHref legacyBehavior><a>{crumb}</a></Link>
+                                )}
+                            </li>
+                        ))}
+                    </ol>
+                </nav>
+
+                {/* Section Principale Produit (Image + Infos) */}
+                <Row className="mb-4 main-product-section">
+                    <ProductImageGallery
+                        thumbnails={product.thumbnails}
+                        selectedImage={selectedImage}
+                        onThumbnailSelect={handleThumbnailSelect}
+                        productName={product.name}
+                        discount={discount}
+                        stock={product.stock}
+                    />
+                    <ProductInfo
+                        product={product} // Passe l'objet produit complet formaté
+                        selectedColor={selectedColor}
+                        onColorSelect={handleColorSelect}
+                        selectedSize={selectedSize}
+                        onSizeSelect={handleSizeSelect}
+                        quantity={quantity}
+                        onQuantityChange={handleQuantityChange}
+                        discount={discount}
+                    />
+                </Row>
+
+                {/* Boutons d'Action (Ajout Panier / Wishlist) */}
+                 <Row className="mb-5 action-buttons-row"> {/* Marge augmentée */}
+                     <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2}} >
+                         <div className="d-grid gap-3 d-sm-flex"> {/* Espace augmenté */}
+                             <Button
+                                 variant="outline-secondary"
+                                 size="lg"
+                                 className="flex-fill py-2" // Padding vertical ajusté
+                                 onClick={handleAddToWishlist}
+                                 aria-label="Ajouter à la liste de souhaits"
+                             >
+                                 <i className="icofont-heart me-2" />
+                                 Liste de souhaits
+                             </Button>
+                             <Button
+                                 variant="warning" // Ou "primary" selon votre thème
+                                 size="lg"
+                                 className="flex-fill py-2 fw-bold" // Texte en gras
+                                 onClick={handleAddToCart}
+                                 disabled={!product || typeof product.stock !== 'number' || product.stock <= 0}
+                                 aria-label="Ajouter au panier"
+                             >
+                                 <i className="icofont-shopping-cart me-2" />
+                                 {!product || typeof product.stock !== 'number' || product.stock <= 0 ? 'Rupture de stock' : 'Ajouter au panier'}
+                             </Button>
+                         </div>
+                     </Col>
+                 </Row>
+
+
+                {/* Section Inférieure (Onglets & Produits Liés/Similaires) */}
+                <Row className="mt-4 description-tabs-section">
+                    {/* Colonne des Onglets */}
+                    <Col lg={8} className="mb-4 mb-lg-0">
+                        <ProductTabs
+                            description={product.description}
+                            specifications={product.specifications}
+                            reviews={product.reviews}
+                        />
+                    </Col>
+
+                    {/* Colonne "Achetés Ensemble" */}
+                    <Col lg={4}>
+                         {product.boughtTogether && product.boughtTogether.length > 0 && (
+                            <BoughtTogether
+                                mainProduct={product}
+                                relatedItems={product.boughtTogether}
+                                checkedItems={boughtTogetherChecked}
+                                onToggleItem={handleToggleBoughtTogether}
+                                total={totalBoughtTogetherPrice}
+                             />
+                        )}
+                         {/* Autres éléments potentiels de la sidebar ici */}
+                    </Col>
+                </Row>
+
+                {/* Section Produits Similaires */}
+                <SimilarProducts
+                    products={product.similarProducts}
+                    categorySlug={product.categoryBreadcrumbs?.[1]?.toLowerCase().replace(/ /g, '-') || 'all'} // Utilise 2e élément du breadcrumb si dispo
+                 />
+
+            </Container>
+
+            {/* Styles Globaux pour la page */}
+            <style jsx global>{`
+                /* --- Styles Généraux --- */
+                .pointer { cursor: pointer; }
+
+                /* --- Gallerie Image --- */
+                .thumbnail-column .img-thumbnail {
+                    width: 60px; height: 60px; object-fit: contain; border-width: 1px; padding: 2px; transition: border-color 0.2s ease;
+                }
+                 .mobile-thumbnails .img-thumbnail {
+                     width: 50px; height: 50px; object-fit: contain; border-width: 1px; padding: 2px; transition: border-color 0.2s ease;
+                }
+                .active-thumbnail, .thumbnail-column .img-thumbnail:hover, .mobile-thumbnails .img-thumbnail:hover {
+                    border-color: var(--bs-primary) !important;
+                }
+                .main-product-image {
+                    max-height: 450px; width: 100%; object-fit: contain; background-color: #f8f9fa; border-radius: var(--bs-border-radius);
+                }
+                .main-image-card { border: none; }
+                .discount-badge { font-size: 0.8rem; padding: 0.3em 0.6em; font-weight: 500; }
+                .out-of-stock-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--bs-danger); border-radius: var(--bs-border-radius); }
+
+                /* --- Infos Produit --- */
+                .color-swatch { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #dee2e6; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); transition: all 0.2s ease-in-out; }
+                .color-swatch:hover { transform: scale(1.1); border-color: #aaa; }
+                .color-swatch.selected { box-shadow: 0 0 0 3px var(--bs-primary); border-color: #fff; transform: scale(1.1); }
+                .product-title { font-size: 1.5rem; font-weight: 600; line-height: 1.3; }
+                .badge-custom { background-color: var(--bs-success-bg-subtle) !important; color: var(--bs-success-text-emphasis) !important; border: 1px solid var(--bs-success-border-subtle) !important; font-weight: 500; }
+                .quantity-input { max-width: 50px; -moz-appearance: textfield; }
+                .quantity-input::-webkit-outer-spin-button, .quantity-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+                .rating-section i { font-size: 1.1em; } /* Etoiles un peu plus grandes */
+                .price-section .h3 { font-size: 1.8rem; } /* Prix principal plus grand */
+
+                /* --- Bought Together --- */
+                .bought-together-card { background: #f8f9fa; border: none; border-radius: var(--bs-card-border-radius); }
+                .object-fit-contain { object-fit: contain; }
+                .text-truncate-2-lines { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; line-height: 1.3em; max-height: 2.6em; }
+
+                /* --- Onglets (Tabs) --- */
+                #product-details-tabs .nav-link { flex: 1 1 auto; text-align: center; color: var(--bs-gray-600); font-weight: 500; }
+                #product-details-tabs .nav-link.active { color: var(--bs-primary); border-bottom-color: var(--bs-primary) !important; }
+                .tab-content > .tab-pane { padding: 1.5rem 0.5rem; } /* Padding ajusté */
+
+                /* --- Breadcrumbs --- */
+                .breadcrumb-item + .breadcrumb-item::before { content: ">"; padding-right: var(--bs-breadcrumb-item-padding-x); padding-left: var(--bs-breadcrumb-item-padding-x); color: var(--bs-gray-500); }
+                .breadcrumb a { color: var(--bs-primary); text-decoration: none; }
+                .breadcrumb a:hover { text-decoration: underline; }
+                .breadcrumb-item.active { color: var(--bs-gray-700); font-weight: 500; }
+
+                /* --- Styles Carousel (déplacés depuis ProductCarousel.js pour centralisation) --- */
+                 .product-carousel-container::-webkit-scrollbar { display: none; }
+                 .product-carousel-container { scrollbar-width: none; -ms-overflow-style: none; }
+
+                .product-card-similar {
+                    border-radius: 0.5rem; /* Bords arrondis */
+                    border-color: var(--bs-border-color-translucent);
+                    transition: all 0.2s ease-in-out;
+                    background-color: var(--bs-body-bg); /* Assure fond blanc/thème */
+                     box-shadow: var(--bs-box-shadow-sm); /* Ombre légère par défaut */
+                }
+
+                .product-card-similar:hover {
+                    transform: translateY(-4px); /* Effet de lévitation */
+                    box-shadow: var(--bs-box-shadow); /* Ombre plus prononcée */
+                    border-color: var(--bs-border-color);
+                }
+
+                .product-card-img-container {
+                    height: 160px; /* Hauteur fixe pour l'image */
+                    background-color: #f8f9fa; /* Fond léger pour l'image */
+                    overflow: hidden; /* Cache ce qui dépasse */
+                    position: relative; /* Pour positionner les éléments absolus */
+                    border-top-left-radius: 0.5rem; /* Arrondi haut */
+                    border-top-right-radius: 0.5rem;
+                }
+                /* Centrage pour layout fill de next/image */
+                .product-card-img-container > span { display: block !important; }
+
+                .similar-product-title {
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    line-height: 1.3;
+                    height: 2.6em; /* Approx 2 lignes */
+                    color: var(--bs-body-color); /* Assure couleur texte correcte */
+                }
+                .fs-xs { font-size: 0.75rem; }
+
+                 /* Actions qui apparaissent au survol */
+                 .product-card-actions { position: absolute; bottom: 8px; right: 8px; opacity: 0; transition: opacity 0.2s ease-in-out; }
+                 .product-card-similar:hover .product-card-actions { opacity: 1; }
+                 .add-to-cart-btn { font-size: 0.8rem; padding: 0.25rem 0.6rem; }
+
+            `}</style>
+        </>
+    );
+};
+
+// --- Assignation du Layout ---
 ProductPage.getLayout = (page) => <Layout>{page}</Layout>;
 
+// --- Exportation du Composant Page ---
 export default ProductPage;

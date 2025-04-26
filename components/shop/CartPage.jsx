@@ -1,23 +1,51 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import PageHeader from "../PageHeader";
 import Link from "next/link";
-import Image from "next/image";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useNotifications } from "../../contexts/NotificationContext";
+import { useWishlist } from "../../contexts/WishlistContext";
 import axios from "axios";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Table,
+  Button,
+  Form,
+  Alert,
+  Spinner,
+} from "react-bootstrap";
+import CartItemRow from "./CartItemRow";
+import CartSummary from "./CartSummary";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [debugInfo, setDebugInfo] = useState({ cartItemsLength: 0, localStorageCheck: false }); // Pour le débogage
-  
-  // Obtenir les informations d'authentification de l'utilsateur
+  const [actionLoading, setActionLoading] = useState(false);
+  const [debugInfo, setDebugInfo] = useState({
+    cartItemsLength: 0,
+    localStorageCheck: false,
+  });
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+
+  // Obtenir les informations d'authentification de l'utilisateur
   const { user } = useContext(AuthContext);
-  // utilser le contexte de notification
+  // Utiliser le contexte de notification
   const { addNotification } = useNotifications();
-  
-  // Pour simuler un rôle administrateur, normalement cela viendrait d'une vérification de rôle côté serveur
-  const isAdmin = user && (user.email === "admin@example.com" || user.id === "ADMIN_ID");
+  // Utiliser le contexte de liste de souhaits
+  const { addMultipleToWishlist } = useWishlist();
+
+  // Pour simuler un rôle administrateur
+  const isAdmin =
+    user && (user.email === "admin@example.com" || user.id === "ADMIN_ID");
+
+  // Calcul du sous-total avec mémoïsation
+  const cartSubtotal = useMemo(() => {
+    return cartItems.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+  }, [cartItems]);
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -25,38 +53,46 @@ const CartPage = () => {
       try {
         // Vérifier d'abord le localStorage
         const storedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
-        
+
         // Mettre à jour les informations de débogage
         setDebugInfo({
           cartItemsLength: storedCartItems.length,
           localStorageCheck: true,
-          localStorageContent: JSON.stringify(storedCartItems)
+          localStorageContent: JSON.stringify(storedCartItems),
         });
-        
+
         if (user) {
-          // Si l'utilsateur est connecté, essayer de récupérer son panier depuis l'API
+          // Si l'utilisateur est connecté, essayer de récupérer son panier depuis l'API
           try {
             const response = await axios.get(`/api/users/${user.id}/cart`);
-            if (response.data && response.data.items && response.data.items.length > 0) {
+            if (
+              response.data &&
+              response.data.items &&
+              response.data.items.length > 0
+            ) {
               setCartItems(response.data.items);
             } else {
-              // Si l'API ne renvoie pas de panier, utilser le localStorage comme fallback
+              // Si l'API ne renvoie pas de panier, utiliser le localStorage comme fallback
               setCartItems(storedCartItems);
             }
           } catch (apiError) {
-            console.error("Erreur lors du chargement du panier depuis l'API:", apiError);
+            console.error(
+              "Erreur lors du chargement du panier depuis l'API:",
+              apiError
+            );
             // En cas d'erreur API, utiliser le localStorage comme fallback
             setCartItems(storedCartItems);
           }
         } else {
-          // Pour les utilsateurs non connectés, utilser uniquement le localStorage
+          // Pour les utilisateurs non connectés, utiliser uniquement le localStorage
           setCartItems(storedCartItems);
         }
       } catch (error) {
         console.error("Erreur lors du chargement du panier:", error);
         addNotification({
           title: "Erreur",
-          message: "Impossible de charger votre panier. Veuillez rafraîchir la page.",
+          message:
+            "Impossible de charger votre panier. Veuillez rafraîchir la page.",
           type: "error",
         });
       } finally {
@@ -65,56 +101,54 @@ const CartPage = () => {
     };
 
     fetchCartItems();
-    
+
     // Ajouter un écouteur pour détecter les changements dans localStorage
     const handleStorageChange = (e) => {
       if (e.key === "cart") {
         try {
           const newCartItems = JSON.parse(e.newValue) || [];
           setCartItems(newCartItems);
-          setDebugInfo(prev => ({
+          setDebugInfo((prev) => ({
             ...prev,
             cartItemsLength: newCartItems.length,
-            storageEventTriggered: true
+            storageEventTriggered: true,
           }));
         } catch (error) {
           console.error("Erreur lors de la mise à jour du panier:", error);
         }
       }
     };
-    
-    window.addEventListener('storage', handleStorageChange);
-    
+
+    window.addEventListener("storage", handleStorageChange);
+
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange);
     };
   }, [user, addNotification]);
-
-  // Calculate the total price for each item in the cart
-  const calculateTotalPrice = (item) => {
-    return item.price * item.quantity;
-  };
 
   // Handle quantity increase
   const handleIncrease = async (item) => {
     const updatedItem = { ...item, quantity: item.quantity + 1 };
-    const updatedCartItems = cartItems.map(cartItem => 
+    const updatedCartItems = cartItems.map((cartItem) =>
       cartItem.id === item.id ? updatedItem : cartItem
     );
-    
+
     setCartItems(updatedCartItems);
-    
+
     // Update local storage
     updateLocalStorage(updatedCartItems);
-    
+
     // Update server if user is logged in
     if (user) {
       try {
-        await axios.put(`/api/users/${user.id}/cart`, { 
-          items: updatedCartItems 
+        await axios.put(`/api/users/${user.id}/cart`, {
+          items: updatedCartItems,
         });
       } catch (error) {
-        console.error("Erreur lors de la mise à jour du panier sur le serveur:", error);
+        console.error(
+          "Erreur lors de la mise à jour du panier sur le serveur:",
+          error
+        );
         addNotification({
           title: "Erreur",
           message: "Impossible de synchroniser votre panier avec le serveur.",
@@ -122,67 +156,38 @@ const CartPage = () => {
         });
       }
     }
-    
-    // Envoyer une notification pour l'augmentation de quantité
-    addNotification({
-      title: "Quantité mise à jour",
-      message: `Quantité de ${item.name} augmentée à ${updatedItem.quantity}`,
-      type: "info",
-    });
-    
-    // Si c'est un administrateur, envoyer une notification spéciale
-    if (isAdmin) {
-      addNotification({
-        title: "Action administrateur",
-        message: `Modification du panier: ${item.name} (${updatedItem.quantity})`,
-        type: "admin",
-      });
-    }
   };
 
   // Handle quantity decrease
   const handleDecrease = async (item) => {
     if (item.quantity > 1) {
       const updatedItem = { ...item, quantity: item.quantity - 1 };
-      const updatedCartItems = cartItems.map(cartItem => 
+      const updatedCartItems = cartItems.map((cartItem) =>
         cartItem.id === item.id ? updatedItem : cartItem
       );
-      
+
       setCartItems(updatedCartItems);
-      
+
       // Update local storage
       updateLocalStorage(updatedCartItems);
-      
+
       // Update server if user is logged in
       if (user) {
         try {
-          await axios.put(`/api/users/${user.id}/cart`, { 
-            items: updatedCartItems 
+          await axios.put(`/api/users/${user.id}/cart`, {
+            items: updatedCartItems,
           });
         } catch (error) {
-          console.error("Erreur lors de la mise à jour du panier sur le serveur:", error);
+          console.error(
+            "Erreur lors de la mise à jour du panier sur le serveur:",
+            error
+          );
           addNotification({
             title: "Erreur",
             message: "Impossible de synchroniser votre panier avec le serveur.",
             type: "error",
           });
         }
-      }
-      
-      // Envoyer une notification pour la diminution de quantité
-      addNotification({
-        title: "Quantité mise à jour",
-        message: `Quantité de ${item.name} réduite à ${updatedItem.quantity}`,
-        type: "info",
-      });
-      
-      // Si c'est un administrateur, envoyer une notification spéciale
-      if (isAdmin) {
-        addNotification({
-          title: "Action administrateur",
-          message: `Modification du panier: ${item.name} (${updatedItem.quantity})`,
-          type: "admin",
-        });
       }
     }
   };
@@ -191,21 +196,24 @@ const CartPage = () => {
   const handleRemoveItem = async (item) => {
     // Filter out the item to be removed
     const updatedCart = cartItems.filter((cartItem) => cartItem.id !== item.id);
-    
+
     // Update the state with the new cart
     setCartItems(updatedCart);
-    
+
     // Update local storage with the updated cart
     updateLocalStorage(updatedCart);
-    
+
     // Update server if user is logged in
     if (user) {
       try {
-        await axios.put(`/api/users/${user.id}/cart`, { 
-          items: updatedCart 
+        await axios.put(`/api/users/${user.id}/cart`, {
+          items: updatedCart,
         });
       } catch (error) {
-        console.error("Erreur lors de la mise à jour du panier sur le serveur:", error);
+        console.error(
+          "Erreur lors de la mise à jour du panier sur le serveur:",
+          error
+        );
         addNotification({
           title: "Erreur",
           message: "Impossible de synchroniser votre panier avec le serveur.",
@@ -213,7 +221,7 @@ const CartPage = () => {
         });
       }
     }
-    
+
     // Envoyer une notification pour le retrait d'un produit
     addNotification({
       title: "Produit retiré",
@@ -227,30 +235,24 @@ const CartPage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
 
-  // Calculate the cart subtotal
-  const cartSubtotal = cartItems.reduce((total, item) => {
-    return total + calculateTotalPrice(item);
-  }, 0);
-
-  // Calculate the order total
-  const orderTotal = cartSubtotal;
-
-  // Fonction pour ajouter un produit (pour les tests)
+  // Fonction pour ajouter un produit test (pour les administrateurs)
   const handleAddTestProduct = async () => {
     try {
       // Récupérer un produit de test depuis l'API
-      const response = await axios.get('/api/products?limit=1');
+      const response = await axios.get("/api/products?limit=1");
       let testProduct;
-      
+
       if (response.data && response.data.length > 0) {
-        // utilser un produit de la base de données
+        // Utiliser un produit de la base de données
         const product = response.data[0];
         testProduct = {
           id: product._id || Date.now(),
           name: product.name || "Produit test",
           price: product.price || 19.99,
           quantity: 1,
-          img: product.image || "/assets/images/placeholder.jpg" // Chemin corrigé
+          img: product.image || "/assets/images/products/01.jpg",
+          // Ajouter la catégorie du produit
+          category: product.category || "Catégorie test",
         };
       } else {
         // Fallback si l'API ne retourne pas de produit
@@ -259,22 +261,17 @@ const CartPage = () => {
           name: "Produit test",
           price: 19.99,
           quantity: 1,
-          img: "/assets/images/placeholder.jpg" // Chemin corrigé
+          img: "/assets/images/products/01.jpg",
+          // Ajouter une catégorie par défaut
+          category: "Catégorie test",
         };
       }
-      
+
       const newCartItems = [...cartItems, testProduct];
       setCartItems(newCartItems);
       updateLocalStorage(newCartItems);
-      
-      // Mise à jour du panier sur le serveur si l'utilsateur est connecté
-      if (user) {
-        await axios.put(`/api/users/${user.id}/cart`, { 
-          items: newCartItems 
-        });
-      }
-      
-      // Envoyer une notification pour l'ajout d'un produit
+
+      // Notification pour l'ajout d'un produit
       addNotification({
         title: "Produit ajouté",
         message: `${testProduct.name} a été ajouté à votre panier`,
@@ -282,21 +279,17 @@ const CartPage = () => {
       });
     } catch (error) {
       console.error("Erreur lors de l'ajout du produit test:", error);
-      addNotification({
-        title: "Erreur",
-        message: "Impossible d'ajouter le produit test.",
-        type: "error",
-      });
-      
       // Ajouter un produit test local en cas d'échec de l'API
       const testProduct = {
         id: Date.now(),
         name: "Produit test (local)",
         price: 19.99,
         quantity: 1,
-        img: "/assets/images/placeholder.jpg" // Chemin corrigé
+        img: "/assets/images/products/01.jpg",
+        // Ajouter une catégorie par défaut
+        category: "Catégorie test",
       };
-      
+
       const newCartItems = [...cartItems, testProduct];
       setCartItems(newCartItems);
       updateLocalStorage(newCartItems);
@@ -308,31 +301,32 @@ const CartPage = () => {
     if (cartItems.length === 0) {
       addNotification({
         title: "Panier vide",
-        message: "Votre panier est vide. Ajoutez des produits avant de procéder au paiement.",
+        message:
+          "Votre panier est vide. Ajoutez des produits avant de procéder au paiement.",
         type: "warning",
       });
       return;
     }
-    
+
     try {
-      setLoading(true);
-      
+      setActionLoading(true);
+
       // Créer une commande via l'API
-      const response = await axios.post('/api/orders', {
+      const response = await axios.post("/api/orders", {
         user: user ? user.id : null,
         items: cartItems,
-        total: orderTotal,
-        status: 'pending',
+        total: cartSubtotal,
+        status: "pending",
         shippingAddress: null, // À compléter pendant le checkout
-        paymentMethod: null    // À compléter pendant le checkout
+        paymentMethod: null, // À compléter pendant le checkout
       });
-      
+
       if (response.data && response.data._id) {
         // Utiliser le router de Next.js pour la redirection avec l'ID de commande
-        const router = require('next/router').default;
+        const router = require("next/router").default;
         router.push(`/checkout?orderId=${response.data._id}`);
       } else {
-        throw new Error('La création de commande a échoué');
+        throw new Error("La création de commande a échoué");
       }
     } catch (error) {
       console.error("Erreur lors de la création de la commande:", error);
@@ -342,287 +336,380 @@ const CartPage = () => {
         type: "error",
       });
     } finally {
-      setLoading(false);
+      setActionLoading(false);
     }
   };
 
-  // Fonction pour afficher l'image du produit avec fallback
-  const renderProductImage = (item) => {
-    // Créer un placeholder inline pour éviter de dépendre d'une image externe
-    const defaultPlaceholderSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3EProduit%3C/text%3E%3C/svg%3E";
-    
-    if (!item || !item.img) {
-      return <img src={defaultPlaceholderSrc} alt="Produit sans image" style={{ maxWidth: '100%', height: 'auto' }} />;
-    }
-    
-    try {
-      return <img 
-        src={item.img} 
-        alt={item.name || "Produit"} 
-        style={{ maxWidth: '100%', height: 'auto' }}
-        onError={(e) => {
-          // Si l'image ne peut pas être chargée, utiliser l'image placeholder inline
-          e.target.onerror = null;
-          e.target.src = defaultPlaceholderSrc;
-        }} 
-      />;
-    } catch (error) {
-      return <img src={defaultPlaceholderSrc} alt="Erreur d'image" style={{ maxWidth: '100%', height: 'auto' }} />;
-    }
+  // Fonction pour gérer le tri des colonnes
+  const handleSort = (key) => {
+    setSortConfig((prev) => ({
+      key,
+      direction: prev.key === key && prev.direction === "asc" ? "desc" : "asc",
+    }));
   };
+
+  // Trier les articles du panier en fonction de la configuration de tri
+  const sortedCartItems = useMemo(() => {
+    const itemsToSort = [...cartItems];
+    if (!sortConfig.key) return itemsToSort;
+
+    return itemsToSort.sort((a, b) => {
+      // Fonction pour récupérer la valeur d'un chemin imbriqué
+      const getValue = (obj, path) => {
+        return path.split(".").reduce((acc, part) => acc?.[part], obj) || "";
+      };
+      
+      // Gestion spéciale pour le total (price * quantity)
+      if (sortConfig.key === "total") {
+        const aValue = a.price * a.quantity;
+        const bValue = b.price * b.quantity;
+        return sortConfig.direction === "asc"
+          ? aValue - bValue
+          : bValue - aValue;
+      }
+
+      // Récupérer les valeurs en suivant le chemin complet
+      const aValue = getValue(a, sortConfig.key);
+      const bValue = getValue(b, sortConfig.key);
+
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortConfig.direction === "asc"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+
+      // Tri numérique par défaut
+      return sortConfig.direction === "asc" ? aValue - bValue : bValue - aValue;
+    });
+  }, [cartItems, sortConfig]);
 
   return (
-    <div>
-      <PageHeader title={"Panier"} curPage={"Panier"} />
-      <div className="shop-cart padding-tb">
-        <div className="container">
-          <div className="section-wrapper">
-            {/* Informations de débogage pour les développeurs */}
-            {isAdmin && (
-              <div className="alert alert-info mb-3">
-                <h5>Informations de débogage (Admin uniquement)</h5>
-                <p>Nombre d'articles dans le panier: {debugInfo.cartItemsLength}</p>
-                <p>Vérification du localStorage: {debugInfo.localStorageCheck ? 'Oui' : 'Non'}</p>
-                {debugInfo.localStorageContent && (
-                  <details>
-                    <summary>Contenu du localStorage</summary>
-                    <pre style={{maxHeight: '100px', overflow: 'auto'}}>{debugInfo.localStorageContent}</pre>
-                  </details>
-                )}
-              </div>
+    <div className="cart-page py-5">
+      <PageHeader title={"Mon Panier"} curPage={"Panier"} />
+
+      <Container className="py-4">
+        {/* Informations de débogage pour les administrateurs */}
+        {isAdmin && (
+          <Alert variant="info" className="mb-4">
+            <h5 className="mb-2">
+              Informations de débogage (Admin uniquement)
+            </h5>
+            <p className="mb-1">
+              Nombre d&apos;articles dans le panier: {debugInfo.cartItemsLength}
+            </p>
+            <p className="mb-1">
+              Vérification du localStorage:{" "}
+              {debugInfo.localStorageCheck ? "Oui" : "Non"}
+            </p>
+            {debugInfo.localStorageContent && (
+              <details>
+                <summary className="cursor-pointer text-primary">
+                  Contenu du localStorage
+                </summary>
+                <pre
+                  className="mt-2 p-2 bg-light border rounded"
+                  style={{ maxHeight: "100px", overflow: "auto" }}
+                >
+                  {debugInfo.localStorageContent}
+                </pre>
+              </details>
             )}
-            
-            {/* cart top */}
-            <div className="cart-top">
-              {loading ? (
-                <div className="text-center py-5">
-                  <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Chargement...</span>
+          </Alert>
+        )}
+
+        <h2 className="mb-4 fw-bold">Mon Panier</h2>
+
+        <Row className="g-4">
+          {/* Colonne principale avec le tableau des produits */}
+          <Col lg={8}>
+            <Card className="border-0 shadow-sm mb-4">
+              <Card.Body className="p-0">
+                {loading ? (
+                  <div className="text-center py-5">
+                    <Spinner animation="border" role="status" variant="primary">
+                      <span className="visually-hidden">Chargement...</span>
+                    </Spinner>
+                    <p className="mt-3 text-muted">
+                      Chargement de votre panier...
+                    </p>
                   </div>
-                  <p className="mt-2">Chargement de votre panier...</p>
-                </div>
-              ) : cartItems.length === 0 ? (
-                <div className="text-center py-5">
-                  <i className="icofont-shopping-cart" style={{ fontSize: '4rem', color: '#ddd' }}></i>
-                  <h3 className="mt-3">Votre panier est vide</h3>
-                  <p className="mb-4">Vous n&apos;avez pas encore ajouté de produits à votre panier.</p>
-                  <Link href="/shop" className="lab-btn">
-                    <span>Continuer mes achats</span>
-                  </Link>
-                </div>
-              ) : (
-                <table>
-                  <thead>
-                    <tr>
-                      <th className="cat-product">Produit</th>
-                      <th className="cat-price">Prix</th>
-                      <th className="cat-quantity">Quantité</th>
-                      <th className="cat-toprice">Total</th>
-                      <th className="cat-edit">Modifier</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems.map((item, indx) => (
-                      <tr key={indx}>
-                        <td className="product-item cat-product">
-                          <div className="p-thumb">
-                            <Link href={`/Shop/${item.id}`}>
-                              {renderProductImage(item)}
-                            </Link>
-                          </div>
-                          <div className="p-content">
-                            <Link href={`/Shop/${item.id}`}>{item.name || 'Produit sans nom'}</Link>
-                          </div>
-                        </td>
-                        <td className="cat-price">${(item.price || 0).toFixed(2)}</td>
-                        <td className="cat-quantity">
-                          <div className="cart-plus-minus">
-                            <div
-                              className="dec qtybutton"
-                              onClick={() => handleDecrease(item)}
+                ) : sortedCartItems.length === 0 ? (
+                  <div className="text-center py-5">
+                    <i
+                      className="icofont-shopping-cart"
+                      style={{ fontSize: "4rem", color: "#ddd" }}
+                    ></i>
+                    <h3 className="mt-3">Votre panier est vide</h3>
+                    <p className="mb-4 text-muted">
+                      Vous n&apos;avez pas encore ajouté de produits à votre
+                      panier.
+                    </p>
+                    <Link href="/shop" className="btn btn-primary">
+                      <i className="icofont-shopping-cart me-2"></i>
+                      Continuer mes achats
+                    </Link>
+                  </div>
+                ) : (
+                  <>
+                    <div className="table-responsive">
+                      <Table className="align-middle mb-0">
+                        <thead className="bg-light text-dark">
+                          <tr>
+                            <th
+                              className="ps-4 fw-bold"
+                              style={{ minWidth: "350px", cursor: "pointer" }}
+                              onClick={() => handleSort("name")}
                             >
-                              -
-                            </div>
-                            <input
-                              className="cart-plus-minus-box"
-                              type="text"
-                              name="qtybutton"
-                              value={item.quantity || 1}
-                              readOnly
+                              <div className="d-flex align-items-center">
+                                PRODUIT
+                                {sortConfig.key === "name" && (
+                                  <span
+                                    className="sort-indicator ms-1"
+                                    aria-hidden="true"
+                                  >
+                                    {sortConfig.direction === "asc"
+                                      ? "&#9650;"
+                                      : "&#9660;"}
+                                  </span>
+                                )}
+                              </div>
+                            </th>
+                            <th
+                              className="fw-bold"
+                              style={{ width: "100px", cursor: "pointer" }}
+                              onClick={() => handleSort("price")}
+                            >
+                              <div className="d-flex align-items-center">
+                                PRIX
+                                {sortConfig.key === "price" && (
+                                  <span
+                                    className="sort-indicator ms-1"
+                                    aria-hidden="true"
+                                  >
+                                    {sortConfig.direction === "asc"
+                                      ? "&#9650;"
+                                      : "&#9660;"}
+                                  </span>
+                                )}
+                              </div>
+                            </th>
+                            <th
+                              className="fw-bold"
+                              style={{ width: "150px", cursor: "pointer" }}
+                              onClick={() => handleSort("quantity")}
+                            >
+                              <div className="d-flex align-items-center">
+                                QUANTITÉ
+                                {sortConfig.key === "quantity" && (
+                                  <span
+                                    className="sort-indicator ms-1"
+                                    aria-hidden="true"
+                                  >
+                                    {sortConfig.direction === "asc"
+                                      ? "&#9650;"
+                                      : "&#9660;"}
+                                  </span>
+                                )}
+                              </div>
+                            </th>
+                            <th
+                              className="fw-bold"
+                              style={{ width: "120px", cursor: "pointer" }}
+                              onClick={() => handleSort("total")}
+                            >
+                              <div className="d-flex align-items-center">
+                                TOTAL
+                                {sortConfig.key === "total" && (
+                                  <span
+                                    className="sort-indicator ms-1"
+                                    aria-hidden="true"
+                                  >
+                                    {sortConfig.direction === "asc"
+                                      ? "&#9650;"
+                                      : "&#9660;"}
+                                  </span>
+                                )}
+                              </div>
+                            </th>
+                            <th
+                              className="text-end pe-4 fw-bold"
+                              style={{ width: "80px" }}
+                            >
+                              ACTIONS
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {sortedCartItems.map((item, index) => (
+                            <CartItemRow
+                              key={item.id || index}
+                              item={item}
+                              onIncrease={() => handleIncrease(item)}
+                              onDecrease={() => handleDecrease(item)}
+                              onRemove={() => handleRemoveItem(item)}
                             />
-                            <div
-                              className="inc qtybutton"
-                              onClick={() => handleIncrease(item)}
-                            >
-                              +
-                            </div>
-                          </div>
-                        </td>
-                        <td className="cat-toprice">
-                          ${calculateTotalPrice(item).toFixed(2)}
-                        </td>
-                        <td className="cat-edit">
-                          <button
-                            className="bg-transparent border-0 text-danger"
-                            onClick={() => handleRemoveItem(item)}
-                            aria-label="Supprimer l'article"
-                          >
-                            <i className="icofont-ui-delete display-6"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
-            </div>
-
-            {/* Cart actions - incluant le bouton de test */}
-            <div className="cart-actions d-flex justify-content-between my-4">
-              {/* Bouton pour tester l'ajout de produit (pour démonstration uniquement) */}
-              <button 
-                onClick={handleAddTestProduct} 
-                className="lab-btn bg-success"
-                disabled={loading}
-              >
-                <i className="icofont-plus mr-2"></i> Ajouter un produit test
-              </button>
-              
-              {/* Bouton pour vider le localStorage (pour résoudre les problèmes potentiels) */}
-              <button 
-                onClick={() => {
-                  localStorage.removeItem("cart");
-                  setCartItems([]);
-                  addNotification({
-                    title: "Panier réinitialisé",
-                    message: "Votre panier a été vidé avec succès.",
-                    type: "info",
-                  });
-                }} 
-                className="lab-btn bg-danger"
-                disabled={loading}
-              >
-                <i className="icofont-trash mr-2"></i> Réinitialiser le panier
-              </button>
-            </div>
-
-            {/* cart bottom */}
-            {cartItems.length > 0 && (
-              <div className="cart-bottom">
-                {/* checkout box */}
-                <div className="cart-checkout-box">
-                  <form className="coupon" onSubmit={(e) => e.preventDefault()}>
-                    <input
-                      type="text"
-                      name="coupon"
-                      placeholder="Code coupon..."
-                      className="cart-page-input-text"
-                    />
-                    <input type="submit" value="Appliquer le coupon" />
-                  </form>
-                  <div className="cart-checkout">
-                    <input 
-                      type="button" 
-                      value="Mettre à jour le panier" 
-                      onClick={() => {
-                        addNotification({
-                          title: "Panier mis à jour",
-                          message: "Votre panier a été mis à jour avec succès.",
-                          type: "success",
-                        });
-                      }}
-                      disabled={loading}
-                    />
-                    <input 
-                      type="button" 
-                      value="Procéder au paiement" 
-                      onClick={handleCheckout}
-                      disabled={loading || cartItems.length === 0}
-                    />
-                  </div>
-                </div>
-
-                {/* shopping box */}
-                <div className="shiping-box">
-                  <div className="row">
-                    {/* shipping  */}
-                    <div className="col-md-6 col-12">
-                      <div className="calculate-shiping">
-                        <h3>Calculer la livraison</h3>
-                        <div className="outline-select">
-                          <select>
-                            <option value="volvo">France</option>
-                            <option value="saab">Belgique</option>
-                            <option value="saab">Suisse</option>
-                            <option value="saab">Canada</option>
-                            <option value="saab">Luxembourg</option>
-                          </select>
-                          <span className="select-icon">
-                            <i className="icofont-rounded-down"></i>
-                          </span>
-                        </div>
-                        <div className="outline-select shipping-select">
-                          <select>
-                            <option value="volvo">Département/Région</option>
-                            <option value="saab">Paris</option>
-                            <option value="saab">Lyon</option>
-                            <option value="saab">Marseille</option>
-                            <option value="saab">Toulouse</option>
-                          </select>
-                          <span className="select-icon">
-                            <i className="icofont-rounded-down"></i>
-                          </span>
-                        </div>
-                        <input
-                          type="text"
-                          name="coupon"
-                          placeholder="Code postal"
-                          className="cart-page-input-text"
-                        />
-                        <button type="submit">Mettre à jour le total</button>
-                      </div>
+                          ))}
+                        </tbody>
+                      </Table>
                     </div>
 
-                    {/* cart total */}
-                    <div className="col-md-6 col-12">
-                      <div className="cart-overview">
-                        <h3>Total du panier</h3>
-                        <ul className="lab-ul">
-                          <li>
-                            <span className="pull-left">Sous-total du panier</span>
-                            <p className="pull-right">$ {cartSubtotal.toFixed(2)}</p>
-                          </li>
-                          <li>
-                            <span className="pull-left">
-                              Frais de livraison
-                            </span>
-                            <p className="pull-right">Livraison gratuite</p>
-                          </li>
-                          <li>
-                            <span className="pull-left">Total de la commande</span>
-                            <p className="pull-right">
-                              $ {orderTotal.toFixed(2)}
-                            </p>
-                          </li>
-                        </ul>
-                        
-                        {/* Lien vers l'administration visible uniquement pour les administrateurs */}
+                    {/* Actions du panier */}
+                    <div className="d-flex flex-wrap justify-content-between align-items-center p-4 border-top">
+                      <div className="d-flex gap-2 mb-3 mb-md-0">
+                        <Link href="/shop" className="btn btn-outline-primary">
+                          <i className="icofont-arrow-left me-1"></i>
+                          Continuer mes achats
+                        </Link>
+
                         {isAdmin && (
-                          <div className="admin-link mt-4">
-                            <Link href="/admin/orders" className="lab-btn bg-primary" style={{ width: '100%', textAlign: 'center' }}>
-                              <i className="icofont-dashboard-web mr-2"></i> Gérer les commandes
-                            </Link>
-                          </div>
+                          <Button
+                            variant="success"
+                            size="sm"
+                            onClick={handleAddTestProduct}
+                            disabled={loading}
+                          >
+                            <i className="icofont-plus me-1"></i>
+                            Ajouter un produit test
+                          </Button>
                         )}
                       </div>
+
+                      <Button
+                        variant="outline-danger"
+                        onClick={() => {
+                          localStorage.removeItem("cart");
+                          setCartItems([]);
+                          // Déclencher un événement de stockage pour mettre à jour les compteurs dans la navigation
+                          window.dispatchEvent(new Event("storage"));
+                          addNotification({
+                            title: "Panier réinitialisé",
+                            message: "Votre panier a été vidé avec succès.",
+                            type: "info",
+                          });
+                        }}
+                        disabled={loading || cartItems.length === 0}
+                      >
+                        <i className="icofont-trash me-1"></i>
+                        Vider le panier
+                      </Button>
+                    </div>
+                  </>
+                )}
+              </Card.Body>
+            </Card>
+          </Col>
+
+          {/* Colonne de résumé du panier */}
+          {cartItems.length > 0 && (
+            <Col lg={4}>
+              <CartSummary
+                subtotal={cartSubtotal}
+                onCheckout={handleCheckout}
+                loading={actionLoading}
+                cartItems={cartItems}
+                onAddToWishlist={addMultipleToWishlist}
+              />
+
+              {/* Avantages client */}
+              <Card className="border-0 shadow-sm mt-4">
+                <Card.Body className="p-4">
+                  <h5 className="mb-3">Nos garanties</h5>
+
+                  <div className="d-flex align-items-center mb-3">
+                    <i className="icofont-truck fs-3 text-primary me-3"></i>
+                    <div>
+                      <h6 className="mb-1">Livraison gratuite</h6>
+                      <p className="mb-0 small text-muted">
+                        Sur toutes vos commandes en France métropolitaine
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+
+                  <div className="d-flex align-items-center mb-3">
+                    <i className="icofont-exchange fs-3 text-danger me-3"></i>
+                    <div>
+                      <h6 className="mb-1">Retours sous 30 jours</h6>
+                      <p className="mb-0 small text-muted">
+                        Satisfaction garantie ou remboursement intégral
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="d-flex align-items-center">
+                    <i className="icofont-headphone-alt fs-3 text-success me-3"></i>
+                    <div>
+                      <h6 className="mb-1">Service client 7j/7</h6>
+                      <p className="mb-0 small text-muted">
+                        Notre équipe est à votre écoute
+                      </p>
+                    </div>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          )}
+        </Row>
+      </Container>
+
+      <style global>{`
+        .cursor-pointer {
+          cursor: pointer;
+        }
+
+        .table thead th {
+          font-weight: 600;
+          font-size: 0.875rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: #6c757d;
+        }
+
+        .table tbody tr {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .table tbody tr:last-child {
+          border-bottom: none;
+        }
+
+        .product-name {
+          color: var(--bs-body-color);
+          transition: color 0.2s;
+        }
+
+        .product-name:hover {
+          color: var(--bs-primary);
+        }
+
+        .payment-methods i {
+          opacity: 0.7;
+          transition: opacity 0.2s;
+        }
+
+        .payment-methods:hover i {
+          opacity: 1;
+        }
+
+        /* Styles pour les indicateurs de tri */
+        .sort-indicator {
+          display: inline-block;
+          font-size: 1.2em;
+          line-height: 1;
+          color: var(--bs-primary);
+          vertical-align: middle;
+        }
+
+        /* Augmenter la visibilité des en-têtes de colonnes */
+        .table thead th {
+          color: #333;
+          background-color: #f8f9fa;
+          border-bottom: 2px solid #dee2e6;
+        }
+
+        .table thead th:hover {
+          background-color: #e9ecef;
+        }
+      `}</style>
     </div>
   );
 };

@@ -1,38 +1,38 @@
 "use client";
 
 import { useContext, useState, useEffect } from "react";
-console.log('NavItems.jsx: Chargement du fichier');
+console.log("NavItems.jsx: Chargement du fichier");
 
-console.log('NavItems.jsx: Avant imports');
+console.log("NavItems.jsx: Avant imports");
 import Link from "next/link";
 import { useRouter } from "next/router";
-console.log('NavItems.jsx: Après imports de next');
+console.log("NavItems.jsx: Après imports de next");
 
-console.log('NavItems.jsx: Avant import logo');
-import logo from "../assets/images/logo/logo.png";
-console.log('NavItems.jsx: Logo importé:', typeof logo);
+console.log("NavItems.jsx: Avant import logo");
+import logo from "../assets/images/logo/ChatGPT-lum.png";
+console.log("NavItems.jsx: Logo importé:", typeof logo);
 
-console.log('NavItems.jsx: Avant import AuthContext');
+console.log("NavItems.jsx: Avant import AuthContext");
 import { AuthContext } from "../../contexts/AuthProvider";
-console.log('NavItems.jsx: AuthContext importé:', typeof AuthContext);
+console.log("NavItems.jsx: AuthContext importé:", typeof AuthContext);
 
-console.log('NavItems.jsx: Avant import NavDropdown');
+console.log("NavItems.jsx: Avant import NavDropdown");
 import { NavDropdown } from "react-bootstrap";
-console.log('NavItems.jsx: NavDropdown importé:', typeof NavDropdown);
+console.log("NavItems.jsx: NavDropdown importé:", typeof NavDropdown);
 
-console.log('NavItems.jsx: Avant import clientAvatar');
+console.log("NavItems.jsx: Avant import clientAvatar");
 import { clientAvatar } from "../utils/imageImports";
-console.log('NavItems.jsx: clientAvatar importé:', typeof clientAvatar);
+console.log("NavItems.jsx: clientAvatar importé:", typeof clientAvatar);
 
 const NavItems = () => {
-  console.log('NavItems.jsx: Exécution du composant NavItems');
+  console.log("NavItems.jsx: Exécution du composant NavItems");
   const [menuToggle, setMenuToggle] = useState(false);
   const [socialToggle, setSocialToggle] = useState(false);
   const [headerFiexd, setHeaderFiexd] = useState(false);
 
   // check if user is register
   const { user, logOut } = useContext(AuthContext);
-  console.log('NavItems.jsx: AuthContext user:', user ? 'disponible' : 'null');
+  console.log("NavItems.jsx: AuthContext user:", user ? "disponible" : "null");
 
   const handleLogout = () => {
     logOut()
@@ -46,7 +46,7 @@ const NavItems = () => {
 
   // Déplacer l'écouteur d'événement de défilement dans useEffect pour l'exécuter uniquement côté client
   useEffect(() => {
-    console.log('NavItems.jsx: useEffect pour scroll');
+    console.log("NavItems.jsx: useEffect pour scroll");
     const handleScroll = () => {
       if (window.scrollY > 200) {
         setHeaderFiexd(true);
@@ -64,11 +64,13 @@ const NavItems = () => {
     };
   }, []); // Le tableau de dépendances vide signifie que cet effet ne s'exécute qu'une fois au montage
 
-  console.log('NavItems.jsx: Avant return');
+  console.log("NavItems.jsx: Avant return");
   return (
     <header
-      className={`header-section style-4 ${headerFiexd ? "header-fixed fadeInUp" : ""}`}
-      style={{ position: 'sticky', top: 0, zIndex: 1000 }}
+      className={`header-section style-4 ${
+        headerFiexd ? "header-fixed fadeInUp" : ""
+      }`}
+      style={{ position: "sticky", top: 0, zIndex: 1000 }}
     >
       {/* ------ header top: first div ----- */}
       <div className={`header-top d-md-none ${socialToggle ? "open" : ""}`}>
@@ -81,11 +83,15 @@ const NavItems = () => {
                 ) : (
                   <img src={clientAvatar} className="nav-profile" />
                 )}
-                <Link href="#" onClick={handleLogout}>Déconnexion</Link>
+                <Link href="#" onClick={handleLogout}>
+                  Déconnexion
+                </Link>
               </>
             ) : (
               <>
-                <Link href="/sign-up" className="lab-btn me-3"><span>Créer un compte</span></Link>
+                <Link href="/sign-up" className="lab-btn me-3">
+                  <span>Créer un compte</span>
+                </Link>
                 <Link href="/login">Connexion</Link>
               </>
             )}
@@ -140,19 +146,26 @@ const NavItems = () => {
                         <img src={user?.photoURL} className="nav-profile" />
                       </>
                     ) : (
-                      <img
-                        src={clientAvatar}
-                        className="nav-profile"
-                      />
+                      <img src={clientAvatar} className="nav-profile" />
                     )}
                   </div>
                   <NavDropdown id="basic-nav-dropdown">
-                    <NavDropdown.Item as="button" onClick={handleLogout}>Déconnexion</NavDropdown.Item>
-                    <NavDropdown.Item as="a" href="/panier">Panier</NavDropdown.Item>
-                    <NavDropdown.Item as="a" href="/admin/profile">Profil</NavDropdown.Item>
-                    <NavDropdown.Item as="a" href="/admin">Panneau d&apos;admin</NavDropdown.Item>
+                    <NavDropdown.Item as="button" onClick={handleLogout}>
+                      Déconnexion
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/panier">
+                      Panier
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/admin/profile">
+                      Profil
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/admin">
+                      Panneau d&apos;admin
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item as="a" href="/panier">Commandes</NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/panier">
+                      Commandes
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </>
               ) : (
@@ -160,8 +173,12 @@ const NavItems = () => {
                   <Link
                     href="/sign-up"
                     className="lab-btn me-3 d-none d-md-block"
-                  ><span>Créer un compte</span></Link>
-                  <Link href="/login" className="d-none d-md-block">Connexion</Link>
+                  >
+                    <span>Créer un compte</span>
+                  </Link>
+                  <Link href="/login" className="d-none d-md-block">
+                    Connexion
+                  </Link>
                 </>
               )}
 
@@ -191,5 +208,5 @@ const NavItems = () => {
   );
 };
 
-console.log('NavItems.jsx: Exportation de NavItems');
+console.log("NavItems.jsx: Exportation de NavItems");
 export default NavItems;

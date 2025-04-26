@@ -1,5 +1,6 @@
-import connectDB from '../../../src/config/db';
-import Product from '../../../src/models/Product';
+import connectDB from '../../../config/db';
+import Product from '../../../models/Product';
+import { topDealsProducts, topElectronicProducts, bestOfferProducts, allProducts } from '../../../data/e-commerce/products';
 
 export default async function handler(req, res) {
   try {
@@ -12,16 +13,18 @@ export default async function handler(req, res) {
     
     switch (req.method) {
       case 'GET':
-        // Récupérer tous les produits ou filtrer par catégorie
+        // Retourner les produits mock
         const { category } = req.query;
-        let query = {};
-        
+        let productsList = [
+          ...topDealsProducts,
+          ...topElectronicProducts,
+          ...bestOfferProducts,
+          ...allProducts
+        ];
         if (category && category !== 'all') {
-          query.category = category;
+          productsList = productsList.filter((p) => p.category === category);
         }
-        
-        const products = await Product.find(query).sort({ createdAt: -1 });
-        return res.status(200).json(products);
+        return res.status(200).json(productsList);
         
       case 'POST':
         // Créer un nouveau produit

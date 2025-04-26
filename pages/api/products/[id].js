@@ -1,6 +1,7 @@
-import connectDB from "../../../src/config/db";
+import connectDB from "../../../config/db";
 import mongoose from "mongoose";
-import { deleteImage } from "../../../src/config/cloudinary";
+import { deleteImage } from "../../../config/cloudinary";
+import { topDealsProducts, topElectronicProducts, bestOfferProducts, allProducts } from "../../../data/e-commerce/products";
 
 // Définition du schéma Product pour MongoDB
 const ProductSchema = new mongoose.Schema(
@@ -86,32 +87,14 @@ export default async function handler(req, res) {
 
     switch (req.method) {
       case "GET":
-        let product;
-
-        if (isValidObjectId) {
-          // Si l'ID est un ObjectId valide, utiliser findById
-          product = await Product.findById(id);
-        } else {
-          // Sinon, chercher par un champ 'uuid' ou équivalent, ou dans les données JSON
-          try {
-            // Essayer de charger depuis le fichier products.json
-            const fs = require("fs");
-            const path = require("path");
-            const filePath = path.join(process.cwd(), "products.json");
-
-            if (fs.existsSync(filePath)) {
-              const jsonData = fs.readFileSync(filePath, "utf8");
-              const products = JSON.parse(jsonData);
-              product = products.find((p) => p.id === id);
-            }
-          } catch (jsonError) {
-            console.error(
-              "Erreur lors de la lecture du fichier JSON:",
-              jsonError
-            );
-          }
-        }
-
+        // Retourne un produit mock
+        const allProductData = [
+          ...topDealsProducts,
+          ...topElectronicProducts,
+          ...bestOfferProducts,
+          ...allProducts,
+        ];
+        const product = allProductData.find((p) => String(p.id) === String(id));
         if (!product) {
           return res.status(404).json({ error: "Produit non trouvé" });
         }

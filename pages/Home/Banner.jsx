@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import SelectCategory from "../Shop/SelectCategory";
-import styles from "./Banner.module.css";
+import "../../styles/banner.css"; // Import du fichier CSS personnalisé
 
 const title = (
   <h2>
@@ -61,11 +61,11 @@ const Banner = () => {
   };
 
   return (
-    <div className={styles.banner}>
+    <div className="banner-section style-4">
       <div className="container">
-        <div className={styles.bannerContent}>
+        <div className="banner-content">
           {title}
-          <form className={styles.bannerSearch} onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={(e) => e.preventDefault()}>
             <SelectCategory select={"all"} />
             <input
               type="text"
@@ -78,10 +78,10 @@ const Banner = () => {
               <i className="icofont-search"></i>
             </button>
           </form>
-          <p className={styles.bannerDesc}>{desc}</p>
-          <ul className={styles.bannerList}>
+          <p>{desc}</p>
+          <ul className="lab-ul">
           {searchInput && filteredProducts.map((product, i) => (
-              <li className={styles.bannerListItem} key={i}>
+              <li key={i}>
                <Link href={`/shop/${product.id}`}> {product.name}</Link>
               </li>
             ))}

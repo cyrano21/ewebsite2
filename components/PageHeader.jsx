@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const PageHeader = ({ title, curPage }) => (
-  <div className="pageheader-section">
+  <div className="pageheader-section" style={{marginTop: 0}}>
     <div className="container">
       <div className="row">
         <div className="col-12">

@@ -19,6 +19,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Marketing",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -38,6 +39,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Business",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -57,6 +59,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Design",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -76,6 +79,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Marketing",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -95,6 +99,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Éducation",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -114,6 +119,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Technologie",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -133,6 +139,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Éducation",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -152,6 +159,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Éducation",
       metaList: [
         {
           iconName: "icofont-ui-user",
@@ -171,6 +179,7 @@ import {
       desc: "Personnalisez votre service client centré sur la clientèle et développez votre stratégie. Coordonnez de manière interactive les performances",
       commentCount: "3",
       btnText: "Lire la suite",
+      category: "Éducation",
       metaList: [
         {
           iconName: "icofont-ui-user",

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const connect = require('mongoose').connect;
 
 // Options de connexion
 const options = {

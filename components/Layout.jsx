@@ -32,10 +32,12 @@ export default function Layout({ children, title = 'Mon Site' }) {
       </Head>
       
       {/* Navigation */}
-      <NavItems />
+      <header>
+        <NavItems />
+      </header>
       
       {/* Contenu Principal */}
-      <main className="pt-5">{children}</main>
+      <main style={{ marginTop: '100px' }}>{children}</main>
       
       {/* Pied de page */}
       <Footer />

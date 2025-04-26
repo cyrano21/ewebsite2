@@ -51,6 +51,8 @@ const ProductDisplay = ({ item }) => {
       size: size,
       color: color,
       coupon: coupon,
+      // Ajouter la catégorie du produit
+      category: item.category || "Catégorie non spécifiée"
     };
 
     // Retrieve existing cart items from local storage or initialize an empty array

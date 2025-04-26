@@ -3,7 +3,7 @@
 
 // Logo
 
-export const logo = "/assets/images/logo/logo.png";
+export const logo = "/assets/images/logo/ChatGPT-lum.png";
 
 // Images d'erreur
 export const error404 = "/assets/images/404.png";
