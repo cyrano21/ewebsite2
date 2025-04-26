@@ -83,7 +83,6 @@ const Blog = () => {
   return (
     <div className="blog-page">
       <PageHeader title={'Notre Blog'} curPage={'Articles & Actualités'} />
-      
       <section className="blog-section padding-tb section-bg">
         <Container>
           {/* Filtres et recherche */}
@@ -162,7 +161,7 @@ const Blog = () => {
                     <Col key={i} className="blog-item-col">
                       <Card className="h-100 blog-card shadow-sm border-0 hover-effect">
                         <div className="position-relative">
-                          <Link href={`/blog/${blog.id}`} className="img-link">
+                          <Link href={`/blog/${blog.id}`} className="img-link" legacyBehavior>
                             <Card.Img
                               variant="top"
                               src={blog.imgUrl || '/default-blog.jpg'}
@@ -181,7 +180,7 @@ const Blog = () => {
                           )}
                         </div>
                         <Card.Body className="p-4">
-                          <Link href={`/blog/${blog.id}`} className="text-decoration-none">
+                          <Link href={`/blog/${blog.id}`} className="text-decoration-none" legacyBehavior>
                             <Card.Title as="h4" className="blog-title mb-3">{blog.title}</Card.Title>
                           </Link>
                           <div className="meta-post mb-3">
@@ -198,7 +197,10 @@ const Blog = () => {
                           </Card.Text>
                         </Card.Body>
                         <Card.Footer className="bg-white border-top d-flex justify-content-between align-items-center p-4 pt-0">
-                          <Link href={`/blog/${blog.id}`} className="read-more text-primary text-decoration-none">
+                          <Link
+                            href={`/blog/${blog.id}`}
+                            className="read-more text-primary text-decoration-none"
+                            legacyBehavior>
                             {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
                           </Link>
                           <div className="comments text-muted">
@@ -216,7 +218,7 @@ const Blog = () => {
                     <Card key={i} className="mb-4 blog-list-card shadow-sm border-0 hover-effect">
                       <Row className="g-0">
                         <Col md={4} className="position-relative">
-                          <Link href={`/blog/${blog.id}`} className="h-100 d-block">
+                          <Link href={`/blog/${blog.id}`} className="h-100 d-block" legacyBehavior>
                             <img 
                               src={blog.imgUrl || '/default-blog.jpg'} 
                               alt={blog.imgAlt} 
@@ -236,7 +238,7 @@ const Blog = () => {
                         </Col>
                         <Col md={8}>
                           <Card.Body className="d-flex flex-column h-100 p-4">
-                            <Link href={`/blog/${blog.id}`} className="text-decoration-none">
+                            <Link href={`/blog/${blog.id}`} className="text-decoration-none" legacyBehavior>
                               <Card.Title as="h4" className="blog-title mb-2">{blog.title}</Card.Title>
                             </Link>
                             <div className="meta-post mb-3">
@@ -252,7 +254,10 @@ const Blog = () => {
                               {blog.desc}
                             </Card.Text>
                             <div className="d-flex justify-content-between align-items-center mt-3">
-                              <Link href={`/blog/${blog.id}`} className="read-more btn btn-sm btn-outline-primary rounded-pill px-3">
+                              <Link
+                                href={`/blog/${blog.id}`}
+                                className="read-more btn btn-sm btn-outline-primary rounded-pill px-3"
+                                legacyBehavior>
                                 {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
                               </Link>
                               <div className="comments text-muted">
@@ -287,7 +292,6 @@ const Blog = () => {
           </div>
         </Container>
       </section>
-
       {/* CSS personnalisé */}
       <style jsx>{`
         .blog-page .hover-effect {
@@ -325,7 +329,7 @@ const Blog = () => {
         }
       `}</style>
     </div>
-  )
+  );
 }
 
 export default Blog

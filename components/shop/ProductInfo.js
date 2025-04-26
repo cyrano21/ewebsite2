@@ -176,57 +176,51 @@ const ProductInfo = ({
   }
 
   return (
-    <Col md={5} className="product-info-column">
-      <ProductRating rating={product.ratings} count={product.ratingsCount} />
-      <h1 className="product-title h4 mb-2">{product.name || 'Product Name Unavailable'}</h1>
-
-      {product.badges?.length > 0 && (
-        <div className="badges-section mb-3">
-          {product.badges.map((b, i) => (
-            // Ajustement style badge pour mieux correspondre
-            <Badge key={i} bg="success" className="me-1 small fw-semibold">
-              {b}
-            </Badge>
-          ))}
-        </div>
-      )}
-
-      <ProductPrice price={product.price} salePrice={product.salePrice} discount={discount} />
-      <ProductStockStatus stock={product.stock} />
-
-      {product.deliveryEstimate && (
-         <p className="small mb-2 delivery-info">
-             {/* Texte ajusté pour se rapprocher de l'exemple */}
-            Do you want it on <strong>{product.deliveryEstimate}</strong>? Choose Saturday Delivery at checkout if you want your order delivered within 12 hours 43 minutes,{' '}
-            <Link href="/delivery-details" passHref legacyBehavior>
-                <a className="text-decoration-none">Details</a>
-            </Link>
-            . Gift wrapping is available. {/* Texte ajouté */}
-         </p>
-      )}
-
-      {product.specialOfferEndDate && (
-         <p className="small text-danger fw-bold mb-3 offer-countdown">
-            <i className="icofont-stopwatch me-1" />
-            Special offer ends in{' '}
-            <CountdownTimer endDate={product.specialOfferEndDate} />
-            {' '}hours {/* Texte ajouté */}
-         </p>
-      )}
-
-      <ProductOptions
-        colors={product.colors}
-        selectedColor={selectedColor}
-        onColorSelect={onColorSelect}
-        sizes={product.sizes}
-        selectedSize={selectedSize}
-        onSizeSelect={onSizeSelect}
-        quantity={quantity}
-        onQuantityChange={onQuantityChange}
-        maxQuantity={product.stock}
-      />
-
-    </Col>
+      <Col md={5} className="product-info-column">
+          <ProductRating rating={product.ratings} count={product.ratingsCount} />
+          <h1 className="product-title h4 mb-2">{product.name || 'Product Name Unavailable'}</h1>
+          {product.badges?.length > 0 && (
+            <div className="badges-section mb-3">
+              {product.badges.map((b, i) => (
+                // Ajustement style badge pour mieux correspondre
+                (<Badge key={i} bg="success" className="me-1 small fw-semibold">
+                    {b}
+                </Badge>)
+              ))}
+            </div>
+          )}
+          <ProductPrice price={product.price} salePrice={product.salePrice} discount={discount} />
+          <ProductStockStatus stock={product.stock} />
+          {product.deliveryEstimate && (
+             <p className="small mb-2 delivery-info">
+                 {/* Texte ajusté pour se rapprocher de l'exemple */}
+                Do you want it on <strong>{product.deliveryEstimate}</strong>? Choose Saturday Delivery at checkout if you want your order delivered within 12 hours 43 minutes,{' '}
+                <Link href="/delivery-details" passHref legacyBehavior>
+                    <a className="text-decoration-none">Details</a>
+                </Link>
+                . Gift wrapping is available. {/* Texte ajouté */}
+             </p>
+          )}
+          {product.specialOfferEndDate && (
+             <p className="small text-danger fw-bold mb-3 offer-countdown">
+                <i className="icofont-stopwatch me-1" />
+                Special offer ends in{' '}
+                <CountdownTimer endDate={product.specialOfferEndDate} />
+                {' '}hours {/* Texte ajouté */}
+             </p>
+          )}
+          <ProductOptions
+            colors={product.colors}
+            selectedColor={selectedColor}
+            onColorSelect={onColorSelect}
+            sizes={product.sizes}
+            selectedSize={selectedSize}
+            onSizeSelect={onSizeSelect}
+            quantity={quantity}
+            onQuantityChange={onQuantityChange}
+            maxQuantity={product.stock}
+          />
+      </Col>
   );
 };
 

@@ -36,25 +36,25 @@ const postList = [
 
 const MostPopularPost = () => {
   return (
-    <div className="widget widget-post">
-            <div className="widget-header">
-                <h5 className="title">{title}</h5>
-            </div>
-            <ul className="widget-wrapper">
-                {postList.map((blog, i) => (
-                    <li className="d-flex flex-wrap justify-content-between" key={i}>
-                        <div className="post-thumb">
-                            <Link href={`/blog/${blog.id}`}><img src={`${blog.imgUrl}`} alt={`${blog.imgAlt}`} /></Link>
-                        </div>
-                        <div className="post-content">
-                            <Link href={`/blog/${blog.id}`}><h6>{blog.title}</h6></Link>
-                            <p>{blog.date}</p>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </div>
-  )
+      <div className="widget widget-post">
+          <div className="widget-header">
+              <h5 className="title">{title}</h5>
+          </div>
+          <ul className="widget-wrapper">
+              {postList.map((blog, i) => (
+                  <li className="d-flex flex-wrap justify-content-between" key={i}>
+                      <div className="post-thumb">
+                          <Link href={`/blog/${blog.id}`} legacyBehavior><img src={`${blog.imgUrl}`} alt={`${blog.imgAlt}`} /></Link>
+                      </div>
+                      <div className="post-content">
+                          <Link href={`/blog/${blog.id}`} legacyBehavior><h6>{blog.title}</h6></Link>
+                          <p>{blog.date}</p>
+                      </div>
+                  </li>
+              ))}
+          </ul>
+      </div>
+  );
 }
 
 export default MostPopularPost

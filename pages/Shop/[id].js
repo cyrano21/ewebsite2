@@ -335,7 +335,6 @@ const ProductPage = () => {
                 <title>{`${product.name || 'Product'} | Ma Boutique`}</title> {/* Adaptez le titre */}
                 <meta name="description" content={product.description?.substring(0, 160) || `Détails pour ${product.name || 'Product'}`} />
             </Head>
-
             <Container className="product-page-container pt-4 pb-5">
                 {/* Fil d'Ariane (Breadcrumbs) */}
                 <nav aria-label="breadcrumb" className="mb-3">
@@ -444,7 +443,6 @@ const ProductPage = () => {
                  />
 
             </Container>
-
             {/* Styles Globaux pour la page */}
             <style jsx global>{`
                 /* --- Styles Généraux --- */

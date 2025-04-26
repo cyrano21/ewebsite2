@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { Offcanvas as BootstrapOffcanvas } from 'react-bootstrap';
+import React, { forwardRef } from "react";
+import { Offcanvas as BootstrapOffcanvas } from "react-bootstrap";
 
 /**
  * Wrapper pour le composant Offcanvas de react-bootstrap
@@ -14,6 +14,6 @@ Offcanvas.Body = BootstrapOffcanvas.Body;
 Offcanvas.Header = BootstrapOffcanvas.Header;
 Offcanvas.Title = BootstrapOffcanvas.Title;
 
-Offcanvas.displayName = 'OffcanvasWrapper';
+Offcanvas.displayName = "OffcanvasWrapper";
 
 export default Offcanvas;

@@ -97,7 +97,10 @@ const ProductDisplay = ({ item }) => {
         
         {/* Bouton d'administration visible uniquement pour les utilsateurs admin */}
         {isAdmin && (
-          <Link href={`/admin/products?edit=${id}`} className="lab-btn bg-warning mb-3">
+          <Link
+            href={`/admin/products?edit=${id}`}
+            className="lab-btn bg-warning mb-3"
+            legacyBehavior>
             <i className="icofont-ui-edit me-1"></i>
             <span>Gérer ce produit</span>
           </Link>
@@ -154,7 +157,7 @@ const ProductDisplay = ({ item }) => {
         <span>Add To Cart</span>
       </button>
 
-      <Link href="/panier" className="lab-btn bg-primary">
+      <Link href="/panier" className="lab-btn bg-primary" legacyBehavior>
         <span>Check Out</span>
       </Link>
     </form>

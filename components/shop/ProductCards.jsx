@@ -67,7 +67,7 @@ const ProductCards = ({ products, GridList }) => {
                     onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/180x180?text=Image'; }}
                   />
                   <div className="product-action-link d-flex gap-2">
-                    <Link href={`/shop/${product.id}`}><i className="icofont-eye" /></Link>
+                    <Link href={`/shop/${product.id}`} legacyBehavior><i className="icofont-eye" /></Link>
                     <a
                       href="#"
                       onClick={(e) => {
@@ -92,7 +92,7 @@ const ProductCards = ({ products, GridList }) => {
               </div>
               <div className="product-content mt-3">
                 <h5>
-                  <Link href={`/shop/${product.id}`}>{product.name}</Link>
+                  <Link href={`/shop/${product.id}`} legacyBehavior>{product.name}</Link>
                 </h5>
                 <div className="product-rating-row d-flex align-items-center mb-2">
                   <Rating value={product.rating} />
@@ -105,7 +105,6 @@ const ProductCards = ({ products, GridList }) => {
           </div>
         ))}
       </div>
-
       <style jsx>{`
         .product-card {
           transition: transform 0.2s ease-in-out;

@@ -33,77 +33,82 @@ console.log("🧪 ProductCards:", ProductCards);
 console.log("🧪 FilterSidebar:", FilterSidebar);
 console.log("🧪 PageHeader:", PageHeader);
 
-
 // --- Mini NavBar Shop ---
 const ShopMiniNav = () => (
   <nav
     className="shop-mini-nav w-100 border-bottom"
     style={{
-      fontSize: '0.96em',
-      background: 'linear-gradient(90deg, #f8fafc 0%, #e9ecef 100%)',
-      boxShadow: '0 2px 8px 0 rgba(80,80,120,0.07)',
+      fontSize: "0.96em",
+      background: "linear-gradient(90deg, #f8fafc 0%, #e9ecef 100%)",
+      boxShadow: "0 2px 8px 0 rgba(80,80,120,0.07)",
       borderBottomLeftRadius: 12,
       borderBottomRightRadius: 12,
       zIndex: 10,
-      position: 'relative',
+      position: "relative",
     }}
   >
-    <div className="container-fluid px-4 d-flex align-items-center justify-content-between" style={{minHeight: 26}}>
+    <div
+      className="container-fluid px-4 d-flex align-items-center justify-content-between"
+      style={{ minHeight: 26 }}
+    >
       <div
         className="d-flex align-items-center px-2 py-1 rounded-3"
         style={{
-          cursor: 'pointer',
-          transition: 'box-shadow 0.18s, background 0.18s',
+          cursor: "pointer",
+          transition: "box-shadow 0.18s, background 0.18s",
         }}
-        onMouseOver={e => {
-          e.currentTarget.style.background = '#e3e6f1';
-          e.currentTarget.style.boxShadow = '0 2px 6px 0 rgba(80,80,120,0.08)';
+        onMouseOver={(e) => {
+          e.currentTarget.style.background = "#e3e6f1";
+          e.currentTarget.style.boxShadow = "0 2px 6px 0 rgba(80,80,120,0.08)";
         }}
-        onMouseOut={e => {
-          e.currentTarget.style.background = 'transparent';
-          e.currentTarget.style.boxShadow = 'none';
+        onMouseOut={(e) => {
+          e.currentTarget.style.background = "transparent";
+          e.currentTarget.style.boxShadow = "none";
         }}
       >
-        <i className="icofont-navigation-menu me-2 text-primary" style={{fontSize: '1.15em'}}></i>
+        <i
+          className="icofont-navigation-menu me-2 text-primary"
+          style={{ fontSize: "1.15em" }}
+        ></i>
         <span className="fw-semibold text-primary">Category</span>
       </div>
-      <div className="d-none d-md-flex align-items-center" style={{gap: 0}}>
+      <div className="d-none d-md-flex align-items-center" style={{ gap: 0 }}>
         {/* BARRE DE RECHERCHE NAVBAR */}
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
-            const query = e.target.elements['shopnav-search'].value;
-            if (query.trim()) alert('Recherche : ' + query);
+            const query = e.target.elements["shopnav-search"].value;
+            if (query.trim()) alert("Recherche : " + query);
           }}
-          style={{ marginRight: 24, display: 'flex', alignItems: 'center' }}
+          style={{ marginRight: 24, display: "flex", alignItems: "center" }}
         >
           <input
             type="text"
             name="shopnav-search"
             placeholder="Rechercher..."
             style={{
-              border: '1px solid #ced4da',
+              border: "1px solid #ced4da",
               borderRadius: 20,
-              padding: '3px 12px 3px 32px',
-              fontSize: '0.95em',
+              padding: "3px 12px 3px 32px",
+              fontSize: "0.95em",
               height: 28,
-              background: '#fff',
-              outline: 'none',
-              boxShadow: 'none',
+              background: "#fff",
+              outline: "none",
+              boxShadow: "none",
               marginRight: 6,
-              minWidth: 140
+              minWidth: 140,
             }}
           />
           <button
             type="submit"
             style={{
-              border: 'none',
-              background: 'transparent',
+              border: "none",
+              background: "transparent",
               marginLeft: -32,
-              color: '#0d6efd',
-              cursor: 'pointer',
+              color: "#0d6efd",
+              cursor: "pointer",
               fontSize: 18,
-              padding: 0
+              padding: 0,
             }}
             aria-label="Rechercher"
           >
@@ -111,40 +116,42 @@ const ShopMiniNav = () => (
           </button>
         </form>
         {[
-          { href: '/', label: 'Home' },
-          { href: '#', label: 'My Favorite Stores' },
-          { href: '#', label: 'Products' },
-          { href: '#', label: 'Wishlist' },
-          { href: '#', label: 'Shipping Info' },
-          { href: '#', label: 'Be a vendor' },
-          { href: '#', label: 'Track order' },
-          { href: '#', label: 'Checkout' },
+          { href: "/", label: "Home" },
+          { href: "#", label: "My Favorite Stores" },
+          { href: "#", label: "Products" },
+          { href: "#", label: "Wishlist" },
+          { href: "#", label: "Shipping Info" },
+          { href: "#", label: "Be a vendor" },
+          { href: "#", label: "Track order" },
+          { href: "#", label: "Checkout" },
         ].map((item, idx, arr) => (
           <React.Fragment key={item.label}>
             <Link
               href={item.href}
               className="px-3 nav-link-mini"
               style={{
-                color: '#2a3c5c',
+                color: "#2a3c5c",
                 fontWeight: 500,
-                textDecoration: 'none',
-                transition: 'color 0.18s, border 0.18s',
-                borderRight: idx < arr.length - 1 ? '1px solid #e1e4ea' : 'none',
+                textDecoration: "none",
+                transition: "color 0.18s, border 0.18s",
+                borderRight:
+                  idx < arr.length - 1 ? "1px solid #e1e4ea" : "none",
                 borderRadius: 0,
                 paddingTop: 7,
                 paddingBottom: 7,
-                position: 'relative',
+                position: "relative",
               }}
-              onMouseOver={e => {
-                e.currentTarget.style.color = '#0d6efd';
-                e.currentTarget.style.textDecoration = 'underline';
-                e.currentTarget.style.background = 'rgba(13,110,253,0.06)';
+              onMouseOver={(e) => {
+                e.currentTarget.style.color = "#0d6efd";
+                e.currentTarget.style.textDecoration = "underline";
+                e.currentTarget.style.background = "rgba(13,110,253,0.06)";
               }}
-              onMouseOut={e => {
-                e.currentTarget.style.color = '#2a3c5c';
-                e.currentTarget.style.textDecoration = 'none';
-                e.currentTarget.style.background = 'transparent';
+              onMouseOut={(e) => {
+                e.currentTarget.style.color = "#2a3c5c";
+                e.currentTarget.style.textDecoration = "none";
+                e.currentTarget.style.background = "transparent";
               }}
+              legacyBehavior
             >
               {item.label}
             </Link>
@@ -154,7 +161,6 @@ const ShopMiniNav = () => (
     </div>
   </nav>
 );
-
 
 // Options de filtrage inspirées du thème Phoenix
 const FILTER_OPTIONS = {
@@ -1459,8 +1465,12 @@ const Shop = () => {
 
   // --- RENDU JSX ---
   return (
-    <div className="shop-page" style={{marginTop: 0, paddingTop: 0}}>
-      <PageHeader title={"Notre boutique"} curPage={"Boutique"} style={{marginTop: 110, paddingTop: 2}} />
+    <div className="shop-page" style={{ marginTop: 0, paddingTop: 0 }}>
+      <PageHeader
+        title={"Notre boutique"}
+        curPage={"Boutique"}
+        style={{ marginTop: 110, paddingTop: 2 }}
+      />
       <ShopMiniNav />
 
       {/* Offcanvas pour les filtres sur mobile */}

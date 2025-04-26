@@ -324,7 +324,6 @@ const WishlistPage = () => {
   return (
     <div className="wishlist-page py-5">
       <PageHeader title="Mes Favoris" curPage="Favoris" />
-
       <Container className="py-4">
         <h2 className="mb-4 fw-bold">
           Mes Favoris
@@ -351,7 +350,7 @@ const WishlistPage = () => {
                     <p className="mb-4 text-secondary">
                       Ajoutez des produits que vous aimez pour les retrouver facilement !
                     </p>
-                    <Link href="/shop" className="btn btn-primary">
+                    <Link href="/shop" className="btn btn-primary" legacyBehavior>
                       <i className="icofont-shopping-cart me-2"></i>
                       Découvrir nos produits
                     </Link>
@@ -451,7 +450,7 @@ const WishlistPage = () => {
                           {/* Use the sorted list */}
                           {sortedWishlist.map((item) => (
                             // Use a stable key, preferably item.uniqueId if available, else item.id
-                            <tr key={item.id || `wishlist-item-${item.name}`} className="align-middle">
+                            (<tr key={item.id || `wishlist-item-${item.name}`} className="align-middle">
                               {/* Product Info Cell */}
                               <td className="ps-4 py-3">
                                 <div className="d-flex align-items-center">
@@ -475,13 +474,13 @@ const WishlistPage = () => {
                                       </Link>
                                     ) : (
                                       // Placeholder Image
-                                      <div
+                                      (<div
                                         className="bg-light rounded border d-flex align-items-center justify-content-center text-muted"
                                         style={{ width: "60px", height: "60px" }}
                                         aria-label="Image non disponible"
                                       >
                                         <i className="icofont-image fs-3"></i>
-                                      </div>
+                                      </div>)
                                     )}
                                   </div>
                                   {/* Product Details */}
@@ -603,7 +602,7 @@ const WishlistPage = () => {
                                       </>
                                     ) : (
                                       // --- COMMENT REMOVED FROM HERE ---
-                                      <i className="icofont-plus"></i>
+                                      (<i className="icofont-plus"></i>)
                                     )}
                                   </Button>
                                   {/* Remove from Wishlist Button */}
@@ -618,7 +617,7 @@ const WishlistPage = () => {
                                   </Button>
                                 </div>
                               </td>
-                            </tr>
+                            </tr>)
                           ))}
                         </tbody>
                       </Table>
@@ -653,7 +652,6 @@ const WishlistPage = () => {
           </Col>
         </Row>
       </Container>
-
       {/* Scoped CSS using styled-jsx */}
       <style jsx global>{`
         .wishlist-page .table thead th {

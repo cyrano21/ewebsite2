@@ -22,10 +22,9 @@ const Search = ({ products, GridList }) => {
           <i className="icofont-search-2"></i>
         </button>
       </form>
-
       <div>
         {searchTerm && filteredProducts.map((product) => (
-          <Link key={product.id} href={`/shop/${product.id}`}>
+          <Link key={product.id} href={`/shop/${product.id}`} legacyBehavior>
             <div className="d-flex gap-3 p-2">
             <div>
               <div className="pro-thumb h-25">
@@ -34,7 +33,7 @@ const Search = ({ products, GridList }) => {
             </div>
             <div className="product-content">
               <p>
-                <Link href={`/shop/${product.id}`}>{product.name}</Link>
+                <Link href={`/shop/${product.id}`} legacyBehavior>{product.name}</Link>
               </p>
               <h6>${product.price}</h6>
             </div>

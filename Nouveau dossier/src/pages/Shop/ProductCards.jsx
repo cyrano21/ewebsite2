@@ -19,20 +19,23 @@ const ProductCards = ({ products, GridList }) => {
                 <img src={`${product.img}`} alt={`${product.img}`} />
               </div>
               <div className="product-action-link">
-                <Link href={`/shop/${product._id || product.id}`}>
+                <Link href={`/shop/${product._id || product.id}`} legacyBehavior>
                   <i className="icofont-eye"></i>
                 </Link>
                 <a href="#">
                   <i className="icofont-heart"></i>
                 </a>
-                <Link href="/panier">
+                <Link href="/panier" legacyBehavior>
                   <i className="icofont-cart-alt"></i>
                 </Link>
               </div>
             </div>
             <div className="product-content">
               <h5>
-                <Link href={`/shop/${product._id || product.id}`} className="product-name">{product.name}</Link>
+                <Link
+                  href={`/shop/${product._id || product.id}`}
+                  className="product-name"
+                  legacyBehavior>{product.name}</Link>
               </h5>
               <p className="productRating">
                 <Rating />
@@ -46,19 +49,19 @@ const ProductCards = ({ products, GridList }) => {
                 <img src={`${product.img}`} alt={`${product.imgAlt}`} />
               </div>
               <div className="product-action-link">
-                <Link href={`/shop/${product._id || product.id}`}>
+                <Link href={`/shop/${product._id || product.id}`} legacyBehavior>
                   <i className="icofont-eye"></i>
                 </Link>
-                <Link href="#">
+                <Link href="#" legacyBehavior>
                   <i className="icofont-heart"></i>
                 </Link>
-                <Link href="/panier">
+                <Link href="/panier" legacyBehavior>
                   <i className="icofont-cart-alt"></i>
                 </Link>
               </div>
             </div>
             <div className="product-content">
-            <Link href={`/shop/${product._id || product.id}`}>{product.name}</Link>
+            <Link href={`/shop/${product._id || product.id}`} legacyBehavior>{product.name}</Link>
               <p className="productRating">
                 <Rating />
               </p>

@@ -95,78 +95,78 @@ const ProductCarousel = ({ products }) => {
             {/* style={{ marginLeft: '-8px', marginRight: '-8px' }} */}
             {products.map((p) => (
                 // Utilisation de padding pour espacer les cartes au lieu de marge sur la carte elle-même
-                <div key={p.id || Math.random()} className="carousel-item-wrapper px-2" style={{ width: '200px', flexShrink: 0 }}> {/* Largeur augmentée, padding */}
-                     <ProductCarouselCard product={p} />
-                </div>
+                (<div key={p.id || Math.random()} className="carousel-item-wrapper px-2" style={{ width: '200px', flexShrink: 0 }}> {/* Largeur augmentée, padding */}
+                    <ProductCarouselCard product={p} />
+                </div>)
             ))}
-             {/* Style pour cacher la scrollbar Webkit */}
-             <style jsx global>{`
-                .product-carousel-container::-webkit-scrollbar {
-                    display: none;
+            {/* Style pour cacher la scrollbar Webkit */}
+            <style jsx global>{`
+               .product-carousel-container::-webkit-scrollbar {
+                   display: none;
+               }
+
+               .product-card-similar {
+                   border-radius: 0.5rem; /* Bords arrondis */
+                   border-color: var(--bs-border-color-translucent);
+                   transition: all 0.2s ease-in-out;
+                   background-color: var(--bs-body-bg); /* Assure fond blanc/thème */
+               }
+
+               .product-card-similar:hover {
+                   transform: translateY(-3px);
+                   box-shadow: var(--bs-box-shadow-sm);
+                   border-color: var(--bs-border-color);
+               }
+
+               .product-card-img-container {
+                   height: 160px; /* Hauteur fixe pour l'image */
+                   background-color: #f8f9fa; /* Fond léger pour l'image */
+                   overflow: hidden; /* Cache ce qui dépasse */
+               }
+                /* Centrage pour layout fill de next/image */
+               .product-card-img-container > span {
+                   display: block !important; /* Surcharge possible de next/image */
+               }
+
+               .similar-product-title {
+                   font-size: 0.9rem;
+                   font-weight: 500;
+                   line-height: 1.3;
+                   height: 2.6em; /* Approx 2 lignes */
+                   color: var(--bs-body-color); /* Assure couleur texte correcte */
+               }
+               /* Assure que la troncature fonctionne */
+               .text-truncate-2-lines {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
-                .product-card-similar {
-                    border-radius: 0.5rem; /* Bords arrondis */
-                    border-color: var(--bs-border-color-translucent);
-                    transition: all 0.2s ease-in-out;
-                    background-color: var(--bs-body-bg); /* Assure fond blanc/thème */
+                .fs-xs { /* Classe utilitaire pour taille extra petite */
+                   font-size: 0.75rem;
                 }
 
-                .product-card-similar:hover {
-                    transform: translateY(-3px);
-                    box-shadow: var(--bs-box-shadow-sm);
-                    border-color: var(--bs-border-color);
+                /* Actions qui apparaissent au survol */
+                .product-card-actions {
+                   position: absolute;
+                   bottom: 8px; /* Positionne en bas à droite */
+                   right: 8px;
+                   opacity: 0; /* Caché par défaut */
+                   transition: opacity 0.2s ease-in-out;
                 }
 
-                .product-card-img-container {
-                    height: 160px; /* Hauteur fixe pour l'image */
-                    background-color: #f8f9fa; /* Fond léger pour l'image */
-                    overflow: hidden; /* Cache ce qui dépasse */
-                }
-                 /* Centrage pour layout fill de next/image */
-                .product-card-img-container > span {
-                    display: block !important; /* Surcharge possible de next/image */
+                .product-card-similar:hover .product-card-actions {
+                   opacity: 1; /* Visible au survol de la carte */
                 }
 
-                .similar-product-title {
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    line-height: 1.3;
-                    height: 2.6em; /* Approx 2 lignes */
-                    color: var(--bs-body-color); /* Assure couleur texte correcte */
+                .add-to-cart-btn {
+                    font-size: 0.8rem;
+                    padding: 0.25rem 0.6rem;
                 }
-                /* Assure que la troncature fonctionne */
-                .text-truncate-2-lines {
-                     display: -webkit-box;
-                     -webkit-line-clamp: 2;
-                     -webkit-box-orient: vertical;
-                     overflow: hidden;
-                     text-overflow: ellipsis;
-                 }
 
-                 .fs-xs { /* Classe utilitaire pour taille extra petite */
-                    font-size: 0.75rem;
-                 }
-
-                 /* Actions qui apparaissent au survol */
-                 .product-card-actions {
-                    position: absolute;
-                    bottom: 8px; /* Positionne en bas à droite */
-                    right: 8px;
-                    opacity: 0; /* Caché par défaut */
-                    transition: opacity 0.2s ease-in-out;
-                 }
-
-                 .product-card-similar:hover .product-card-actions {
-                    opacity: 1; /* Visible au survol de la carte */
-                 }
-
-                 .add-to-cart-btn {
-                     font-size: 0.8rem;
-                     padding: 0.25rem 0.6rem;
-                 }
-
-            `}</style>
+           `}</style>
         </div>
     );
 };

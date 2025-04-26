@@ -89,7 +89,7 @@ const NavItems = () => {
               </>
             ) : (
               <>
-                <Link href="/sign-up" className="lab-btn me-3">
+                <Link href="/sign-up" className="lab-btn me-3" legacyBehavior>
                   <span>Créer un compte</span>
                 </Link>
                 <Link href="/login">Connexion</Link>
@@ -98,9 +98,7 @@ const NavItems = () => {
           </div>
         </div>
       </div>
-
       {/* header top ends*/}
-
       {/* ---header botton starts */}
       <div className="header-bottom">
         <div className="container">
@@ -108,7 +106,7 @@ const NavItems = () => {
             {/* logo  */}
             <div className="logo-search-acte">
               <div className="logo">
-                <Link href="/">
+                <Link href="/" legacyBehavior>
                   <img src={logo} alt="logo" />
                 </Link>
               </div>
@@ -170,10 +168,7 @@ const NavItems = () => {
                 </>
               ) : (
                 <>
-                  <Link
-                    href="/sign-up"
-                    className="lab-btn me-3 d-none d-md-block"
-                  >
+                  <Link href="/sign-up" className="lab-btn me-3 d-none d-md-block" legacyBehavior>
                     <span>Créer un compte</span>
                   </Link>
                   <Link href="/login" className="d-none d-md-block">

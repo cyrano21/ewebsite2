@@ -28,7 +28,7 @@ const CartItemRow: React.FC<CartItemProps> = ({
         <div className="d-flex align-items-center">
           <div className="product-image me-3">
             {item.img ? (
-              <Link href={`/shop/${item.id}`}>
+              <Link href={`/shop/${item.id}`} legacyBehavior>
                 <img
                   src={item.img}
                   alt={item.name}
@@ -49,7 +49,7 @@ const CartItemRow: React.FC<CartItemProps> = ({
             <Link
               href={`/shop/${item.id}`}
               className="product-name fw-semibold text-decoration-none"
-            >
+              legacyBehavior>
               {item.name || "Produit sans nom"}
             </Link>
             {/* Affichage de la catégorie du produit */}

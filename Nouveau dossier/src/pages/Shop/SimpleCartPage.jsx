@@ -15,7 +15,7 @@ const SimpleCartPage = () => {
                 <p className="lead my-4">
                   Cette page est une version simplifiée de la page panier pour tester la route.
                 </p>
-                <Link href="/" className="lab-btn">
+                <Link href="/" className="lab-btn" legacyBehavior>
                   <span>Retour à l'accueil</span>
                 </Link>
               </div>

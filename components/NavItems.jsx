@@ -28,7 +28,7 @@ const NavItems = () => {
 
   // Fonction pour déclencher une mise à jour des compteurs
   const triggerCountersUpdate = () => {
-    const event = new Event('storage:update');
+    const event = new Event("storage:update");
     window.dispatchEvent(event);
   };
 
@@ -73,7 +73,10 @@ const NavItems = () => {
   }, []);
 
   return (
-    <header className="header-section style-4 header-fixed fadeInUp" style={{ zIndex: 1000 }}>
+    <header
+      className="header-section style-4 header-fixed fadeInUp"
+      style={{ zIndex: 1000 }}
+    >
       {/* ------ header top: first div ----- */}
       <div className={`header-top d-md-none ${socialToggle ? "open" : ""}`}>
         <div className="container">
@@ -81,7 +84,7 @@ const NavItems = () => {
             {!user && (
               <>
                 <Link href="/signup" className="lab-btn me-3">
-                  <span>Créer un compte</span>
+                  Créer un compte
                 </Link>
                 <Link href="/login">Connexion</Link>
               </>
@@ -89,11 +92,17 @@ const NavItems = () => {
           </div>
         </div>
       </div>
-
       {/* header top ends*/}
-
       {/* ---header botton starts */}
-      <div className="header-bottom" style={{ height: 90, minHeight: 90, display: 'flex', alignItems: 'center' }}>
+      <div
+        className="header-bottom"
+        style={{
+          height: 90,
+          minHeight: 90,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <div className="container">
           <div className="header-wrapper">
             {/* logo  */}
@@ -105,42 +114,48 @@ const NavItems = () => {
               </div>
               {/* BARRE DE RECHERCHE NAVBAR GENERALE */}
               <form
-                onSubmit={e => {
+                onSubmit={(e) => {
                   e.preventDefault();
-                  const query = e.target.elements['mainnav-search'].value;
-                  if (query.trim()) alert('Recherche : ' + query);
+                  const query = e.target.elements["mainnav-search"].value;
+                  if (query.trim()) alert("Recherche : " + query);
                 }}
                 className="d-none d-md-flex"
-                style={{ marginLeft: 8, marginRight: 16, alignItems: 'center', flex: 1, maxWidth: 340 }}
+                style={{
+                  marginLeft: 8,
+                  marginRight: 16,
+                  alignItems: "center",
+                  flex: 1,
+                  maxWidth: 340,
+                }}
               >
                 <input
                   type="text"
                   name="mainnav-search"
                   placeholder="Rechercher sur le site..."
                   style={{
-                    border: '1px solid #ced4da',
+                    border: "1px solid #ced4da",
                     borderRadius: 20,
-                    padding: '3px 12px 3px 32px',
-                    fontSize: '0.98em',
+                    padding: "3px 12px 3px 32px",
+                    fontSize: "0.98em",
                     height: 30,
-                    background: '#fff',
-                    outline: 'none',
-                    boxShadow: 'none',
+                    background: "#fff",
+                    outline: "none",
+                    boxShadow: "none",
                     marginRight: 6,
                     minWidth: 120,
-                    width: '100%'
+                    width: "100%",
                   }}
                 />
                 <button
                   type="submit"
                   style={{
-                    border: 'none',
-                    background: 'transparent',
+                    border: "none",
+                    background: "transparent",
                     marginLeft: -32,
-                    color: '#0d6efd',
-                    cursor: 'pointer',
+                    color: "#0d6efd",
+                    cursor: "pointer",
                     fontSize: 18,
-                    padding: 0
+                    padding: 0,
                   }}
                   aria-label="Rechercher"
                 >
@@ -182,20 +197,22 @@ const NavItems = () => {
                     )}
                   </div>
                   <NavDropdown id="basic-nav-dropdown">
-                    <NavDropdown.Item as={Link} href="#" onClick={handleLogout}>
+                    <NavDropdown.Item href="#" onClick={handleLogout}>
                       Déconnexion
                     </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} href="/panier">
+                    <NavDropdown.Item as="a" href="/panier">
                       Panier
                     </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} href="/admin/profile">
+                    <NavDropdown.Item as="a" href="/admin/profile">
                       Profil
                     </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} href="/admin">
+                    <NavDropdown.Item as="a" href="/admin">
                       Panneau d&apos;admin
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item as={Link} href="/panier">Commandes</NavDropdown.Item>
+                    <NavDropdown.Item as="a" href="/panier">
+                      Commandes
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </>
               ) : (
@@ -204,7 +221,7 @@ const NavItems = () => {
                     href="/sign-up"
                     className="lab-btn me-3 d-none d-md-block"
                   >
-                    <span>Créer un compte</span>
+                    Créer un compte
                   </Link>
                   <Link href="/login" className="d-none d-md-block">
                     Connexion
@@ -212,15 +229,37 @@ const NavItems = () => {
                 </>
               )}
               {/* Icone Panier */}
-              <Link href="/panier" className="me-3 ms-3 d-none d-md-inline-block position-relative">
+              <Link
+                href="/panier"
+                className="me-3 ms-3 d-none d-md-inline-block position-relative"
+              >
                 <i className="icofont-cart"></i>
-                {cartCount > 0 && <Badge bg="danger" pill className="position-absolute top-0 start-100 translate-middle">{cartCount}</Badge>}
+                {cartCount > 0 && (
+                  <Badge
+                    bg="danger"
+                    pill
+                    className="position-absolute top-0 start-100 translate-middle"
+                  >
+                    {cartCount}
+                  </Badge>
+                )}
               </Link>
-              
+
               {/* Icone Wishlist (Favoris) */}
-              <Link href="/wishlist" className="me-3 d-none d-md-inline-block position-relative">
+              <Link
+                href="/wishlist"
+                className="me-3 d-none d-md-inline-block position-relative"
+              >
                 <i className="icofont-heart"></i>
-                {wishlistCount > 0 && <Badge bg="danger" pill className="position-absolute top-0 start-100 translate-middle">{wishlistCount}</Badge>}
+                {wishlistCount > 0 && (
+                  <Badge
+                    bg="danger"
+                    pill
+                    className="position-absolute top-0 start-100 translate-middle"
+                  >
+                    {wishlistCount}
+                  </Badge>
+                )}
               </Link>
               {/* menu toggle btn */}
               <div

@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { Fade as BootstrapFade } from 'react-bootstrap';
+import React, { forwardRef } from "react";
+import { Fade as BootstrapFade } from "react-bootstrap";
 
 /**
  * Wrapper pour le composant Fade de react-bootstrap
@@ -9,6 +9,6 @@ const Fade = forwardRef((props, ref) => {
   return <BootstrapFade {...props} ref={ref} />;
 });
 
-Fade.displayName = 'FadeWrapper';
+Fade.displayName = "FadeWrapper";
 
 export default Fade;

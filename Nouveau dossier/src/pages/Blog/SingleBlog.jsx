@@ -103,7 +103,6 @@ const SingleBlog = ({ blogId }) => {
         title={"Article de blog"}
         curPage={"Blog / Détails de l'article"}
       />
-
       <section className="blog-section blog-single padding-tb section-bg">
         <Container>
           {isLoading ? (
@@ -233,7 +232,10 @@ const SingleBlog = ({ blogId }) => {
 
                 <div className="post-navigation mt-4 d-flex flex-column flex-md-row gap-3">
                   {prevPost && (
-                    <Link href={`/blog/${prevPost.id}`} className="prev-post flex-grow-1">
+                    <Link
+                      href={`/blog/${prevPost.id}`}
+                      className="prev-post flex-grow-1"
+                      legacyBehavior>
                       <Card className="border-0 shadow-sm h-100 post-nav-card prev-card">
                         <Card.Body className="d-flex align-items-center p-3">
                           <div className="nav-icon me-3">
@@ -249,7 +251,10 @@ const SingleBlog = ({ blogId }) => {
                   )}
 
                   {nextPost && (
-                    <Link href={`/blog/${nextPost.id}`} className="next-post flex-grow-1">
+                    <Link
+                      href={`/blog/${nextPost.id}`}
+                      className="next-post flex-grow-1"
+                      legacyBehavior>
                       <Card className="border-0 shadow-sm h-100 post-nav-card next-card text-end">
                         <Card.Body className="d-flex align-items-center justify-content-end p-3">
                           <div className="nav-content">
@@ -272,7 +277,7 @@ const SingleBlog = ({ blogId }) => {
                       {relatedPosts.map((post, index) => (
                         <Col md={4} key={index}>
                           <Card className="border-0 shadow-sm h-100 related-post-card">
-                            <Link href={`/blog/${post.id}`} className="img-link">
+                            <Link href={`/blog/${post.id}`} className="img-link" legacyBehavior>
                               <div className="related-post-img">
                                 <img 
                                   src={post.imgUrl} 
@@ -282,7 +287,7 @@ const SingleBlog = ({ blogId }) => {
                               </div>
                             </Link>
                             <Card.Body className="p-3">
-                              <Link href={`/blog/${post.id}`} className="text-decoration-none">
+                              <Link href={`/blog/${post.id}`} className="text-decoration-none" legacyBehavior>
                                 <h6 className="related-title mb-0">{post.title}</h6>
                               </Link>
                             </Card.Body>
@@ -509,7 +514,6 @@ const SingleBlog = ({ blogId }) => {
           )}
         </Container>
       </section>
-
       <style jsx>{`
         .blog-single-page {
           --bs-primary-rgb: 13, 110, 253;

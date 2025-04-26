@@ -179,7 +179,7 @@ const Footer = () => {
                                                 {ItemList.map((val, i) => (
                                                     <li key={i}>
                                                         {val.link.startsWith('/') ? (
-                                                            <Link href={val.link}>{val.text}</Link>
+                                                            <Link href={val.link} legacyBehavior>{val.text}</Link>
                                                         ) : (
                                                             <a href={val.link}>{val.text}</a>
                                                         )}
@@ -203,7 +203,7 @@ const Footer = () => {
                                                 {quickList.map((val, i) => (
                                                     <li key={i}>
                                                         {val.link.startsWith('/') ? (
-                                                            <Link href={val.link}>{val.text}</Link>
+                                                            <Link href={val.link} legacyBehavior>{val.text}</Link>
                                                         ) : (
                                                             <a href={val.link}>{val.text}</a>
                                                         )}

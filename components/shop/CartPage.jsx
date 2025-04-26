@@ -386,7 +386,6 @@ const CartPage = () => {
   return (
     <div className="cart-page py-5">
       <PageHeader title={"Mon Panier"} curPage={"Panier"} />
-
       <Container className="py-4">
         {/* Informations de débogage pour les administrateurs */}
         {isAdmin && (
@@ -444,7 +443,7 @@ const CartPage = () => {
                       Vous n&apos;avez pas encore ajouté de produits à votre
                       panier.
                     </p>
-                    <Link href="/shop" className="btn btn-primary">
+                    <Link href="/shop" className="btn btn-primary" legacyBehavior>
                       <i className="icofont-shopping-cart me-2"></i>
                       Continuer mes achats
                     </Link>
@@ -556,7 +555,7 @@ const CartPage = () => {
                     {/* Actions du panier */}
                     <div className="d-flex flex-wrap justify-content-between align-items-center p-4 border-top">
                       <div className="d-flex gap-2 mb-3 mb-md-0">
-                        <Link href="/shop" className="btn btn-outline-primary">
+                        <Link href="/shop" className="btn btn-outline-primary" legacyBehavior>
                           <i className="icofont-arrow-left me-1"></i>
                           Continuer mes achats
                         </Link>
@@ -650,7 +649,6 @@ const CartPage = () => {
           )}
         </Row>
       </Container>
-
       <style global>{`
         .cursor-pointer {
           cursor: pointer;

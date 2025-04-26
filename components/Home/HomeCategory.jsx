@@ -46,39 +46,39 @@ const categoryList = [
 
 const HomeCategory = () => {
   return (
-    <div className="category-section style-4 padding-tb">
-    <div className="container">
-        <div className="section-header text-center">
-            <span className="subtitle">{subTitle}</span>
-            <h2 className="title">{title}</h2>
-        </div>
-        <div className="section-wrapper">
-            <div className="row g-4 justify-content-center row-cols-md-3 row-cols-sm-2 row-cols-1">
-                {categoryList.map((val, i) => (
-                    <div className="col" key={i}>
-                        <Link href="/shop" className="category-item">
-                            <div className="category-inner">
-                                <div className="category-thumb">
-                                    <img src={`${val.imgUrl}`} alt={`${val.imgAlt}`} />
-                                </div>
-                                <div className="category-content">
-                                    <div className="cate-icon">
-                                        <i className={`${val.iconName}`}></i>
-                                    </div>
-                                    <h6 onClick={() => window.location.href='/shop'}>{val.title}</h6>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                ))}
-            </div>
-            <div className="text-center mt-5">
-                <Link href="/shop" className="lab-btn"><span>{btnText}</span></Link>
-            </div>
-        </div>
-    </div>
-</div>
-  )
+      <div className="category-section style-4 padding-tb">
+          <div className="container">
+              <div className="section-header text-center">
+                  <span className="subtitle">{subTitle}</span>
+                  <h2 className="title">{title}</h2>
+              </div>
+              <div className="section-wrapper">
+                  <div className="row g-4 justify-content-center row-cols-md-3 row-cols-sm-2 row-cols-1">
+                      {categoryList.map((val, i) => (
+                          <div className="col" key={i}>
+                              <Link href="/shop" className="category-item" legacyBehavior>
+                                  <div className="category-inner">
+                                      <div className="category-thumb">
+                                          <img src={`${val.imgUrl}`} alt={`${val.imgAlt}`} />
+                                      </div>
+                                      <div className="category-content">
+                                          <div className="cate-icon">
+                                              <i className={`${val.iconName}`}></i>
+                                          </div>
+                                          <h6 onClick={() => window.location.href='/shop'}>{val.title}</h6>
+                                      </div>
+                                  </div>
+                              </Link>
+                          </div>
+                      ))}
+                  </div>
+                  <div className="text-center mt-5">
+                      <Link href="/shop" className="lab-btn" legacyBehavior><span>{btnText}</span></Link>
+                  </div>
+              </div>
+          </div>
+      </div>
+  );
 }
 
 export default HomeCategory

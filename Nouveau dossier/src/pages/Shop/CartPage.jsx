@@ -153,12 +153,12 @@ const CartPage = () => {
                     <tr key={indx}>
                       <td className="product-item cat-product">
                         <div className="p-thumb">
-                          <Link href="/shop-single">
+                          <Link href="/shop-single" legacyBehavior>
                             <img src={`${item.img}`} alt="" />
                           </Link>
                         </div>
                         <div className="p-content">
-                          <Link href="/shop-single">{item.name}</Link>
+                          <Link href="/shop-single" legacyBehavior>{item.name}</Link>
                         </div>
                       </td>
                       <td className="cat-price">${item.price}</td>
@@ -304,7 +304,11 @@ const CartPage = () => {
                       {/* Lien vers l'administration visible uniquement pour les administrateurs */}
                       {isAdmin && (
                         <div className="admin-link mt-4">
-                          <Link href="/admin/orders" className="lab-btn bg-primary" style={{ width: '100%', textAlign: 'center' }}>
+                          <Link
+                            href="/admin/orders"
+                            className="lab-btn bg-primary"
+                            style={{ width: '100%', textAlign: 'center' }}
+                            legacyBehavior>
                             <i className="icofont-dashboard-web mr-2"></i> Gérer les commandes
                           </Link>
                         </div>
