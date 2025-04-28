@@ -151,7 +151,7 @@ const ShopMiniNav = () => (
                 e.currentTarget.style.textDecoration = "none";
                 e.currentTarget.style.background = "transparent";
               }}
-              legacyBehavior
+              
             >
               {item.label}
             </Link>
@@ -444,6 +444,14 @@ const Shop = () => {
   // État pour l'offcanvas sur mobile
   const [showFilters, setShowFilters] = useState(false);
 
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then(data => setCategories(data || []))
+      .catch(err => console.error('Erreur chargement catégories', err));
+  }, []);
+
   const initialMaxPrice = useMemo(() => {
     if (!products || products.length === 0) return 1000;
     const max = products.reduce((max, p) => Math.max(max, p.price || 0), 0);
@@ -672,11 +680,6 @@ const Shop = () => {
   ]);
 
   // --- DONNÉES DÉRIVÉES ---
-  const menuItems = useMemo(
-    () => ["All", ...new Set(products.map((p) => p.category))].filter(Boolean),
-    [products]
-  );
-
   const allTags = useMemo(
     () => [...new Set(products.flatMap((p) => p.tags || []))].filter(Boolean),
     [products]
@@ -937,7 +940,7 @@ const Shop = () => {
       <FilterSection title="Catégories" defaultOpen={true}>
         <ShopCategory
           filterItem={handleCategoryFilter}
-          menuItems={menuItems}
+          menuItems={categories}
           selectedCategory={selectedCategory}
         />
       </FilterSection>
@@ -1486,7 +1489,7 @@ const Shop = () => {
         <Offcanvas.Body className="py-1">
           <div className="overflow-auto h-100">
             <FilterSidebar
-              menuItems={menuItems}
+              menuItems={categories}
               selectedCategory={selectedCategory}
               selectedTag={selectedTag}
               handleCategoryFilter={handleCategoryFilter}
@@ -1649,7 +1652,7 @@ const Shop = () => {
             <div className="col-lg-3 col-12 d-none d-lg-block">
               <aside className="shop-sidebar">
                 <FilterSidebar
-                  menuItems={menuItems}
+                  menuItems={categories}
                   selectedCategory={selectedCategory}
                   selectedTag={selectedTag}
                   handleCategoryFilter={handleCategoryFilter}

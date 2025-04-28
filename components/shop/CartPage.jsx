@@ -38,7 +38,7 @@ const CartPage = () => {
 
   // Pour simuler un rôle administrateur
   const isAdmin =
-    user && (user.email === "admin@example.com" || user.id === "ADMIN_ID");
+    user && (user.email === "admin@example.com" || user.uid === "ADMIN_ID");
 
   // Calcul du sous-total avec mémoïsation
   const cartSubtotal = useMemo(() => {
@@ -64,7 +64,7 @@ const CartPage = () => {
         if (user) {
           // Si l'utilisateur est connecté, essayer de récupérer son panier depuis l'API
           try {
-            const response = await axios.get(`/api/users/${user.id}/cart`);
+            const response = await axios.get(`/api/users/${user.uid}/cart`);
             if (
               response.data &&
               response.data.items &&
@@ -141,7 +141,7 @@ const CartPage = () => {
     // Update server if user is logged in
     if (user) {
       try {
-        await axios.put(`/api/users/${user.id}/cart`, {
+        await axios.put(`/api/users/${user.uid}/cart`, {
           items: updatedCartItems,
         });
       } catch (error) {
@@ -174,7 +174,7 @@ const CartPage = () => {
       // Update server if user is logged in
       if (user) {
         try {
-          await axios.put(`/api/users/${user.id}/cart`, {
+          await axios.put(`/api/users/${user.uid}/cart`, {
             items: updatedCartItems,
           });
         } catch (error) {
@@ -206,7 +206,7 @@ const CartPage = () => {
     // Update server if user is logged in
     if (user) {
       try {
-        await axios.put(`/api/users/${user.id}/cart`, {
+        await axios.put(`/api/users/${user.uid}/cart`, {
           items: updatedCart,
         });
       } catch (error) {
@@ -313,7 +313,7 @@ const CartPage = () => {
 
       // Créer une commande via l'API
       const response = await axios.post("/api/orders", {
-        user: user ? user.id : null,
+        user: user ? user.uid : null,
         items: cartItems,
         total: cartSubtotal,
         status: "pending",
@@ -443,9 +443,11 @@ const CartPage = () => {
                       Vous n&apos;avez pas encore ajouté de produits à votre
                       panier.
                     </p>
-                    <Link href="/shop" className="btn btn-primary" legacyBehavior>
-                      <i className="icofont-shopping-cart me-2"></i>
-                      Continuer mes achats
+                    <Link href="/shop" passHref legacyBehavior>
+                      <a className="btn btn-primary">
+                        <i className="icofont-shopping-cart me-2"></i>
+                        Continuer mes achats
+                      </a>
                     </Link>
                   </div>
                 ) : (
@@ -555,9 +557,11 @@ const CartPage = () => {
                     {/* Actions du panier */}
                     <div className="d-flex flex-wrap justify-content-between align-items-center p-4 border-top">
                       <div className="d-flex gap-2 mb-3 mb-md-0">
-                        <Link href="/shop" className="btn btn-outline-primary" legacyBehavior>
-                          <i className="icofont-arrow-left me-1"></i>
-                          Continuer mes achats
+                        <Link href="/shop" passHref legacyBehavior>
+                          <a className="btn btn-outline-primary">
+                            <i className="icofont-arrow-left me-1"></i>
+                            Continuer mes achats
+                          </a>
                         </Link>
 
                         {isAdmin && (

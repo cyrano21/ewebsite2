@@ -17,7 +17,7 @@ import "../src/assets/css/bootstrap-fixes.css";
 // fonts and icons
 import "../src/assets/css/icofont.min.css";
 import "../src/assets/css/animate.css";
-import "../public/assets/css/style.min.css";
+import "../src/assets/css/style.min.css";
 // import '../components/shop/shop-list-fix.css';
 import "../src/assets/css/admin.css";
 

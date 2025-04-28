@@ -1,207 +1,192 @@
+// 1️⃣ Toujours **en tout premier** du fichier (pas même un console.log avant)
 "use client";
 
-import { useContext, useState, useEffect } from "react";
-console.log("NavItems.jsx: Chargement du fichier");
-
-console.log("NavItems.jsx: Avant imports");
+// 2️⃣ Vos imports
+import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-console.log("NavItems.jsx: Après imports de next");
-
-console.log("NavItems.jsx: Avant import logo");
 import logo from "../assets/images/logo/ChatGPT-lum.png";
-console.log("NavItems.jsx: Logo importé:", typeof logo);
-
-console.log("NavItems.jsx: Avant import AuthContext");
 import { AuthContext } from "../../contexts/AuthProvider";
-console.log("NavItems.jsx: AuthContext importé:", typeof AuthContext);
-
-console.log("NavItems.jsx: Avant import NavDropdown");
 import { NavDropdown } from "react-bootstrap";
-console.log("NavItems.jsx: NavDropdown importé:", typeof NavDropdown);
-
-console.log("NavItems.jsx: Avant import clientAvatar");
 import { clientAvatar } from "../utils/imageImports";
-console.log("NavItems.jsx: clientAvatar importé:", typeof clientAvatar);
 
-const NavItems = () => {
-  console.log("NavItems.jsx: Exécution du composant NavItems");
-  const [menuToggle, setMenuToggle] = useState(false);
-  const [socialToggle, setSocialToggle] = useState(false);
-  const [headerFiexd, setHeaderFiexd] = useState(false);
-
-  // check if user is register
+// 3️⃣ Votre composant
+export default function NavItems() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [socialOpen, setSocialOpen] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-  console.log("NavItems.jsx: AuthContext user:", user ? "disponible" : "null");
 
-  const handleLogout = () => {
-    logOut()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  // Déplacer l'écouteur d'événement de défilement dans useEffect pour l'exécuter uniquement côté client
   useEffect(() => {
-    console.log("NavItems.jsx: useEffect pour scroll");
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        setHeaderFiexd(true);
-      } else {
-        setHeaderFiexd(false);
-      }
-    };
+    const onScroll = () => setIsFixed(window.scrollY > 200);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    // Ajouter l'écouteur d'événement
-    window.addEventListener("scroll", handleScroll);
+  const handleLogout = () => logOut().catch(console.error);
 
-    // Nettoyage lors du démontage du composant
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []); // Le tableau de dépendances vide signifie que cet effet ne s'exécute qu'une fois au montage
-
-  console.log("NavItems.jsx: Avant return");
   return (
     <header
       className={`header-section style-4 ${
-        headerFiexd ? "header-fixed fadeInUp" : ""
+        isFixed ? "header-fixed fadeInUp" : ""
       }`}
       style={{ position: "sticky", top: 0, zIndex: 1000 }}
     >
-      {/* ------ header top: first div ----- */}
-      <div className={`header-top d-md-none ${socialToggle ? "open" : ""}`}>
-        <div className="container">
-          <div className="header-top-area">
+      {/* --- header-top (mobile) --- */}
+      <div className={`header-top d-md-none ${socialOpen ? "open" : ""}`}>
+        <div className="container header-top-area">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "40px",
+              gap: "8px",
+            }}
+          >
             {user ? (
               <>
-                {user.photoURL ? (
-                  <img src={user.photoURL} className="nav-profile" />
-                ) : (
-                  <img src={clientAvatar} className="nav-profile" />
-                )}
-                <Link href="#" onClick={handleLogout}>
+                <img
+                  src={user.photoURL || clientAvatar}
+                  className="nav-profile"
+                  style={{ height: "32px", width: "32px", borderRadius: "50%" }}
+                />
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    height: "32px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   Déconnexion
-                </Link>
+                </button>
               </>
             ) : (
               <>
-                <Link href="/sign-up" className="lab-btn me-3" legacyBehavior>
-                  <span>Créer un compte</span>
+                <Link
+                  href="/sign-up"
+                  className="lab-btn me-3"
+                  style={{
+                    height: "32px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  Créer un compte
                 </Link>
-                <Link href="/login">Connexion</Link>
+                <Link
+                  href="/login"
+                  style={{
+                    height: "32px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  Connexion
+                </Link>
               </>
             )}
           </div>
         </div>
       </div>
-      {/* header top ends*/}
-      {/* ---header botton starts */}
+
+      {/* --- header-bottom --- */}
       <div className="header-bottom">
-        <div className="container">
-          <div className="header-wrapper">
-            {/* logo  */}
-            <div className="logo-search-acte">
-              <div className="logo">
-                <Link href="/" legacyBehavior>
-                  <img src={logo} alt="logo" />
-                </Link>
-              </div>
-            </div>
-
-            {/* menu area */}
-            <div className="menu-area">
-              <div className="menu">
-                <ul className={`lab-ul ${menuToggle ? "active" : ""}`}>
-                  <li>
-                    <Link href="/">Accueil</Link>
-                  </li>
-                  <li>
-                    <Link href="/shop">Boutique</Link>
-                  </li>
-                  <li>
-                    <Link href="/blog">Blog</Link>
-                  </li>
-                  <li>
-                    {" "}
-                    <Link href="/about">À propos</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact">Contact</Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* users when user available */}
-              {user ? (
-                <>
-                  <div>
-                    {user?.photoURL ? (
-                      <>
-                        <img src={user?.photoURL} className="nav-profile" />
-                      </>
-                    ) : (
-                      <img src={clientAvatar} className="nav-profile" />
-                    )}
-                  </div>
-                  <NavDropdown id="basic-nav-dropdown">
-                    <NavDropdown.Item as="button" onClick={handleLogout}>
-                      Déconnexion
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as="a" href="/panier">
-                      Panier
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as="a" href="/admin/profile">
-                      Profil
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as="a" href="/admin">
-                      Panneau d&apos;admin
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item as="a" href="/panier">
-                      Commandes
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </>
-              ) : (
-                <>
-                  <Link href="/sign-up" className="lab-btn me-3 d-none d-md-block" legacyBehavior>
-                    <span>Créer un compte</span>
-                  </Link>
-                  <Link href="/login" className="d-none d-md-block">
-                    Connexion
-                  </Link>
-                </>
-              )}
-
-              {/* menu toggle btn */}
-              <div
-                className={`header-bar d-lg-none ${menuToggle ? "active" : ""}`}
-                onClick={() => setMenuToggle(!menuToggle)}
-              >
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              {/* social toggler */}
-              <div
-                className="ellepsis-bar d-md-none"
-                onClick={() => setSocialToggle(!socialToggle)}
-              >
-                <i className="icofont-info-square"></i>
-              </div>
-            </div>
+        <div className="container header-wrapper">
+          {/* logo */}
+          <div
+            className="logo"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "56px",
+              padding: 0,
+              margin: 0,
+            }}
+          >
+            <Link href="/">
+              <img
+                src={logo}
+                alt="logo"
+                style={{
+                  maxHeight: "40px",
+                  width: "auto",
+                  padding: 0,
+                  margin: 0,
+                  display: "block",
+                }}
+              />
+            </Link>
           </div>
+
+          {/* menu principal */}
+          <nav className="menu-area">
+            <ul className={`lab-ul ${menuOpen ? "active" : ""}`}>
+              {["/", "/shop", "/blog", "/about", "/contact"].map((p, i) => (
+                <li key={i}>
+                  <Link href={p}>
+                    {p === "/"
+                      ? "Accueil"
+                      : p === "/shop"
+                      ? "Boutique"
+                      : p === "/blog"
+                      ? "Blog"
+                      : p === "/about"
+                      ? "À propos"
+                      : "Contact"}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* si user connecté */}
+            {user ? (
+              <>
+                <img
+                  src={user.photoURL || clientAvatar}
+                  className="nav-profile"
+                />
+                <NavDropdown id="user-menu">
+                  <NavDropdown.Item onClick={handleLogout}>
+                    Déconnexion
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/panier">Panier</NavDropdown.Item>
+                  <NavDropdown.Item href="/admin/profile">
+                    Profil
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/sign-up"
+                  className="lab-btn me-3 d-none d-md-block"
+                >
+                  Créer un compte
+                </Link>
+                <Link href="/login" className="d-none d-md-block">
+                  Connexion
+                </Link>
+              </>
+            )}
+
+            {/* toggles mobile */}
+            <button
+              className="header-bar d-lg-none"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+            <button
+              className="ellepsis-bar d-md-none"
+              onClick={() => setSocialOpen((v) => !v)}
+            >
+              <i className="icofont-info-square" />
+            </button>
+          </nav>
         </div>
       </div>
-      {/* header botton ends */}
     </header>
   );
-};
-
-console.log("NavItems.jsx: Exportation de NavItems");
-export default NavItems;
+}

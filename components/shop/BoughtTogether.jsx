@@ -31,25 +31,21 @@ const BoughtTogetherItem = ({ item, isChecked, onToggle, isMainItem = false }) =
              />
 
              {/* Image - Correction ici */}
-             <Link href={`/shop/${item.id}`} passHref legacyBehavior>
-                <a className="flex-shrink-0">
-                     <BootstrapImage
-                         src={imageSrc}
-                         width={40}
-                         height={40}
-                         className="me-2 rounded object-fit-contain"
-                         alt={itemName}
-                         onError={(e) => { e.target.onerror = null; e.target.src="https://via.placeholder.com/40?text=Err"; }}
-                     />
-                 </a>
+             <Link href={`/shop/${item.id}`} className="flex-shrink-0">
+                <BootstrapImage
+                    src={imageSrc}
+                    width={40}
+                    height={40}
+                    className="me-2 rounded object-fit-contain"
+                    alt={itemName}
+                    onError={(e) => { e.target.onerror = null; e.target.src="https://via.placeholder.com/40?text=Err"; }}
+                />
              </Link>
 
              {/* Item Details - Correction ici */}
              <div className="flex-grow-1 small ms-1 overflow-hidden"> {/* Added overflow-hidden */}
-                 <Link href={`/shop/${item.id}`} passHref legacyBehavior>
-                     <a className="text-decoration-none text-dark d-block text-truncate"> {/* Added text-truncate */}
-                         {isMainItem ? <><span className="fw-semibold">This item:</span> {itemName}</> : itemName}
-                     </a>
+                 <Link href={`/shop/${item.id}`} className="text-decoration-none text-dark d-block text-truncate">
+                     {isMainItem ? <><span className="fw-semibold">This item:</span> {itemName}</> : itemName}
                  </Link>
                  <div className="fw-bold">€{price.toFixed(2)}</div>
              </div>

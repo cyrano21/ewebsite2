@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import PageHeader from "../../src/components/PageHeader";
-import Search from "../../src/pages/Shop/Search";
-import Pagination from "../../src/pages/Shop/Pagination";
-import ShopCategory from "../../src/pages/Shop/ShopCategory";
-import PopularPost from "../../src/pages/Shop/PopularPost";
-import Tags from "../../src/pages/Shop/Tags";
-import ProductCards from "../../src/pages/Shop/ProductCards";
+import PageHeader from "../PageHeader";
+import Search from "./Search";
+import Pagination from "./Pagination";
+import ShopCategory from "./ShopCategory";
+import PopularPost from "./PopularPost";
+import Tags from "./Tags";
+import ProductCards from "./ProductCards";
 import axios from "axios";
 
-const Shop = () => {
+import { useRouter } from 'next/router';
+
+const Shop = ({ initialCategory }) => {
+  const router = useRouter();
+  // slug dynamique depuis l'URL ou fallback
+  const categorySlug = (router.query.slug || initialCategory || "all").toLowerCase();
   const [GridList, setGridList] = useState(true);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -19,7 +24,7 @@ const Shop = () => {
   const productsPerPage = 12; // Nombre de produits par page
 
   // category active colors
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState(categorySlug);
   const showResult = `Affichage de 01 - ${Math.min(
     productsPerPage,
     filteredProducts.length
@@ -30,7 +35,10 @@ const Shop = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("/api/products");
+        const url = categorySlug && categorySlug !== "all"
+          ? `/api/products?category=${categorySlug}`
+          : "/api/products";
+        const response = await axios.get(url);
 
         if (response.status !== 200) {
           throw new Error("Erreur lors du chargement des produits");
@@ -38,13 +46,22 @@ const Shop = () => {
 
         const data = response.data;
         setProducts(data);
+
+        // données déjà filtrées côté serveur
         setFilteredProducts(data);
 
-        // Extraire les catégories uniques
-        const uniqueCategories = [
-          ...new Set(data.map((product) => product.category)),
-        ];
-        setCategories(uniqueCategories);
+        // Charger la vraie liste des catégories
+        const fetchCategories = async () => {
+          const res = await axios.get('/api/categories');
+          let cats = res.data;
+          // Vérification du format et adaptation si besoin
+          if (Array.isArray(cats) && typeof cats[0] === 'string') {
+            cats = cats.map(name => ({ name, slug: name.toLowerCase().replace(/\s+/g, '-') }));
+          }
+          console.log('Catégories récupérées:', cats);
+          setCategories(cats); // [{ name, slug }]
+        };
+        fetchCategories();
 
         setLoading(false);
       } catch (error) {
@@ -55,7 +72,7 @@ const Shop = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [categorySlug]);
 
   // pagination
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -73,20 +90,37 @@ const Shop = () => {
   };
 
   // Filtrage basé sur la catégorie
-  const filterItem = async (curcat) => {
+  // Fonction utilitaire pour slugifier
+const slugify = str => str && str.toLowerCase().replace(/\s+/g, '-');
+
+const filterItem = async (curcat) => {
+    console.log('Catégorie sélectionnée:', curcat);
+    console.log('Produits:', products);
     setSelectedCategory(curcat);
     setCurrentPage(1); // Réinitialiser à la première page lors du changement de catégorie
     setLoading(true);
 
     try {
-      // Si "All" est sélectionné, afficher tous les produits
       if (curcat === "All") {
         setFilteredProducts(products);
       } else {
-        // Sinon, filtrer par catégorie
+        // On tente de matcher sur product.category.slug OU product.category OU product.categorySlug
         const filtered = products.filter(
-          (product) => product.category === curcat
+          (product) => {
+            if (product.category && typeof product.category === 'object' && product.category.slug) {
+              return product.category.slug === curcat;
+            }
+            if (product.categorySlug) {
+              return product.categorySlug === curcat;
+            }
+            // Si product.category est un nom, on slugifie pour comparer
+            if (typeof product.category === 'string') {
+              return slugify(product.category) === curcat;
+            }
+            return false;
+          }
         );
+        console.log('Produits filtrés:', filtered);
         setFilteredProducts(filtered);
       }
     } catch (error) {
@@ -96,6 +130,7 @@ const Shop = () => {
       setLoading(false);
     }
   };
+
 
   // Fonction de recherche
   const handleSearch = (searchTerm) => {
@@ -133,8 +168,8 @@ const Shop = () => {
 
       {/* shop page */}
       <div className="shop-page padding-tb">
-        <div className="container">
-          <div className="row justify-content-center">
+        <div style={{ width: '100%', maxWidth: '100vw', padding: '0 20px', margin: 0 }}>
+          <div className="row">
             <div className="col-lg-8 col-12">
               <article>
                 {loading ? (
@@ -200,12 +235,13 @@ const Shop = () => {
             <div className="col-lg-4 col-12">
               <aside>
                 <Search onSearch={handleSearch} disabled={loading} />
-                <ShopCategory
-                  filterItem={filterItem}
-                  menuItems={categories}
-                  selectedCategory={selectedCategory}
-                  disabled={loading}
-                />
+                {console.log('Catégories envoyées à ShopCategory:', categories)}
+<ShopCategory
+  filterItem={filterItem}
+  menuItems={categories}
+  selectedCategory={selectedCategory}
+  disabled={loading}
+/>
                 <PopularPost />
                 <Tags />
               </aside>

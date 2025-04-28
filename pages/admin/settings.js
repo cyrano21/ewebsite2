@@ -5,9 +5,18 @@ import PageHeader from '../../components/PageHeader';
 
 export default function AdminSettingsPage() {
   const [siteSettings, setSiteSettings] = useState({
-    siteName: 'E-Commerce Store',
-    siteDescription: 'Votre boutique en ligne de référence',
-    contactEmail: 'contact@ecommerce.com',
+    siteName: '',
+    siteDescription: '',
+    contactEmail: '',
+    address: '',
+    phone: '',
+    socialLinks: {
+      facebook: '',
+      twitter: '',
+      instagram: '',
+      linkedin: '',
+      youtube: ''
+    },
     currency: 'EUR',
     language: 'fr'
   });
@@ -33,10 +42,11 @@ export default function AdminSettingsPage() {
     fetch('/api/settings')
       .then(res => res.json())
       .then(data => {
-        // Si des données sont disponibles, mettre à jour les états
-        if (data.site) setSiteSettings(data.site);
-        if (data.payment) setPaymentSettings(data.payment);
-        if (data.security) setSecuritySettings(data.security);
+        if (!data) return;
+        const { site = {}, payment = {}, security = {} } = data;
+        setSiteSettings(site);
+        setPaymentSettings(payment);
+        setSecuritySettings(security);
       })
       .catch(error => {
         console.error('Erreur lors du chargement des paramètres:', error);
@@ -46,10 +56,21 @@ export default function AdminSettingsPage() {
 
   const handleSiteSettingsChange = (e) => {
     const { name, value } = e.target;
-    setSiteSettings({
-      ...siteSettings,
-      [name]: value
-    });
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
+      setSiteSettings(prev => ({
+        ...prev,
+        [parent]: {
+          ...prev[parent],
+          [child]: value
+        }
+      }));
+    } else {
+      setSiteSettings(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handlePaymentSettingsChange = (e) => {
@@ -72,12 +93,12 @@ export default function AdminSettingsPage() {
     e.preventDefault();
     
     try {
-      const response = await fetch('/api/settings/site', {
+      const response = await fetch('/api/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(siteSettings),
+        body: JSON.stringify({ site: siteSettings, payment: paymentSettings, security: securitySettings }),
       });
       
       if (response.ok) {
@@ -96,12 +117,12 @@ export default function AdminSettingsPage() {
     e.preventDefault();
     
     try {
-      const response = await fetch('/api/settings/payment', {
+      const response = await fetch('/api/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(paymentSettings),
+        body: JSON.stringify({ site: siteSettings, payment: paymentSettings, security: securitySettings }),
       });
       
       if (response.ok) {
@@ -120,12 +141,12 @@ export default function AdminSettingsPage() {
     e.preventDefault();
     
     try {
-      const response = await fetch('/api/settings/security', {
+      const response = await fetch('/api/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(securitySettings),
+        body: JSON.stringify({ site: siteSettings, payment: paymentSettings, security: securitySettings }),
       });
       
       if (response.ok) {
@@ -211,6 +232,31 @@ export default function AdminSettingsPage() {
                   <Row>
                     <Col md={6}>
                       <Form.Group className="mb-3">
+                        <Form.Label>Adresse</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="address"
+                          value={siteSettings.address}
+                          onChange={handleSiteSettingsChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Téléphone</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="phone"
+                          value={siteSettings.phone}
+                          onChange={handleSiteSettingsChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
                         <Form.Label>Devise</Form.Label>
                         <Form.Select 
                           name="currency" 
@@ -235,6 +281,69 @@ export default function AdminSettingsPage() {
                           <option value="en">Anglais</option>
                           <option value="es">Espagnol</option>
                         </Form.Select>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  
+                  <h5 className="mt-4">Liens sociaux</h5>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Facebook</Form.Label>
+                        <Form.Control
+                          type="url"
+                          name="socialLinks.facebook"
+                          value={siteSettings.socialLinks.facebook}
+                          onChange={handleSiteSettingsChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Twitter</Form.Label>
+                        <Form.Control
+                          type="url"
+                          name="socialLinks.twitter"
+                          value={siteSettings.socialLinks.twitter}
+                          onChange={handleSiteSettingsChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Instagram</Form.Label>
+                        <Form.Control
+                          type="url"
+                          name="socialLinks.instagram"
+                          value={siteSettings.socialLinks.instagram}
+                          onChange={handleSiteSettingsChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>LinkedIn</Form.Label>
+                        <Form.Control
+                          type="url"
+                          name="socialLinks.linkedin"
+                          value={siteSettings.socialLinks.linkedin}
+                          onChange={handleSiteSettingsChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>YouTube</Form.Label>
+                        <Form.Control
+                          type="url"
+                          name="socialLinks.youtube"
+                          value={siteSettings.socialLinks.youtube}
+                          onChange={handleSiteSettingsChange}
+                        />
                       </Form.Group>
                     </Col>
                   </Row>

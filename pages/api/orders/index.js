@@ -1,7 +1,7 @@
-import connectDB from "../../../src/config/db";
-import Order from "../../../src/models/Order";
-import User from "../../../src/models/User";
-import Product from "../../../src/models/Product";
+import connectDB from "../../../config/db";
+import Order from "../../../models/Order";
+import User from "../../../models/User";
+import Product from "../../../models/Product";
 // import { verifyToken } from '../../../src/middleware/auth';
 
 export default async function handler(req, res) {

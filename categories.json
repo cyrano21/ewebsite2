@@ -1,0 +1,9 @@
+[
+  { "name": "Men's Sneaker", "slug": "mens-sneaker", "description": "Sneakers pour homme" },
+  { "name": "Men's Pants", "slug": "mens-pants", "description": "Pantalons pour homme" },
+  { "name": "Men's Boot", "slug": "mens-boot", "description": "Bottes pour homme" },
+  { "name": "Bag", "slug": "bag", "description": "Sacs et sacs à dos" },
+  { "name": "Cap", "slug": "cap", "description": "Casquettes et chapeaux" },
+  { "name": "Bottle", "slug": "bottle", "description": "Bouteilles et gourdes" },
+  { "name": "Earphones", "slug": "earphones", "description": "Écouteurs et casques" }
+]

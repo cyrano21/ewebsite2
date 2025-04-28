@@ -17,6 +17,11 @@ export default function Document() {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
         />
+        {/* Main template styles */}
+        <link
+          rel="stylesheet"
+          href="/assets/css/style.min.css"
+        />
 
       </Head>
       <body>

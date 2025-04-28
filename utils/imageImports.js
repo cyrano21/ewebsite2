@@ -35,6 +35,9 @@ export const product06 = "/assets/images/products/06.jpg";
 export const product07 = "/assets/images/products/07.jpg";
 export const product08 = "/assets/images/products/08.jpg";
 
+// Clients section
+export const clientAvatar = "/assets/images/clients/avatar.jpg";
+
 // Exports des images de produits
 export const productImages = {
   "01.jpg": "/assets/images/products/01.jpg",

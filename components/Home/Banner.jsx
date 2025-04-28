@@ -79,9 +79,11 @@ const Banner = () => {
           </form>
           <p>{desc}</p>
           <ul className="lab-ul">
-          {searchInput && filteredProducts.map((product, i) => (
-              <li key={i}>
-               <Link href={`/shop/${product.id}`} legacyBehavior> {product.name}</Link>
+          {searchInput && filteredProducts.map((product) => (
+              <li key={product.id}>
+               <Link href={`/shop/${product.id}`}>
+                 <span>{product.name}</span>
+               </Link>
               </li>
             ))}
           </ul>

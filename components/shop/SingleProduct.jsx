@@ -30,7 +30,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     // utilsation d'un chemin relatif pour accéder au fichier JSON
-    fetch("/products.json")
+    fetch("/api/products")
       .then((res) => res.json())
       .then((data) => setProduct(data))
       .catch((error) =>

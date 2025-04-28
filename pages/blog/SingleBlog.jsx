@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Badge, Button, Form, InputGroup } from 'react-bootstrap';
-import Tags from "../Shop/Tags";
+import Tags from "../../components/shop/Tags";
 import PageHeader from "../../components/PageHeader";
 import { useRouter } from "next/router";
 import Link from "next/link";

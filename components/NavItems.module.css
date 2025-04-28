@@ -1,0 +1,35 @@
+/* NavItems.module.css */
+
+.navIconLink {
+    margin: 0 0.75rem;
+    display: inline-block;
+  }
+  
+  .iconWithBadge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  
+  .badgeCart {
+    position: absolute;
+    top: -0.4em;
+    right: -0.4em;
+    font-size: 0.6rem;
+    padding: 0.25em 0.4em;
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .badgeWishlist {
+    position: absolute;
+    top: -0.4em;
+    right: -0.4em;
+    font-size: 0.6rem;
+    padding: 0.25em 0.4em;
+    background-color: #dc3545;
+    color: white;
+  }
+  

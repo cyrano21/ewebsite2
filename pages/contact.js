@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import PageHeader from "../components/PageHeader";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,14 @@ const Contact = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [siteSettings, setSiteSettings] = useState({ address: "", contactEmail: "", phone: "", socialLinks: {} });
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => { if (data?.site) setSiteSettings(data.site); })
+      .catch(err => console.error('Settings fetch failed:', err));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,11 +36,13 @@ const Contact = () => {
     setError("");
 
     try {
-      // Simuler un appel API
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Ici vous pouvez ajouter votre logique d'envoi du formulaire à une API
-      console.log("Formulaire soumis:", formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Erreur');
 
       // Réinitialiser le formulaire après soumission
       setFormData({
@@ -46,9 +56,7 @@ const Contact = () => {
       setLoading(false);
     } catch (err) {
       console.error("Erreur lors de l'envoi du formulaire:", err);
-      setError(
-        "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer."
-      );
+      setError(err.message);
       setLoading(false);
     }
   };
@@ -56,6 +64,8 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <PageHeader title={"Contactez-nous"} curPage={"Contact"} />
+      {error && <Alert variant="danger">{error}</Alert>}
+      {formSubmitted && <Alert variant="success">Votre message a été envoyé avec succès !</Alert>}
 
       <section className="contact-section padding-tb section-bg">
         <Container>
@@ -85,9 +95,7 @@ const Contact = () => {
                     </div>
                     <div className="info-content">
                       <h5 className="mb-1">Notre adresse</h5>
-                      <p className="mb-0">
-                        123 Rue Exemple, 75000 Paris, France
-                      </p>
+                      <p className="mb-0">{siteSettings.address}</p>
                     </div>
                   </div>
 
@@ -97,8 +105,7 @@ const Contact = () => {
                     </div>
                     <div className="info-content">
                       <h5 className="mb-1">Email</h5>
-                      <p className="mb-0">contact@example.com</p>
-                      <p className="mb-0">support@example.com</p>
+                      <p className="mb-0">{siteSettings.contactEmail}</p>
                     </div>
                   </div>
 
@@ -108,8 +115,7 @@ const Contact = () => {
                     </div>
                     <div className="info-content">
                       <h5 className="mb-1">Téléphone</h5>
-                      <p className="mb-0">+33 (0)1 23 45 67 89</p>
-                      <p className="mb-0">+33 (0)6 78 90 12 34</p>
+                      <p className="mb-0">{siteSettings.phone}</p>
                     </div>
                   </div>
 
@@ -129,21 +135,31 @@ const Contact = () => {
                   <div className="social-links">
                     <h5 className="mb-3">Suivez-nous</h5>
                     <div className="d-flex">
-                      <a href="#" className="social-link me-2">
-                        <i className="icofont-facebook"></i>
-                      </a>
-                      <a href="#" className="social-link me-2">
-                        <i className="icofont-twitter"></i>
-                      </a>
-                      <a href="#" className="social-link me-2">
-                        <i className="icofont-instagram"></i>
-                      </a>
-                      <a href="#" className="social-link me-2">
-                        <i className="icofont-linkedin"></i>
-                      </a>
-                      <a href="#" className="social-link">
-                        <i className="icofont-youtube"></i>
-                      </a>
+                      {siteSettings.socialLinks.facebook && (
+                        <a href={siteSettings.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-link me-2">
+                          <i className="icofont-facebook"></i>
+                        </a>
+                      )}
+                      {siteSettings.socialLinks.twitter && (
+                        <a href={siteSettings.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="social-link me-2">
+                          <i className="icofont-twitter"></i>
+                        </a>
+                      )}
+                      {siteSettings.socialLinks.instagram && (
+                        <a href={siteSettings.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="social-link me-2">
+                          <i className="icofont-instagram"></i>
+                        </a>
+                      )}
+                      {siteSettings.socialLinks.linkedin && (
+                        <a href={siteSettings.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="social-link me-2">
+                          <i className="icofont-linkedin"></i>
+                        </a>
+                      )}
+                      {siteSettings.socialLinks.youtube && (
+                        <a href={siteSettings.socialLinks.youtube} target="_blank" rel="noopener noreferrer" className="social-link">
+                          <i className="icofont-youtube"></i>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </Card.Body>

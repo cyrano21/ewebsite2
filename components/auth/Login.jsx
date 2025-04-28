@@ -92,7 +92,7 @@ const Login = () => {
             </form>
             <div className="account-bottom">
               <span className="d-block cate pt-10">
-                Vous n&apos;avez pas de compte ? <Link href="/sign-up" legacyBehavior><a>S&apos;inscrire</a></Link>
+                Vous n&apos;avez pas de compte ? <Link href="/sign-up">S&apos;inscrire</Link>
               </span>
               <span className="or">
                 <span>ou</span>

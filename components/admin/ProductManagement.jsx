@@ -9,7 +9,6 @@ import PropTypes from 'prop-types'; // Importer PropTypes pour la validation des
 import PageHeader from '../../components/PageHeader';
 // Supposons que productImages n'est plus utilsé directement ici si les images viennent des données
 // import { productImages } from '../../utils/imageImports';
-import productsData from '../../src/products.json'; // Importation des données réelles de produits
 import { useRouter } from 'next/router';
 
 // Placeholder image URL
@@ -139,13 +138,38 @@ const ProductManagement = () => {
   const [availableCategories, setAvailableCategories] = useState(['Tous']);
 
   useEffect(() => {
+    // Chargement dynamique des produits depuis l'API
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data);
+        // Initialiser historique et stats
+        const savedHistory = localStorage.getItem('productHistory');
+        const savedStats = localStorage.getItem('productStats');
+        const initialHistory = {};
+        const initialStats = {};
+        data.forEach(product => {
+          const id = product.id;
+          initialHistory[id] = savedHistory && JSON.parse(savedHistory)[id] ? JSON.parse(savedHistory)[id] : [];
+          initialStats[id] = savedStats && JSON.parse(savedStats)[id] ? JSON.parse(savedStats)[id] : generateProductStats(product);
+        });
+        setProductHistory(savedHistory ? { ...initialHistory, ...JSON.parse(savedHistory) } : initialHistory);
+        setProductStats(savedStats ? { ...initialStats, ...JSON.parse(savedStats) } : initialStats);
+        if (!savedStats) localStorage.setItem('productStats', JSON.stringify(initialStats));
+        setShopStats(calculateShopStats(data));
+      })
+      .catch(err => console.error('Erreur chargement produits:', err));
+  }, []);
+
+  useEffect(() => {
+    if (!products.length) return;
     const loadCategories = () => {
       const savedCategories = localStorage.getItem('productCategories');
       let uniqueCategories;
       if (savedCategories) {
         uniqueCategories = JSON.parse(savedCategories);
       } else {
-        uniqueCategories = [...new Set(productsData.map(product => product.category))];
+        uniqueCategories = [...new Set(products.map(product => product.category))];
         localStorage.setItem('productCategories', JSON.stringify(uniqueCategories));
       }
       // Assurer que 'Non classé' est toujours une option si nécessaire
@@ -155,7 +179,7 @@ const ProductManagement = () => {
       setAvailableCategories(['Tous', ...uniqueCategories.sort()]);
     };
     loadCategories();
-  }, []); // Charger une seule fois au montage
+  }, [products]); // Met à jour les catégories après chargement des produits
 
   // Filtrer les produits en fonction de la recherche et de la catégorie
   const filteredProducts = useMemo(() => {
@@ -366,54 +390,6 @@ const ProductManagement = () => {
     };
   }, [getCategoryMultiplier]);
 
-  // Charger les données initiales
-  useEffect(() => {
-    // Simuler le chargement depuis une source de données (JSON ici)
-    const formattedProducts = productsData.map(product => ({
-      id: product.id,
-      name: product.name,
-      category: product.category || 'Non classé', // Assigner 'Non classé' si catégorie vide
-      price: parseFloat(product.price) || 0,
-      stock: parseInt(product.stock, 10) || 0,
-      img: product.img || '',
-      ratings: parseFloat(product.ratings) || 0,
-      ratingsCount: parseInt(product.ratingsCount, 10) || 0,
-      seller: product.seller || 'Inconnu',
-      description: product.description || ''
-    }));
-    setProducts(formattedProducts);
-
-    // Charger l'historique et les stats
-    const savedHistory = localStorage.getItem('productHistory');
-    const savedStats = localStorage.getItem('productStats');
-
-    const initialHistory = {};
-    const initialStats = {};
-
-    formattedProducts.forEach(product => {
-      // Initialiser l'historique si non trouvé dans localStorage
-      if (!savedHistory || !JSON.parse(savedHistory)[product.id]) {
-        initialHistory[product.id] = [];
-      }
-      // Initialiser les stats si non trouvées dans localStorage
-      if (!savedStats || !JSON.parse(savedStats)[product.id]) {
-        initialStats[product.id] = generateProductStats(product);
-      }
-    });
-
-    // Fusionner avec les données sauvegardées
-    setProductHistory(savedHistory ? { ...initialHistory, ...JSON.parse(savedHistory) } : initialHistory);
-    setProductStats(savedStats ? { ...initialStats, ...JSON.parse(savedStats) } : initialStats);
-
-    // Sauvegarder les stats initiales si elles n'existaient pas
-    if (!savedStats) {
-      localStorage.setItem('productStats', JSON.stringify(initialStats));
-    }
-
-    // Calculer les statistiques globales
-    setShopStats(calculateShopStats(formattedProducts));
-  }, [generateProductStats, setProducts, setProductHistory, setProductStats, setShopStats]); // Correction : suppression de productsData
-
   // Ouvrir le modal d’édition quand products et editProductId sont prêts
   useEffect(() => {
     if (products.length > 0 && editProductId) {
@@ -447,8 +423,7 @@ const ProductManagement = () => {
     }
   };
 
-  // Soumission du formulaire d'ajout/modification
-  const handleSubmitProduct = (e) => {
+  const handleSubmitProduct = async (e) => {
     e.preventDefault();
     const now = new Date();
     const changeDate = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR');
@@ -479,53 +454,60 @@ const ProductManagement = () => {
     productDataToSave.ratingsCount = parseInt(productDataToSave.ratingsCount, 10) || 0;
 
     if (currentProduct.id) {
-      // Mise à jour
-      const updatedProducts = products.map(product =>
-        product.id === currentProduct.id ? productDataToSave : product
-      );
-      setProducts(updatedProducts);
-
-      const newHistory = { ...productHistory };
-      if (!newHistory[currentProduct.id]) newHistory[currentProduct.id] = [];
-      newHistory[currentProduct.id].unshift({
-        date: changeDate,
-        action: 'Modification',
-        details: 'Mise à jour des informations'
-      });
-      setProductHistory(newHistory);
-      localStorage.setItem('productHistory', JSON.stringify(newHistory));
-
-      updateProductStats(currentProduct.id);
-      alert('Produit mis à jour avec succès!');
+      // Mise à jour via API
+      try {
+        const res = await fetch(`/api/products/${currentProduct.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productDataToSave)
+        });
+        if (!res.ok) throw new Error('Erreur mise à jour');
+        const updated = await res.json();
+        const updatedList = products.map(p => p.id === currentProduct.id ? updated : p);
+        setProducts(updatedList);
+        const newHistory = { ...productHistory };
+        if (!newHistory[currentProduct.id]) newHistory[currentProduct.id] = [];
+        newHistory[currentProduct.id].unshift({ date: changeDate, action: 'Modification', details: 'Mise à jour des informations' });
+        setProductHistory(newHistory);
+        localStorage.setItem('productHistory', JSON.stringify(newHistory));
+        updateProductStats(currentProduct.id);
+        setShopStats(calculateShopStats(updatedList));
+        alert('Produit mis à jour avec succès!');
+      } catch (err) {
+        console.error('Erreur mise à jour produit:', err);
+        alert('Erreur lors de la mise à jour du produit');
+        return;
+      }
     } else {
-      // Ajout
-      const newProduct = {
-        ...productDataToSave,
-        id: `prod_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`, // ID unique plus robuste
-      };
-      const updatedProducts = [...products, newProduct];
-      setProducts(updatedProducts);
-
-      const newHistory = { ...productHistory };
-      newHistory[newProduct.id] = [{
-        date: changeDate,
-        action: 'Création',
-        details: 'Produit ajouté'
-      }];
-      setProductHistory(newHistory);
-      localStorage.setItem('productHistory', JSON.stringify(newHistory));
-
-      const newStats = { ...productStats };
-      newStats[newProduct.id] = generateProductStats(newProduct);
-      setProductStats(newStats);
-      localStorage.setItem('productStats', JSON.stringify(newStats));
-
-      alert('Produit ajouté avec succès!');
+      // Création via API
+      try {
+        const res = await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productDataToSave)
+        });
+        if (!res.ok) throw new Error('Erreur création');
+        const created = await res.json();
+        const newList = [...products, created];
+        setProducts(newList);
+        const newHistory = { ...productHistory };
+        newHistory[created.id] = [{ date: changeDate, action: 'Création', details: 'Produit ajouté' }];
+        setProductHistory(newHistory);
+        localStorage.setItem('productHistory', JSON.stringify(newHistory));
+        const newStats = { ...productStats };
+        newStats[created.id] = generateProductStats(created);
+        setProductStats(newStats);
+        localStorage.setItem('productStats', JSON.stringify(newStats));
+        setShopStats(calculateShopStats(newList));
+        alert('Produit ajouté avec succès!');
+      } catch (err) {
+        console.error('Erreur création produit:', err);
+        alert('Erreur lors de la création du produit');
+        return;
+      }
     }
 
-    // Mettre à jour les stats globales après ajout/modif
-    setShopStats(calculateShopStats(currentProduct.id ? products.map(p => p.id === currentProduct.id ? productDataToSave : p) : [...products, { ...productDataToSave, id: 'temp' }])); // Recalculer avec les nouvelles données
-
+    // Fermer le modal après succès
     handleCloseModal();
   };
 

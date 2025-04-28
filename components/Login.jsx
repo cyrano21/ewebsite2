@@ -41,7 +41,14 @@ const Login = () => {
 
   // console.log(signUpWithGmail);
   const router = useRouter();
-  const from = "/";
+  // Gestion du redirect après login
+  let from = "/";
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('redirect')) {
+      from = params.get('redirect');
+    }
+  }
 
   // login with google
   const handleRegister = () => {

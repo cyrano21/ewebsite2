@@ -1,65 +1,7 @@
 import connectDB from '../../../config/db';
-import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
-
-// Schéma User pour MongoDB (même que dans users/index.js)
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  role: {
-    type: String,
-    enum: ['user', 'admin'],
-    default: 'user'
-  },
-  profileImage: {
-    type: String,
-    default: ''
-  },
-  cloudinaryId: {
-    type: String,
-    default: ''
-  },
-  address: {
-    street: String,
-    city: String,
-    state: String,
-    postalCode: String,
-    country: String
-  },
-  phone: {
-    type: String,
-    default: ''
-  },
-  isActive: {
-    type: Boolean,
-    default: true
-  }
-}, {
-  timestamps: true
-});
-
-// Méthode pour comparer les mots de passe
-UserSchema.methods.comparePassword = async function(candidatePassword) {
-  const bcrypt = require('bcryptjs');
-  return await bcrypt.compare(candidatePassword, this.password);
-};
-
-// Vérifier si le modèle existe déjà pour éviter les erreurs de redéfinition
-const User = mongoose.models.User || mongoose.model('User', UserSchema);
+import bcrypt from 'bcryptjs';
+import User from '../../../models/User';
 
 export default async function handler(req, res) {
   // Vérifier si la méthode est POST
@@ -97,7 +39,7 @@ export default async function handler(req, res) {
     
     // Vérifier le mot de passe
     console.log('Début de la vérification du mot de passe pour l\'utilsateur:', user.email);
-    const isMatch = await user.comparePassword(password);
+    const isMatch = await bcrypt.compare(password, user.password);
     console.log('Résultat de la vérification du mot de passe (isMatch):', isMatch);
     
     if (!isMatch) {
