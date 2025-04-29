@@ -1,6 +1,6 @@
-import connectDB from '../../../src/config/db';
+import connectDB from '../../../config/db';
 import mongoose from 'mongoose';
-import { deleteImage } from '../../../src/config/cloudinary';
+import { deleteImage } from '../../../config/cloudinary';
 
 // utilser le même schéma que dans index.js
 const BlogSchema = new mongoose.Schema({

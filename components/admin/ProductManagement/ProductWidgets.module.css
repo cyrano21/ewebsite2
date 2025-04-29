@@ -1,0 +1,40 @@
+/* components/admin/ProductManagement/ProductWidgets.module.css */
+
+.productList .productItem {
+    padding: 0.6rem 1rem; /* Ajuster padding */
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.15s ease;
+}
+
+.productList .productItem:last-child {
+    border-bottom: none;
+}
+
+.productList .productItem:hover {
+    background-color: #f8f9fa;
+}
+
+.productImageLink {
+    display: block; /* Pour Link legacyBehavior */
+    flex-shrink: 0;
+}
+
+.productInfo {
+    line-height: 1.3;
+    font-size: 0.9rem;
+}
+
+.productName {
+    font-weight: 500;
+    color: #333; /* Remplacer la couleur par défaut de Link si besoin */
+}
+.productName:hover {
+    color: var(--bs-primary); /* Ou autre couleur de survol */
+}
+
+.productMetric {
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}

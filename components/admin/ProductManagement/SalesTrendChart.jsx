@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { formatNumber } from './utils/statsUtils';
 
-const SalesTrendChart = ({ salesTrend, formatNumber }) => (
+const SalesTrendChart = ({ salesTrend }) => (
   <Card className="mb-4 shadow-sm">
     <Card.Header className="bg-light py-2">
       <h6 className="mb-0 fw-normal">Performance Hebdomadaire</h6>
@@ -42,8 +43,7 @@ const SalesTrendChart = ({ salesTrend, formatNumber }) => (
 );
 
 SalesTrendChart.propTypes = {
-  salesTrend: PropTypes.array.isRequired,
-  formatNumber: PropTypes.func.isRequired
+  salesTrend: PropTypes.array.isRequired
 };
 
 export default SalesTrendChart;

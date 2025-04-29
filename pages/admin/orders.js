@@ -28,7 +28,9 @@ export default function OrderManagementPage() {
   });
   
   // États pour filtres avancés
-  const [filterData, setFilterData] = useState({ dateFrom: '', dateTo: '', minTotal: '', maxTotal: '' });
+  const [filterData, setFilterData] = useState({ dateFrom: '', dateTo: '', minTotal: '', maxTotal: '', paymentMethod: 'All', clientId: '' });
+  const [totalCount, setTotalCount] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   
   // Récupérer le paramètre customer de l'URL si présent
   useEffect(() => {
@@ -37,25 +39,40 @@ export default function OrderManagementPage() {
     }
   }, [router.query]);
 
-  // Charger les commandes depuis l'API
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
+  // Fonction pour charger les commandes avec filtres dynamiques
+  const fetchOrders = () => {
     setIsLoading(true);
-    
-    // utilsation de l'API Next.js
-    fetch('/api/orders')
+    const params = new URLSearchParams();
+    if (searchTerm) params.append('search', searchTerm);
+    if (selectedStatus && selectedStatus !== 'All') params.append('status', selectedStatus);
+    if (filterData.dateFrom) params.append('dateFrom', filterData.dateFrom);
+    if (filterData.dateTo) params.append('dateTo', filterData.dateTo);
+    if (filterData.minTotal) params.append('minTotal', filterData.minTotal);
+    if (filterData.maxTotal) params.append('maxTotal', filterData.maxTotal);
+    if (filterData.paymentMethod && filterData.paymentMethod !== 'All') params.append('paymentMethod', filterData.paymentMethod);
+    if (filterData.clientId) params.append('clientId', filterData.clientId);
+    params.append('page', currentPage);
+    params.append('limit', itemsPerPage);
+    fetch(`/api/orders?${params.toString()}`)
       .then(response => response.json())
       .then(data => {
         setOrders(data.orders);
+        setTotalCount(data.totalCount || 0);
+        setTotalPages(data.totalPages || 1);
         setIsLoading(false);
       })
       .catch(error => {
         console.error('Erreur lors du chargement des commandes:', error);
-        // En cas d'erreur, utilser des données factices pour démonstration
-        setOrders(orderData);
+        setOrders([]);
         setIsLoading(false);
       });
-  }, []);
+  };
+
+  // Rechargement à chaque changement de filtre/page
+  useEffect(() => {
+    fetchOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, filterData, currentPage]);
 
   // Données factices pour démonstration
   const orderData = [
@@ -157,26 +174,15 @@ export default function OrderManagementPage() {
     }
   ];
 
-  // Filtrer les commandes en fonction du terme de recherche et du statut sélectionné
-  const filteredOrders = orders.filter((order) => {
-    const matchesSearch = order.id.toString().includes(searchTerm) ||
-      order.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (router.query.customer && order.customerId.toString() === router.query.customer);
-    const matchesStatus = selectedStatus === 'All' || order.status === selectedStatus;
-    // Filtres date et montant
-    const orderDate = new Date(order.date);
-    const matchesDate = (!filterData.dateFrom || orderDate >= new Date(filterData.dateFrom)) &&
-                        (!filterData.dateTo || orderDate <= new Date(filterData.dateTo));
-    const matchesAmount = (!filterData.minTotal || order.amount >= parseFloat(filterData.minTotal)) &&
-                          (!filterData.maxTotal || order.amount <= parseFloat(filterData.maxTotal));
-    return matchesSearch && matchesStatus && matchesDate && matchesAmount;
-  });
+  // Filtrer les commandes pour n'afficher que celles qui ont un client ET le statut sélectionné
+  const filteredOrders = orders
+    .filter(order => order.user || order.customer)
+    .filter(order => selectedStatus === 'All' || order.status === selectedStatus);
 
   // Calculer les indices pour la pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredOrders.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredOrders;
 
   // Changer de page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -190,7 +196,31 @@ export default function OrderManagementPage() {
   // Gestionnaire de recherche
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Réinitialiser à la première page lors d'une recherche
+    setCurrentPage(1);
+  };
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilterData(prev => ({ ...prev, [name]: value }));
+    setCurrentPage(1);
+  };
+
+  const handleFilterSubmit = (e) => {
+    e.preventDefault();
+    setCurrentPage(1);
+    fetchOrders();
+  };
+
+  const handleExportCSV = () => {
+    const params = new URLSearchParams({
+      search: searchTerm,
+      dateFrom: filterData.dateFrom,
+      dateTo: filterData.dateTo,
+      minTotal: filterData.minTotal,
+      maxTotal: filterData.maxTotal,
+      export: "csv"
+    });
+    window.open(`/api/orders?${params.toString()}`, '_blank');
   };
 
   // Gestionnaire de changement de statut
@@ -199,41 +229,61 @@ export default function OrderManagementPage() {
     setCurrentPage(1); // Réinitialiser à la première page lors d'un changement de statut
   };
 
+  // Conversion des statuts front → API
+  function mapStatusToApi(status) {
+    switch (status) {
+      case 'En attente': return 'pending';
+      case 'En cours': return 'processing';
+      case 'Expédié': return 'shipped';
+      case 'Livré': return 'delivered';
+      case 'Annulé': return 'cancelled';
+      default: return 'pending';
+    }
+  }
+
   // Mise à jour du statut d'une commande
   const updateOrderStatus = async (orderId, newStatus) => {
+  if (!orderId) {
+    alert('ID de commande manquant !');
+    return;
+  }
     try {
+      const apiStatus = mapStatusToApi(newStatus);
       const response = await fetch(`/api/orders/${orderId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ status: apiStatus }),
       });
       
       if (response.ok) {
         // Mettre à jour l'état local
-        const updatedOrders = orders.map(order => 
-          order.id === orderId ? { ...order, status: newStatus } : order
-        );
+        const updatedOrders = orders.map(order => {
+          const oid = order._id || order.id;
+          return oid === orderId ? { ...order, status: newStatus } : order;
+        });
         setOrders(updatedOrders);
         
         // Si la commande en cours de visualisation est celle qui a été mise à jour, mettre à jour également
-        if (currentOrder && currentOrder.id === orderId) {
+        if (currentOrder && (currentOrder._id === orderId || currentOrder.id === orderId)) {
           setCurrentOrder({ ...currentOrder, status: newStatus });
         }
       } else {
-        alert('Erreur lors de la mise à jour du statut de la commande');
+        const errorData = await response.json().catch(() => ({}));
+      console.error('Erreur API:', errorData);
+      alert('Erreur lors de la mise à jour du statut de la commande' + (errorData && errorData.error ? (': ' + errorData.error) : ''));
       }
     } catch (error) {
-      console.error('Erreur:', error);
+      console.error('Erreur JS front:', error);
       alert('Erreur de connexion au serveur');
     }
   };
 
   // Annuler une commande
-  const cancelOrder = async (orderId) => {
+  const cancelOrder = async (order) => {
     if (window.confirm('Êtes-vous sûr de vouloir annuler cette commande ?')) {
-      await updateOrderStatus(orderId, 'Annulé');
+      await updateOrderStatus(order._id || order.id, 'Annulé');
     }
   };
 
@@ -243,6 +293,16 @@ export default function OrderManagementPage() {
     setNewOrderData(prev => ({ ...prev, [name]: value }));
   };
   const submitNewOrder = async (e) => {
+    // Vérifier qu'un client est bien sélectionné (user obligatoire)
+    if (!newOrderData.customer || newOrderData.customer.trim() === "") {
+      alert("Le champ 'Client' est obligatoire pour chaque commande.");
+      return;
+    }
+    e.preventDefault();
+    if (!newOrderData.shippingAddress || newOrderData.shippingAddress.trim() === "") {
+      alert("Le champ 'Adresse de livraison' (Nom complet) est obligatoire.");
+      return;
+    }
     e.preventDefault();
     try {
       const orderPayload = {
@@ -320,33 +380,30 @@ export default function OrderManagementPage() {
               </Col>
             </Row>
             
-            {/* Filtres avancés inline */}
-            <Row className="mb-4 g-3">
-              <Col md={3}>
-                <Form.Group controlId="filterDateFrom">
-                  <Form.Label>Date de début</Form.Label>
-                  <Form.Control type="date" value={filterData.dateFrom} onChange={e => setFilterData(prev => ({ ...prev, dateFrom: e.target.value }))} />
-                </Form.Group>
-              </Col>
-              <Col md={3}>
-                <Form.Group controlId="filterDateTo">
-                  <Form.Label>Date de fin</Form.Label>
-                  <Form.Control type="date" value={filterData.dateTo} onChange={e => setFilterData(prev => ({ ...prev, dateTo: e.target.value }))} />
-                </Form.Group>
-              </Col>
-              <Col md={3}>
-                <Form.Group controlId="filterMinTotal">
-                  <Form.Label>Montant min (€)</Form.Label>
-                  <Form.Control type="number" name="minTotal" value={filterData.minTotal} onChange={e => setFilterData(prev => ({ ...prev, minTotal: e.target.value }))} placeholder="0" />
-                </Form.Group>
-              </Col>
-              <Col md={3}>
-                <Form.Group controlId="filterMaxTotal">
-                  <Form.Label>Montant max (€)</Form.Label>
-                  <Form.Control type="number" name="maxTotal" value={filterData.maxTotal} onChange={e => setFilterData(prev => ({ ...prev, maxTotal: e.target.value }))} placeholder="0" />
-                </Form.Group>
-              </Col>
-            </Row>
+            {/* Filtres avancés */}
+            <Form className="mb-3" onSubmit={handleFilterSubmit}>
+              <Row>
+                <Col md={3}><Form.Control type="text" placeholder="Recherche..." value={searchTerm} onChange={handleSearch} /></Col>
+                <Col md={2}><Form.Control type="date" name="dateFrom" value={filterData.dateFrom} onChange={handleFilterChange} /></Col>
+                <Col md={2}><Form.Control type="date" name="dateTo" value={filterData.dateTo} onChange={handleFilterChange} /></Col>
+                <Col md={2}><Form.Control type="number" name="minTotal" placeholder="Montant min" value={filterData.minTotal} onChange={handleFilterChange} /></Col>
+                <Col md={2}><Form.Control type="number" name="maxTotal" placeholder="Montant max" value={filterData.maxTotal} onChange={handleFilterChange} /></Col>
+                <Col md={2}>
+                  <Form.Select name="paymentMethod" value={filterData.paymentMethod} onChange={handleFilterChange}>
+                    <option value="All">Tous moyens de paiement</option>
+                    <option value="Carte de crédit">Carte de crédit</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Virement">Virement</option>
+                  </Form.Select>
+                </Col>
+                <Col md={2}><Form.Control type="text" name="clientId" placeholder="ID client" value={filterData.clientId} onChange={handleFilterChange} /></Col>
+                <Col md={1}><Button type="submit" variant="primary">Filtrer</Button></Col>
+              </Row>
+            </Form>
+            <Button variant="outline-success" size="sm" className="mb-3" onClick={handleExportCSV}>Exporter CSV</Button>
+            <div className="mb-2 text-end">
+              <small>{totalCount} résultat(s) • {totalPages} page(s)</small>
+            </div>
             
             {isLoading ? (
               <div className="text-center py-5">
@@ -372,13 +429,13 @@ export default function OrderManagementPage() {
                       {currentItems.length > 0 ? (
                         currentItems.map((order) => (
                           <tr key={order.id}>
-                            <td>{order.id}</td>
+                            <td>{order.orderNumber || order.id || '—'}</td>
                             <td>
-                              <div>{order.customer}</div>
-                              <small className="text-muted">{order.email}</small>
+                              <div>{order.user?.name || order.shippingAddress?.fullName || order.customer || '—'}</div>
+                              <small className="text-muted">{order.user?.email || order.email || '—'}</small>
                             </td>
-                            <td>{order.date}</td>
-                            <td>{order.amount.toFixed(2)} €</td>
+                            <td>{order.createdAt ? new Date(order.createdAt).toLocaleDateString('fr-FR') : (order.date || '—')}</td>
+                            <td>{(typeof order.amount === 'number' && !isNaN(order.amount) ? order.amount : 0).toFixed(2)} €</td>
                             <td>
                               <Badge bg={getStatusBadgeVariant(order.status)}>
                                 {order.status}
@@ -402,7 +459,7 @@ export default function OrderManagementPage() {
                                 <Button 
                                   variant="link" 
                                   className="p-0"
-                                  onClick={() => cancelOrder(order.id)}
+                                  onClick={() => cancelOrder(order._id || order.id)}
                                 >
                                   <i className="icofont-ui-delete text-danger"></i>
                                 </Button>
@@ -479,7 +536,7 @@ export default function OrderManagementPage() {
                     <strong>Méthode de paiement:</strong> {currentOrder.paymentMethod}
                   </p>
                   <p className="mb-1">
-                    <strong>Total:</strong> {currentOrder.amount.toFixed(2)} €
+                    <strong>Total:</strong> {(typeof currentOrder.amount === 'number' && !isNaN(currentOrder.amount) ? currentOrder.amount : 0).toFixed(2)} €
                   </p>
                 </Col>
               </Row>
@@ -515,13 +572,13 @@ export default function OrderManagementPage() {
                     <tr key={index}>
                       <td>{item.name}</td>
                       <td className="text-center">{item.quantity}</td>
-                      <td className="text-end">{item.price.toFixed(2)} €</td>
-                      <td className="text-end">{(item.quantity * item.price).toFixed(2)} €</td>
+                      <td className="text-end">{(typeof item.price === 'number' && !isNaN(item.price) ? item.price : 0).toFixed(2)} €</td>
+                      <td className="text-end">{(typeof item.quantity === 'number' && typeof item.price === 'number' && !isNaN(item.quantity * item.price) ? (item.quantity * item.price) : 0).toFixed(2)} €</td>
                     </tr>
                   ))}
                   <tr>
                     <td colSpan="3" className="text-end fw-bold">Total</td>
-                    <td className="text-end fw-bold">{currentOrder.amount.toFixed(2)} €</td>
+                    <td className="text-end fw-bold">{(typeof currentOrder.amount === 'number' && !isNaN(currentOrder.amount) ? currentOrder.amount : 0).toFixed(2)} €</td>
                   </tr>
                 </tbody>
               </Table>

@@ -1,4 +1,4 @@
-import connectDB from '../../../src/config/db';
+import connectDB from '../../../config/db';
 import mongoose from 'mongoose';
 
 // Définition du schéma OrderItem pour les éléments de commande
@@ -152,6 +152,17 @@ export default async function handler(req, res) {
         }
         
         return res.status(200).json(updatedOrder);
+        
+      case 'PATCH':
+        // Mise à jour partielle (ex: statut)
+        const patchedOrder = await Order.findByIdAndUpdate(id, req.body, {
+          new: true,
+          runValidators: true
+        });
+        if (!patchedOrder) {
+          return res.status(404).json({ error: 'Commande non trouvée' });
+        }
+        return res.status(200).json(patchedOrder);
         
       case 'DELETE':
         // Supprimer une commande

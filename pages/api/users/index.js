@@ -1,4 +1,4 @@
-import connectDB from '../../../src/config/db';
+import connectDB from '../../../config/db';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
@@ -84,10 +84,35 @@ export default async function handler(req, res) {
     
     switch (req.method) {
       case 'GET':
-        // Récupérer tous les utilsateurs (admin uniquement)
-        // Vérification d'admin devrait être faite ici
-        const users = await User.find({}).select('-password');
-        return res.status(200).json(users);
+        // Récupérer tous les utilisateurs avec filtres avancés
+        const {
+          status,
+          minOrders,
+          maxOrders,
+          minSpent,
+          maxSpent
+        } = req.query;
+        
+        let query = {};
+        if (status && status !== 'all') {
+          query.isActive = status === 'Active';
+        }
+        // Les champs orders et totalSpent sont fictifs, donc on ne filtre que s'ils existent
+        let usersList = await User.find(query).select('-password');
+        // Filtrage JS pour les champs non natifs
+        if (minOrders) {
+          usersList = usersList.filter(u => (u.orders || 0) >= parseInt(minOrders));
+        }
+        if (maxOrders) {
+          usersList = usersList.filter(u => (u.orders || 0) <= parseInt(maxOrders));
+        }
+        if (minSpent) {
+          usersList = usersList.filter(u => (u.totalSpent || 0) >= parseFloat(minSpent));
+        }
+        if (maxSpent) {
+          usersList = usersList.filter(u => (u.totalSpent || 0) <= parseFloat(maxSpent));
+        }
+        return res.status(200).json({ users: usersList });
         
       case 'POST':
         // Créer un nouvel utilsateur (inscription)

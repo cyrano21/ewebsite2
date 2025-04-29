@@ -1,48 +1,65 @@
+// components/admin/ProductManagement/FiltersBar.jsx
 import React from 'react';
-import { Card, Row, Col, InputGroup, Form, Button, Pagination } from 'react-bootstrap';
+import { Card, Row, Col, InputGroup, Form, Button } from 'react-bootstrap'; // Pagination supprimée d'ici
 import PropTypes from 'prop-types';
 
 const FiltersBar = ({
-  filteredCount,
+  filteredCount, // Garder pour info si besoin
   searchTerm,
-  handleSearchChange,
+  onSearchChange, // Renommer depuis handleSearchChange pour clarté
+  onSearchSubmit, // << NOUVELLE PROP
   selectedCategory,
-  handleCategoryChange,
+  onCategoryChange, // Renommer depuis handleCategoryChange
   availableCategories,
-  currentPage,
-  totalPages,
-  handlePageChange,
-  handleShowAddModal,
-  handleShowCategoryModal
+  sortOption, // << NOUVELLE PROP pour le tri
+  onSortChange, // << NOUVELLE PROP pour le tri
+  // priceRange, // Props pour le prix si géré ici
+  // onPriceRangeChange,
+  // onApplyPriceFilter,
+  // onResetPriceFilter,
+  onAddProduct, // Renommer depuis handleShowAddModal
+  onManageCategories // Renommer depuis handleShowCategoryModal
+  // Props de pagination supprimées d'ici
 }) => (
   <Card className="mb-4 shadow-sm">
     <Card.Body>
       <Row className="gy-3 align-items-center">
+        {/* Titre et Boutons */}
         <Col md={6}>
-          <h5 className="mb-0">Liste des Produits ({filteredCount})</h5>
+           {/* Optionnel: Afficher le nombre total ici si on veut */}
+           {/* <h5 className="mb-0">Produits ({filteredCount})</h5> */}
         </Col>
         <Col md={6} className="text-md-end">
-          <Button variant="primary" onClick={handleShowAddModal} className="me-2">
+          <Button variant="primary" onClick={onAddProduct} className="me-2">
             <i className="icofont-plus-circle me-1"></i> Ajouter
           </Button>
-          <Button variant="secondary" onClick={handleShowCategoryModal}>
+          <Button variant="secondary" onClick={onManageCategories}>
             <i className="icofont-tags me-1"></i> Gérer Catégories
           </Button>
         </Col>
+
+        {/* Filtres et Tri */}
         <Col lg={5} md={6}>
-          <InputGroup>
-            <InputGroup.Text><i className="icofont-search-1"></i></InputGroup.Text>
-            <Form.Control
-              placeholder="Rechercher par nom..."
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </InputGroup>
+          {/* --- AJOUT DU FORMULAIRE --- */}
+          <Form onSubmit={onSearchSubmit}>
+            <InputGroup>
+              <InputGroup.Text><i className="icofont-search-1"></i></InputGroup.Text>
+              <Form.Control
+                placeholder="Rechercher par nom..."
+                value={searchTerm}
+                onChange={onSearchChange} // Appelle handleSearchChange dans le parent
+                aria-label="Rechercher des produits"
+              />
+               {/* Optionnel: Bouton submit si l'utilisateur préfère cliquer */}
+               {/* <Button type="submit" variant="outline-secondary">OK</Button> */}
+            </InputGroup>
+          </Form>
+          {/* --- FIN DU FORMULAIRE --- */}
         </Col>
-        <Col lg={3} md={6}>
+        <Col lg={4} md={6}> {/* Ajuster taille pour le tri */}
           <Form.Select
             value={selectedCategory}
-            onChange={handleCategoryChange}
+            onChange={onCategoryChange} // Appelle handleCategoryChange
             aria-label="Filtrer par catégorie"
           >
             {availableCategories.map((cat, idx) => (
@@ -50,41 +67,49 @@ const FiltersBar = ({
             ))}
           </Form.Select>
         </Col>
-        <Col lg={4} className="text-lg-end text-muted small">
-          Affichage de { (currentPage-1)*10+1 } - { Math.min(currentPage*10, filteredCount) } sur {filteredCount}
-        </Col>
-        {totalPages > 1 && (
-          <Col xs={12} className="text-center mt-2">
-            <Pagination size="sm" className="justify-content-center">
-              <Pagination.Prev onClick={() => handlePageChange(currentPage-1)} disabled={currentPage===1} />
-              {[...Array(totalPages)].map((_, i) => (
-                <Pagination.Item
-                  key={i}
-                  active={i+1===currentPage}
-                  onClick={() => handlePageChange(i+1)}
-                >{i+1}</Pagination.Item>
-              ))}
-              <Pagination.Next onClick={() => handlePageChange(currentPage+1)} disabled={currentPage===totalPages} />
-            </Pagination>
-          </Col>
-        )}
+         <Col lg={3} md={12}> {/* Colonne pour le tri */}
+             <Form.Select
+               value={sortOption}
+               onChange={onSortChange} // Appelle handleSortChange
+               size="sm" // Harmoniser taille si besoin
+               aria-label="Trier par"
+             >
+               <option value="default">Tri par défaut</option>
+               <option value="newest">Plus récents</option>
+               <option value="popularity">Popularité</option>
+               <option value="rating">Avis</option>
+               <option value="price-asc">Prix croissant</option>
+               <option value="price-desc">Prix décroissant</option>
+             </Form.Select>
+           </Col>
+
+        {/* Texte d'info sur les résultats (déplacé potentiellement vers ProductsTable ou ProductManagement) */}
+        {/* <Col lg={4} className="text-lg-end text-muted small">...</Col> */}
+
+        {/* Pagination (Supprimée d'ici - à mettre sous le tableau) */}
+        {/* {totalPages > 1 && ( ... )} */}
       </Row>
     </Card.Body>
   </Card>
 );
 
+// Mettre à jour les PropTypes
 FiltersBar.propTypes = {
   filteredCount: PropTypes.number.isRequired,
   searchTerm: PropTypes.string.isRequired,
-  handleSearchChange: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired, // Renommé
+  onSearchSubmit: PropTypes.func.isRequired, // Ajouté
   selectedCategory: PropTypes.string.isRequired,
-  handleCategoryChange: PropTypes.func.isRequired,
+  onCategoryChange: PropTypes.func.isRequired, // Renommé
   availableCategories: PropTypes.array.isRequired,
-  currentPage: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired,
-  handlePageChange: PropTypes.func.isRequired,
-  handleShowAddModal: PropTypes.func.isRequired,
-  handleShowCategoryModal: PropTypes.func.isRequired
+  sortOption: PropTypes.string.isRequired, // Ajouté
+  onSortChange: PropTypes.func.isRequired, // Ajouté
+  // priceRange: PropTypes.object, // Si géré ici
+  // onPriceRangeChange: PropTypes.func,
+  // onApplyPriceFilter: PropTypes.func,
+  // onResetPriceFilter: PropTypes.func,
+  onAddProduct: PropTypes.func.isRequired, // Renommé
+  onManageCategories: PropTypes.func.isRequired // Renommé
 };
 
 export default FiltersBar;

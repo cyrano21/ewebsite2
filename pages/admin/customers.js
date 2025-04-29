@@ -65,89 +65,28 @@ export default function CustomerManagementPage() {
     country: "",
   });
 
-  // Données factices pour démonstration
-  const customerData = [
-    {
-      id: 1,
-      name: "Jean Dupont",
-      email: "jean.dupont@example.com",
-      phone: "01 23 45 67 89",
-      registeredDate: "15/01/2025",
-      orders: 7,
-      totalSpent: 829.5,
-      address: {
-        street: "123 Rue de Paris",
-        city: "Paris",
-        zipCode: "75001",
-        country: "France",
-      },
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "Marie Dubois",
-      email: "marie.dubois@example.com",
-      phone: "01 23 45 67 90",
-      registeredDate: "22/02/2025",
-      orders: 3,
-      totalSpent: 249.99,
-      address: {
-        street: "45 Avenue des Champs",
-        city: "Lyon",
-        zipCode: "69000",
-        country: "France",
-      },
-      status: "Active",
-    },
-    {
-      id: 3,
-      name: "Pierre Martin",
-      email: "pierre.martin@example.com",
-      phone: "01 23 45 67 91",
-      registeredDate: "10/03/2025",
-      orders: 0,
-      totalSpent: 0,
-      address: {
-        street: "78 Boulevard des Fleurs",
-        city: "Marseille",
-        zipCode: "13000",
-        country: "France",
-      },
-      status: "Inactive",
-    },
-    {
-      id: 4,
-      name: "Sophie Bernard",
-      email: "sophie.bernard@example.com",
-      phone: "01 23 45 67 92",
-      registeredDate: "05/04/2025",
-      orders: 12,
-      totalSpent: 1450.75,
-      address: {
-        street: "12 Rue du Commerce",
-        city: "Bordeaux",
-        zipCode: "33000",
-        country: "France",
-      },
-      status: "Active",
-    },
-    {
-      id: 5,
-      name: "Lucas Petit",
-      email: "lucas.petit@example.com",
-      phone: "01 23 45 67 93",
-      registeredDate: "18/04/2025",
-      orders: 5,
-      totalSpent: 675.25,
-      address: {
-        street: "3 Avenue République",
-        city: "Toulouse",
-        zipCode: "31000",
-        country: "France",
-      },
-      status: "Active",
-    },
-  ];
+  // Chargement réel des clients depuis l'API
+  useEffect(() => {
+    setIsLoading(true);
+    let params = new URLSearchParams();
+    if (searchTerm) params.append('search', searchTerm);
+    if (filters.status && filters.status !== 'all') params.append('status', filters.status);
+    if (filters.minOrders) params.append('minOrders', filters.minOrders);
+    if (filters.maxOrders) params.append('maxOrders', filters.maxOrders);
+    if (filters.minSpent) params.append('minSpent', filters.minSpent);
+    if (filters.maxSpent) params.append('maxSpent', filters.maxSpent);
+    fetch(`/api/users?${params.toString()}`)
+      .then(res => res.json())
+      .then(data => {
+        setCustomers(data.users || []);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        setCustomers([]);
+        setIsLoading(false);
+      });
+  }, [searchTerm, filters]);
+
 
   // Gérer les changements dans les filtres avancés
   const handleFilterChange = (e) => {

@@ -2,9 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/contact": "pages/contact.js",
   "/admin/products": "pages/admin/products.js",
-  "/admin/orders": "pages/admin/orders.js",
-  "/admin/customers": "pages/admin/customers.js",
-  "/api/products": "pages/api/products.js"
+  "/404": "pages/404.js",
+  "/admin": "pages/admin.js",
+  "/api/products": "pages/api/products.js",
+  "/api/products/most-viewed": "pages/api/products/most-viewed.js",
+  "/api/products/best-selling": "pages/api/products/best-selling.js"
 }

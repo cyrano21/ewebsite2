@@ -95,7 +95,7 @@ const AdminNavbar = () => {
         <Navbar.Collapse id="admin-navbar-nav">
           {/* Liens de navigation principaux */}
           <Nav className="me-auto">
-            <Nav.Link as={Link} href="/admin/dashboard" className={`${styles['nav-link-animated']} ${isActive('/dashboard') ? styles.active : ''}`}>
+            <Nav.Link as={Link} href="/admin" className={`${styles['nav-link-animated']} ${isActive('/dashboard') ? styles.active : ''}`}>
               <i className="icofont-dashboard me-1"></i> Tableau de bord
             </Nav.Link>
             <Nav.Link as={Link} href="/admin/products" className={`${styles['nav-link-animated']} ${isActive('/product') ? styles.active : ''}`}>
