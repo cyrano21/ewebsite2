@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     // Construire le filtre pour MongoDB
     const filter = {};
     // Correction : gestion du filtre catégorie par ObjectId ou slug/nom
-    if (category && category !== 'all') {
+    if (category && category !== 'all' && category !== 'undefined') {
       console.log('[API products] Param category reçu:', category);
       if (mongoose.Types.ObjectId.isValid(category)) {
         filter.category = new mongoose.Types.ObjectId(category);

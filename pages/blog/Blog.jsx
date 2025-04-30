@@ -1,91 +1,80 @@
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link';
-import PageHeader from '../../components/PageHeader'
-import { Container, Row, Col, Card, Badge, Button, Form, InputGroup } from 'react-bootstrap'
-import blogList from '../../utils/blogdata'
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import PageHeader from "../../components/PageHeader";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Badge,
+  Button,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
+import blogList from "../../utils/blogdata";
 
 const Blog = () => {
   const [filteredBlogs, setFilteredBlogs] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Tous');
-  const [categories, setCategories] = useState(['Tous']);
-  const [viewType, setViewType] = useState('grid'); // 'grid' ou 'list'
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Tous");
+  const [categories, setCategories] = useState(["Tous"]);
+  const [viewType, setViewType] = useState("grid");
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simuler un chargement
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
+    setTimeout(() => setIsLoading(false), 600);
   }, []);
 
-  // Extraire les catégories uniques des articles
   useEffect(() => {
-    const uniqueCategories = [...new Set(blogList.flatMap(blog => 
-      blog.category ? [blog.category] : []
-    ))];
-    setCategories(['Tous', ...uniqueCategories.sort()]);
+    const unique = [
+      ...new Set(blogList.flatMap((b) => (b.category ? [b.category] : []))),
+    ];
+    setCategories(["Tous", ...unique.sort()]);
   }, []);
 
-  // Filtrer les articles
   useEffect(() => {
-    let results = [...blogList];
-    
-    // Filtrer par recherche
+    let res = [...blogList];
     if (searchTerm) {
-      results = results.filter(blog => 
-        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.desc.toLowerCase().includes(searchTerm.toLowerCase())
+      res = res.filter(
+        (b) =>
+          b.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          b.desc.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
-    // Filtrer par catégorie
-    if (selectedCategory !== 'Tous') {
-      results = results.filter(blog => blog.category === selectedCategory);
+    if (selectedCategory !== "Tous") {
+      res = res.filter((b) => b.category === selectedCategory);
     }
-    
-    setFilteredBlogs(results);
+    setFilteredBlogs(res);
   }, [searchTerm, selectedCategory]);
 
-  // Gérer le changement de recherche
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
+  const handleSearch = (e) => setSearchTerm(e.target.value);
+  const handleCategoryChange = (cat) => setSelectedCategory(cat);
 
-  // Gérer le changement de catégorie
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
-
-  // Fonction pour obtenir une couleur en fonction de la catégorie
-  const getCategoryColor = (category) => {
+  const getCategoryColor = (cat) => {
     const colors = {
-      'Marketing': 'primary',
-      'Technologie': 'info',
-      'Design': 'success',
-      'Business': 'warning',
-      'Éducation': 'danger',
-      'Lifestyle': 'secondary'
+      Marketing: "primary",
+      Technologie: "info",
+      Design: "success",
+      Business: "warning",
+      Éducation: "danger",
+      Lifestyle: "secondary",
     };
-    return colors[category] || 'dark';
+    return colors[cat] || "dark";
   };
 
-  // Fonction pour formater la date
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr || Date.now());
-    return date.toLocaleDateString('fr-FR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+  const formatDate = (ds) =>
+    new Date(ds || Date.now()).toLocaleDateString("fr-FR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
-  };
 
   return (
     <div className="blog-page">
-      <PageHeader title={'Notre Blog'} curPage={'Articles & Actualités'} />
+      <PageHeader title="Notre Blog" curPage="Articles & Actualités" />
       <section className="blog-section padding-tb section-bg">
         <Container>
-          {/* Filtres et recherche */}
+          {/* --- En-tête recherche et vues --- */}
           <div className="blog-header mb-4">
             <Row className="align-items-center g-4">
               <Col lg={4}>
@@ -95,7 +84,10 @@ const Blog = () => {
               </Col>
               <Col lg={8}>
                 <div className="d-flex flex-wrap gap-3 justify-content-lg-end">
-                  <div className="search-box flex-grow-1" style={{ maxWidth: '400px' }}>
+                  <div
+                    className="search-box flex-grow-1"
+                    style={{ maxWidth: "400px" }}
+                  >
                     <InputGroup>
                       <Form.Control
                         placeholder="Rechercher un article..."
@@ -109,16 +101,16 @@ const Blog = () => {
                     </InputGroup>
                   </div>
                   <div className="view-options d-flex">
-                    <Button 
-                      variant={viewType === 'grid' ? 'primary' : 'outline-secondary'} 
+                    <Button
+                      variant={viewType === "grid" ? "primary" : "outline-secondary"}
                       className="me-2"
-                      onClick={() => setViewType('grid')}
+                      onClick={() => setViewType("grid")}
                     >
                       <i className="icofont-listine-dots"></i>
                     </Button>
-                    <Button 
-                      variant={viewType === 'list' ? 'primary' : 'outline-secondary'}
-                      onClick={() => setViewType('list')}
+                    <Button
+                      variant={viewType === "list" ? "primary" : "outline-secondary"}
+                      onClick={() => setViewType("list")}
                     >
                       <i className="icofont-listing-box"></i>
                     </Button>
@@ -128,24 +120,24 @@ const Blog = () => {
             </Row>
           </div>
 
-          {/* Filtres par catégorie */}
+          {/* --- Filtre catégorie --- */}
           <div className="category-filter mb-4">
             <div className="filter-buttons d-flex flex-wrap gap-2">
-              {categories.map((category, idx) => (
-                <Button 
+              {categories.map((cat, idx) => (
+                <Button
                   key={idx}
-                  variant={selectedCategory === category ? 'primary' : 'outline-secondary'}
+                  variant={selectedCategory === cat ? "primary" : "outline-secondary"}
                   className="rounded-pill px-3 py-2"
-                  onClick={() => handleCategoryChange(category)}
+                  onClick={() => handleCategoryChange(cat)}
                 >
-                  {category === 'Tous' && <i className="icofont-justify-all me-1"></i>}
-                  {category}
+                  {cat === "Tous" && <i className="icofont-justify-all me-1"></i>}
+                  {cat}
                 </Button>
               ))}
             </div>
           </div>
 
-          {/* Liste des articles */}
+          {/* --- Liste des articles --- */}
           <div className="section-wrapper">
             {isLoading ? (
               <div className="text-center py-5">
@@ -155,53 +147,71 @@ const Blog = () => {
                 <p className="mt-2">Chargement des articles...</p>
               </div>
             ) : filteredBlogs.length > 0 ? (
-              viewType === 'grid' ? (
+              viewType === "grid" ? (
                 <Row className="row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
                   {filteredBlogs.map((blog, i) => (
                     <Col key={i} className="blog-item-col">
                       <Card className="h-100 blog-card shadow-sm border-0 hover-effect">
                         <div className="position-relative">
-                          <Link href={`/blog/${blog.id}`} className="img-link" legacyBehavior>
-                            <Card.Img
-                              variant="top"
-                              src={blog.imgUrl || '/default-blog.jpg'}
-                              alt={blog.imgAlt}
-                              onError={e => e.currentTarget.src = '/default-blog.jpg'}
-                              className="blog-img"
-                            />
+                          {/* Image cliquable */}
+                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
+                            <a className="img-link d-block overflow-hidden">
+                              <Card.Img
+                                variant="top"
+                                src={blog.imgUrl || "/default-blog.jpg"}
+                                alt={blog.imgAlt}
+                                onError={(e) =>
+                                  (e.currentTarget.src = "/default-blog.jpg")
+                                }
+                                className="blog-img"
+                              />
+                            </a>
                           </Link>
+
                           {blog.category && (
-                            <Badge 
-                              bg={getCategoryColor(blog.category)} 
+                            <Badge
+                              bg={getCategoryColor(blog.category)}
                               className="position-absolute top-0 end-0 m-3 py-2 px-3"
                             >
                               {blog.category}
                             </Badge>
                           )}
                         </div>
+
                         <Card.Body className="p-4">
-                          <Link href={`/blog/${blog.id}`} className="text-decoration-none" legacyBehavior>
-                            <Card.Title as="h4" className="blog-title mb-3">{blog.title}</Card.Title>
+                          {/* Titre cliquable */}
+                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
+                            <a className="text-decoration-none">
+                              <Card.Title as="h4" className="blog-title mb-3">
+                                {blog.title}
+                              </Card.Title>
+                            </a>
                           </Link>
+
                           <div className="meta-post mb-3">
                             <ul className="lab-ul d-flex flex-wrap gap-3 text-muted small">
-                              {blog.metaList.map((val, i) => (
-                                <li key={i} className="d-flex align-items-center">
-                                  <i className={`${val.iconName} me-1`}></i>{val.text}
+                              {blog.metaList.map((val, j) => (
+                                <li key={j} className="d-flex align-items-center">
+                                  <i className={`${val.iconName} me-1`}></i>
+                                  {val.text}
                                 </li>
                               ))}
                             </ul>
                           </div>
                           <Card.Text className="blog-excerpt text-muted">
-                            {blog.desc.length > 120 ? `${blog.desc.substring(0, 120)}...` : blog.desc}
+                            {blog.desc.length > 120
+                              ? `${blog.desc.substring(0, 120)}…`
+                              : blog.desc}
                           </Card.Text>
                         </Card.Body>
+
                         <Card.Footer className="bg-white border-top d-flex justify-content-between align-items-center p-4 pt-0">
-                          <Link
-                            href={`/blog/${blog.id}`}
-                            className="read-more text-primary text-decoration-none"
-                            legacyBehavior>
-                            {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
+                          {/* Bouton “Lire la suite” */}
+                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
+                            <a className="read-more text-primary text-decoration-none">
+                              {blog.btnText}&nbsp;
+                              <i className="icofont-arrow-right ms-1"></i>
+                            </a>
                           </Link>
                           <div className="comments text-muted">
                             <i className="icofont-comment me-1"></i>
@@ -215,21 +225,29 @@ const Blog = () => {
               ) : (
                 <div className="list-view-blogs">
                   {filteredBlogs.map((blog, i) => (
-                    <Card key={i} className="mb-4 blog-list-card shadow-sm border-0 hover-effect">
+                    <Card
+                      key={i}
+                      className="mb-4 blog-list-card shadow-sm border-0 hover-effect"
+                    >
                       <Row className="g-0">
                         <Col md={4} className="position-relative">
-                          <Link href={`/blog/${blog.id}`} className="h-100 d-block" legacyBehavior>
-                            <img 
-                              src={blog.imgUrl || '/default-blog.jpg'} 
-                              alt={blog.imgAlt} 
-                              className="img-fluid rounded-start h-100 w-100 blog-img" 
-                              style={{ objectFit: 'cover' }}
-                              onError={e => e.currentTarget.src = '/default-blog.jpg'}
-                            />
+                          {/* Image list view */}
+                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
+                            <a className="h-100 d-block overflow-hidden">
+                              <img
+                                src={blog.imgUrl || "/default-blog.jpg"}
+                                alt={blog.imgAlt}
+                                className="img-fluid rounded-start h-100 w-100 blog-img"
+                                style={{ objectFit: "cover" }}
+                                onError={(e) =>
+                                  (e.currentTarget.src = "/default-blog.jpg")
+                                }
+                              />
+                            </a>
                           </Link>
                           {blog.category && (
-                            <Badge 
-                              bg={getCategoryColor(blog.category)} 
+                            <Badge
+                              bg={getCategoryColor(blog.category)}
                               className="position-absolute top-0 end-0 m-3 py-2 px-3"
                             >
                               {blog.category}
@@ -238,14 +256,20 @@ const Blog = () => {
                         </Col>
                         <Col md={8}>
                           <Card.Body className="d-flex flex-column h-100 p-4">
-                            <Link href={`/blog/${blog.id}`} className="text-decoration-none" legacyBehavior>
-                              <Card.Title as="h4" className="blog-title mb-2">{blog.title}</Card.Title>
+                            {/* Titre list view */}
+                            <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
+                              <a className="text-decoration-none">
+                                <Card.Title as="h4" className="blog-title mb-2">
+                                  {blog.title}
+                                </Card.Title>
+                              </a>
                             </Link>
                             <div className="meta-post mb-3">
                               <ul className="lab-ul d-flex flex-wrap gap-3 text-muted small">
-                                {blog.metaList.map((val, i) => (
-                                  <li key={i} className="d-flex align-items-center">
-                                    <i className={`${val.iconName} me-1`}></i>{val.text}
+                                {blog.metaList.map((val, j) => (
+                                  <li key={j} className="d-flex align-items-center">
+                                    <i className={`${val.iconName} me-1`}></i>
+                                    {val.text}
                                   </li>
                                 ))}
                               </ul>
@@ -254,15 +278,18 @@ const Blog = () => {
                               {blog.desc}
                             </Card.Text>
                             <div className="d-flex justify-content-between align-items-center mt-3">
-                              <Link
-                                href={`/blog/${blog.id}`}
-                                className="read-more btn btn-sm btn-outline-primary rounded-pill px-3"
-                                legacyBehavior>
-                                {blog.btnText} <i className="icofont-arrow-right ms-1"></i>
+                              {/* Bouton list view */}
+                              <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
+                                <a className="read-more btn btn-sm btn-outline-primary rounded-pill px-3">
+                                  {blog.btnText}&nbsp;
+                                  <i className="icofont-arrow-right ms-1"></i>
+                                </a>
                               </Link>
                               <div className="comments text-muted">
                                 <i className="icofont-comment me-1"></i>
-                                <span className="comment-count">{blog.commentCount}</span>
+                                <span className="comment-count">
+                                  {blog.commentCount}
+                                </span>
                               </div>
                             </div>
                           </Card.Body>
@@ -276,23 +303,27 @@ const Blog = () => {
               <div className="no-results text-center py-5">
                 <i className="icofont-warning-alt text-warning display-1"></i>
                 <h3 className="mt-3">Aucun article trouvé</h3>
-                <p className="text-muted">Aucun article ne correspond à vos critères de recherche.</p>
-                <Button 
-                  variant="primary" 
+                <p className="text-muted">
+                  Aucun article ne correspond à vos critères de recherche.
+                </p>
+                <Button
+                  variant="primary"
                   className="mt-3 rounded-pill"
                   onClick={() => {
-                    setSearchTerm('');
-                    setSelectedCategory('Tous');
+                    setSearchTerm("");
+                    setSelectedCategory("Tous");
                   }}
                 >
-                  <i className="icofont-refresh me-1"></i> Réinitialiser les filtres
+                  <i className="icofont-refresh me-1"></i> Réinitialiser
+                  les filtres
                 </Button>
               </div>
             )}
           </div>
         </Container>
       </section>
-      {/* CSS personnalisé */}
+
+      {/* CSS perso */}
       <style jsx>{`
         .blog-page .hover-effect {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -330,6 +361,6 @@ const Blog = () => {
       `}</style>
     </div>
   );
-}
+};
 
-export default Blog
+export default Blog;

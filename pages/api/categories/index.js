@@ -1,6 +1,6 @@
-import connectDB from '../../../src/config/db';
+import connectDB from '../../../config/db';
 import mongoose from 'mongoose';
-import { withAdminAuth } from '../../../src/middleware/authMiddleware';
+import { withAdminAuth } from '../../../middleware/authMiddleware';
 
 // Définition du schéma Category pour MongoDB
 const CategorySchema = new mongoose.Schema({
