@@ -3,38 +3,21 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/autoplay';
 
 // import required modules
 import { Autoplay } from 'swiper/modules';
-import { sponsor01, sponsor02, sponsor03, sponsor04, sponsor05, sponsor06 } from '../../utils/imageImports';
+import { sponsorNestle, sponsorDisney, sponsorAirbnb, sponsorGrab, sponsorNetflix, sponsorIle } from '../../utils/imageImports';
 
 
 const sponsorList = [
-    {
-        imgUrl: sponsor01,
-        imgAlt: 'sponsor'
-    },
-    {
-        imgUrl: sponsor02,
-        imgAlt: 'sponsor'
-    },
-    {
-        imgUrl: sponsor03,
-        imgAlt: 'sponsor'
-    },
-    {
-        imgUrl: sponsor04,
-        imgAlt: 'sponsor'
-    },
-    {
-        imgUrl: sponsor05,
-        imgAlt: 'sponsor'
-    },
-    {
-        imgUrl: sponsor06,
-        imgAlt: 'sponsor'
-    },
-]
+    { imgUrl: sponsorIle, imgAlt: 'ile' },
+    { imgUrl: sponsorNestle, imgAlt: 'Nestlé' },
+    { imgUrl: sponsorDisney, imgAlt: 'Disney' },
+    { imgUrl: sponsorAirbnb, imgAlt: 'airbnb' },
+    { imgUrl: sponsorGrab, imgAlt: 'Grab' },
+    { imgUrl: sponsorNetflix, imgAlt: 'Netflix' }
+];
 
 
 const Sponsor = () => {
@@ -44,29 +27,19 @@ const Sponsor = () => {
                 <div className="section-wrapper">
                     <div className="sponsor-slider">
                         <Swiper
-                            spaceBetween={20}
-                            slidesPerView={2}
-                            loop={'true'}
-                            autoplay={{
-                                delay: 2000,
-                                disableOnInteraction: false,
-                            }}
-                            modules={[Autoplay]}
-                            breakpoints={{
-                                0: {
-                                    width: 0,
-                                    slidesPerView: 1,
-                                },
-                                768: {
-                                    width: 768,
-                                    slidesPerView: 3,
-                                },
-                                1200: {
-                                    width: 1200,
-                                    slidesPerView: 5.5,
-                                },
-                            }}
-                        >
+  spaceBetween={20}
+  slidesPerView={2}
+  loop={true}
+  loopedSlides={sponsorList.length}
+  watchOverflow={false}
+  autoplay={{
+    delay: 2000,
+    disableOnInteraction: false,
+  }}
+  modules={[Autoplay]}
+>
+
+
                             {sponsorList.map((val, i) => (
                                 <SwiperSlide key={i}>
                                     <div className="sponsor-iten">

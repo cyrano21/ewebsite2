@@ -2,15 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/admin/products": "pages/admin/products.js",
-  "/admin": "pages/admin.js",
-  "/admin/customers": "pages/admin/customers.js",
-  "/api/users": "pages/api/users.js",
-  "/admin/blog": "pages/admin/blog.js",
-  "/api/article-categories": "pages/api/article-categories.js",
-  "/api/blogs": "pages/api/blogs.js",
   "/": "pages/index.js",
+  "/shop/[slug]": "pages/shop/[slug].js",
   "/api/products": "pages/api/products.js",
-  "/404": "pages/404.js",
-  "/api/categories": "pages/api/categories.js"
+  "/api/categories": "pages/api/categories.js",
+  "/shop": "pages/shop.js"
 }

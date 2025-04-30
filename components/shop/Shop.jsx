@@ -29,6 +29,11 @@ const Shop = ({ initialCategory }) => {
     productsPerPage,
     filteredProducts.length
   )} sur ${filteredProducts.length} résultats`;
+  
+  // Mettre à jour la catégorie sélectionnée lorsque l'URL change
+  useEffect(() => {
+    setSelectedCategory(categorySlug);
+  }, [categorySlug]);
 
   // Charger les produits depuis l'API Next.js
   useEffect(() => {

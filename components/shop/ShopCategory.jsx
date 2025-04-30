@@ -8,10 +8,12 @@ const ShopCategory = ({ menuItems, selectedCategory }) => {
 
   const handleCategoryClick = (slug) => {
     if (!slug || slug === "undefined") return; // Empêche navigation invalide
+    
+    // Utiliser router.push avec { shallow: true } pour éviter un rechargement complet
     if (slug.toLowerCase() === "all") {
-      router.push("/shop");
+      router.push("/shop", undefined, { shallow: true });
     } else {
-      router.push(`/shop/${slug}`);
+      router.push(`/shop/${slug}`, undefined, { shallow: true });
     }
   };
 

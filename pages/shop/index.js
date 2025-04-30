@@ -1,29 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
+import mongoose from 'mongoose';
+import connectDB from '../../src/config/db';
 
 const fallbackImg = "/assets/images/category/01.jpg";
 
-const ShopIndex = () => {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+// Cette fonction s'exécute côté serveur à la compilation
+export async function getStaticProps() {
+  try {
+    // Connexion à MongoDB
+    await connectDB();
+    
+    // Définition du schéma Category pour MongoDB si nécessaire
+    const CategorySchema = new mongoose.Schema({
+      name: { type: String, required: true, trim: true, unique: true },
+      slug: { type: String, required: true, unique: true },
+      description: { type: String, required: false },
+      imageUrl: { type: String, required: false },
+      cloudinaryId: { type: String, required: false },
+      isActive: { type: Boolean, default: true },
+      order: { type: Number, default: 0 }
+    }, {
+      timestamps: true
+    });
+    
+    // Récupération du modèle Category
+    const Category = mongoose.models.Category || mongoose.model('Category', CategorySchema);
+    
+    // Récupération des catégories actives
+    const categories = await Category.find({ isActive: true }).sort({ order: 1, name: 1 });
+    
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(categories)),
+      },
+      // Revalidation toutes les 60 secondes (ISR - Incremental Static Regeneration)
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Erreur lors du chargement des catégories:", error);
+    return {
+      props: {
+        categories: [],
+      },
+      revalidate: 60,
+    };
+  }
+}
 
-  useEffect(() => {
-    fetch("/api/categories")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(Array.isArray(data) ? data : []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-
+const ShopIndex = ({ categories }) => {
   return (
     <div className="container py-5">
       <h2 className="mb-4">Toutes les catégories</h2>
       <div className="row g-4">
-        {loading ? (
-          <div className="text-center">Chargement...</div>
-        ) : categories.length === 0 ? (
+        {categories.length === 0 ? (
           <div className="text-center">Aucune catégorie trouvée.</div>
         ) : (
           categories.map((cat) => (

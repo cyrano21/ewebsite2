@@ -31,11 +31,7 @@ export async function getStaticProps() {
 import PropTypes from "prop-types";
 
 export default function HomePage({ featuredProducts }) {
-  return (
-    <Layout>
-          <Home featuredProducts={featuredProducts} />
-    </Layout>
-  );
+  return <Home featuredProducts={featuredProducts} />;
 }
 
 HomePage.propTypes = {

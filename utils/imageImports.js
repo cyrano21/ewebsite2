@@ -38,6 +38,18 @@ export const product08 = "/assets/images/products/08.jpg";
 // Clients section
 export const clientAvatar = "/assets/images/clients/avatar.jpg";
 
+// Logos sponsors (doivent exister dans public/assets/images/sponsor/)
+export const sponsorNestle = "/assets/images/sponsor/nestle.png";
+export const sponsorDisney = "/assets/images/sponsor/disney.png";
+export const sponsorAirbnb = "/assets/images/sponsor/airbnb.png";
+export const sponsorGrab = "/assets/images/sponsor/grab.png";
+export const sponsorNetflix = "/assets/images/sponsor/netflix.png";
+export const sponsorIle = "/assets/images/sponsor/ile.png";
+
+// Images App Section (ajoutez vos propres images dans le dossier public/assets/images/app/)
+export const app01 = "/assets/images/app/app01.png";
+export const app02 = "/assets/images/app/app02.png";
+
 // Exports des images de produits
 export const productImages = {
   "01.jpg": "/assets/images/products/01.jpg",

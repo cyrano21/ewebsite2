@@ -55,69 +55,123 @@ const ProductCards = ({ products, GridList }) => {
 
   return (
     <>
-      <div
-        className={`shop-product-wrap row justify-content-center ${
-          GridList ? "grid" : "list"
-        }`}
-      >
+      <div className="shop-product-wrap row justify-content-center">
         {products.map((product, i) => (
-          <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4" key={i}>
-            <div className="product-item modern product-card">
-              <div className="product-thumb position-relative">
-                <div className="pro-thumb overflow-hidden">
-                  <img
-                    src={product.img}
-                    alt={product.name}
-                    className="img-fluid rounded w-100"
-                    style={{ maxHeight: "180px", objectFit: "contain" }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/images/placeholder.png";
-                    }}
-                  />
-                  <div className="product-action-link d-flex gap-2">
+          <div className={GridList ? "col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4" : "col-12 mb-4"} key={i}>
+            <div className={`product-item modern ${GridList ? "product-card" : "list-view"}`}>
+              {GridList ? (
+                // Mode Grille
+                <>
+                  <div className="product-thumb position-relative">
+                    <div className="pro-thumb overflow-hidden">
+                      <img
+                        src={product.img}
+                        alt={product.name}
+                        className="img-fluid rounded w-100"
+                        style={{ maxHeight: "180px", objectFit: "contain" }}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "/images/placeholder.png";
+                        }}
+                      />
+                      <div className="product-action-link">
+                        <Link href={`/shop/${product.id}`}>
+                          <i className="icofont-eye" />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => handleAddToWishlist(product)}
+                          className={isInWishlist(product.id) ? "active" : ""}
+                          style={{ background: 'none', border: 'none', padding: '3px' }}
+                          aria-label="Ajouter à la liste de souhaits"
+                        >
+                          <i className="icofont-heart" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleAddToCart(product)}
+                          className="btn btn-link cart-icon-visible"
+                          aria-label="Ajouter au panier"
+                        >
+                          <i className="icofont-cart-alt" style={{ fontSize: "16px", color: "#28a745" }} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="product-content mt-3">
                     <Link href={`/shop/${product.id}`}>
-                      <i className="icofont-eye" />
+                      <h6>
+                        {product.name}
+                      </h6>
                     </Link>
-                    <button
-                      type="button"
-                      onClick={() => handleAddToWishlist(product)}
-                      className={isInWishlist(product.id) ? "active btn btn-link p-0" : "btn btn-link p-0"}
-                      style={{ background: 'none', border: 'none' }}
-                      aria-label="Ajouter à la liste de souhaits"
-                    >
-                      <i className="icofont-heart" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleAddToCart(product)}
-                      className="product-cart-action btn btn-link p-0"
-                      style={{ background: 'none', border: 'none' }}
-                      aria-label="Ajouter au panier"
-                    >
-                      <i className="icofont-cart-alt" />
-                    </button>
-                   
+                    <div className="product-rating-row d-flex align-items-center mb-2">
+                      <Rating value={product.rating} />
+                      <span className="num-reviews ms-2">
+                        ({product.numReviews || 0})
+                      </span>
+                    </div>
+                    <h6 className="text-primary fw-bold">${product.price}</h6>
+                    {product.seller && (
+                      <p className="text-muted">{product.seller}</p>
+                    )}
+                  </div>
+                </>
+              ) : (
+                // Mode Liste
+                <div className="row align-items-center w-100">
+                  <div className="col-md-3">
+                    <div className="product-thumb position-relative">
+                      <div className="pro-thumb overflow-hidden">
+                        <img
+                          src={product.img || "/images/placeholder.png"}
+                          alt={product.name}
+                          className="img-fluid rounded"
+                          style={{ height: "150px", width: "100%", objectFit: "contain" }}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "/images/placeholder.png";
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="product-content ps-md-3">
+                      <Link href={`/shop/${product.id}`}>
+                        <h5 className="product-title mb-2">{product.name}</h5>
+                      </Link>
+                      <div className="product-rating-row d-flex align-items-center mb-2">
+                        <Rating value={product.rating} />
+                        <span className="num-reviews ms-2">({product.numReviews || 0})</span>
+                      </div>
+                      <p className="product-desc mb-2">{product.description ? product.description.substring(0, 100) + '...' : 'Aucune description disponible'}</p>
+                      {product.seller && <p className="text-muted mb-2 small">Vendeur: {product.seller}</p>}
+                    </div>
+                  </div>
+                  <div className="col-md-3 text-end">
+                    <h5 className="text-primary fw-bold mb-3">${product.price}</h5>
+                    <div className="product-action-buttons d-flex flex-column gap-2">
+                      <Link href={`/shop/${product.id}`} className="btn btn-outline-primary btn-sm">
+                        <i className="icofont-eye me-1"></i> Voir détails
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => handleAddToWishlist(product)}
+                        className={`btn btn-sm ${isInWishlist(product.id) ? "btn-danger" : "btn-outline-danger"}`}
+                      >
+                        <i className="icofont-heart me-1"></i> {isInWishlist(product.id) ? "Favoris" : "Ajouter"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleAddToCart(product)}
+                        className="btn btn-success btn-sm"
+                      >
+                        <i className="icofont-cart-alt me-1"></i> Panier
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="product-content mt-3">
-                <Link href={`/shop/${product.id}`}>
-                  <h5>
-                    {product.name}
-                  </h5>
-                </Link>
-                <div className="product-rating-row d-flex align-items-center mb-2">
-                  <Rating value={product.rating} />
-                  <span className="num-reviews ms-2">
-                    ({product.numReviews || 0})
-                  </span>
-                </div>
-                <h6 className="text-primary fw-bold">${product.price}</h6>
-                {product.seller && (
-                  <p className="text-muted">{product.seller}</p>
-                )}
-              </div>
+              )}
             </div>
           </div>
         ))}
@@ -143,20 +197,15 @@ const ProductCards = ({ products, GridList }) => {
           transition: opacity 0.3s ease;
           z-index: 2;
           background: rgba(255,255,255,0.85);
-          border-radius: 50px;
-          padding: 4px 6px;
+          padding: 5px 8px;
+          border-radius: 4px;
           display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 4px;
-          min-width: 90px;
-          min-height: 36px;
-          height: 36px;
+          gap: 8px;
         }
-        .product-thumb:hover .product-action-link {
+        .pro-thumb:hover .product-action-link {
           opacity: 1;
         }
-        .product-action-link a {
+        .product-action-link a, .product-action-link button {
           font-size: 1.2rem;
           padding: 2px 4px;
           color: #333;
@@ -176,25 +225,25 @@ const ProductCards = ({ products, GridList }) => {
           margin: 0 auto;
           height: 1.2em;
           width: 1.2em;
-          text-align: center;
         }
-        .product-content h5 a {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #000;
-          text-decoration: none;
+        .cart-icon-visible i {
+          color: #28a745 !important;
         }
-        .product-content h5 a:hover {
-          color: #007bff;
+        .list-view {
+          padding: 15px;
+          border: 1px solid #eee;
+          border-radius: 8px;
+          transition: all 0.3s ease;
         }
-        .product-rating-row .num-reviews {
-          color: #888;
-          font-size: 1em;
+        .list-view:hover {
+          box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
-        .product-rating-row :global(.star) {
-          color: #ff9800;
-          font-size: 1.3em;
-          margin-right: 2px;
+        .product-desc {
+          color: #666;
+          font-size: 0.9rem;
+        }
+        .product-action-buttons {
+          flex-wrap: wrap;
         }
       `}</style>
     </>
