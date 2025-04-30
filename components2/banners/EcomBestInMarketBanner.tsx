@@ -1,6 +1,7 @@
 import React from 'react';
 import bestInMarketBg from 'assets/img/e-commerce/best-in-market-bg.png';
 import product from 'assets/img/e-commerce/5.png';
+import Image from 'next/image';
 import { Col, Row } from 'react-bootstrap';
 import Link from 'next/link';
 
@@ -30,7 +31,7 @@ const EcomBestInMarketBanner = () => {
           </div>
         </Col>
         <Col xs={4}>
-          <img src={product} alt="" className="w-100 w-sm-75" />
+          <Image src={product} alt="" className="w-100 w-sm-75" width={500} height={300} />
         </Col>
       </Row>
     </div>
@@ -38,5 +39,6 @@ const EcomBestInMarketBanner = () => {
 };
 
 export default EcomBestInMarketBanner;
+
 
 
