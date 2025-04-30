@@ -26,7 +26,7 @@ const DealDetailsNotes = ({ notes }: { notes: Note[] }) => {
             </div>
             <p className="fs-9 mb-0 text-body-tertiary text-opacity-85">
               by
-              <Link to="#!" className="ms-1 fw-semibold">
+              <Link href="#!" className="ms-1 fw-semibold">
                 {note.name}
               </Link>
             </p>
@@ -38,4 +38,5 @@ const DealDetailsNotes = ({ notes }: { notes: Note[] }) => {
 };
 
 export default DealDetailsNotes;
+
 

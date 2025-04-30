@@ -24,7 +24,7 @@ const Comment = ({ comment, className }: CommentProps) => {
           })}
         >
           <Link
-            to={comment.user.url}
+            href={comment.user.url}
             className={classNames('fw-semibold', {
               'text-body-highlight text-decoration-none': comment.own
             })}
@@ -54,4 +54,5 @@ const Comment = ({ comment, className }: CommentProps) => {
 };
 
 export default Comment;
+
 

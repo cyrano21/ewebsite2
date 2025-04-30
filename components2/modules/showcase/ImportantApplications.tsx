@@ -89,7 +89,7 @@ const ImportantApplications = () => {
                     <Button
                       as={Link}
                       target="_blank"
-                      to={application.link}
+                      href={application.link}
                       variant="primary"
                     >
                       {application.btnLabel}
@@ -106,4 +106,5 @@ const ImportantApplications = () => {
 };
 
 export default ImportantApplications;
+
 

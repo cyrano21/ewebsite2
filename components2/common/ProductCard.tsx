@@ -42,7 +42,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
             )}
           </div>
           <Link
-            to="/apps/e-commerce/customer/product-details"
+            href="/apps/e-commerce/customer/product-details"
             className="stretched-link"
           >
             <h6 className="mb-2 lh-sm line-clamp-3 product-name">
@@ -120,4 +120,5 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 };
 
 export default ProductCard;
+
 

@@ -23,7 +23,7 @@ const columns: ColumnDef<LatestReviewsTableDataType>[] = [
     cell: ({ row: { original } }) => {
       const { product } = original;
       return (
-        <Link to="#!" className="fw-semibold line-clamp-1">{`${product.slice(
+        <Link href="#!" className="fw-semibold line-clamp-1">{`${product.slice(
           0,
           46
         )}${product.length > 46 ? '...' : ''}`}</Link>
@@ -56,7 +56,7 @@ const columns: ColumnDef<LatestReviewsTableDataType>[] = [
           {review.length > 134 && (
             <>
               {`...`}
-              <Link to="#!">See more</Link>
+              <Link href="#!">See more</Link>
             </>
           )}
         </p>
@@ -137,4 +137,5 @@ const EcomProfileReviewsTable = () => {
 };
 
 export default EcomProfileReviewsTable;
+
 

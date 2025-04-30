@@ -69,7 +69,7 @@ const ModulesItem = ({ item }: { item: Module }) => (
   >
     {item.badge && <h1 className="module-badge">{item.badge.label}</h1>}
     <h2 className="module-title position-relative">{item.name}</h2>
-    <Link to={item.path || '#!'} className="stretched-link" />
+    <Link href={item.path || '#!'} className="stretched-link" />
     <div className="image-container cursor-pointer">
       {item.images.map((image, idx) => (
         <div className="image" key={idx}>
@@ -105,4 +105,5 @@ const DifferentModules = () => {
 };
 
 export default DifferentModules;
+
 

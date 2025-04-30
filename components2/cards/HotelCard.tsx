@@ -20,7 +20,7 @@ const HotelCard = ({ hotelInfo }: { hotelInfo: hotelInterFace }) => {
       <div className="backdrop-faded backdrop-secondary-dark h-100 d-flex flex-column justify-content-end">
         <Link
           className="stretched-link fs-7 text-white fw-bold"
-          to="/apps/travel-agency/hotel/customer/hotel-details"
+          href="/apps/travel-agency/hotel/customer/hotel-details"
         >
           {name}
         </Link>
@@ -53,4 +53,5 @@ const HotelCard = ({ hotelInfo }: { hotelInfo: hotelInterFace }) => {
 };
 
 export default HotelCard;
+
 

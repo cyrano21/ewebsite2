@@ -9,7 +9,7 @@ const KanbanAddBoardCard = () => {
       variant="phoenix-primary"
       className="d-flex flex-center h-100 w-100 fs-7 fw-semibold"
       as={Link}
-      to="/apps/kanban/create-board"
+      href="/apps/kanban/create-board"
     >
       <FontAwesomeIcon icon={faPlusCircle} className="fs-8 me-2" />
       Create New Board
@@ -18,4 +18,5 @@ const KanbanAddBoardCard = () => {
 };
 
 export default KanbanAddBoardCard;
+
 

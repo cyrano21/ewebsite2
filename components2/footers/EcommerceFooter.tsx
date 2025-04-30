@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 const LinkItem = ({ children, to }: PropsWithChildren<{ to: string }>) => {
   return (
-    <Link to={to} className="text-body-tertiary fw-semibold fs-9 mb-1">
+    <Link href={to} className="text-body-tertiary fw-semibold fs-9 mb-1">
       {children}
     </Link>
   );
@@ -33,24 +33,24 @@ const EcommerceFooter = () => {
           <Col xs={6} md="auto">
             <h5 className="fw-bolder mb-3">About Phoenix</h5>
             <Stack>
-              <LinkItem to="#!">Careers</LinkItem>
-              <LinkItem to="#!">Affiliate Program</LinkItem>
-              <LinkItem to="#!">Privacy Policy</LinkItem>
-              <LinkItem to="#!">Terms & Conditions</LinkItem>
+              <LinkItem href="#!">Careers</LinkItem>
+              <LinkItem href="#!">Affiliate Program</LinkItem>
+              <LinkItem href="#!">Privacy Policy</LinkItem>
+              <LinkItem href="#!">Terms & Conditions</LinkItem>
             </Stack>
           </Col>
           <Col xs={6} md="auto">
             <h5 className="fw-bolder mb-3">Stay Connected</h5>
             <Stack>
-              <LinkItem to="#!">Blogs</LinkItem>
-              <Link to="#!" className="mb-1 fw-semibold fs-9">
+              <LinkItem href="#!">Blogs</LinkItem>
+              <Link href="#!" className="mb-1 fw-semibold fs-9">
                 <FontAwesomeIcon
                   icon={faFacebookSquare}
                   className="text-primary me-2 fs-8"
                 />
                 <span className="text-body-secondary">Facebook</span>
               </Link>
-              <Link to="#!" className="mb-1 fw-semibold fs-9">
+              <Link href="#!" className="mb-1 fw-semibold fs-9">
                 <FontAwesomeIcon
                   icon={faTwitterSquare}
                   className="text-info me-2 fs-8"
@@ -62,18 +62,18 @@ const EcommerceFooter = () => {
           <Col xs={6} md="auto">
             <h5 className="fw-bolder mb-3">Customer Service</h5>
             <Stack>
-              <LinkItem to="#!">Help Desk</LinkItem>
-              <LinkItem to="#!">Support, 24/7</LinkItem>
-              <LinkItem to="#!">Community of Phoenix</LinkItem>
+              <LinkItem href="#!">Help Desk</LinkItem>
+              <LinkItem href="#!">Support, 24/7</LinkItem>
+              <LinkItem href="#!">Community of Phoenix</LinkItem>
             </Stack>
           </Col>
           <Col xs={6} md="auto">
             <h5 className="fw-bolder mb-3">Payment Method</h5>
             <Stack>
-              <LinkItem to="#!">Cash on Delivery</LinkItem>
-              <LinkItem to="#!">Online Payment</LinkItem>
-              <LinkItem to="#!">PayPal</LinkItem>
-              <LinkItem to="#!">Installment</LinkItem>
+              <LinkItem href="#!">Cash on Delivery</LinkItem>
+              <LinkItem href="#!">Online Payment</LinkItem>
+              <LinkItem href="#!">PayPal</LinkItem>
+              <LinkItem href="#!">Installment</LinkItem>
             </Stack>
           </Col>
         </Row>
@@ -83,4 +83,5 @@ const EcommerceFooter = () => {
 };
 
 export default EcommerceFooter;
+
 

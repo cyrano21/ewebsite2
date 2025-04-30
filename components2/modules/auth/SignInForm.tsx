@@ -57,7 +57,7 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         </Col>
         <Col xs="auto">
           <Link
-            to={`/pages/authentication/${layout}/forgot-password`}
+            href={`/pages/authentication/${layout}/forgot-password`}
             className="fs-9 fw-semibold"
           >
             Forgot Password?
@@ -69,7 +69,7 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
       </Button>
       <div className="text-center">
         <Link
-          to={`/pages/authentication/${layout}/sign-up`}
+          href={`/pages/authentication/${layout}/sign-up`}
           className="fs-9 fw-bold"
         >
           Create an account
@@ -80,4 +80,5 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 };
 
 export default SignInForm;
+
 

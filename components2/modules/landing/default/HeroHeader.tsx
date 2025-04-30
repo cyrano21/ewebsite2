@@ -81,7 +81,7 @@ const HeroHeader = () => {
                 you don’t have to look further. Sign up or check the demo below.
               </p>
               <Link
-                to="#!"
+                href="#!"
                 className="btn btn-lg btn-primary rounded-pill me-3"
               >
                 Sign up
@@ -89,7 +89,7 @@ const HeroHeader = () => {
               <Button
                 as={Link}
                 variant="link"
-                to="#!"
+                href="#!"
                 className="me-2 fs-8 p-0 text-decoration-none"
               >
                 Check Demo
@@ -104,4 +104,5 @@ const HeroHeader = () => {
 };
 
 export default HeroHeader;
+
 

@@ -9,7 +9,7 @@ const MutualNavigation = () => {
     <>
       <div className="d-flex pb-4 align-items-end border-bottom border-translucent border-dashed">
         <h3 className="flex-1 mb-0">You and Erza</h3>
-        <Link to="#!" className="fw-bold fs-9">
+        <Link href="#!" className="fw-bold fs-9">
           See details
         </Link>
       </div>
@@ -35,4 +35,5 @@ const MutualNavigation = () => {
 };
 
 export default MutualNavigation;
+
 

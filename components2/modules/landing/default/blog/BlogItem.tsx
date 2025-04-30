@@ -25,7 +25,7 @@ const BlogItem = ({ blog }: { blog: Blog }) => {
         <div className="d-flex align-items-center mb-3">
           <div className="d-flex align-items-center me-3">
             <Link
-              to="#!"
+              href="#!"
               className="btn-link text-decoration-none d-flex align-items-center"
             >
               <FontAwesomeIcon
@@ -37,7 +37,7 @@ const BlogItem = ({ blog }: { blog: Blog }) => {
           </div>
           <div className="d-flex align-items-center me-3">
             <Link
-              to="#!"
+              href="#!"
               className="btn-link text-decoration-none d-flex align-items-center"
             >
               <FontAwesomeIcon
@@ -49,7 +49,7 @@ const BlogItem = ({ blog }: { blog: Blog }) => {
           </div>
           <div className="d-flex align-items-center">
             <Link
-              to="#!"
+              href="#!"
               className="btn-link text-decoration-none d-flex align-items-center"
             >
               <FontAwesomeIcon
@@ -64,7 +64,7 @@ const BlogItem = ({ blog }: { blog: Blog }) => {
           {blog.category}
         </Badge>
         <h4 className="fw-bold mb-3 lh-sm line-clamp-2">{blog.title}</h4>
-        <Button as={Link} to="#!" className="p-0" variant="link">
+        <Button as={Link} href="#!" className="p-0" variant="link">
           Read more
           <FontAwesomeIcon icon={faAngleRight} className="ms-2" />
         </Button>
@@ -74,4 +74,5 @@ const BlogItem = ({ blog }: { blog: Blog }) => {
 };
 
 export default BlogItem;
+
 

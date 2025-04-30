@@ -30,7 +30,7 @@ const NavItem = ({ route, level }: NavItemProps) => {
   return (
     <Nav.Item as="li">
       <NavLink
-        to={route.path ? route.path : '#!'}
+        href={route.path ? route.path : '#!'}
         className={({ isActive }) =>
           classNames('nav-link', {
             'label-1': level === 1,
@@ -242,3 +242,4 @@ const NavbarVerticalMenu = ({ routes, level }: NavbarVerticalMenuProps) => {
 };
 
 export default NavbarVerticalMenu;
+

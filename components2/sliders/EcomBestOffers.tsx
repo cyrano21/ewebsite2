@@ -12,7 +12,7 @@ const EcomBestOffers = ({ products }: { products: Product[] }) => {
     <>
       <div className="d-flex flex-between-center mb-3">
         <h3>Best Offers</h3>
-        <Link to="#!" className="btn btn-link btn-lg p-0 d-none d-md-block">
+        <Link href="#!" className="btn btn-link btn-lg p-0 d-none d-md-block">
           Explore more
           <FontAwesomeIcon icon={faChevronRight} className="fs-9 ms-1" />
         </Link>
@@ -59,4 +59,5 @@ const EcomBestOffers = ({ products }: { products: Product[] }) => {
 };
 
 export default EcomBestOffers;
+
 

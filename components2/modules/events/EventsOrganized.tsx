@@ -20,7 +20,7 @@ const EventsOrganized = () => {
           />
         </Col>
         <Col sm="auto" className="flex-1">
-          <Link to="#!" className="mb-0 text-primary fw-semibold lh-sm">
+          <Link href="#!" className="mb-0 text-primary fw-semibold lh-sm">
             Bass Events, Inc.
           </Link>
         </Col>
@@ -42,4 +42,5 @@ const EventsOrganized = () => {
 };
 
 export default EventsOrganized;
+
 

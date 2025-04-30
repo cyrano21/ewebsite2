@@ -81,8 +81,8 @@ const WizardAccountForm = ({ id }: { id: string }) => {
           onChange={onChange}
         />
         <Form.Check.Label className="text-body" htmlFor={`${id}-terms`}>
-          I accept the <Link to="#!">terms</Link> and{' '}
-          <Link to="#!">privacy policy</Link>
+          I accept the <Link href="#!">terms</Link> and{' '}
+          <Link href="#!">privacy policy</Link>
         </Form.Check.Label>
       </Form.Check>
     </>
@@ -90,4 +90,5 @@ const WizardAccountForm = ({ id }: { id: string }) => {
 };
 
 export default WizardAccountForm;
+
 

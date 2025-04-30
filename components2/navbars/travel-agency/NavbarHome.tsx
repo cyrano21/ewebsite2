@@ -43,7 +43,7 @@ const NavbarHome = ({ currentPage }: { currentPage: string }) => {
               className={classNames('fw-bold rounded-3', {
                 active: currentPage === item.label
               })}
-              to={item.path}
+              href={item.path}
             >
               <FontAwesomeIcon icon={item.icon} className="me-2" />
               {item.label}
@@ -56,4 +56,5 @@ const NavbarHome = ({ currentPage }: { currentPage: string }) => {
 };
 
 export default NavbarHome;
+
 

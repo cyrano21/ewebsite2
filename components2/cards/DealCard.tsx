@@ -85,7 +85,7 @@ const DealCard = ({ deal, columnId, cursor }: DealCardProps) => {
           </div>
           <div className="d-flex align-items-center mb-2">
             <Link
-              to="/apps/crm/deal-details"
+              href="/apps/crm/deal-details"
               className="fw-bold line-clamp-1 me-3 fs-7"
             >
               {deal.title}
@@ -179,19 +179,19 @@ const DealCard = ({ deal, columnId, cursor }: DealCardProps) => {
                       <td className="fw-semibold fs-9 mb-0 text-body-emphasis">
                         <p className="align-items-center d-flex fs-9 fw-semibold gap-2 mb-0 text-body-emphasis">
                           {deal.company}
-                          <Link to="#!">
+                          <Link href="#!">
                             <FontAwesomeIcon
                               icon={faSquarePhone}
                               className="text-body-tertiary"
                             />
                           </Link>
-                          <Link to="#!">
+                          <Link href="#!">
                             <FontAwesomeIcon
                               icon={faSquareEnvelope}
                               className="text-body-tertiary"
                             />
                           </Link>
-                          <Link to="#!">
+                          <Link href="#!">
                             <FontAwesomeIcon
                               icon={faWhatsappSquare}
                               className="text-body-tertiary"
@@ -267,4 +267,5 @@ const DealCard = ({ deal, columnId, cursor }: DealCardProps) => {
 };
 
 export default DealCard;
+
 

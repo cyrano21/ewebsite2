@@ -13,7 +13,7 @@ const EcomCartSummaryCard = () => {
       <Card.Body>
         <div className="d-flex flex-between-center mb-3">
           <h3 className="mb-0">Summary</h3>
-          <Link to="#!" className="btn btn-link p-0">
+          <Link href="#!" className="btn btn-link p-0">
             Edit cart
           </Link>
         </div>
@@ -50,4 +50,5 @@ const EcomCartSummaryCard = () => {
 };
 
 export default EcomCartSummaryCard;
+
 

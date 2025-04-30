@@ -107,7 +107,7 @@ const TopNavDropdownItem = ({ page }: { page: Route }) => {
     <li>
       <Dropdown.Item
         as={Link}
-        to={page.path || '#!'}
+        href={page.path || '#!'}
         className={classNames({
           'text-body-quaternary': !page.active,
           active: pathname === page.path
@@ -137,3 +137,4 @@ const TopNavDropdownItem = ({ page }: { page: Route }) => {
 };
 
 export default TopNavItem;
+

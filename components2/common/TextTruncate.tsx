@@ -16,10 +16,11 @@ const TextTruncate = ({ text, maxLength, url = '#!' }: TextTruncateProps) => {
   return (
     <>
       {displayText}
-      {isTruncated && <Link to={url}>Read more</Link>}
+      {isTruncated && <Link href={url}>Read more</Link>}
     </>
   );
 };
 
 export default TextTruncate;
+
 

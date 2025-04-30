@@ -14,7 +14,7 @@ const EcommerceTopbar = () => {
         <Navbar className="px-0">
           <Row className="gx-0 gy-2 w-100 flex-between-center">
             <Col xs="auto">
-              <Link to="/" className="text-decoration-none">
+              <Link href="/" className="text-decoration-none">
                 <Logo />
               </Link>
             </Col>
@@ -27,7 +27,7 @@ const EcommerceTopbar = () => {
                 <Nav.Item as="li">
                   <Nav.Link
                     as={Link}
-                    to="/apps/e-commerce/customer/cart"
+                    href="/apps/e-commerce/customer/cart"
                     className="px-2 icon-indicator icon-indicator-primary"
                   >
                     <FeatherIcon icon="shopping-cart" size={20} />
@@ -39,7 +39,7 @@ const EcommerceTopbar = () => {
                   <Dropdown autoClose="outside">
                     <Dropdown.Toggle
                       as={Link}
-                      to="#!"
+                      href="#!"
                       className="dropdown-caret-none nav-link icon-indicator icon-indicator-sm icon-indicator-danger"
                       variant=""
                     >
@@ -53,7 +53,7 @@ const EcommerceTopbar = () => {
                   <Dropdown autoClose="outside">
                     <Dropdown.Toggle
                       as={Link}
-                      to="#!"
+                      href="#!"
                       className="dropdown-caret-none nav-link lh-1"
                       variant=""
                     >
@@ -81,4 +81,5 @@ const EcommerceTopbar = () => {
 };
 
 export default EcommerceTopbar;
+
 

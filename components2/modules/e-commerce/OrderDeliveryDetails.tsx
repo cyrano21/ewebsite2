@@ -9,19 +9,19 @@ export const BillingDetails = () => {
       <Row className="g-4 flex-sm-column">
         <Col xs={6} sm={12}>
           <OrderInfoItem icon="user" label="Customer" />
-          <Link className="fs-9 ms-4" to="#!">
+          <Link className="fs-9 ms-4" href="#!">
             Shatinon Mekalan
           </Link>
         </Col>
         <Col xs={6} sm={12}>
           <OrderInfoItem icon="mail" label="Email" />
-          <Link className="fs-9 ms-4" to="mailto:shatinon@jeemail.com">
+          <Link className="fs-9 ms-4" href="mailto:shatinon@jeemail.com">
             shatinon@jeemail.com
           </Link>
         </Col>
         <Col xs={6} sm={12}>
           <OrderInfoItem icon="phone" label="Phone" />
-          <Link className="fs-9 ms-4" to="tel:+1234567890">
+          <Link className="fs-9 ms-4" href="tel:+1234567890">
             +1234567890
           </Link>
         </Col>
@@ -48,13 +48,13 @@ export const ShippingDetails = () => {
       <Row className="g-4 flex-sm-column">
         <Col xs={6} sm={12}>
           <OrderInfoItem icon="mail" label="Email" />
-          <Link className="fs-9 ms-4" to="mailto:shatinon@jeemail.com">
+          <Link className="fs-9 ms-4" href="mailto:shatinon@jeemail.com">
             shatinon@jeemail.com
           </Link>
         </Col>
         <Col xs={6} sm={12}>
           <OrderInfoItem icon="phone" label="Phone" />
-          <Link className="fs-9 ms-4" to="tel:+1234567890">
+          <Link className="fs-9 ms-4" href="tel:+1234567890">
             +1234567890
           </Link>
         </Col>
@@ -112,4 +112,5 @@ export const OtherDetails = () => {
     </>
   );
 };
+
 

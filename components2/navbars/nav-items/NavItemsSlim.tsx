@@ -27,7 +27,7 @@ const NavItemsSlim = () => {
         <Dropdown autoClose="outside">
           <Dropdown.Toggle
             as={Link}
-            to="#!"
+            href="#!"
             className="dropdown-caret-none nav-link py-0"
             variant=""
           >
@@ -40,7 +40,7 @@ const NavItemsSlim = () => {
         <Dropdown autoClose="outside">
           <Dropdown.Toggle
             as={Link}
-            to="#!"
+            href="#!"
             className="dropdown-caret-none nav-link py-0"
             variant=""
           >
@@ -69,7 +69,7 @@ const NavItemsSlim = () => {
         <Dropdown autoClose="outside">
           <Dropdown.Toggle
             as={Link}
-            to="#!"
+            href="#!"
             className="dropdown-caret-none nav-link pe-0 py-0"
             variant=""
           >
@@ -100,4 +100,5 @@ const NavItemsSlim = () => {
 };
 
 export default NavItemsSlim;
+
 

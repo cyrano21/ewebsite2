@@ -79,7 +79,7 @@ const FinanceForm = () => {
         />
 
         <Link
-          to="#!"
+          href="#!"
           className="position-absolute d-flex align-items-center px-3 fw-bold fs-9 end-0 top-0 mt-3 me-2"
         >
           Verify now
@@ -189,4 +189,5 @@ const FinanceForm = () => {
 };
 
 export default FinanceForm;
+
 

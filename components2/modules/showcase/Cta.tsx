@@ -31,7 +31,7 @@ const Cta = () => {
               </h2>
               <Button
                 as={Link}
-                to="mailto:support@themewagon.com"
+                href="mailto:support@themewagon.com"
                 className="btn-lg btn-primary"
               >
                 <span>
@@ -60,4 +60,5 @@ const Cta = () => {
 };
 
 export default Cta;
+
 

@@ -30,7 +30,7 @@ const EcomWhopingBanner = () => {
           </h3>
         </div>
         <Link
-          to="#!"
+          href="#!"
           className="btn btn-lg btn-primary rounded-pill banner-button"
         >
           Shop Now
@@ -41,4 +41,5 @@ const EcomWhopingBanner = () => {
 };
 
 export default EcomWhopingBanner;
+
 

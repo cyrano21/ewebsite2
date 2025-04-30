@@ -14,7 +14,7 @@ export const customersTablecolumns: ColumnDef<Customer>[] = [
       const { name, avatar } = original;
       return (
         <Link
-          to="/apps/e-commerce/admin/customer-details"
+          href="/apps/e-commerce/admin/customer-details"
           className="d-flex align-items-center text-body-emphasis"
         >
           <Avatar src={avatar} size="m" />
@@ -33,7 +33,7 @@ export const customersTablecolumns: ColumnDef<Customer>[] = [
     cell: ({ row: { original } }) => {
       const { email } = original;
       return (
-        <Link to={`mailto:${email}`} className="fw-semibold">
+        <Link href={`mailto:${email}`} className="fw-semibold">
           {email}
         </Link>
       );
@@ -99,4 +99,5 @@ const CustomersTable = () => {
 };
 
 export default CustomersTable;
+
 

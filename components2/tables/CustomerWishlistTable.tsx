@@ -18,7 +18,7 @@ const columns: ColumnDef<WishlistProductType>[] = [
       const { productImage } = original;
       return (
         <Link
-          to="/apps/e-commerce/customer/product-details"
+          href="/apps/e-commerce/customer/product-details"
           className="rounded-2 border border-translucent d-inline-block"
         >
           <img src={productImage} alt="" width={40} height={40} />
@@ -37,7 +37,7 @@ const columns: ColumnDef<WishlistProductType>[] = [
       const { product } = original;
       return (
         <Link
-          to="/apps/e-commerce/customer/product-details"
+          href="/apps/e-commerce/customer/product-details"
           className="fw-semibold line-clamp-1"
         >
           {product}
@@ -111,4 +111,5 @@ const CustomerWishlistTable = () => {
 };
 
 export default CustomerWishlistTable;
+
 

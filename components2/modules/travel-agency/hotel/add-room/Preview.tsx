@@ -177,7 +177,7 @@ const Preview = () => {
       )}
       <h4 className="text-body mb-3">
         Room information
-        <Link to="#!" className="fs-9 mx-2">
+        <Link href="#!" className="fs-9 mx-2">
           Edit
         </Link>
       </h4>
@@ -191,7 +191,7 @@ const Preview = () => {
       </Row>
       <h4 className="text-body mb-4 mt-5">
         Pricing
-        <Link to="#!" className="fs-9 mx-2">
+        <Link href="#!" className="fs-9 mx-2">
           Edit
         </Link>
       </h4>
@@ -199,7 +199,7 @@ const Preview = () => {
       <h3 className="mb-0">$894</h3>
       <h4 className="text-body mb-3 mt-7">
         Amenities
-        <Link to="#!" className="fs-9 mx-2">
+        <Link href="#!" className="fs-9 mx-2">
           Edit
         </Link>
       </h4>
@@ -213,7 +213,7 @@ const Preview = () => {
       </Row>
       <h4 className="text-body mb-4 mt-7">
         Picture
-        <Link to="#!" className="fs-9 mx-2">
+        <Link href="#!" className="fs-9 mx-2">
           Edit
         </Link>
       </h4>
@@ -234,4 +234,5 @@ const Preview = () => {
 };
 
 export default Preview;
+
 

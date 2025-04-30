@@ -18,7 +18,7 @@ const NavbarBrand = () => {
         {breakpoints.down('lg') && <NavbarToggleButton />}
         <Navbar.Brand
           as={Link}
-          to="/"
+          href="/"
           className={classNames({
             'me-1 me-sm-3':
               navbarTopShape === 'slim' || navbarPosition === 'horizontal'
@@ -44,4 +44,5 @@ const NavbarBrand = () => {
 };
 
 export default NavbarBrand;
+
 

@@ -13,7 +13,7 @@ const ShowcaseNavbar = () => {
   return (
     <Navbar ref={navbarRef} expand="lg" sticky="top" className="py-3">
       <div className="container-small px-0 px-sm-3">
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} href="/">
           <Logo />
         </Navbar.Brand>
         <Navbar.Toggle>
@@ -24,7 +24,7 @@ const ShowcaseNavbar = () => {
             <Nav.Item className="border-bottom border-translucent border-bottom-lg-0">
               <Nav.Link
                 as={Link}
-                to="/documentation/getting-started"
+                href="/documentation/getting-started"
                 className="fs-9 fw-bold pe-3 active"
                 aria-current="page"
               >
@@ -53,7 +53,7 @@ const ShowcaseNavbar = () => {
             <Button
               variant="primary"
               as={Link}
-              to={`${process.env.REACT_APP_PURCHASE_LINK}`}
+              href={`${process.env.REACT_APP_PURCHASE_LINK}`}
               target="_blank"
             >
               Purchase
@@ -66,4 +66,5 @@ const ShowcaseNavbar = () => {
 };
 
 export default ShowcaseNavbar;
+
 

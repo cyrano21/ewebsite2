@@ -28,7 +28,7 @@ const AboutLeadCard = ({ className }: { className?: string }) => {
           </Button>
         </div>
         <LeadInfoItem className="mb-4" label="Email" icon={UilEnvelopeAlt}>
-          <Link to="mailto:ansolo5@jeemail.com">ansolo5@jeemail.com</Link>
+          <Link href="mailto:ansolo5@jeemail.com">ansolo5@jeemail.com</Link>
         </LeadInfoItem>
         <LeadInfoItem className="mb-4" label="Phone" icon={UilPhone}>
           <a href="tel:+1234567890">+1234567890</a>
@@ -81,4 +81,5 @@ const AboutLeadCard = ({ className }: { className?: string }) => {
 };
 
 export default AboutLeadCard;
+
 

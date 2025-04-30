@@ -30,7 +30,7 @@ const TripDetailsTabReviewCommentCard = ({
               <div className="d-flex align-items-center gap-2 position-relative">
                 <Avatar src={comment.profilePic} size="s" rounded="circle" />
                 <Link
-                  to="#!"
+                  href="#!"
                   className="stretched-link fw-semibold text-body-emphasis"
                 >
                   {comment.commenter}
@@ -81,7 +81,7 @@ const TripDetailsTabReviewCommentCard = ({
                   }
                 )}
               >
-                <Link to="#!" className="fw-bold">
+                <Link href="#!" className="fw-bold">
                   {replyItem.replier}
                 </Link>
                 <span className="text-body-quaternary"> replied</span>
@@ -96,4 +96,5 @@ const TripDetailsTabReviewCommentCard = ({
 };
 
 export default TripDetailsTabReviewCommentCard;
+
 

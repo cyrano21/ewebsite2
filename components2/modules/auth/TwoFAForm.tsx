@@ -51,7 +51,7 @@ const TwoFAForm = ({ layout }: { layout?: 'simple' | 'card' | 'split' }) => {
           </p>
           <p className="fs-10 mb-5">
             Don’t have access?
-            <Link to="#!"> Use another method</Link>
+            <Link href="#!"> Use another method</Link>
           </p>
           <div className="verification-form">
             <div className="d-flex align-items-center gap-2 mb-3">
@@ -94,7 +94,7 @@ const TwoFAForm = ({ layout }: { layout?: 'simple' | 'card' | 'split' }) => {
             >
               Verify
             </Button>
-            <Link to="#!" className="fs-9">
+            <Link href="#!" className="fs-9">
               Didn’t receive the code?
             </Link>
           </div>
@@ -105,4 +105,5 @@ const TwoFAForm = ({ layout }: { layout?: 'simple' | 'card' | 'split' }) => {
 };
 
 export default TwoFAForm;
+
 

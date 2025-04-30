@@ -45,7 +45,7 @@ const CardViewModal = ({
               <h3 className="fw-bolder lh-sm">{project.name}</h3>
               <p className="text-body-highlight fw-semibold mb-0">
                 In list
-                <Link className="ms-1 fw-bold" to="#!">
+                <Link className="ms-1 fw-bold" href="#!">
                   Review
                 </Link>
               </p>
@@ -258,4 +258,5 @@ const CardViewModal = ({
 };
 
 export default CardViewModal;
+
 

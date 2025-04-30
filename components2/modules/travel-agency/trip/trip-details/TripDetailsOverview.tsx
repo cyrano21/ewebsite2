@@ -76,7 +76,7 @@ const TripDetailsOverview = ({ tripOverview }: TripDetailsOverviewProps) => {
             </h6>
             <div className="d-flex flex-wrap">
               {tripOverview.tripTags.map(tag => (
-                <Link key={tag} to="#!" className="me-2">
+                <Link key={tag} href="#!" className="me-2">
                   <Badge variant="phoenix" bg="secondary">
                     {tag}
                   </Badge>
@@ -101,4 +101,5 @@ const TripDetailsOverview = ({ tripOverview }: TripDetailsOverviewProps) => {
 };
 
 export default TripDetailsOverview;
+
 

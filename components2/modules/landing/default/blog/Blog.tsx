@@ -44,7 +44,7 @@ const Blog = () => {
           <Button
             as={Link}
             variant="outline-primary"
-            to="#!"
+            href="#!"
             endIcon={<FontAwesomeIcon icon={faAngleRight} className="ms-2" />}
           >
             View All
@@ -56,4 +56,5 @@ const Blog = () => {
 };
 
 export default Blog;
+
 

@@ -37,7 +37,7 @@ const ProjectDetailsSummary = () => {
                 </div>
               </td>
               <td className="ps-1 py-1">
-                <Link className="fw-semibold d-block lh-sm" to="#!">
+                <Link className="fw-semibold d-block lh-sm" href="#!">
                   Gobble the Bleep Inc
                 </Link>
               </td>
@@ -92,7 +92,7 @@ const ProjectDetailsSummary = () => {
           <h5 className="text-body-emphasis mb-0 me-2">
             91<span className="text-body fw-normal ms-2">tasks</span>
           </h5>
-          <Link className="fw-bold fs-9 mt-1" to="#!">
+          <Link className="fw-bold fs-9 mt-1" href="#!">
             See tasks{' '}
             <FontAwesomeIcon icon={faChevronRight} className="me-2 fs-10" />
           </Link>
@@ -103,4 +103,5 @@ const ProjectDetailsSummary = () => {
 };
 
 export default ProjectDetailsSummary;
+
 

@@ -14,7 +14,7 @@ const EventsSingersSection = ({ photos }: EventsSingersSection) => {
       <h4 className="mb-3 fw-bold text-body-highlight fs-xxl-6">Singers:</h4>
       <p>
         To join the festival, you’ll need to register through
-        <Link to="mailto:register@event.com"> register@event.com </Link>
+        <Link href="mailto:register@event.com"> register@event.com </Link>
         After confirming the payment, you’ll be provided with a unique ID number
         that you’ll need to show before the authority to get the tickets.
       </p>
@@ -41,4 +41,5 @@ const EventsSingersSection = ({ photos }: EventsSingersSection) => {
 };
 
 export default EventsSingersSection;
+
 

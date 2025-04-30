@@ -45,7 +45,7 @@ const ProductReview = ({ review }: { review: ProductReviewType }) => {
       {review.images && (
         <div className="d-flex gap-2 flex-wrap mb-2">
           {review.images.map((image, index) => (
-            <Link to="#!" key={image}>
+            <Link href="#!" key={image}>
               <img
                 src={image}
                 key={image}
@@ -90,4 +90,5 @@ const ProductReview = ({ review }: { review: ProductReviewType }) => {
 };
 
 export default ProductReview;
+
 

@@ -18,7 +18,7 @@ const columns: ColumnDef<CustomerOrder>[] = [
     accessorKey: 'orderId',
     header: 'Order',
     cell: ({ row: { original } }) => (
-      <Link to="#!" className="fw-semibold text-primary">
+      <Link href="#!" className="fw-semibold text-primary">
         {original.orderId}
       </Link>
     ),
@@ -121,4 +121,5 @@ const EcomProfileOrdersTable = () => {
 };
 
 export default EcomProfileOrdersTable;
+
 

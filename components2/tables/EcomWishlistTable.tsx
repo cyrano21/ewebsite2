@@ -36,7 +36,7 @@ const columns: ColumnDef<WishlistProductType>[] = [
     cell: ({ row: { original } }) => {
       const { product } = original;
       return (
-        <Link to="#!" className="fw-semibold line-clamp-1">
+        <Link href="#!" className="fw-semibold line-clamp-1">
           {product}
         </Link>
       );
@@ -118,4 +118,5 @@ const EcomWishlistTable = () => {
 };
 
 export default EcomWishlistTable;
+
 

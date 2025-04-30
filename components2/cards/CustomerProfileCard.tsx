@@ -21,19 +21,19 @@ const CustomerProfileCard = () => {
             <h3>Ansolo Lazinatov</h3>
             <p className="text-body-secondary">Joined 3 months ago</p>
             <div className="d-inline-flex gap-2">
-              <Link to="#!">
+              <Link href="#!">
                 <FontAwesomeIcon
                   icon={faLinkedinIn}
                   className="text-body-quaternary text-opacity-75 hover-primary"
                 />
               </Link>
-              <Link to="#!">
+              <Link href="#!">
                 <FontAwesomeIcon
                   icon={faFacebook}
                   className="text-body-quaternary text-opacity-75 hover-primary"
                 />
               </Link>
-              <Link to="#!">
+              <Link href="#!">
                 <FontAwesomeIcon
                   icon={faTwitter}
                   className="text-body-quaternary text-opacity-75 hover-primary"
@@ -63,4 +63,5 @@ const CustomerProfileCard = () => {
 };
 
 export default CustomerProfileCard;
+
 

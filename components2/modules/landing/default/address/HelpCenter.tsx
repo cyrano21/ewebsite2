@@ -40,7 +40,7 @@ const HelpCenter = () => {
           </div>
           <div className="flex-1 ms-3">
             <Link
-              to="mailto:phoenix@email.com"
+              href="mailto:phoenix@email.com"
               className="fw-semibold text-body"
             >
               phoenix@email.com
@@ -56,7 +56,7 @@ const HelpCenter = () => {
             />
           </div>
           <div className="flex-1 ms-3">
-            <Link to="#!" className="fw-semibold text-body">
+            <Link href="#!" className="fw-semibold text-body">
               39163 Amir Drive Suite 802
             </Link>
           </div>
@@ -81,4 +81,5 @@ const HelpCenter = () => {
 };
 
 export default HelpCenter;
+
 

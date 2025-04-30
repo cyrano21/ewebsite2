@@ -41,7 +41,7 @@ const SocialMessages = ({ messages }: SocialMessagesProps) => {
               status={message.avatar.status}
             />
           </div>
-          <Link to="/apps/chat" className="text-decoration-none flex-1">
+          <Link href="/apps/chat" className="text-decoration-none flex-1">
             <h5>{message.name}</h5>
             <p className="text-body-tertiary fw-semibold fs-9 mb-0 lh-sm line-clamp-1">
               {message.message}
@@ -54,4 +54,5 @@ const SocialMessages = ({ messages }: SocialMessagesProps) => {
 };
 
 export default SocialMessages;
+
 

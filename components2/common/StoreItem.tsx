@@ -24,7 +24,7 @@ const StoreItem = ({ store }: { store: StoreItemType }) => {
       <p className="text-body-quaternary fs-9 mb-2 fw-semibold">
         ({store.rated} people rated)
       </p>
-      <Link className="p-0 fs-9 fw-bold" to="#!">
+      <Link className="p-0 fs-9 fw-bold" href="#!">
         Visit Store
         <FontAwesomeIcon icon={faChevronRight} className="ms-1 fs-10" />
       </Link>
@@ -40,4 +40,5 @@ const StoreItem = ({ store }: { store: StoreItemType }) => {
 };
 
 export default StoreItem;
+
 

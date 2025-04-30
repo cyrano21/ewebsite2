@@ -90,7 +90,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
           <hr />
           <div className="px-3">
             <Link
-              to="#!"
+              href="#!"
               className="btn btn-phoenix-secondary d-flex flex-center w-100"
             >
               <FeatherIcon icon="log-out" className="me-2" size={16} />
@@ -98,15 +98,15 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
             </Link>
           </div>
           <div className="my-2 text-center fw-bold fs-10 text-body-quaternary">
-            <Link className="text-body-quaternary me-1" to="#!">
+            <Link className="text-body-quaternary me-1" href="#!">
               Privacy policy
             </Link>
             •
-            <Link className="text-body-quaternary mx-1" to="#!">
+            <Link className="text-body-quaternary mx-1" href="#!">
               Terms
             </Link>
             •
-            <Link className="text-body-quaternary ms-1" to="#!">
+            <Link className="text-body-quaternary ms-1" href="#!">
               Cookies
             </Link>
           </div>
@@ -117,4 +117,5 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
 };
 
 export default ProfileDropdownMenu;
+
 

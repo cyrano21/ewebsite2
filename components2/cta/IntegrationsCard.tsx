@@ -30,7 +30,7 @@ export const IntegrationsCard = () => {
             variant="phoenix-primary"
             size="sm"
             as={Link}
-            to={`#!`}
+            href={`#!`}
             startIcon={<FontAwesomeIcon icon={faLink} className="me-1" />}
           >
             Connect Now
@@ -40,4 +40,5 @@ export const IntegrationsCard = () => {
     </Card>
   );
 };
+
 

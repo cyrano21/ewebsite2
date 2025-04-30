@@ -155,7 +155,7 @@ const EcommerceNavbar = () => {
                           {category.sections.map(section => (
                             <Link
                               key={section.label}
-                              to={section.url}
+                              href={section.url}
                               className="text-body-emphasis d-block mb-1 text-decoration-none bg-body-highlight-hover px-2 py-1 rounded-2"
                             >
                               {section.label}
@@ -166,7 +166,7 @@ const EcommerceNavbar = () => {
                     ))}
                   </Row>
                   <div className="text-center border-top border-translucent pt-3">
-                    <Link className="fw-bold" to="#!">
+                    <Link className="fw-bold" href="#!">
                       See all Categories
                       <FontAwesomeIcon icon={faAngleRight} className="ms-1" />
                     </Link>
@@ -186,7 +186,7 @@ const EcommerceNavbar = () => {
               <Nav.Link
                 key={item.id}
                 as={Link}
-                to={item.url}
+                href={item.url}
                 className={classNames({
                   active: pathname === item.url
                 })}
@@ -209,7 +209,7 @@ const EcommerceNavbar = () => {
                 <Dropdown.Item
                   key={item.id}
                   as={Link}
-                  to={item.url}
+                  href={item.url}
                   ref={(el: HTMLAnchorElement) =>
                     (dropdownItemsRef.current[index] = el)
                   }
@@ -226,3 +226,4 @@ const EcommerceNavbar = () => {
 };
 
 export default EcommerceNavbar;
+

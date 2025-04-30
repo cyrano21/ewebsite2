@@ -36,7 +36,7 @@ const DetailsGalleryItem = ({
           />
           <div className="position-absolute left-0 top-0 w-100 h-100 d-flex flex-center bg-black bg-opacity-50">
             <Link
-              to="/apps/travel-agency/hotel/customer/gallery"
+              href="/apps/travel-agency/hotel/customer/gallery"
               className="text-white stretched-link"
             >
               Show all
@@ -77,4 +77,5 @@ const HotelDetailsGallery = ({
 };
 
 export default HotelDetailsGallery;
+
 

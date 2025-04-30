@@ -24,7 +24,7 @@ const ProductListItem = ({ product }: { product: SuggestedProductType }) => {
         alt=""
       />
       <div className="ms-2">
-        <Link className="fs-9 fw-bold line-clamp-2 mb-2" to="#!">
+        <Link className="fs-9 fw-bold line-clamp-2 mb-2" href="#!">
           {product.name}
         </Link>
         <h5>{currencyFormat(product.price)}</h5>
@@ -73,4 +73,5 @@ const UsuallyBoughtTogetherCard = ({
 };
 
 export default UsuallyBoughtTogetherCard;
+
 

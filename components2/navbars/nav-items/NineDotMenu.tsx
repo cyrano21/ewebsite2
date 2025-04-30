@@ -49,7 +49,7 @@ const NineDotMenu = () => {
               {items.map(item => (
                 <Col xs={4} key={item.title}>
                   <Link
-                    to="#!"
+                    href="#!"
                     className="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
                   >
                     <img
@@ -72,4 +72,5 @@ const NineDotMenu = () => {
 };
 
 export default NineDotMenu;
+
 

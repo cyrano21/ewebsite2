@@ -30,7 +30,7 @@ const columns: ColumnDef<FlightInterface>[] = [
     cell: ({ row: { original } }) => {
       const { flightNo } = original;
       return (
-        <Link to="#!" className="fw-bold">
+        <Link href="#!" className="fw-bold">
           {flightNo}
         </Link>
       );
@@ -48,7 +48,7 @@ const columns: ColumnDef<FlightInterface>[] = [
     cell: ({ row: { original } }) => {
       const { vendor } = original;
       return (
-        <Link to="#!" className="d-flex align-items-center gap-2">
+        <Link href="#!" className="d-flex align-items-center gap-2">
           <img src={vendor.image} alt="" width={32} />
           <h6 className="mb-0 text-primary fw-semibold text-nowrap">
             {vendor.name}
@@ -304,4 +304,5 @@ const TravelFlightTable = () => {
 };
 
 export default TravelFlightTable;
+
 

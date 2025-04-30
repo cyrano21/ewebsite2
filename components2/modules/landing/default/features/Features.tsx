@@ -30,7 +30,7 @@ const Features = () => {
               </p>
               <Button
                 as={Link}
-                to="#!"
+                href="#!"
                 size="lg"
                 variant="outline-primary"
                 className="rounded-pill me-2"
@@ -58,7 +58,7 @@ const Features = () => {
                       Grow with Phoenix!
                     </p>
                   </div>
-                  <Link to="#!" className="me-2 p-0 fs-9 fw-bold">
+                  <Link href="#!" className="me-2 p-0 fs-9 fw-bold">
                     Check Demo
                     <FontAwesomeIcon icon={faAngleRight} className="ms-2" />
                   </Link>
@@ -82,7 +82,7 @@ const Features = () => {
                       Phoenix!
                     </p>
                   </div>
-                  <Link to="#!" className="me-2 p-0 fs-9 fw-bold">
+                  <Link href="#!" className="me-2 p-0 fs-9 fw-bold">
                     Check Demo
                     <FontAwesomeIcon icon={faAngleRight} className="ms-2" />
                   </Link>
@@ -105,4 +105,5 @@ const Features = () => {
 };
 
 export default Features;
+
 

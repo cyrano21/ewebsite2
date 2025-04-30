@@ -103,7 +103,7 @@ const RecentFilesCardItem = ({
           <div className="bg-body p-3 pe-2 d-flex justify-content-between align-items-start rounded-bottom-3">
             <div className="w-75">
               <Link
-                to="#!"
+                href="#!"
                 className="stretched-link text-body-highlight fw-bold mb-2 d-block text-truncate"
                 onClick={() => openLightbox(file.fileNo)}
               >
@@ -209,4 +209,5 @@ const RecentFilesCard = () => {
 };
 
 export default RecentFilesCard;
+
 

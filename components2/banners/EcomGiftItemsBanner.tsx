@@ -21,7 +21,7 @@ const EcomGiftItemsBanner = () => {
         </h2>
         <Link
           className="btn btn-lg btn-primary rounded-pill banner-button"
-          to="#!"
+          href="#!"
         >
           Buy Now
         </Link>
@@ -31,4 +31,5 @@ const EcomGiftItemsBanner = () => {
 };
 
 export default EcomGiftItemsBanner;
+
 

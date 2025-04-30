@@ -93,7 +93,7 @@ const FlightSearch = () => {
           <div className="d-flex flex-wrap gap-3 justify-content-between mt-4">
             <Button
               variant="link"
-              to="#!"
+              href="#!"
               className={classNames(
                 'd-flex align-items-center fs-8 fw-semibold text-normal px-0 pt-0 collapse-indicator',
                 {
@@ -125,3 +125,4 @@ const FlightSearch = () => {
 };
 
 export default FlightSearch;
+

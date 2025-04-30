@@ -216,7 +216,7 @@ const FlightItem = ({ airline, schedules, price }: FlightInfo) => {
             {currencyFormat(price.discounted, { minimumFractionDigits: 2 })}
           </h3>
 
-          <Link to="/apps/travel-agency/flight/booking">
+          <Link href="/apps/travel-agency/flight/booking">
             <Button variant="primary" className="px-9">
               Select
             </Button>
@@ -248,4 +248,5 @@ const FlightListing = () => {
 };
 
 export default FlightListing;
+
 

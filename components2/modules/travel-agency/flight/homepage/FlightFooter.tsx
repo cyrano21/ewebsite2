@@ -112,7 +112,7 @@ const FlightFooter = () => {
                   {socialsLinks.map((social, idx) => (
                     <Link
                       key={idx}
-                      to={social.path}
+                      href={social.path}
                       className={classNames('link-light', {
                         'pe-1 me-2 ': idx !== socialsLinks.length - 1
                       })}
@@ -131,4 +131,5 @@ const FlightFooter = () => {
 };
 
 export default FlightFooter;
+
 

@@ -32,7 +32,7 @@ const columns: ColumnDef<StoreProductType>[] = [
     cell: ({ row: { original } }) => {
       const { product } = original;
       return (
-        <Link to="#!" className="fw-semibold line-clamp-1">
+        <Link href="#!" className="fw-semibold line-clamp-1">
           {product}
         </Link>
       );
@@ -130,4 +130,5 @@ const EcomProfileStoresTable = () => {
 };
 
 export default EcomProfileStoresTable;
+
 

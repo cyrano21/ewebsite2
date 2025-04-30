@@ -8,7 +8,7 @@ const ProductVariant = ({ className }: { className?: string }) => {
     <div className={className}>
       <div className="d-flex gap-2 mb-2">
         <h5 className="mb-0 text-body-highlight">Option 1</h5>
-        <Link className="fw-bold fs-9" to="#!">
+        <Link className="fw-bold fs-9" href="#!">
           Remove
         </Link>
       </div>
@@ -43,4 +43,5 @@ const ProductVariant = ({ className }: { className?: string }) => {
 };
 
 export default ProductVariant;
+
 

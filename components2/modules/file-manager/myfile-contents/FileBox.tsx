@@ -207,7 +207,7 @@ const FileBox = ({ file }: { file: File }) => {
           </div>
           <FilesDropdown className="lh-1 position-absolute top-0 end-0 mt-2 me-2" />
           <Link
-            to="#!"
+            href="#!"
             className="d-block fw-bold text-body-highlight mt-2 text-nowrap text-truncate fs-9 fs-sm-8"
           >
             {file.name}
@@ -222,4 +222,5 @@ const FileBox = ({ file }: { file: File }) => {
 };
 
 export default FileBox;
+
 

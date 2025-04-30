@@ -80,7 +80,7 @@ const HotelDetailsSummaryCard = ({
           </div>
         </div>
         {!showHotelInfo && (
-          <Link to="/apps/travel-agency/hotel/customer/hotel-compare">
+          <Link href="/apps/travel-agency/hotel/customer/hotel-compare">
             <Button variant="primary" className="mt-3 w-100">
               Proceed with booking
             </Button>
@@ -92,4 +92,5 @@ const HotelDetailsSummaryCard = ({
 };
 
 export default HotelDetailsSummaryCard;
+
 

@@ -64,7 +64,7 @@ const ProductDetailsTab = () => {
                   to the power and performance of M1 and macOS Big Sur.
                 </p>
                 <Lightbox {...lightboxProps} />
-                <Link to="#!">
+                <Link href="#!">
                   <img
                     src={product23}
                     alt=""
@@ -166,4 +166,5 @@ const ProductDetailsTab = () => {
 };
 
 export default ProductDetailsTab;
+
 

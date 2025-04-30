@@ -63,7 +63,7 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
         <Navbar className="px-3 px-lg-7 px-xxl-3 container-small" expand="lg">
           <Navbar.Brand
             as={Link}
-            to="/"
+            href="/"
             className="text-decoration-none flex-1 flex-lg-grow-0"
           >
             <Logo />
@@ -94,12 +94,12 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
                 <FeatherIcon icon="search" size={20} />
               </Button>
               <Link
-                to="#!"
+                href="#!"
                 className="btn btn-link p-0 text-body order-1 order-lg-0"
               >
                 Sign in
               </Link>
-              <Link to="#!" className="btn btn-phoenix-primary order-0">
+              <Link href="#!" className="btn btn-phoenix-primary order-0">
                 Sign up
               </Link>
             </div>
@@ -127,4 +127,5 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
 };
 
 export default DefaultLandingNavbar;
+
 

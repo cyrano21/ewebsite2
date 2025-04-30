@@ -30,7 +30,7 @@ const TripDetailsTabDetailsAccessibility = ({
           {accessibility.promo}
         </span>
       </p>
-      <Link to={`to:${accessibility.tel.split(' ').join('')}`}>
+      <Link href={`to:${accessibility.tel.split(' ').join('')}`}>
         {accessibility.tel}
       </Link>
     </div>
@@ -38,4 +38,5 @@ const TripDetailsTabDetailsAccessibility = ({
 };
 
 export default TripDetailsTabDetailsAccessibility;
+
 

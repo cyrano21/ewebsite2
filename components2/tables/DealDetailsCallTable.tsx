@@ -25,7 +25,7 @@ const columns: ColumnDef<CallTableDataType>[] = [
       } = original;
       return (
         <Link
-          to="/pages/members"
+          href="/pages/members"
           className="d-flex align-items-center text-body-highlight"
         >
           <Avatar src={avatar} size="m" className="me-3" status={status} />
@@ -154,4 +154,5 @@ const DealDetailsCallTable = () => {
 };
 
 export default DealDetailsCallTable;
+
 

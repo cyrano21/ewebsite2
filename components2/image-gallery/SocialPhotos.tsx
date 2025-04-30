@@ -14,10 +14,10 @@ const SocialPhotos = ({ className, photos }: SocialPhotosProps) => {
     <div className={className}>
       <div className="d-flex pb-4 align-items-end">
         <h3 className="flex-1 mb-0">Photos</h3>
-        <Link to="#!" className="fw-bold fs-9 me-4">
+        <Link href="#!" className="fw-bold fs-9 me-4">
           Albums
         </Link>
-        <Link to="#!" className="fw-bold fs-9">
+        <Link href="#!" className="fw-bold fs-9">
           See all
         </Link>
       </div>
@@ -39,4 +39,5 @@ const SocialPhotos = ({ className, photos }: SocialPhotosProps) => {
 };
 
 export default SocialPhotos;
+
 

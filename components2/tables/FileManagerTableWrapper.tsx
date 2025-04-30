@@ -135,7 +135,7 @@ const columns: ColumnDef<File>[] = [
         <>
           <Lightbox {...lightboxProps} />
           <Link
-            to="#!"
+            href="#!"
             className={`d-flex align-items-center gap-3 fw-semibold text-body-highlight ${
               row.getIsSelected() ? 'file-checked' : ''
             }`}
@@ -295,4 +295,5 @@ const FileManagerTableWrapper = ({ children }: PropsWithChildren) => {
 };
 
 export default FileManagerTableWrapper;
+
 

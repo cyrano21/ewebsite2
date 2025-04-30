@@ -7,7 +7,7 @@ import avatar from 'assets/img/team/20.webp';
 const CommentField = () => {
   return (
     <div className="d-flex align-items-center">
-      <Link to="/apps/social/profile" style={{ lineHeight: 0 }}>
+      <Link href="/apps/social/profile" style={{ lineHeight: 0 }}>
         <Avatar size="m" src={avatar} className="me-2" />
       </Link>
       <div className="flex-1">
@@ -18,4 +18,5 @@ const CommentField = () => {
 };
 
 export default CommentField;
+
 

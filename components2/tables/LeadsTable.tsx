@@ -24,11 +24,11 @@ export const leadsTableColumns: ColumnDef<LeadDataType>[] = [
       } = original.customer;
       return (
         <div className="d-flex align-items-center">
-          <Link to="/apps/crm/lead-details#tasks">
+          <Link href="/apps/crm/lead-details#tasks">
             <Avatar src={avatar} size="xl" className="me-3" />
           </Link>
           <div>
-            <Link to="/apps/crm/lead-details#tasks" className="fs-8 fw-bold">
+            <Link href="/apps/crm/lead-details#tasks" className="fs-8 fw-bold">
               {name}
             </Link>
             <div className="d-flex align-items-center">
@@ -63,7 +63,7 @@ export const leadsTableColumns: ColumnDef<LeadDataType>[] = [
     cell: ({ row: { original } }) => {
       const { email } = original;
       return (
-        <Link className="text-body-highlight" to={`mailto:${email}`}>
+        <Link className="text-body-highlight" href={`mailto:${email}`}>
           {email}
         </Link>
       );
@@ -94,7 +94,7 @@ export const leadsTableColumns: ColumnDef<LeadDataType>[] = [
     cell: ({ row: { original } }) => {
       const { phone } = original;
       return (
-        <Link className="text-body-highlight" to={`tel:${phone}`}>
+        <Link className="text-body-highlight" href={`tel:${phone}`}>
           {phone}
         </Link>
       );
@@ -212,4 +212,5 @@ const LeadsTable = () => {
 };
 
 export default LeadsTable;
+
 

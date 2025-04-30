@@ -43,7 +43,7 @@ const EmailRow = ({ email, index }: EmailRowProps) => {
         </Col>
         <Col className="col-auto">
           <Link
-            to="#!"
+            href="#!"
             className={classNames('fs-9 inbox-link', {
               'text-body fw-semibold': email.read_at,
               'text-body-emphasis fw-bold': !email.read_at
@@ -92,7 +92,7 @@ const EmailRow = ({ email, index }: EmailRowProps) => {
         </Col>
       </Row>
       <div className="ms-4 mt-n3 mt-sm-0 ms-sm-11">
-        <Link to="/apps/email/email-detail" className="d-block inbox-link">
+        <Link href="/apps/email/email-detail" className="d-block inbox-link">
           <span
             className={classNames('fs-9 line-clamp-1', {
               'text-body-highlight': email.read_at,
@@ -130,4 +130,5 @@ const EmailRow = ({ email, index }: EmailRowProps) => {
 };
 
 export default EmailRow;
+
 

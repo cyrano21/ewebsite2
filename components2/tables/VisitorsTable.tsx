@@ -17,7 +17,7 @@ const columns: ColumnDef<visitorData>[] = [
     cell: ({ row: { original } }) => (
       <Link
         className="d-flex align-items-center text-primary py-md-1 py-xxl-0"
-        to="#!"
+        href="#!"
       >
         <img src={original.country.flag} alt="" width="40" />
         <p className="mb-0 ps-3 fw-bold fs-9">{original.country.name}</p>
@@ -90,4 +90,5 @@ export const VisitorsTable = () => {
     </AdvanceTableProvider>
   );
 };
+
 

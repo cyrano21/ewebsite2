@@ -15,13 +15,13 @@ const PostComments = ({ comments }: PostCommentsProps) => {
     <>
       {comments.map((comment, index) => (
         <div key={index} className="d-flex align-items-start">
-          <Link to="/apps/social/profile">
+          <Link href="/apps/social/profile">
             <Avatar size="m" src={comment.avatar} className="me-2" />
           </Link>
           <div className="flex-1">
             <div className="d-flex align-items-center">
               <Link
-                to="/apps/social/profile"
+                href="/apps/social/profile"
                 className="fw-bold mb-0 text-body-emphasis"
               >
                 {comment.name}
@@ -53,4 +53,5 @@ const PostComments = ({ comments }: PostCommentsProps) => {
 };
 
 export default PostComments;
+
 

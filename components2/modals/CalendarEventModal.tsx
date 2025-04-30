@@ -46,7 +46,7 @@ const CalendarEventModal = () => {
           </Modal.Title>
           {selectedEvent?.extendedProps.organizer && (
             <p className="mb-0 fs-9 mt-1">
-              by <Link to="#!">{selectedEvent.extendedProps.organizer}</Link>
+              by <Link href="#!">{selectedEvent.extendedProps.organizer}</Link>
             </p>
           )}
         </div>
@@ -111,7 +111,7 @@ const CalendarEventModal = () => {
       <Modal.Footer className="d-flex justify-content-end px-card pt-0 border-top-0">
         <Button
           as={Link}
-          to="/apps/events/create-an-event"
+          href="/apps/events/create-an-event"
           variant="phoenix-secondary"
           size="sm"
           startIcon={<FontAwesomeIcon icon={faPencilAlt} className="fs-10" />}
@@ -128,7 +128,7 @@ const CalendarEventModal = () => {
         </Button>
         <Button
           as={Link}
-          to="/apps/events/event-detail"
+          href="/apps/events/event-detail"
           variant="primary"
           size="sm"
           endIcon={<FontAwesomeIcon icon={faAngleRight} className="fs-10" />}
@@ -141,4 +141,5 @@ const CalendarEventModal = () => {
 };
 
 export default CalendarEventModal;
+
 

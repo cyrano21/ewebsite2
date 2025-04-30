@@ -31,7 +31,7 @@ const DealDetailsTimeline = ({ activities }: { activities: Activity[] }) => {
                     {activity.title}
                   </h5>
                   <p className="fs-9 mb-0">
-                    by <Link to="#!">{activity.name}</Link>
+                    by <Link href="#!">{activity.name}</Link>
                   </p>
                 </div>
                 <div className="fs-9">
@@ -54,4 +54,5 @@ const DealDetailsTimeline = ({ activities }: { activities: Activity[] }) => {
 };
 
 export default DealDetailsTimeline;
+
 

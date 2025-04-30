@@ -39,7 +39,7 @@ const AccordionItem = (props: PropsWithChildren<AccordionItemInterface>) => {
         </Accordion.Button>
         <Accordion.Collapse eventKey={eventKey} className="scrollbar">
           <div className="mt-4">
-            <Link to="#!" className="fs-9 fw-semibold mb-2 d-inline-block">
+            <Link href="#!" className="fs-9 fw-semibold mb-2 d-inline-block">
               Edit Info
             </Link>
             {children}
@@ -509,4 +509,5 @@ const Preview = () => {
 };
 
 export default Preview;
+
 

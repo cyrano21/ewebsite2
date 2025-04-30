@@ -18,7 +18,7 @@ const TripShowcaseItem = ({ showcaseItem }: TripShowcaseItemProps) => {
   return (
     <Col md={6} xl={4}>
       <div className="hoverbox rounded">
-        <Link to="/apps/travel-agency/trip/trip-details">
+        <Link href="/apps/travel-agency/trip/trip-details">
           <img src={showcaseItem.image} alt="" className="img-fluid" />
           <div className="backdrop-faded">
             <h3 className="text-underline fs-7 fs-lg-6 text-white fw-bold mb-2 pt-4">
@@ -54,4 +54,5 @@ const TripShowcaseItem = ({ showcaseItem }: TripShowcaseItemProps) => {
 };
 
 export default TripShowcaseItem;
+
 

@@ -49,7 +49,7 @@ const SocialCoverCard = () => {
                     icon={faUserGroup}
                     className="fs-9 text-body-tertiary me-2 me-lg-1 me-xl-2"
                   />
-                  <Link to="#!" className="text-body-emphasis">
+                  <Link href="#!" className="text-body-emphasis">
                     <span className="fs-7 fw-bold text-body-tertiary text-opacity-85 text-body-emphasis-hover">
                       1297
                       <span className="fw-semibold ms-2 me-4">Followers</span>
@@ -61,7 +61,7 @@ const SocialCoverCard = () => {
                     icon={faUserCheck}
                     className="fs-9 text-body-tertiary me-2 me-lg-1 me-xl-2"
                   />
-                  <Link to="#!" className="text-body-emphasis">
+                  <Link href="#!" className="text-body-emphasis">
                     <span className="fs-7 fw-bold text-body-tertiary text-opacity-85 text-body-emphasis-hover">
                       3971
                       <span className="fw-semibold ms-2 me-4">Following</span>
@@ -73,7 +73,7 @@ const SocialCoverCard = () => {
                     icon={faLocationDot}
                     className="fs-9 text-body-tertiary me-2 me-lg-1 me-xl-2"
                   />
-                  <Link to="#!" className="text-body-emphasis">
+                  <Link href="#!" className="text-body-emphasis">
                     <span className="fs-7 fw-semibold text-body-tertiary text-opacity-85 text-body-emphasis-hover">
                       Vancouver, Lothal
                     </span>
@@ -146,4 +146,5 @@ const SocialCoverCard = () => {
 };
 
 export default SocialCoverCard;
+
 

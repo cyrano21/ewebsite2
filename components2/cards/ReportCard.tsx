@@ -15,7 +15,7 @@ const ReportCard = ({ report }: { report: Report }) => {
             <Form.Check type="checkbox" />
             <div className="d-sm-flex align-items-center ps-3">
               <Link
-                to="/apps/crm/report-details"
+                href="/apps/crm/report-details"
                 className="fw-bold fs-7 lh-sm line-clamp-1 me-sm-4"
               >
                 {report.title}
@@ -38,7 +38,7 @@ const ReportCard = ({ report }: { report: Report }) => {
         </div>
         <Row className="g-1 g-sm-3 mt-2 lh-1">
           <Col sm="auto" className="flex-1 text-truncate">
-            <Link to="#!" className="fw-semibold fs-9">
+            <Link href="#!" className="fw-semibold fs-9">
               <FontAwesomeIcon icon={faFolder} className="me-2" />
               {report.reportsby}
             </Link>
@@ -76,4 +76,5 @@ const ReportCard = ({ report }: { report: Report }) => {
 };
 
 export default ReportCard;
+
 

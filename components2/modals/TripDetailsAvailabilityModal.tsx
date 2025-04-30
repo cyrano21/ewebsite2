@@ -114,7 +114,7 @@ const TripDetailsAvailabilityModal = ({
               pricingPlan={pricingPlan}
             />
           ))}
-          <Link to="/apps/travel-agency/trip/checkout">
+          <Link href="/apps/travel-agency/trip/checkout">
             <Button variant="primary" className="w-100 mt-6" size="lg">
               Proceed to booking
               <FontAwesomeIcon icon={faChevronRight} className="fs-9 ms-2" />
@@ -127,4 +127,5 @@ const TripDetailsAvailabilityModal = ({
 };
 
 export default TripDetailsAvailabilityModal;
+
 

@@ -35,7 +35,7 @@ const ForgotPasswordForm = ({
             Send
           </Button>
         </Form>
-        <Link to="#!" className="fs-9 fw-bold">
+        <Link href="#!" className="fs-9 fw-bold">
           Still having problems?
         </Link>
       </div>
@@ -44,4 +44,5 @@ const ForgotPasswordForm = ({
 };
 
 export default ForgotPasswordForm;
+
 

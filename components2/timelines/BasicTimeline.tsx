@@ -40,7 +40,7 @@ const BasicTimeline = ({ data }: { data: TimelineItem[] }) => {
                           icon={faFilePdf}
                           className="me-1 text-body-tertiary"
                         />
-                        <Link to="#!">{item.file}</Link>
+                        <Link href="#!">{item.file}</Link>
                       </h6>
                     )}
                   </div>
@@ -55,7 +55,7 @@ const BasicTimeline = ({ data }: { data: TimelineItem[] }) => {
                   })}
                 >
                   by{' '}
-                  <Link to="#!" className="fw-semibold">
+                  <Link href="#!" className="fw-semibold">
                     {item.tasker}
                   </Link>
                 </h6>
@@ -79,4 +79,5 @@ const BasicTimeline = ({ data }: { data: TimelineItem[] }) => {
 };
 
 export default BasicTimeline;
+
 

@@ -33,7 +33,7 @@ const RoomCard = ({
         <Row className="gx-4 justify-content-between">
           <Col xs="auto" className="mb-4">
             <div className="d-flex gap-3">
-              <Link to="#!">
+              <Link href="#!">
                 <img
                   src={data.img}
                   alt=""
@@ -43,7 +43,7 @@ const RoomCard = ({
               </Link>
               <div>
                 <Link
-                  to="#!"
+                  href="#!"
                   className="fs-8 fw-bolder text-body-emphasis text-nowrap"
                 >
                   {data.name}
@@ -164,7 +164,7 @@ const RoomCard = ({
               <FontAwesomeIcon icon={faCalendar} className="me-2" />
               {!open ? 'Show Dates' : 'Hide Dates'}
             </Button>
-            <Link to="#!">
+            <Link href="#!">
               <Button
                 variant="primary"
                 className="px-5 px-md-7 px-xxl-5 flex-1"
@@ -232,7 +232,7 @@ const RoomCard = ({
         </Row>
         <div className="p-3 border border-translucent rounded">
           {data.amenities.slice(0, 13).map((item, index) => (
-            <Link key={index} to="#!">
+            <Link key={index} href="#!">
               <Badge
                 className="text-body-highlight py-1 fs-10 me-2 border-0"
                 variant="phoenix"
@@ -243,7 +243,7 @@ const RoomCard = ({
             </Link>
           ))}
           {data.amenities.slice(13).length > 1 && (
-            <Link to="#!" className="fw-bold pe-0 fs-9 text-nowrap">
+            <Link href="#!" className="fw-bold pe-0 fs-9 text-nowrap">
               + {data.amenities.slice(13).length} more
             </Link>
           )}
@@ -254,4 +254,5 @@ const RoomCard = ({
 };
 
 export default RoomCard;
+
 

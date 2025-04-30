@@ -49,7 +49,7 @@ const FileManagerTimeline = ({ data }: { data: Activity[] }) => {
                 </div>
                 <h6 className="fs-10 fw-normal mb-3">
                   by{' '}
-                  <Link className="fw-semibold" to="#!">
+                  <Link className="fw-semibold" href="#!">
                     {item.tasker}
                   </Link>
                 </h6>
@@ -80,4 +80,5 @@ const FileManagerTimeline = ({ data }: { data: Activity[] }) => {
 };
 
 export default FileManagerTimeline;
+
 

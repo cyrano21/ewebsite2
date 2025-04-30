@@ -12,7 +12,7 @@ const DealsOtherInformation = () => {
             <div className="mb-4">
               <div className="d-flex flex-wrap justify-content-between mb-2">
                 <h5 className="mb-0 text-body-highlight me-2">Category</h5>
-                <Link to="#!" className="fw-bold fs-9">
+                <Link href="#!" className="fw-bold fs-9">
                   Add new category
                 </Link>
               </div>
@@ -46,7 +46,7 @@ const DealsOtherInformation = () => {
             <div className="mb-4">
               <div className="d-flex flex-wrap justify-content-between mb-2">
                 <h5 className="mb-0 text-body-highlight me-2">Lead Source</h5>
-                <Link to="#!" className="fw-bold fs-9">
+                <Link href="#!" className="fw-bold fs-9">
                   Add new
                 </Link>
               </div>
@@ -65,7 +65,7 @@ const DealsOtherInformation = () => {
                 <h5 className="mb-0 text-body-highlight me-2">
                   Campaign Source
                 </h5>
-                <Link to="#!" className="fw-bold fs-9">
+                <Link href="#!" className="fw-bold fs-9">
                   Add new
                 </Link>
               </div>
@@ -82,4 +82,5 @@ const DealsOtherInformation = () => {
 };
 
 export default DealsOtherInformation;
+
 

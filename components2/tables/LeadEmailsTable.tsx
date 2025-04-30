@@ -36,7 +36,7 @@ export const leadEmailsColumns: ColumnDef<LeadEmail>[] = [
       }
     }) => (
       <>
-        <Link to="#!" className="fw-semibold">
+        <Link href="#!" className="fw-semibold">
           {mail.subject}
         </Link>
         <p className="mb-0 fs-10">{mail.email}</p>
@@ -128,4 +128,5 @@ const LeadEmailsTable = () => {
 };
 
 export default LeadEmailsTable;
+
 

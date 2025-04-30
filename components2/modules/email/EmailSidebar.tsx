@@ -24,7 +24,7 @@ const EmailSidebarItem = ({ item }: { item: SidebarItem }) => {
             active: item.active
           }
         )}
-        to={item.link ? item.link : '#!'}
+        href={item.link ? item.link : '#!'}
       >
         <div className="d-flex gap-2 align-items-center">
           {item.icon}
@@ -103,4 +103,5 @@ const EmailSidebar = ({ hideSidebar }: { hideSidebar?: () => void }) => {
 };
 
 export default EmailSidebar;
+
 

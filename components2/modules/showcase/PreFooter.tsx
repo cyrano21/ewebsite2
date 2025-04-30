@@ -15,13 +15,13 @@ const PreFooter = () => {
             </p>
           </Col>
           <Col md={6} className="d-lg-flex justify-content-lg-end text-center">
-            <Link to="/documentation/getting-started" className="me-4">
+            <Link href="/documentation/getting-started" className="me-4">
               Documentation
             </Link>
-            <Link to="mailto:support@themewagon.com" className="me-4">
+            <Link href="mailto:support@themewagon.com" className="me-4">
               Support
             </Link>
-            <Link to="/changelog">Changelog</Link>
+            <Link href="/changelog">Changelog</Link>
           </Col>
         </Row>
       </div>
@@ -30,4 +30,5 @@ const PreFooter = () => {
 };
 
 export default PreFooter;
+
 

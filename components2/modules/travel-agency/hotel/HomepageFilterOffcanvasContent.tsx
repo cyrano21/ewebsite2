@@ -95,7 +95,7 @@ const HomepageFilterOffcanvasContent = () => {
           </Row>
         </Fragment>
       ))}
-      <Link to={'#!'} className="fw-bold fs-9 mt-3 d-inline-block">
+      <Link href={'#!'} className="fw-bold fs-9 mt-3 d-inline-block">
         Show more items
       </Link>
       <hr className="my-5" />
@@ -160,4 +160,5 @@ const HomepageFilterOffcanvasContent = () => {
 };
 
 export default HomepageFilterOffcanvasContent;
+
 

@@ -51,7 +51,7 @@ const AccessForm = () => {
         Add <b>Members</b> or <b>Guests</b> to your Kanban board. They can add,
         edit, or move tasks in your board. Tasks can also be assigned to them.
         <br />
-        <Link className="mb-4" to="#!">
+        <Link className="mb-4" href="#!">
           Learn more
         </Link>
       </p>
@@ -161,4 +161,5 @@ const AccessForm = () => {
 };
 
 export default AccessForm;
+
 

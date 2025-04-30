@@ -36,7 +36,7 @@ const FeatureSection = ({ feature, orderReverse }: FeatureSectionProps) => {
         <h6 className="text-primary mb-2 ls-2">{label}</h6>
         <h3 className="fw-bolder mb-3">{title}</h3>
         <p className="mb-4 px-md-7 px-lg-0">{details}</p>
-        <Link to={link} className="me-2 p-0 fs-9 fw-bold">
+        <Link href={link} className="me-2 p-0 fs-9 fw-bold">
           Check Demo
           <FontAwesomeIcon icon={faAngleRight} className="ms-2" />
         </Link>
@@ -46,4 +46,5 @@ const FeatureSection = ({ feature, orderReverse }: FeatureSectionProps) => {
 };
 
 export default FeatureSection;
+
 

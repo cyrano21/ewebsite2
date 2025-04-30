@@ -43,7 +43,7 @@ const Demos = () => {
                   </h5>
                 </div>
               </div>
-              <Link to={demo.link} target="_blank" className="stretched-link" />
+              <Link href={demo.link} target="_blank" className="stretched-link" />
             </Col>
           ))}
         </Row>
@@ -53,4 +53,5 @@ const Demos = () => {
 };
 
 export default Demos;
+
 

@@ -19,7 +19,7 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
       const { productImage } = original;
       return (
         <Link
-          to="/apps/e-commerce/customer/product-details"
+          href="/apps/e-commerce/customer/product-details"
           className="rounded-2 border border-translucent d-inline-block"
         >
           <img src={productImage} alt="" width={53} />
@@ -39,7 +39,7 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
       const { product } = original;
       return (
         <Link
-          to="/apps/e-commerce/customer/product-details"
+          href="/apps/e-commerce/customer/product-details"
           className="fw-semibold line-clamp-3"
         >
           {product}
@@ -87,7 +87,7 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
       return (
         <div className="d-flex flex-wrap gap-2">
           {tags.map(tag => (
-            <Link key={tag} to="#!" className="text-decoration-none">
+            <Link key={tag} href="#!" className="text-decoration-none">
               <Badge variant="tag">{tag}</Badge>
             </Link>
           ))}
@@ -115,7 +115,7 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
     header: 'Vendor',
     cell: ({ row: { original } }) => {
       const { vendor } = original;
-      return <Link to="#!">{vendor}</Link>;
+      return <Link href="#!">{vendor}</Link>;
     },
     meta: {
       headerProps: { style: { width: 200 }, className: 'ps-4' },
@@ -156,4 +156,5 @@ const ProductsTable = () => {
 };
 
 export default ProductsTable;
+
 

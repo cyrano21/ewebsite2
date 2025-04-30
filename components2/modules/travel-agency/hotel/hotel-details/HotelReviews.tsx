@@ -57,7 +57,7 @@ const HotelReviews = ({ ratings, reviews }: HotelReviewsProps) => {
           <div className="d-flex align-items-center position-relative gap-2 mb-3">
             <Avatar src={review.avatar} size="s" />
             <Link
-              to="#!"
+              href="#!"
               className="fw-semibold text-body-emphasis stretched-link"
             >
               {review.name}
@@ -74,7 +74,7 @@ const HotelReviews = ({ ratings, reviews }: HotelReviewsProps) => {
                   })}
                 </Badge>
               </div>
-              <Link to="#!" className="text-body-tertiary">
+              <Link href="#!" className="text-body-tertiary">
                 <FontAwesomeIcon icon={faBed} className="me-2 fs-9" />
                 {review.service}
               </Link>
@@ -131,4 +131,5 @@ const HotelReviews = ({ ratings, reviews }: HotelReviewsProps) => {
 };
 
 export default HotelReviews;
+
 

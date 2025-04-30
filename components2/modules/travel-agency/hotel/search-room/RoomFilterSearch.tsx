@@ -50,7 +50,7 @@ const RoomFilterSearch = ({ items }: { items: roomFiltercheckbox[] }) => {
               key={index}
             />
           ))}
-        <Link to="" className="mt-2 fw-bold d-inline-block">
+        <Link href="" className="mt-2 fw-bold d-inline-block">
           Show more items
         </Link>
       </AdvanceTableProvider>
@@ -59,4 +59,5 @@ const RoomFilterSearch = ({ items }: { items: roomFiltercheckbox[] }) => {
 };
 
 export default RoomFilterSearch;
+
 

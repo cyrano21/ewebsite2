@@ -29,7 +29,7 @@ const EcomBecomeMember = () => {
             today!
           </h1>
           <Link
-            to="/pages/authentication/simple/sign-up"
+            href="/pages/authentication/simple/sign-up"
             className="btn btn-lg btn-primary px-7"
           >
             Sign up
@@ -42,4 +42,5 @@ const EcomBecomeMember = () => {
 };
 
 export default EcomBecomeMember;
+
 

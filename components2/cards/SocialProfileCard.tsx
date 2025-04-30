@@ -76,7 +76,7 @@ const SocialProfileCard = ({
               <div className="mt-4">
                 <p className="fw-semibold mb-0">
                   About me
-                  <Link to="#!">
+                  <Link href="#!">
                     <FontAwesomeIcon
                       icon={faPencil}
                       className="fs-10 text-body-quaternary ms-3"
@@ -98,4 +98,5 @@ const SocialProfileCard = ({
 };
 
 export default SocialProfileCard;
+
 

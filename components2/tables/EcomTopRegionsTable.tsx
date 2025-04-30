@@ -20,7 +20,7 @@ const columns: ColumnDef<TopRegionsTableDataType>[] = [
       return (
         <div className="d-flex align-items-center">
           <h6 className="mb-0 me-3">{serial}.</h6>
-          <Link to="#!">
+          <Link href="#!">
             <div className="d-flex justify-content-center">
               <img src={country.flag} alt="" width={24} />
               <p className="mb-0 ps-3 text-primary fw-bold fs-9">
@@ -197,4 +197,5 @@ const EcomTopRegionsTable = () => {
 };
 
 export default EcomTopRegionsTable;
+
 

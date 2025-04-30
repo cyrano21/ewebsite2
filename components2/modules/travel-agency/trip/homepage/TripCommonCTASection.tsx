@@ -72,7 +72,7 @@ const TripCommonCTASection = () => {
               <ul className="list-unstyled d-flex flex-wrap justify-content-center justify-content-xxl-start gap-3 gap-xxl-4 mb-0">
                 {urlList.slice(0, 4).map(item => (
                   <li key={item.id}>
-                    <Link to={item.url} className="text-secondary-lighter">
+                    <Link href={item.url} className="text-secondary-lighter">
                       {item.label}
                     </Link>
                   </li>
@@ -105,7 +105,7 @@ const TripCommonCTASection = () => {
               <ul className="list-unstyled d-flex flex-wrap justify-content-center justify-content-xxl-end gap-3 gap-xxl-4 mb-0">
                 {urlList.slice(4).map(item => (
                   <li key={item.id}>
-                    <Link to={item.url} className="text-secondary-lighter">
+                    <Link href={item.url} className="text-secondary-lighter">
                       {item.label}
                     </Link>
                   </li>
@@ -120,4 +120,5 @@ const TripCommonCTASection = () => {
 };
 
 export default TripCommonCTASection;
+
 

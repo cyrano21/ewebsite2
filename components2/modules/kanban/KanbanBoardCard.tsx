@@ -69,10 +69,11 @@ const KanbanBoardCard = ({ board }: { board: KanbanBoard }) => {
           </h5>
         </div>
       </Card.Body>
-      <Link to="/apps/kanban/kanban" className="stretched-link" />
+      <Link href="/apps/kanban/kanban" className="stretched-link" />
     </Card>
   );
 };
 
 export default KanbanBoardCard;
+
 

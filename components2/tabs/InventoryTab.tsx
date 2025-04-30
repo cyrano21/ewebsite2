@@ -239,7 +239,7 @@ const InventoryTab = () => {
                 <div className="ps-4">
                   <p className="fs-9 mb-0 text-body-secondary">
                     Only available with Shipping method:{' '}
-                    <Link to="#!">Fullfilled by Phoenix</Link>
+                    <Link href="#!">Fullfilled by Phoenix</Link>
                   </p>
                 </div>
               </div>
@@ -268,7 +268,7 @@ const InventoryTab = () => {
                 <div className="ps-4">
                   <p className="fs-9 mb-0 text-body-secondary">
                     Deliver to your country of residence{' '}
-                    <Link to="#!">Change profile address</Link>
+                    <Link href="#!">Change profile address</Link>
                   </p>
                 </div>
               </div>
@@ -334,4 +334,5 @@ const InventoryTab = () => {
 };
 
 export default InventoryTab;
+
 

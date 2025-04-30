@@ -29,7 +29,7 @@ const HeroHeader = () => {
               </p>
               <Button
                 as={Link}
-                to="#!"
+                href="#!"
                 variant="primary"
                 size="lg"
                 className="rounded-pill me-3"
@@ -38,7 +38,7 @@ const HeroHeader = () => {
               </Button>
               <Button
                 as={Link}
-                to="#!"
+                href="#!"
                 variant="link"
                 endIcon={
                   <FontAwesomeIcon icon={faAngleRight} className="ms-2 fs-9" />
@@ -98,4 +98,5 @@ const HeroHeader = () => {
 };
 
 export default HeroHeader;
+
 

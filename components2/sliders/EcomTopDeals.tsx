@@ -16,7 +16,7 @@ const EcomTopDeals = ({ products }: { products: Product[] }) => {
           <h3 className="mx-2">Top Deals today</h3>
           <FontAwesomeIcon icon={faBolt} className="text-warning fs-6" />
         </div>
-        <Link to="#!" className="btn btn-link btn-lg p-0 d-none d-md-block">
+        <Link href="#!" className="btn btn-link btn-lg p-0 d-none d-md-block">
           Explore more
           <FontAwesomeIcon icon={faChevronRight} className="fs-9 ms-1" />
         </Link>
@@ -59,4 +59,5 @@ const EcomTopDeals = ({ products }: { products: Product[] }) => {
 };
 
 export default EcomTopDeals;
+
 

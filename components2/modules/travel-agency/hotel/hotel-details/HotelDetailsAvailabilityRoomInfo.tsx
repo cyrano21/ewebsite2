@@ -108,7 +108,7 @@ const HotelDetailsAvailabilityRoomInfo = ({
                   </li>
                 ))}
               </ul>
-              <Link to="#!" className="fw-bold fs-9">
+              <Link href="#!" className="fw-bold fs-9">
                 Show other amenities
               </Link>
             </Card.Body>
@@ -123,4 +123,5 @@ const HotelDetailsAvailabilityRoomInfo = ({
 };
 
 export default HotelDetailsAvailabilityRoomInfo;
+
 

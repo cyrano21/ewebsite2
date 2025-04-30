@@ -96,7 +96,7 @@ const PhoenixDocCardHeader = ({
               })}
             >
               {title}
-              <Link to={`#${headerId}`} className="opacity-0 hover-show ps-2">
+              <Link href={`#${headerId}`} className="opacity-0 hover-show ps-2">
                 #
               </Link>
             </h4>
@@ -219,4 +219,5 @@ PhoenixDocCard.Header = PhoenixDocCardHeader;
 PhoenixDocCard.Body = PhoenixDocCardBody;
 
 export default PhoenixDocCard;
+
 

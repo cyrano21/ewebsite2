@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="container-small px-lg-7 px-xxl-3">
         <Row className="gx-xxl-8 gy-5 align-items-center mb-5">
           <Col xl="auto" className="text-center">
-            <Link to="/">
+            <Link href="/">
               <img src={logo} alt="" height={48} />
             </Link>
           </Col>
@@ -40,13 +40,13 @@ const Footer = () => {
           </Col>
           <Col xl="auto">
             <div className="d-flex align-items-center justify-content-center gap-8">
-              <Link to="#!" className="text-white">
+              <Link href="#!" className="text-white">
                 <FontAwesomeIcon icon={faFacebook} />
               </Link>
-              <Link to="#!" className="text-white">
+              <Link href="#!" className="text-white">
                 <FontAwesomeIcon icon={faTwitter} />
               </Link>
-              <Link to="#!" className="text-white">
+              <Link href="#!" className="text-white">
                 <FontAwesomeIcon icon={faLinkedinIn} />
               </Link>
             </div>
@@ -57,7 +57,7 @@ const Footer = () => {
           <p className="text-body-tertiary mb-0">Copyright © Company Name</p>
           <p className="text-body-tertiary mb-0">
             Made with love by{' '}
-            <Link to="https://themewagon.com">ThemeWagon</Link>
+            <Link href="https://themewagon.com">ThemeWagon</Link>
           </p>
         </div>
       </div>
@@ -66,4 +66,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
 

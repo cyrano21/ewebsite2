@@ -21,7 +21,7 @@ const SignOutForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         <Button
           variant="primary"
           as={Link}
-          to={`/pages/authentication/${layout}/sign-in`}
+          href={`/pages/authentication/${layout}/sign-in`}
           startIcon={<FontAwesomeIcon icon={faAngleLeft} className="me-2" />}
         >
           Go to sign in page
@@ -32,4 +32,5 @@ const SignOutForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 };
 
 export default SignOutForm;
+
 

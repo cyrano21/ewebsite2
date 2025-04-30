@@ -32,14 +32,14 @@ const EventItem = ({ event }: EventItemProps) => {
         </RevealDropdownTrigger>
       </div>
       <Link
-        to="#!"
+        href="#!"
         className="hover-primary text-body-highlight fw-bold mb-2 line-clamp-1 me-5 lh-base"
       >
         {event.title}
       </Link>
       <p className="text-body-secondary fs-9 mb-2">
         Organized by <br />{' '}
-        <Link to="#!" className="fw-bold">
+        <Link href="#!" className="fw-bold">
           {event.organization}
         </Link>
       </p>
@@ -62,4 +62,5 @@ const EventItem = ({ event }: EventItemProps) => {
 };
 
 export default EventItem;
+
 

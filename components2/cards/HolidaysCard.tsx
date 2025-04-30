@@ -21,7 +21,7 @@ export const HolidaysCard = () => {
           variant="phoenix-secondary"
           size="sm"
           as={Link}
-          to={`#!`}
+          href={`#!`}
           endIcon={
             <FontAwesomeIcon icon={faChevronRight} className="ms-2 fs-10" />
           }
@@ -37,4 +37,5 @@ export const HolidaysCard = () => {
     </Card>
   );
 };
+
 

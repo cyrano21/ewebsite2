@@ -40,7 +40,7 @@ const ActivityTimeline = ({ data }: ActivityTimelineProps) => {
                 <h5 className="fs-9 lh-sm">{item.content.title}</h5>
                 <p className="fs-9">
                   by{' '}
-                  <Link className="fw-semibold" to="#!">
+                  <Link className="fw-semibold" href="#!">
                     {item.content.user}
                   </Link>
                 </p>
@@ -62,4 +62,5 @@ const ActivityTimeline = ({ data }: ActivityTimelineProps) => {
 };
 
 export default ActivityTimeline;
+
 

@@ -31,7 +31,7 @@ const FooterList = ({
             <Link
               className="text-body-quaternary"
               data-bs-theme="light"
-              to="#!"
+              href="#!"
             >
               {item}
             </Link>
@@ -80,7 +80,7 @@ const Footer = () => {
           <div className="container-small px-lg-7 px-xxl-3">
             <Row className="position-relative">
               <Col xs={{ span: 12, order: 0 }} lg={5} className="mb-4">
-                <Link to="#!">
+                <Link href="#!">
                   <img className="mb-3" src={logoWhite} height="48" alt="" />
                 </Link>
                 <h3 className="text-white">Phoenix</h3>
@@ -156,4 +156,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
 

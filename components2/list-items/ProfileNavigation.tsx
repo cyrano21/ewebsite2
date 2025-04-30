@@ -20,7 +20,7 @@ const ProfileNavigation = ({ className }: { className?: string }) => {
         >
           <Button
             as={Link}
-            to="#!"
+            href="#!"
             variant="link"
             className={classNames(
               'fs-8 text-body-secondary hover-primary fw-semibold d-flex flex-column d-xxl-inline-block align-items-center align-items-xxl-start',
@@ -44,4 +44,5 @@ const ProfileNavigation = ({ className }: { className?: string }) => {
 };
 
 export default ProfileNavigation;
+
 

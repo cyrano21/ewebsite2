@@ -64,7 +64,7 @@ const ProductDescription = () => {
               <span className="badge bg-success fs-9 rounded-pill me-2 fw-semibold">
                 #1 Best seller
               </span>
-              <Link to="#!" className="fw-semibold">
+              <Link href="#!" className="fw-semibold">
                 in Phoenix sell analytics 2021
               </Link>
             </div>
@@ -86,7 +86,7 @@ const ProductDescription = () => {
               </strong>
               at checkout if you want your order delivered within 12 hours 43
               minutes,{' '}
-              <Link className="fw-bold" to="#!">
+              <Link className="fw-bold" href="#!">
                 Details.{' '}
               </Link>
               <strong className="text-body-highlight">
@@ -146,4 +146,5 @@ const ProductDescription = () => {
 };
 
 export default ProductDescription;
+
 

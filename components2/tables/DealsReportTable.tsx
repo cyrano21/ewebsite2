@@ -23,7 +23,7 @@ export const dealsReportColumns: ColumnDef<DealsReport>[] = [
     accessorKey: 'dealName',
     header: 'Deal Name',
     cell: ({ row: { original } }) => (
-      <Link to="#!" className="fw-bold text-primary">
+      <Link href="#!" className="fw-bold text-primary">
         {original.dealName}
       </Link>
     ),
@@ -44,7 +44,7 @@ export const dealsReportColumns: ColumnDef<DealsReport>[] = [
     cell: ({ row: { original } }) => {
       const { name, avatar, profileLink } = original.dealOwner;
       return (
-        <Link to={profileLink} className="d-flex align-items-center text-body">
+        <Link href={profileLink} className="d-flex align-items-center text-body">
           <Avatar src={avatar} size="m" />
           <p className="mb-0 ms-3 text-body-emphasis fw-bold">{name}</p>
         </Link>
@@ -160,4 +160,5 @@ const DealsReportTable = () => {
 };
 
 export default DealsReportTable;
+
 

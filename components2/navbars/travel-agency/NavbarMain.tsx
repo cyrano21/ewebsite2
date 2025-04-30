@@ -159,7 +159,7 @@ const NavDropdownItems = ({
         className={classNames('nav-link fs-8 fw-bold', {
           active: isActive
         })}
-        to="#!"
+        href="#!"
       >
         {label}
       </Dropdown.Toggle>
@@ -167,7 +167,7 @@ const NavDropdownItems = ({
         {items.map(dropdownItem => (
           <Dropdown.Item
             as={Link}
-            to={dropdownItem.url}
+            href={dropdownItem.url}
             key={dropdownItem.id}
             className={classNames({ active: pathName === dropdownItem.url })}
           >
@@ -223,7 +223,7 @@ const NavbarMain = () => {
         </Navbar.Toggle>
         <Navbar.Brand
           as={Link}
-          to="/"
+          href="/"
           className="flex-1 flex-lg-grow-0 me-lg-8 me-xl-13"
         >
           <Logo textClass="d-none d-sm-block" />
@@ -231,7 +231,7 @@ const NavbarMain = () => {
         <div className="d-flex align-items-center gap-3 gap-md-4 my-2 order-lg-1">
           <ThemeToggler />
           <Button
-            to="#!"
+            href="#!"
             as={Link}
             variant="link"
             className="text-body-tertiary p-0"
@@ -239,7 +239,7 @@ const NavbarMain = () => {
             <FeatherIcon icon="map-pin" size={18} />
           </Button>
           <Button
-            to="#!"
+            href="#!"
             as={Link}
             variant="link"
             className="text-body-tertiary p-0"
@@ -247,7 +247,7 @@ const NavbarMain = () => {
             <FeatherIcon icon="bell" size={20} />
           </Button>
           <Button
-            to="#!"
+            href="#!"
             as={Link}
             variant="link"
             className="text-body-tertiary p-0"
@@ -255,7 +255,7 @@ const NavbarMain = () => {
             <FeatherIcon icon="log-in" size={20} />
           </Button>
           <Button
-            to="#!"
+            href="#!"
             as={Link}
             variant="link"
             className="text-body-tertiary p-0"
@@ -280,7 +280,7 @@ const NavbarMain = () => {
                   <Nav.Item as="li" key={item.id} className="">
                     <Nav.Link
                       as={Link}
-                      to="#!"
+                      href="#!"
                       className={classNames('fw-bold', {
                         active: pathNameList.includes(item.label.toLowerCase())
                       })}
@@ -299,3 +299,4 @@ const NavbarMain = () => {
 };
 
 export default NavbarMain;
+

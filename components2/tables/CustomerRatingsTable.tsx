@@ -23,7 +23,7 @@ const columns: ColumnDef<CustomerReview>[] = [
     cell: ({ row: { original } }) => {
       const { product } = original;
       return (
-        <Link to="#!" className="fw-semibold line-clamp-1">
+        <Link href="#!" className="fw-semibold line-clamp-1">
           {product}
         </Link>
       );
@@ -56,7 +56,7 @@ const columns: ColumnDef<CustomerReview>[] = [
           {review.length > 134 && (
             <>
               {`...`}
-              <Link to="#!">See more</Link>
+              <Link href="#!">See more</Link>
             </>
           )}
         </p>
@@ -145,4 +145,5 @@ const CustomerRatingsTable = () => {
 };
 
 export default CustomerRatingsTable;
+
 

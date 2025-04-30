@@ -21,7 +21,7 @@ const NavbarBottom = ({ active, className }: NavbarBottomProps) => {
       <Nav>
         <Nav.Link
           as={Link}
-          to="/apps/social/feed"
+          href="/apps/social/feed"
           className={classNames({ active: active === 'home' })}
         >
           <FontAwesomeIcon icon={faHome} className="nav-icon" />
@@ -29,7 +29,7 @@ const NavbarBottom = ({ active, className }: NavbarBottomProps) => {
         </Nav.Link>
         <Nav.Link
           as={Link}
-          to="/apps/social/profile"
+          href="/apps/social/profile"
           className={classNames({ active: active === 'profile' })}
         >
           <FontAwesomeIcon icon={faUser} className="nav-icon" />
@@ -37,7 +37,7 @@ const NavbarBottom = ({ active, className }: NavbarBottomProps) => {
         </Nav.Link>
         <Nav.Link
           as={Link}
-          to="#!"
+          href="#!"
           className={classNames({ active: active === 'photos' })}
         >
           <FontAwesomeIcon icon={faImage} className="nav-icon" />
@@ -45,7 +45,7 @@ const NavbarBottom = ({ active, className }: NavbarBottomProps) => {
         </Nav.Link>
         <Nav.Link
           as={Link}
-          to="/apps/chat"
+          href="/apps/chat"
           className={classNames({ active: active === 'messages' })}
         >
           <FontAwesomeIcon icon={faMessage} className="nav-icon" />
@@ -53,7 +53,7 @@ const NavbarBottom = ({ active, className }: NavbarBottomProps) => {
         </Nav.Link>
         <Nav.Link
           as={Link}
-          to="/apps/events/event-detail"
+          href="/apps/events/event-detail"
           className={classNames({ active: active === 'events' })}
         >
           <FontAwesomeIcon icon={faCalendarDays} className="nav-icon" />
@@ -65,4 +65,5 @@ const NavbarBottom = ({ active, className }: NavbarBottomProps) => {
 };
 
 export default NavbarBottom;
+
 

@@ -29,11 +29,11 @@ const PostCard = ({ post }: PostCardProps) => {
         <Card.Body className="p-3 p-sm-4">
           <div className="border-bottom border-translucent mb-3">
             <div className="d-flex align-items-center mb-3">
-              <Link to="/apps/social/profile" style={{ lineHeight: 0 }}>
+              <Link href="/apps/social/profile" style={{ lineHeight: 0 }}>
                 <Avatar size="xl" src={post.author.avatar} className="me-2" />
               </Link>
               <div className="flex-1">
-                <Link to="/apps/social/profile" className="fw-bold mb-0">
+                <Link href="/apps/social/profile" className="fw-bold mb-0">
                   {post.author.name}
                 </Link>
                 <p className="fs-10 mb-0 text-body-tertiary text-opacity-85 fw-semibold">
@@ -107,4 +107,5 @@ const PostCard = ({ post }: PostCardProps) => {
 };
 
 export default PostCard;
+
 

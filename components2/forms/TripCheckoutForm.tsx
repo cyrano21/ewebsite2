@@ -73,7 +73,7 @@ const TripCheckoutForm = () => {
           >
             Get booking updates via SMS.
           </Form.Check.Label>
-          <Link to="#!" className="text-nowrap">
+          <Link href="#!" className="text-nowrap">
             {' '}
             Terms apply
           </Link>
@@ -259,4 +259,5 @@ const TripCheckoutForm = () => {
 };
 
 export default TripCheckoutForm;
+
 

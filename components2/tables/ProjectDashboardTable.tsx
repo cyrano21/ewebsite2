@@ -25,7 +25,7 @@ const columns: ColumnDef<Project>[] = [
       const { name } = original;
       return (
         <Link
-          to="/apps/project-management/project-details"
+          href="/apps/project-management/project-details"
           className="text-decoration-none fw-bold fs-8"
         >
           {name}
@@ -207,4 +207,5 @@ const ProjectDashboardTable = () => {
 };
 
 export default ProjectDashboardTable;
+
 

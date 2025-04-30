@@ -42,7 +42,7 @@ const columns: ColumnDef<RoomListingInterface>[] = [
       return (
         <>
           <div className="d-flex align-items-center gap-3">
-            <Link to="#!">
+            <Link href="#!">
               <img
                 src={img}
                 alt=""
@@ -52,7 +52,7 @@ const columns: ColumnDef<RoomListingInterface>[] = [
             </Link>
             <div>
               <Link
-                to="#!"
+                href="#!"
                 className="fs-8 fw-bolder text-body-emphasis text-nowrap"
               >
                 {name}
@@ -188,7 +188,7 @@ const columns: ColumnDef<RoomListingInterface>[] = [
             </Badge>
           ))}
           {amenities.length > 13 && (
-            <Link to="#!" className="fw-bold fs-9">
+            <Link href="#!" className="fw-bold fs-9">
               +{amenities.length - 13} More
             </Link>
           )}
@@ -293,4 +293,5 @@ const RoomListingTable = () => {
 };
 
 export default RoomListingTable;
+
 

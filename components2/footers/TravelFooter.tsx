@@ -34,7 +34,7 @@ const TravelFooter = () => {
                   <ul className="list-unstyled mb-0">
                     {footerList1.map((item, index) => (
                       <li key={index} className="mb-1">
-                        <Link to="#!" className="text-secondary-lighter">
+                        <Link href="#!" className="text-secondary-lighter">
                           {item}
                         </Link>
                       </li>
@@ -45,7 +45,7 @@ const TravelFooter = () => {
                   <ul className="list-unstyled mb-0">
                     {footerList2.map((item, index) => (
                       <li key={index} className="mb-1">
-                        <Link to="#!" className="text-secondary-lighter">
+                        <Link href="#!" className="text-secondary-lighter">
                           {item}
                         </Link>
                       </li>
@@ -57,7 +57,7 @@ const TravelFooter = () => {
             <Col md={6} lg={3}>
               <h5 className="text-white mb-3">Contact</h5>
               <Link
-                to="mailto:info@phoenixtravels.com"
+                href="mailto:info@phoenixtravels.com"
                 className="d-block text-secondary-lighter mb-1 text-nowrap"
               >
                 <FontAwesomeIcon
@@ -67,7 +67,7 @@ const TravelFooter = () => {
                 info@phoenixtravels.com
               </Link>
               <Link
-                to="tel:+13134048290"
+                href="tel:+13134048290"
                 className="d-block text-secondary-lighter mb-1"
               >
                 <FontAwesomeIcon icon={faPhone} className="me-2" />
@@ -109,4 +109,5 @@ const TravelFooter = () => {
 };
 
 export default TravelFooter;
+
 

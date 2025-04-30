@@ -18,7 +18,7 @@ const columns: ColumnDef<ForecastTableData>[] = [
     cell: ({ row: { original } }) => {
       const { contact } = original;
       return (
-        <Link to={contact.profileLink} className="fw-semibold">
+        <Link href={contact.profileLink} className="fw-semibold">
           {contact.name}
         </Link>
       );
@@ -188,4 +188,5 @@ const DealForecastTable = () => {
 };
 
 export default DealForecastTable;
+
 

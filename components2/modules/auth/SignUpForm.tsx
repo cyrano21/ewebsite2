@@ -58,8 +58,8 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
             htmlFor="termsService"
             className="fs-9 text-transform-none"
           >
-            I accept the <Link to="#!">terms </Link>and{' '}
-            <Link to="#!">privacy policy</Link>
+            I accept the <Link href="#!">terms </Link>and{' '}
+            <Link href="#!">privacy policy</Link>
           </Form.Check.Label>
         </Form.Check>
         <Button variant="primary" className="w-100 mb-3">
@@ -67,7 +67,7 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         </Button>
         <div className="text-center">
           <Link
-            to={`/pages/authentication/${layout}/sign-in`}
+            href={`/pages/authentication/${layout}/sign-in`}
             className="fs-9 fw-bold"
           >
             Sign in to an existing account
@@ -79,4 +79,5 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 };
 
 export default SignUpForm;
+
 

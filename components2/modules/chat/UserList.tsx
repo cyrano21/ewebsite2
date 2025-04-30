@@ -37,7 +37,7 @@ const UserListitem = ({ conversation }: { conversation: Conversation }) => {
     >
       <Nav.Link
         as={Link}
-        to={`/apps/chat/${conversation.user.id}/conversation`}
+        href={`/apps/chat/${conversation.user.id}/conversation`}
         onClick={markedAsRead}
         className={classNames(
           'd-flex align-items-center justify-content-center p-2',
@@ -105,4 +105,5 @@ const UserList = ({ conversations }: { conversations: Conversation[] }) => {
 };
 
 export default UserList;
+
 

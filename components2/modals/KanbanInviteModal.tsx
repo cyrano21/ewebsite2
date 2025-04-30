@@ -29,7 +29,7 @@ const KanbanInviteModal = ({
           <strong className="fw-bolder">Guests</strong> to your Kanban board.
           They can add, edit, or move tasks in your board. Tasks can also be
           assigned to them.{' '}
-          <Link to="#!" className="fw-semibold">
+          <Link href="#!" className="fw-semibold">
             Learn more
           </Link>
         </p>
@@ -85,4 +85,5 @@ const KanbanInviteModal = ({
 };
 
 export default KanbanInviteModal;
+
 

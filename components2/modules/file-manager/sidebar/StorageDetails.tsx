@@ -59,7 +59,7 @@ const StorageDetails = () => {
   return (
     <>
       <Link
-        to="#!"
+        href="#!"
         onClick={() => setIsOpen(!isOpen)}
         className={classNames(
           'collapse-indicator px-0 py-3 mt-3 d-flex flex-between-center text-decoration-none',
@@ -137,4 +137,5 @@ const StorageDetails = () => {
 };
 
 export default StorageDetails;
+
 

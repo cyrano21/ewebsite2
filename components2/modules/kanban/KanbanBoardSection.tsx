@@ -23,7 +23,7 @@ const KanbanBoardSection = ({
       <h4>{title}</h4>
       <p className="mb-4">
         {description}{' '}
-        {changePreference && <Link to="#!">Change preference</Link>}
+        {changePreference && <Link href="#!">Change preference</Link>}
       </p>
 
       <Swiper
@@ -56,4 +56,5 @@ const KanbanBoardSection = ({
 };
 
 export default KanbanBoardSection;
+
 

@@ -42,7 +42,7 @@ const columns: ColumnDef<LeadDeal>[] = [
     header: 'deal name',
     accessorKey: 'name',
     cell: ({ row: { original } }) => (
-      <Link to="#!" className="fw-semibold">
+      <Link href="#!" className="fw-semibold">
         {original.name}
       </Link>
     ),
@@ -166,4 +166,5 @@ const LeadDealsTable = () => {
 };
 
 export default LeadDealsTable;
+
 

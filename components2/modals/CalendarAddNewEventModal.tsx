@@ -222,7 +222,7 @@ const CalendarAddNewEventModal = () => {
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-between align-items-center border-0">
           <Link
-            to="/apps/events/create-an-event"
+            href="/apps/events/create-an-event"
             className="me-3 fs-9 text-body"
           >
             More options
@@ -238,4 +238,5 @@ const CalendarAddNewEventModal = () => {
 };
 
 export default CalendarAddNewEventModal;
+
 

@@ -18,7 +18,7 @@ export const projectListTableColumns: ColumnDef<Project>[] = [
     cell: ({ row: { original } }) => {
       const { name } = original;
       return (
-        <Link to="#!" className="text-decoration-none fw-bold fs-8">
+        <Link href="#!" className="text-decoration-none fw-bold fs-8">
           {name}
         </Link>
       );
@@ -148,4 +148,5 @@ const ProjectListTable = () => {
 };
 
 export default ProjectListTable;
+
 

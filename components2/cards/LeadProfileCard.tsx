@@ -15,7 +15,7 @@ const LeadProfileCard = ({ className }: { className?: string }) => {
           <Col xs={12} sm="auto" className="flex-1">
             <h3 className="fw-bolder mb-2">Ansolo Lazinatov</h3>
             <p className="mb-0">Chief tech officer,</p>
-            <Link to="#!" className="fw-bold">
+            <Link href="#!" className="fw-bold">
               Blue Beetles
             </Link>
           </Col>
@@ -26,4 +26,5 @@ const LeadProfileCard = ({ className }: { className?: string }) => {
 };
 
 export default LeadProfileCard;
+
 

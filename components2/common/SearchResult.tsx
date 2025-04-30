@@ -68,7 +68,7 @@ const SearchResult = ({ searchValue = '' }: { searchValue?: string }) => {
           <ResultSectionHeader title="Recently Searched" />
           <div className="py-2">
             {recentlySearchedItems.map(item => (
-              <Dropdown.Item as={Link} to={item.url} key={item.label}>
+              <Dropdown.Item as={Link} href={item.url} key={item.label}>
                 <div className="d-flex align-items-center fw-normal gap-1 text-body-highlight">
                   <FontAwesomeIcon
                     icon={faClockRotateLeft}
@@ -88,7 +88,7 @@ const SearchResult = ({ searchValue = '' }: { searchValue?: string }) => {
             {products.map(item => (
               <Dropdown.Item
                 as={Link}
-                to={item.url}
+                href={item.url}
                 key={item.label}
                 className="py-2 d-flex gap-2 align-items-center"
               >
@@ -119,7 +119,7 @@ const SearchResult = ({ searchValue = '' }: { searchValue?: string }) => {
           <ResultSectionHeader title="Quick Links" />
           <div className="py-2">
             {quickLinks.map(item => (
-              <Dropdown.Item as={Link} to={item.url} key={item.label}>
+              <Dropdown.Item as={Link} href={item.url} key={item.label}>
                 <div className="d-flex align-items-center fw-normal gap-1 text-body-highlight">
                   <FontAwesomeIcon
                     icon={faLink}
@@ -138,7 +138,7 @@ const SearchResult = ({ searchValue = '' }: { searchValue?: string }) => {
           <ResultSectionHeader title="Files" />
           <div className="py-2">
             {suggestionFiles.map(item => (
-              <Dropdown.Item as={Link} to={item.url} key={item.label}>
+              <Dropdown.Item as={Link} href={item.url} key={item.label}>
                 <div className="d-flex align-items-center fw-normal gap-1 text-body-highlight">
                   <FontAwesomeIcon
                     icon={getFileIcon(item.format || '')}
@@ -157,7 +157,7 @@ const SearchResult = ({ searchValue = '' }: { searchValue?: string }) => {
           <ResultSectionHeader title="Members" />
           <div className="py-2">
             {members.map(item => (
-              <Dropdown.Item as={Link} to={item.url} key={item.label}>
+              <Dropdown.Item as={Link} href={item.url} key={item.label}>
                 <div className="d-flex align-items-center fw-normal text-body-highlight">
                   <Avatar
                     src={item.avatar}
@@ -184,7 +184,7 @@ const SearchResult = ({ searchValue = '' }: { searchValue?: string }) => {
           <ResultSectionHeader title="Related Searches" />
           <div className="py-2">
             {relatedSearchedItems.map(item => (
-              <Dropdown.Item as={Link} to={item.url} key={item.label}>
+              <Dropdown.Item as={Link} href={item.url} key={item.label}>
                 <div className="d-flex align-items-center fw-normal gap-1 text-body-highlight">
                   <FontAwesomeIcon
                     icon={item.icon as IconProp}
@@ -203,4 +203,5 @@ const SearchResult = ({ searchValue = '' }: { searchValue?: string }) => {
 };
 
 export default SearchResult;
+
 

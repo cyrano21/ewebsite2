@@ -75,7 +75,7 @@ const KanbanBoardOffcanvas = () => {
           <AvatarDropdown user={kanbanBoardMembers.admin} size="xl" />
           <div className="flex-1">
             <Link
-              to="#!"
+              href="#!"
               className="text-decoration-none text-body-highlight lh-1 fw-semibold"
             >
               Sasha Blaus
@@ -117,7 +117,7 @@ const KanbanBoardOffcanvas = () => {
           {actions.map(action => (
             <li key={action.label}>
               <Link
-                to="#!"
+                href="#!"
                 className={classNames(
                   'text-body-highlight fw-semibold text-decoration-none d-flex flex-between-center py-3 border-bottom border-translucent'
                 )}
@@ -129,7 +129,7 @@ const KanbanBoardOffcanvas = () => {
           ))}
           <li>
             <Link
-              to="#!"
+              href="#!"
               className={classNames(
                 'fw-semibold text-decoration-none d-flex flex-between-center text-danger pt-3'
               )}
@@ -144,4 +144,5 @@ const KanbanBoardOffcanvas = () => {
 };
 
 export default KanbanBoardOffcanvas;
+
 

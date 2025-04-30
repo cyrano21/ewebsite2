@@ -54,7 +54,7 @@ const NecessaryPages = () => {
               <Link
                 className="stretched-link"
                 target="_blank"
-                to={page.pageLink}
+                href={page.pageLink}
               />
             </Col>
           ))}
@@ -65,4 +65,5 @@ const NecessaryPages = () => {
 };
 
 export default NecessaryPages;
+
 

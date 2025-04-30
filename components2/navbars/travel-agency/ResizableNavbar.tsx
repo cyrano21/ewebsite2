@@ -81,7 +81,7 @@ const ResizableNavbar = ({ navItems }: ResizableNav) => {
               <Nav.Link
                 key={item.id}
                 as={Link}
-                to={item.url}
+                href={item.url}
                 className={classNames({
                   active: pathname === item.url
                 })}
@@ -104,7 +104,7 @@ const ResizableNavbar = ({ navItems }: ResizableNav) => {
                 <Dropdown.Item
                   key={item.id}
                   as={Link}
-                  to={item.url}
+                  href={item.url}
                   ref={(el: HTMLAnchorElement) =>
                     (dropdownItemsRef.current[index] = el)
                   }
@@ -121,3 +121,4 @@ const ResizableNavbar = ({ navItems }: ResizableNav) => {
 };
 
 export default ResizableNavbar;
+
