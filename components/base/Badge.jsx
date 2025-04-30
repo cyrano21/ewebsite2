@@ -4,7 +4,10 @@ import { Badge as BsBadge } from 'react-bootstrap';
 
 // Types exportés pour être utilisés ailleurs
 export const BadgeVariant = ['phoenix', 'default', 'tag'];
-export const BadgeBg = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+
+// Définition pour compatibilité TypeScript
+export const BadgeBgValues = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+export type BadgeBg = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
 
 const Badge = ({
   children,
