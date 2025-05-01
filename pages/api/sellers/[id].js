@@ -1,4 +1,4 @@
-import dbConnect from '../../../lib/dbConnect';
+import dbConnect from '../../../utils/dbConnect';
 import Seller from '../../../models/Seller';
 import User from '../../../models/User';
 import { getSession } from 'next-auth/react';
