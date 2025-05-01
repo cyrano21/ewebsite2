@@ -16,7 +16,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "src/*": ["src/*"]
     },
     "resolveJsonModule": true,
     "isolatedModules": true,
