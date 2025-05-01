@@ -1,360 +1,271 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import PageHeader from "../../components/PageHeader";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Badge,
-  Button,
-  Form,
-  InputGroup,
-} from "react-bootstrap";
-import Image from 'next/image';
-import blogList from "../../utils/blogdata";
+import React, { useState, useEffect } from 'react';
+import { Alert, Card } from 'react-bootstrap';
+import Image from 'next/image'; // ✅ Import du composant Image
+import styles from './AdvertisementPreview.module.css';
 
-const Blog = () => {
-  const [filteredBlogs, setFilteredBlogs] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Tous");
-  const [categories, setCategories] = useState(["Tous"]);
-  const [viewType, setViewType] = useState("grid");
-  const [isLoading, setIsLoading] = useState(true);
-
+const AdvertisementPreview = ({ advertisement }) => {
+  const [previewData, setPreviewData] = useState(null);
+  
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 600);
-  }, []);
-
-  useEffect(() => {
-    const unique = [
-      // eslint-disable-next-line no-undef
-      ...new Set(blogList.flatMap((b) => (b.category ? [b.category] : []))),
-    ];
-    setCategories(["Tous", ...unique.sort()]);
-  }, []);
-
-  useEffect(() => {
-    let res = [...blogList];
-    if (searchTerm) {
-      res = res.filter(
-        (b) =>
-          b.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          b.desc.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    if (!advertisement) {
+      setPreviewData(null);
+      return;
     }
-    if (selectedCategory !== "Tous") {
-      res = res.filter((b) => b.category === selectedCategory);
-    }
-    setFilteredBlogs(res);
-  }, [searchTerm, selectedCategory]);
-
-  const handleSearch = (e) => setSearchTerm(e.target.value);
-  const handleCategoryChange = (cat) => setSelectedCategory(cat);
-
-  const getCategoryColor = (cat) => {
-    const colors = {
-      Marketing: "primary",
-      Technologie: "info",
-      Design: "success",
-      Business: "warning",
-      Éducation: "danger",
-      Lifestyle: "secondary",
-    };
-    return colors[cat] || "dark";
-  };
-
-  return (
-    <div className="blog-page">
-      <PageHeader title="Notre Blog" curPage="Articles & Actualités" />
-      <section className="blog-section padding-tb section-bg">
-        <Container>
-          {/* --- En-tête recherche et vues --- */}
-          <div className="blog-header mb-4">
-            <Row className="align-items-center g-4">
-              <Col lg={4}>
-                <h2 className="mb-0 fw-bold">
-                  <span className="text-primary">Articles</span> & Actualités
-                </h2>
-              </Col>
-              <Col lg={8}>
-                <div className="d-flex flex-wrap gap-3 justify-content-lg-end">
-                  <div
-                    className="search-box flex-grow-1"
-                    style={{ maxWidth: "400px" }}
-                  >
-                    <InputGroup>
-                      <Form.Control
-                        placeholder="Rechercher un article..."
-                        value={searchTerm}
-                        onChange={handleSearch}
-                        className="border-end-0"
-                      />
-                      <InputGroup.Text className="bg-white">
-                        <i className="icofont-search-1 text-muted"></i>
-                      </InputGroup.Text>
-                    </InputGroup>
-                  </div>
-                  <div className="view-options d-flex">
-                    <Button
-                      variant={viewType === "grid" ? "primary" : "outline-secondary"}
-                      className="me-2"
-                      onClick={() => setViewType("grid")}
-                    >
-                      <i className="icofont-listine-dots"></i>
-                    </Button>
-                    <Button
-                      variant={viewType === "list" ? "primary" : "outline-secondary"}
-                      onClick={() => setViewType("list")}
-                    >
-                      <i className="icofont-listing-box"></i>
-                    </Button>
-                  </div>
+    
+    // Préparer les données pour la prévisualisation
+    setPreviewData({
+      type: advertisement.type,
+      position: advertisement.position,
+      imageUrl: advertisement.imageUrl,
+      videoUrl: advertisement.videoUrl,
+      targetUrl: advertisement.targetUrl,
+      content: advertisement.content,
+      dimensions: advertisement.dimensions
+    });
+  }, [advertisement]);
+  
+  // Si aucune publicité n'est sélectionnée
+  if (!previewData) {
+    return (
+      <Alert variant="info">
+        <i className="icofont-info-circle me-2"></i>
+        Aucune publicité à prévisualiser. Veuillez créer ou modifier une publicité pour voir l&apos;aperçu.
+      </Alert>
+    );
+  } 
+  
+  // Préparer les styles en fonction des dimensions (si spécifiées)
+  const dimensionStyle = {};
+  if (previewData.dimensions && previewData.dimensions.width > 0) {
+    dimensionStyle.width = `${previewData.dimensions.width}px`;
+  }
+  if (previewData.dimensions && previewData.dimensions.height > 0) {
+    dimensionStyle.height = `${previewData.dimensions.height}px`;
+  }
+  
+  // Rendu en fonction du type de publicité
+  const renderPreview = () => {
+    switch (previewData.type) {
+      case 'banner':
+        return (
+          <div className={styles.bannerPreview} style={dimensionStyle}>
+            <a href={previewData.targetUrl} target="_blank" rel="noopener noreferrer" className={styles.previewLink}>
+              <Image 
+                src={previewData.imageUrl || 'https://via.placeholder.com/600x150?text=Banner+Preview'} 
+                alt={previewData.content?.title || "Bannière publicitaire"} 
+                width={previewData.dimensions?.width || 600} 
+                height={previewData.dimensions?.height || 150} 
+                className={styles.bannerImage}
+                priority // ✅ Priorité pour les images critiques
+              />
+              {(previewData.content?.title || previewData.content?.subtitle) && (
+                <div className={styles.bannerContent}>
+                  {previewData.content?.title && <h3>{previewData.content.title}</h3>}
+                  {previewData.content?.subtitle && <p>{previewData.content.subtitle}</p>}
+                  {previewData.content?.buttonText && (
+                    <button className={styles.bannerButton}>
+                      {previewData.content.buttonText}
+                    </button>
+                  )}
                 </div>
-              </Col>
-            </Row>
+              )}
+            </a>
           </div>
-
-          {/* --- Filtre catégorie --- */}
-          <div className="category-filter mb-4">
-            <div className="filter-buttons d-flex flex-wrap gap-2">
-              {categories.map((cat, idx) => (
-                <Button
-                  key={idx}
-                  variant={selectedCategory === cat ? "primary" : "outline-secondary"}
-                  className="rounded-pill px-3 py-2"
-                  onClick={() => handleCategoryChange(cat)}
-                >
-                  {cat === "Tous" && <i className="icofont-justify-all me-1"></i>}
-                  {cat}
-                </Button>
-              ))}
+        );
+        
+      case 'popup':
+        return (
+          <div className={styles.popupContainer}>
+            <div className={styles.popupPreview} style={dimensionStyle}>
+              <div className={styles.popupHeader}>
+                <span className={styles.popupClose}>×</span>
+              </div>
+              <div className={styles.popupContent}>
+                {previewData.imageUrl && (
+                  <Image 
+                    src={previewData.imageUrl} 
+                    alt={previewData.content?.title || "Popup publicitaire"} 
+                    width={previewData.dimensions?.width || 300} 
+                    height={previewData.dimensions?.height || 200} 
+                    className={styles.popupImage}
+                  />
+                )}
+                <div className={styles.popupTextContent}>
+                  {previewData.content?.title && <h3>{previewData.content.title}</h3>}
+                  {previewData.content?.subtitle && <h5>{previewData.content.subtitle}</h5>}
+                  {previewData.content?.description && <p>{previewData.content.description}</p>}
+                  {previewData.content?.buttonText && (
+                    <button className={styles.popupButton}>
+                      {previewData.content.buttonText}
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* --- Liste des articles --- */}
-          <div className="section-wrapper">
-            {isLoading ? (
-              <div className="text-center py-5">
-                <div className="spinner-border text-primary" role="status">
-                  <span className="visually-hidden">Chargement...</span>
+        );
+        
+      case 'sidebar':
+        return (
+          <div className={styles.sidebarPreview} style={dimensionStyle}>
+            <a href={previewData.targetUrl} target="_blank" rel="noopener noreferrer" className={styles.previewLink}>
+              <Image 
+                src={previewData.imageUrl || 'https://via.placeholder.com/300x600?text=Sidebar+Preview'} 
+                alt={previewData.content?.title || "Publicité barre latérale"} 
+                width={previewData.dimensions?.width || 300} 
+                height={previewData.dimensions?.height || 600} 
+                className={styles.sidebarImage}
+              />
+              {previewData.content?.title && (
+                <div className={styles.sidebarContent}>
+                  <h4>{previewData.content.title}</h4>
+                  {previewData.content?.buttonText && (
+                    <button className={styles.sidebarButton}>
+                      {previewData.content.buttonText}
+                    </button>
+                  )}
                 </div>
-                <p className="mt-2">Chargement des articles...</p>
+              )}
+            </a>
+          </div>
+        );
+        
+      case 'featured':
+        return (
+          <div className={styles.featuredPreview} style={dimensionStyle}>
+            <a href={previewData.targetUrl} target="_blank" rel="noopener noreferrer" className={styles.previewLink}>
+              <div className={styles.featuredContainer}>
+                <Image 
+                  src={previewData.imageUrl || 'https://via.placeholder.com/400x300?text=Featured+Preview'} 
+                  alt={previewData.content?.title || "Publicité mise en avant"} 
+                  width={previewData.dimensions?.width || 400} 
+                  height={previewData.dimensions?.height || 300} 
+                  className={styles.featuredImage}
+                  priority // ✅ Priorité pour les images critiques
+                />
+                <div className={styles.featuredContent}>
+                  {previewData.content?.title && <h3>{previewData.content.title}</h3>}
+                  {previewData.content?.subtitle && <h5>{previewData.content.subtitle}</h5>}
+                  {previewData.content?.description && <p>{previewData.content.description}</p>}
+                  {previewData.content?.buttonText && (
+                    <button className={styles.featuredButton}>
+                      {previewData.content.buttonText}
+                    </button>
+                  )}
+                </div>
               </div>
-            ) : filteredBlogs.length > 0 ? (
-              viewType === "grid" ? (
-                <Row className="row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-                  {filteredBlogs.map((blog, i) => (
-                    <Col key={i} className="blog-item-col">
-                      <Card className="h-100 blog-card shadow-sm border-0 hover-effect">
-                        <div className="position-relative">
-                          {/* Image cliquable */}
-                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
-                            <a className="img-link d-block overflow-hidden">
-                              <Image
-                                src={blog.imgUrl || "/default-blog.jpg"}
-                                alt={blog.imgAlt}
-                                width={500}
-                                height={300}
-                                onError={(e) => (e.currentTarget.src = "/default-blog.jpg")}
-                                className="blog-img"
-                              />
-                            </a>
-                          </Link>
-
-                          {blog.category && (
-                            <Badge
-                              bg={getCategoryColor(blog.category)}
-                              className="position-absolute top-0 end-0 m-3 py-2 px-3"
-                            >
-                              {blog.category}
-                            </Badge>
-                          )}
-                        </div>
-
-                        <Card.Body className="p-4">
-                          {/* Titre cliquable */}
-                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
-                            <a className="text-decoration-none">
-                              <Card.Title as="h4" className="blog-title mb-3">
-                                {blog.title}
-                              </Card.Title>
-                            </a>
-                          </Link>
-
-                          <div className="meta-post mb-3">
-                            <ul className="lab-ul d-flex flex-wrap gap-3 text-muted small">
-                              {blog.metaList.map((val, j) => (
-                                <li key={j} className="d-flex align-items-center">
-                                  <i className={`${val.iconName} me-1`}></i>
-                                  {val.text}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <Card.Text className="blog-excerpt text-muted">
-                            {blog.desc.length > 120
-                              ? `${blog.desc.substring(0, 120)}…`
-                              : blog.desc}
-                          </Card.Text>
-                        </Card.Body>
-
-                        <Card.Footer className="bg-white border-top d-flex justify-content-between align-items-center p-4 pt-0">
-                          {/* Bouton “Lire la suite” */}
-                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
-                            <a className="read-more text-primary text-decoration-none">
-                              {blog.btnText}&nbsp;
-                              <i className="icofont-arrow-right ms-1"></i>
-                            </a>
-                          </Link>
-                          <div className="comments text-muted">
-                            <i className="icofont-comment me-1"></i>
-                            <span className="comment-count">{blog.commentCount}</span>
-                          </div>
-                        </Card.Footer>
-                      </Card>
-                    </Col>
-                  ))}
-                </Row>
-              ) : (
-                <div className="list-view-blogs">
-                  {filteredBlogs.map((blog, i) => (
-                    <Card
-                      key={i}
-                      className="mb-4 blog-list-card shadow-sm border-0 hover-effect"
-                    >
-                      <Row className="g-0">
-                        <Col md={4} className="position-relative">
-                          {/* Image list view */}
-                          <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
-                            <a className="h-100 d-block overflow-hidden">
-                              <Image
-                                src={blog.imgUrl || "/default-blog.jpg"}
-                                alt={blog.imgAlt}
-                                width={500}
-                                height={300}
-                                onError={(e) => (e.currentTarget.src = "/default-blog.jpg")}
-                                className="img-fluid rounded-start h-100 w-100 blog-img"
-                                style={{ objectFit: "cover" }}
-                              />
-                            </a>
-                          </Link>
-                          {blog.category && (
-                            <Badge
-                              bg={getCategoryColor(blog.category)}
-                              className="position-absolute top-0 end-0 m-3 py-2 px-3"
-                            >
-                              {blog.category}
-                            </Badge>
-                          )}
-                        </Col>
-                        <Col md={8}>
-                          <Card.Body className="d-flex flex-column h-100 p-4">
-                            {/* Titre list view */}
-                            <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
-                              <a className="text-decoration-none">
-                                <Card.Title as="h4" className="blog-title mb-2">
-                                  {blog.title}
-                                </Card.Title>
-                              </a>
-                            </Link>
-                            <div className="meta-post mb-3">
-                              <ul className="lab-ul d-flex flex-wrap gap-3 text-muted small">
-                                {blog.metaList.map((val, j) => (
-                                  <li key={j} className="d-flex align-items-center">
-                                    <i className={`${val.iconName} me-1`}></i>
-                                    {val.text}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <Card.Text className="blog-excerpt text-muted flex-grow-1">
-                              {blog.desc}
-                            </Card.Text>
-                            <div className="d-flex justify-content-between align-items-center mt-3">
-                              {/* Bouton list view */}
-                              <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
-                                <a className="read-more btn btn-sm btn-outline-primary rounded-pill px-3">
-                                  {blog.btnText}&nbsp;
-                                  <i className="icofont-arrow-right ms-1"></i>
-                                </a>
-                              </Link>
-                              <div className="comments text-muted">
-                                <i className="icofont-comment me-1"></i>
-                                <span className="comment-count">
-                                  {blog.commentCount}
-                                </span>
-                              </div>
-                            </div>
-                          </Card.Body>
-                        </Col>
-                      </Row>
-                    </Card>
-                  ))}
-                </div>
-              )
+            </a>
+          </div>
+        );
+        
+      case 'video':
+        return (
+          <div className={styles.videoPreview} style={dimensionStyle}>
+            {previewData.videoUrl ? (
+              <div className={styles.videoContainer}>
+                <iframe
+                  src={previewData.videoUrl}
+                  title={previewData.content?.title || "Publicité vidéo"}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className={styles.videoIframe}
+                ></iframe>
+              </div>
             ) : (
-              <div className="no-results text-center py-5">
-                <i className="icofont-warning-alt text-warning display-1"></i>
-                <h3 className="mt-3">Aucun article trouvé</h3>
-                <p className="text-muted">
-                  Aucun article ne correspond à vos critères de recherche.
-                </p>
-                <Button
-                  variant="primary"
-                  className="mt-3 rounded-pill"
-                  onClick={() => {
-                    setSearchTerm("");
-                    setSelectedCategory("Tous");
-                  }}
-                >
-                  <i className="icofont-refresh me-1"></i> Réinitialiser
-                  les filtres
-                </Button>
+              <div className={styles.videoPlaceholder}>
+                <i className="icofont-ui-video-play"></i>
+                <p>Aucune URL vidéo spécifiée</p>
+              </div>
+            )}
+            {previewData.content?.title && (
+              <div className={styles.videoCaption}>
+                <h4>{previewData.content.title}</h4>
+                {previewData.content?.description && <p>{previewData.content.description}</p>}
               </div>
             )}
           </div>
-        </Container>
-      </section>
-
-      {/* CSS perso */}
-      <style jsx>{`
-        .blog-page .hover-effect {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .blog-page .hover-effect:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
-        }
-        .blog-page .blog-img {
-          height: 220px;
-          object-fit: cover;
-          transition: all 0.5s ease;
-        }
-        .blog-page .img-link {
-          overflow: hidden;
-          display: block;
-        }
-        .blog-page .hover-effect:hover .blog-img {
-          transform: scale(1.05);
-        }
-        .blog-page .blog-title {
-          color: #333;
-          transition: color 0.3s ease;
-        }
-        .blog-page .blog-title:hover {
-          color: var(--bs-primary);
-        }
-        .blog-page .read-more {
-          font-weight: 500;
-          transition: all 0.3s ease;
-        }
-        .blog-page .read-more:hover {
-          letter-spacing: 0.5px;
-        }
-      `}</style>
+        );
+        
+      case 'carousel':
+        return (
+          <div className={styles.carouselPreview} style={dimensionStyle}>
+            <div className={styles.carouselSlide}>
+              <Image 
+                src={previewData.imageUrl || 'https://via.placeholder.com/800x400?text=Carousel+Slide'} 
+                alt={previewData.content?.title || "Slide de carousel"} 
+                width={previewData.dimensions?.width || 800} 
+                height={previewData.dimensions?.height || 400} 
+                className={styles.carouselImage}
+              />
+              <div className={styles.carouselCaption}>
+                {previewData.content?.title && <h3>{previewData.content.title}</h3>}
+                {previewData.content?.subtitle && <p>{previewData.content.subtitle}</p>}
+                {previewData.content?.buttonText && (
+                  <button className={styles.carouselButton}>
+                    {previewData.content.buttonText}
+                  </button>
+                )}
+              </div>
+              <div className={styles.carouselControls}>
+                <span className={styles.carouselPrev}>‹</span>
+                <span className={styles.carouselNext}>›</span>
+              </div>
+              <div className={styles.carouselIndicators}>
+                <span className={`${styles.indicator} ${styles.active}`}></span>
+                <span className={styles.indicator}></span>
+                <span className={styles.indicator}></span>
+              </div>
+            </div>
+          </div>
+        );
+        
+      default:
+        return (
+          <Alert variant="warning">
+            <i className="icofont-warning-alt me-2"></i>
+            Type de publicité non reconnu ou non supporté pour la prévisualisation.
+          </Alert>
+        );
+    }
+  };
+  
+  return (
+    <div className={styles.previewContainer}>
+      <div className={styles.positionLabel}>
+        <span className="badge bg-secondary">
+          Position: {getPositionLabel(previewData.position)}
+        </span>
+      </div>
+      
+      <div className={styles.previewWrapper}>
+        {renderPreview()}
+      </div>
+      
+      <Card className="mt-3">
+        <Card.Body className="p-2">
+          <small className="text-muted">
+            <i className="icofont-info-circle me-1"></i>
+            Ceci est une prévisualisation simplifiée. L&apos;apparence réelle peut varier selon la mise en page du site.
+          </small>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
 
-export default Blog;
+// Helper pour obtenir le libellé de la position
+const getPositionLabel = (position) => {
+  switch (position) {
+    case 'home': return 'Page d\'accueil';
+    case 'shop': return 'Boutique';
+    case 'product': return 'Page produit';
+    case 'checkout': return 'Paiement';
+    case 'category': return 'Catégories';
+    case 'blog': return 'Blog';
+    case 'global': return 'Global (toutes pages)';
+    default: return position;
+  }
+};
+
+export default AdvertisementPreview;

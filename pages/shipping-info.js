@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
 import PageHeader from "../components/PageHeader";
+import { AdvertisementDisplay } from "../components/Advertisement";
 
 const ShippingInfo = () => {
   // Données sur les méthodes de livraison
@@ -64,9 +65,16 @@ const ShippingInfo = () => {
 
   return (
     <div className="shipping-info-page">
-      <PageHeader title="Informations de Livraison" curPage="Infos de livraison" />
+      <PageHeader title="Informations de Livraison" curPage="Livraison" />
 
       <Container className="py-5">
+        {/* Publicité en haut de page */}
+        <Row className="mb-5">
+          <Col lg={10} className="mx-auto">
+            <AdvertisementDisplay position="shipping_info" type="banner" />
+          </Col>
+        </Row>
+
         <Row className="mb-5">
           <Col lg={8} className="mx-auto text-center">
             <h2 className="fw-bold mb-3">Nos Options de Livraison</h2>
@@ -109,22 +117,22 @@ const ShippingInfo = () => {
               <div className="process-step">
                 <div className="step-number">2</div>
                 <h5>Préparation du colis</h5>
-                <p>Nos équipes préparent soigneusement votre commande et l'emballent pour assurer sa protection pendant le transport.</p>
+                <p>Nos équipes préparent soigneusement votre commande et l&apos;emballent pour assurer sa protection pendant le transport.</p>
               </div>
               <div className="process-step">
                 <div className="step-number">3</div>
                 <h5>Expédition</h5>
-                <p>Votre colis est remis à notre transporteur partenaire qui se charge de l'acheminer jusqu'à vous.</p>
+                <p>Votre colis est remis à notre transporteur partenaire qui se charge de l&apos;acheminer jusqu&apos;à vous.</p>
               </div>
               <div className="process-step">
                 <div className="step-number">4</div>
                 <h5>Suivi de commande</h5>
-                <p>Vous recevez un e-mail avec un numéro de suivi pour suivre l'acheminement de votre colis en temps réel.</p>
+                <p>Vous recevez un e-mail avec un numéro de suivi pour suivre l&apos;acheminement de votre colis en temps réel.</p>
               </div>
               <div className="process-step">
                 <div className="step-number">5</div>
                 <h5>Livraison</h5>
-                <p>Votre commande est livrée à l'adresse indiquée selon la méthode de livraison choisie.</p>
+                <p>Votre commande est livrée à l&apos;adresse indiquée selon la méthode de livraison choisie.</p>
               </div>
             </div>
           </Col>
@@ -145,9 +153,16 @@ const ShippingInfo = () => {
             </Accordion>
           </Col>
         </Row>
+        
+        {/* Publicité en bas de page */}
+        <Row className="mt-5">
+          <Col lg={10} className="mx-auto">
+            <AdvertisementDisplay position="shipping_info" type="featured" />
+          </Col>
+        </Row>
       </Container>
 
-      <style jsx global>{`
+      <style jsx>{`
         .shipping-card {
           transition: transform 0.3s ease;
           border-radius: 10px;

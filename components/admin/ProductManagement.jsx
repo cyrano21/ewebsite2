@@ -1,6 +1,6 @@
 // components/admin/ProductManagement/ProductManagement.jsx
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'; // Importer Button si utilisé pour des actions ici
+import { Container, Row, Col, Card } from 'react-bootstrap'; // Removed unused Button import
 import PageHeader from '../../components/PageHeader'; // Ajuster chemin
 import { useRouter } from 'next/router';
 
@@ -15,7 +15,7 @@ import { useBestSellingProducts } from './ProductManagement/hooks/useBestSelling
 
 // Importer les composants UI découpés (vérifier les chemins)
 import StatsOverview from '../../components/admin/ProductManagement/StatsOverview';
-import CategoryDistribution from '../../components/admin/ProductManagement/CategoryDistribution';
+// Removed unused CategoryDistribution import
 import SalesTrendChart from '../../components/admin/ProductManagement/SalesTrendChart';
 import MostViewedProducts from '../../components/admin/ProductManagement/MostViewedProducts';
 import BestSellingProducts from '../../components/admin/ProductManagement/BestSellingProducts';
@@ -35,7 +35,7 @@ const ProductManagement = () => {
     const editProductId = router.query.edit;
 
     // --- Hooks ---
-    const { products, setProducts, productHistory, setProductHistory, productStats, setProductStats, shopStats, setShopStats, isLoading: isLoadingData, error: dataError, updateSingleProductState, addSingleProductState, removeSingleProductState, updateHistoryAndStats } = useProductData();
+    const { products, productHistory, productStats, shopStats, setShopStats, isLoading: isLoadingData, error: dataError, updateSingleProductState, addSingleProductState, removeSingleProductState, updateHistoryAndStats } = useProductData();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('Tous');
     const [sortOption, setSortOption] = useState('default');
@@ -44,8 +44,8 @@ const ProductManagement = () => {
     const { isOpen: isPreviewModalOpen, openModal: openPreviewModal, closeModal: closePreviewModal, modalData: previewProductData } = useModalState(null);
     const { isOpen: isCategoryModalOpen, openModal: openCategoryModal, closeModal: closeCategoryModal } = useModalState(false);
     const { addProduct, updateProduct, deleteProduct, isMutating, mutationError } = useProductMutations({ addSingleProductState, updateSingleProductState, removeSingleProductState, updateHistoryAndStats });
-    const { products: mostViewed, loading: loadingMostViewed, error: errorMostViewed } = useMostViewedProducts(5);
-    const { products: bestSelling, loading: loadingBestSelling, error: errorBestSelling } = useBestSellingProducts(5);
+    const { products: mostViewed, loading: loadingMostViewed } = useMostViewedProducts(5);
+    const { products: bestSelling, loading: loadingBestSelling } = useBestSellingProducts(5);
 
     // --- Ajustement Max Price Range ---
      useEffect(() => { if(products && products.length > 0) { const max = products.reduce((maxPrice, p) => Math.max(maxPrice, p.price || 0), 0); const initialMax = Math.ceil(max / 100) * 100 || 1000; setPriceRange(prev => ({ ...prev, max: prev.max === 10000 ? initialMax : prev.max })); } }, [products]);
@@ -60,7 +60,15 @@ const ProductManagement = () => {
     const currentItems = useMemo(() => filteredProducts.slice(indexOfFirstItem, indexOfLastItem), [filteredProducts, indexOfFirstItem, indexOfLastItem]);
 
     // --- Catégories Disponibles ---
-    const availableCategories = useMemo(() => { const cats = [...new Set(products.map(p => p.category || 'Non classé'))]; if (!cats.includes('Non classé') && products.some(p => !p.category)) { cats.push('Non classé'); } return ['Tous', ...cats.sort()]; }, [products]);
+    const availableCategories = useMemo(() => { 
+        // Using the JavaScript built-in Set constructor
+        const categorySet = new Set(products.map(p => p.category || 'Non classé')); 
+        const cats = [...categorySet]; 
+        if (!cats.includes('Non classé') && products.some(p => !p.category)) { 
+            cats.push('Non classé'); 
+        } 
+        return ['Tous', ...cats.sort()]; 
+    }, [products]);
 
 
     // --- Handlers ---
@@ -78,9 +86,7 @@ const ProductManagement = () => {
     const handleSearchChange = (e) => { setSearchTerm(e.target.value); /* Reset page est géré par useEffect ou submit */ };
     const handleCategoryChange = (e) => { setSelectedCategory(e.target.value); setCurrentPage(1); }; // Reset page ici
     const handleSortChange = (e) => { setSortOption(e.target.value); /* La page sera reset par effet sur filteredProducts */ };
-    const handlePriceRangeChange = (newRange) => { setPriceRange(newRange); /* La page sera reset par effet */ };
-    const applyPriceFilter = () => { setCurrentPage(1); /* Si bouton séparé */ };
-    const resetPriceFilter = () => { /* ... logique ... */ setCurrentPage(1); };
+    // Removed unused handlers for price filters as they're commented out in the FiltersBar props
 
     // --- AJOUT DE handleSearchSubmit ---
     const handleSearchSubmit = (event) => {

@@ -4,6 +4,7 @@ import ShopCategory from "./ShopCategory";
 import PopularPost from "./PopularPost";
 import PropTypes from "prop-types";
 import { Accordion, Button, Form, InputGroup } from "react-bootstrap";
+import { AdvertisementDisplay } from "../../components/Advertisement";
 
 // Reusable checkbox item
 const CheckboxItem = ({ name, value, label, checked, onChange }) => (
@@ -84,8 +85,13 @@ const FilterSidebar = ({
   resetAllFilters,
   products,
 }) => (
-  <aside className="shop-sidebar">
-    <FilterSection title="Catégories" defaultOpen>
+  <aside className="filter-sidebar" aria-label="Filtres produits">
+    {/* Publicité dans la barre latérale */}
+    <div className="mb-4">
+      <AdvertisementDisplay position="shop_sidebar" type="sidebar" />
+    </div>
+    
+    <FilterSection title="Catégories" defaultOpen={true}>
       <ShopCategory
         menuItems={menuItems}
         selectedCategory={selectedCategory}

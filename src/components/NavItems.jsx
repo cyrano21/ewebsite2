@@ -4,6 +4,7 @@
 // 2️⃣ Vos imports
 import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import logo from "../assets/images/logo/ChatGPT-lum.png";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { NavDropdown } from "react-bootstrap";
@@ -44,10 +45,13 @@ export default function NavItems() {
           >
             {user ? (
               <>
-                <img
+                <Image
                   src={user.photoURL || clientAvatar}
                   className="nav-profile"
-                  style={{ height: "32px", width: "32px", borderRadius: "50%" }}
+                  alt="Photo de profil"
+                  width={32}
+                  height={32}
+                  style={{ borderRadius: "50%" }}
                 />
                 <button
                   onClick={handleLogout}
@@ -104,9 +108,11 @@ export default function NavItems() {
             }}
           >
             <Link href="/">
-              <img
+              <Image
                 src={logo}
-                alt="logo"
+                alt="Logo"
+                width={120}
+                height={40}
                 style={{
                   maxHeight: "40px",
                   width: "auto",
@@ -114,6 +120,7 @@ export default function NavItems() {
                   margin: 0,
                   display: "block",
                 }}
+                priority
               />
             </Link>
           </div>
@@ -141,9 +148,13 @@ export default function NavItems() {
             {/* si user connecté */}
             {user ? (
               <>
-                <img
+                <Image
                   src={user.photoURL || clientAvatar}
                   className="nav-profile"
+                  alt="Photo de profil"
+                  width={32}
+                  height={32}
+                  style={{ borderRadius: "50%" }}
                 />
                 <NavDropdown id="user-menu">
                   <NavDropdown.Item onClick={handleLogout}>

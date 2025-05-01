@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import PageHeader from "../components/PageHeader";
 import Rating from "../components/Sidebar/Rating";
 import Link from "next/link";
+import { AdvertisementDisplay } from "../components/Advertisement";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -126,6 +127,11 @@ const Products = () => {
           </Col>
 
           <Col lg={9}>
+            {/* Publicité en haut de la liste des produits */}
+            <div className="mb-4">
+              <AdvertisementDisplay position="products" type="banner" />
+            </div>
+            
             {isLoading ? (
               <div className="text-center py-5">
                 <div className="spinner-border text-primary" role="status">
@@ -192,6 +198,11 @@ const Products = () => {
                 </p>
               </div>
             )}
+            
+            {/* Publicité après la liste des produits */}
+            <div className="mt-4">
+              <AdvertisementDisplay position="products" type="featured" />
+            </div>
           </Col>
         </Row>
       </Container>

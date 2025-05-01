@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const SponsorBannerSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -9,4 +9,7 @@ const SponsorBannerSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.models.SponsorBanner || mongoose.model('SponsorBanner', SponsorBannerSchema);
+// Vérifier si le modèle existe déjà pour éviter l'erreur "Cannot overwrite model once compiled"
+const SponsorBanner = mongoose.models.SponsorBanner || mongoose.model('SponsorBanner', SponsorBannerSchema);
+
+export default SponsorBanner;

@@ -1,38 +1,45 @@
 import React from 'react'
 import Banner from './Banner';
-console.log("🧪 Banner:", Banner);
 
 import HomeCategory from './HomeCategory';
-console.log("🧪 HomeCategory:", HomeCategory);
 
 import Register from './Register';
-console.log("🧪 Register:", Register);
 
 import LocationSprade from './LocationSprade';
-console.log("🧪 LocationSprade:", LocationSprade);
 
 import AboutUs from './AboutUs';
-console.log("🧪 AboutUs:", AboutUs);
 
 import AppSection from './AppSection';
-console.log("🧪 AppSection:", AppSection);
 
 import Sponsor from './Sponsor';
-console.log("🧪 Sponsor:", Sponsor);
 
 import CategoryShowCase from './CategoryShowCase';
-console.log("🧪 CategoryShowCase:", CategoryShowCase);
 
+// Import du composant d'affichage des publicités
+import { AdvertisementDisplay } from '../Advertisement';
 
-const Home = () => {
+const Home = ({ featuredProducts }) => {
   return (
     <div>
+        {/* Bannière principale */}
         <Banner/>
+        
+        {/* Publicité en haut de page (après la bannière) */}
+        <AdvertisementDisplay position="home" type="banner" />
+        
         <HomeCategory/>
-        <CategoryShowCase/>
+        <CategoryShowCase featuredProducts={featuredProducts} />
+        
+        {/* Publicité au milieu de la page */}
+        <AdvertisementDisplay position="home" type="featured" />
+        
         <Register/>
         <LocationSprade/>
         <AboutUs/>
+        
+        {/* Publicité avant la section app */}
+        <AdvertisementDisplay position="home" type="banner" />
+        
         <AppSection/>
         <Sponsor/>
     </div>

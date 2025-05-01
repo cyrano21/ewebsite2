@@ -1,8 +1,7 @@
 import React from "react";
-import Layout from "../components/Layout";
 import Home from "../components/Home/Home";
 import { getProducts } from "../utils/api";
-import NavItems from "../components/NavItems";
+
 
 // Cette fonction s'exécute côté serveur à la compilation
 export async function getStaticProps() {

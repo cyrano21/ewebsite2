@@ -7,8 +7,6 @@ import styles from './AdminNavbar.module.css';
 
 const AdminNavbar = () => {
   const router = useRouter();
-  const location = router;
-  const navigate = (url) => router.push(url);
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -95,23 +93,41 @@ const AdminNavbar = () => {
         <Navbar.Collapse id="admin-navbar-nav">
           {/* Liens de navigation principaux */}
           <Nav className="me-auto">
-            <Nav.Link as={Link} href="/admin" className={`${styles['nav-link-animated']} ${isActive('/dashboard') ? styles.active : ''}`}>
-              <i className="icofont-dashboard me-1"></i> Tableau de bord
-            </Nav.Link>
             <Nav.Link as={Link} href="/admin/products" className={`${styles['nav-link-animated']} ${isActive('/product') ? styles.active : ''}`}>
               <i className="icofont-box me-1"></i> Produits
             </Nav.Link>
+            <Nav.Link as={Link} href="/admin/categories" className={`${styles['nav-link-animated']} ${isActive('/categor') ? styles.active : ''}`}>
+              <i className="icofont-listine-dots me-1"></i> Catégories
+            </Nav.Link>
             <Nav.Link as={Link} href="/admin/orders" className={`${styles['nav-link-animated']} ${isActive('/order') ? styles.active : ''}`}>
-              <i className="icofont-shopping-cart me-1"></i> Commandes
+              <i className="icofont-cart me-1"></i> Commandes
+            </Nav.Link>
+            <Nav.Link as={Link} href="/admin/shipping" className={`${styles['nav-link-animated']} ${isActive('/shipping') ? styles.active : ''}`}>
+              <i className="icofont-truck me-1"></i> Livraisons
+            </Nav.Link>
+            <Nav.Link as={Link} href="/admin/sellers" className={`${styles['nav-link-animated']} ${isActive('/seller') ? styles.active : ''}`}>
+              <i className="icofont-business-man me-1"></i> Vendeurs
+            </Nav.Link>
+            <Nav.Link as={Link} href="/admin/shops" className={`${styles['nav-link-animated']} ${isActive('/shop') ? styles.active : ''}`}>
+              <i className="icofont-shop me-1"></i> Boutiques
+            </Nav.Link>
+            <Nav.Link as={Link} href="/admin/advertisements" className={`${styles['nav-link-animated']} ${isActive('/advertisement') ? styles.active : ''}`}>
+              <i className="icofont-megaphone me-1"></i> Publicités
+            </Nav.Link>
+            <Nav.Link as={Link} href="/admin/promotions" className={`${styles['nav-link-animated']} ${isActive('/promotion') ? styles.active : ''}`}>
+              <i className="icofont-sale-discount me-1"></i> Promotions
             </Nav.Link>
             <Nav.Link as={Link} href="/admin/customers" className={`${styles['nav-link-animated']} ${isActive('/customer') ? styles.active : ''}`}>
-              <i className="icofont-users-alt-5 me-1"></i> Clients
+              <i className="icofont-users-alt-3 me-1"></i> Clients
             </Nav.Link>
             <Nav.Link as={Link} href="/admin/blog" className={`${styles['nav-link-animated']} ${isActive('/blog') ? styles.active : ''}`}>
-              <i className="icofont-blog me-1"></i> Blog
+              <i className="icofont-blogger me-1"></i> Blog
             </Nav.Link>
-            <Nav.Link as={Link} href="/" className={`${styles['nav-link-animated']} ${isActive('/') ? styles.active : ''}`}>
-              <i className="icofont-home me-1"></i> Accueil
+            <Nav.Link as={Link} href="/admin/reports" className={`${styles['nav-link-animated']} ${isActive('/report') ? styles.active : ''}`}>
+              <i className="icofont-chart-line me-1"></i> Rapports
+            </Nav.Link>
+            <Nav.Link as={Link} href="/admin/settings" className={`${styles['nav-link-animated']} ${isActive('/setting') ? styles.active : ''}`}>
+              <i className="icofont-gear me-1"></i> Paramètres
             </Nav.Link>
           </Nav>
           

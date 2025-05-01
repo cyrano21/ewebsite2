@@ -10,6 +10,8 @@ import {
 import Offcanvas from "../components/wrappers/Offcanvas";
 import { useRouter } from "next/router";
 import Link from "next/link";
+// Import du composant publicitaire
+import { AdvertisementDisplay } from "../components/Advertisement";
 // import styles from "./shop.module.css"; // Utilisation classes globales
 
 // Composants
@@ -1724,6 +1726,11 @@ const Shop = () => {
 
                 {/* Filtres actifs */}
                 <ActiveFilters />
+                
+                {/* Publicité en haut de la liste des produits */}
+                <div className="mb-4">
+                  <AdvertisementDisplay position="shop" type="banner" />
+                </div>
 
                 {/* Affichage Produits */}
                 <div>
@@ -1773,6 +1780,11 @@ const Shop = () => {
                       activePage={currentPage}
                     />
                   )}
+                  
+                {/* Publicité après la liste des produits */}
+                <div className="my-4">
+                  <AdvertisementDisplay position="shop" type="featured" />
+                </div>
               </article>
             </div>
             {/* --- Barre Latérale --- */}
