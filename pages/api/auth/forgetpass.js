@@ -1,7 +1,7 @@
-import connectDB from 'src/config/db';
-import User from 'src/models/User';
+import connectDB from 'config/db';
+import User from 'models/User';
 import crypto from 'crypto';
-import { sendPasswordResetEmail } from 'src/utils/mailer';
+import { sendPasswordResetEmail } from 'utils/mailer';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

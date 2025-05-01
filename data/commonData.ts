@@ -1,4 +1,8 @@
-import { PageBreadcrumbItem } from 'components/common/PageBreadcrumb';
+export type PageBreadcrumbItem = {
+  label: string;
+  path: string;
+  active?: boolean;
+};
 
 export const months = [
   'January',
@@ -43,14 +47,15 @@ export const days = [
 export const defaultBreadcrumbItems: PageBreadcrumbItem[] = [
   {
     label: 'Page 1',
-    url: '#!'
+    path: '#!'
   },
   {
     label: 'Page 2',
-    url: '#!'
+    path: '#!'
   },
   {
     label: 'Default',
+    path: '#!',
     active: true
   }
 ];
@@ -58,18 +63,19 @@ export const defaultBreadcrumbItems: PageBreadcrumbItem[] = [
 export const ecomBreadcrumbItems: PageBreadcrumbItem[] = [
   {
     label: 'Fashion',
-    url: '#!'
+    path: '#!'
   },
   {
     label: 'Womens Fashion',
-    url: '#!'
+    path: '#!'
   },
   {
     label: 'Footwear',
-    url: '#!'
+    path: '#!'
   },
   {
     label: 'Hills',
+    path: '#!',
     active: true
   }
 ];

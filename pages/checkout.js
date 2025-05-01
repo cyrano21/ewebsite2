@@ -12,13 +12,11 @@ import {
   Form,
   Button,
   Badge,
-  Accordion,
   ListGroup,
-  InputGroup,
 } from "react-bootstrap";
 import { useNotifications } from "../contexts/NotificationContext";
 import { AuthContext } from "../contexts/AuthProvider";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function Checkout() {
   const router = useRouter();
@@ -587,13 +585,13 @@ export default function Checkout() {
                         style={{ width: "60px", height: "60px" }}
                       >
                         {item.img ? (
-                          <img
+                          <Image
                             src={item.img}
                             alt={item.name}
-                            className="img-fluid rounded"
+                            width={60}
+                            height={60}
+                            className="rounded"
                             style={{
-                              width: "100%",
-                              height: "100%",
                               objectFit: "cover",
                             }}
                           />
@@ -660,7 +658,7 @@ export default function Checkout() {
         </Col>
       </Row>
 
-      <style jsx global>{`
+      <style jsx>{`
         .checkout-steps {
           max-width: 600px;
           margin: 0 auto 2rem;

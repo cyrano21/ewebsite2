@@ -11,6 +11,7 @@ import {
   Form,
   InputGroup,
 } from "react-bootstrap";
+import Image from 'next/image';
 import blogList from "../../utils/blogdata";
 
 const Blog = () => {
@@ -27,6 +28,7 @@ const Blog = () => {
 
   useEffect(() => {
     const unique = [
+      // eslint-disable-next-line no-undef
       ...new Set(blogList.flatMap((b) => (b.category ? [b.category] : []))),
     ];
     setCategories(["Tous", ...unique.sort()]);
@@ -61,13 +63,6 @@ const Blog = () => {
     };
     return colors[cat] || "dark";
   };
-
-  const formatDate = (ds) =>
-    new Date(ds || Date.now()).toLocaleDateString("fr-FR", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
 
   return (
     <div className="blog-page">
@@ -156,13 +151,12 @@ const Blog = () => {
                           {/* Image cliquable */}
                           <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
                             <a className="img-link d-block overflow-hidden">
-                              <Card.Img
-                                variant="top"
+                              <Image
                                 src={blog.imgUrl || "/default-blog.jpg"}
                                 alt={blog.imgAlt}
-                                onError={(e) =>
-                                  (e.currentTarget.src = "/default-blog.jpg")
-                                }
+                                width={500}
+                                height={300}
+                                onError={(e) => (e.currentTarget.src = "/default-blog.jpg")}
                                 className="blog-img"
                               />
                             </a>
@@ -234,14 +228,14 @@ const Blog = () => {
                           {/* Image list view */}
                           <Link href={`/blog/${blog.id}`} legacyBehavior passHref>
                             <a className="h-100 d-block overflow-hidden">
-                              <img
+                              <Image
                                 src={blog.imgUrl || "/default-blog.jpg"}
                                 alt={blog.imgAlt}
+                                width={500}
+                                height={300}
+                                onError={(e) => (e.currentTarget.src = "/default-blog.jpg")}
                                 className="img-fluid rounded-start h-100 w-100 blog-img"
                                 style={{ objectFit: "cover" }}
-                                onError={(e) =>
-                                  (e.currentTarget.src = "/default-blog.jpg")
-                                }
                               />
                             </a>
                           </Link>

@@ -43,6 +43,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    cart: {
+      type: Array,
+      default: [],
+    },
     isActive: {
       type: Boolean,
       default: true,

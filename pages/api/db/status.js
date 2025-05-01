@@ -1,9 +1,9 @@
-import connectDB from '../../../src/config/db';
+import db from 'config/db';
 
 export default async function handler(req, res) {
   try {
     // Tenter de se connecter à MongoDB
-    const conn = await connectDB();
+    const conn = await db();
     
     // Renvoyer le statut de la connexion
     if (conn) {

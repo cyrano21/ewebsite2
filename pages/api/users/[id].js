@@ -1,6 +1,7 @@
-import connectDB from "../../../src/config/db";
-import User from "../../../src/models/User"; // Importation du modèle User depuis le dossier models
-import { deleteImage } from "../../../src/config/cloudinary";
+import connectDB from 'config/db';
+import User from 'models/User'; 
+import { deleteImage } from 'config/cloudinary';
+import bcrypt from 'bcrypt';
 
 export default async function handler(req, res) {
   const { id } = req.query;

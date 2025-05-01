@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Nav, Table, Button, ProgressBar } from 'react-bootstrap';
+import { Container, Row, Col, Card, Table, Button, ProgressBar } from 'react-bootstrap';
 import Link from 'next/link';
 import PageHeader from '../../components/PageHeader';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
@@ -22,6 +22,7 @@ const AdminDashboard = () => {
   });
 
   // État pour les produits les plus populaires
+  // eslint-disable-next-line no-unused-vars
   const [popularProducts, setPopularProducts] = useState([
     { id: 1, name: 'Smartphone XYZ Pro', category: 'Électronique', price: 899.99, sales: 145, stock: 78, rating: 4.8 },
     { id: 2, name: 'Casque sans fil Premium', category: 'Audio', price: 249.99, sales: 98, stock: 32, rating: 4.6 },
@@ -84,6 +85,7 @@ const AdminDashboard = () => {
   };
 
   // État pour les commandes récentes (simulées et du panier)
+  // eslint-disable-next-line no-unused-vars
   const [recentOrders, setRecentOrders] = useState([
     { id: '#ORD-1234', customer: 'Jean Dupont', date: '19/04/2025', amount: '129.99 €', status: 'Livré' },
     { id: '#ORD-1235', customer: 'Marie Dubois', date: '18/04/2025', amount: '89.50 €', status: 'En cours' },
@@ -326,7 +328,7 @@ const AdminDashboard = () => {
                           <Button variant="outline-primary" size="sm" className="me-2" as={Link} href={`/admin/products/edit/${product.id}`}>
                             <i className="icofont-ui-edit"></i>
                           </Button>
-                          <Button variant="outline-info" size="sm" as={Link} href={`/shop-single/${product.id}`}>
+                          <Button variant="outline-info" size="sm" as={Link} href={`/shop/product/${product.id}`}>
                             <i className="icofont-eye-alt"></i>
                           </Button>
                         </td>

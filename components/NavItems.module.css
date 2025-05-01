@@ -17,19 +17,35 @@
     position: absolute;
     top: -0.4em;
     right: -0.4em;
-    font-size: 0.6rem;
-    padding: 0.25em 0.4em;
+    font-size: 0.65rem;
+    padding: 0.2em 0.4em;
     background-color: #dc3545;
     color: white;
+    border-radius: 50%;
+    min-width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .badgeWishlist {
     position: absolute;
     top: -0.4em;
     right: -0.4em;
-    font-size: 0.6rem;
-    padding: 0.25em 0.4em;
-    background-color: #dc3545;
+    font-size: 0.65rem;
+    padding: 0.2em 0.4em;
+    background-color: #ff9800;
     color: white;
+    border-radius: 50%;
+    min-width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   

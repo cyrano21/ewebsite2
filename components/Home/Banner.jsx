@@ -81,7 +81,7 @@ const Banner = () => {
           <ul className="lab-ul">
           {searchInput && filteredProducts.map((product) => (
               <li key={product.id}>
-               <Link href={`/shop/${product.id}`}>
+               <Link href={`/shop/product/${product.id}`}>
                  <span>{product.name}</span>
                </Link>
               </li>

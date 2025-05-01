@@ -1,7 +1,7 @@
 import AuthProvider from '../contexts/AuthProvider';
 import Layout from "../components/Layout";
-import "../src/App.css";
-import "../src/index.css";
+// import "../styles/App.css";
+// import "../styles/index.css";
 import "../styles/admin-table.css";
 import '../styles/banner.css';
 import "../components/modal.css"; // Import du CSS de la modal utilisé dans CheckoutPage
@@ -12,17 +12,11 @@ console.log("_app.js: Début du chargement");
 
 // bootstrap css
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../src/assets/css/bootstrap-fixes.css";
-
-// fonts and icons
-import "../src/assets/css/icofont.min.css";
-import "../src/assets/css/animate.css";
-import "../src/assets/css/style.min.css";
-// import '../components/shop/shop-list-fix.css';
-import "../src/assets/css/admin.css";
-
-// Font Awesome
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import "../styles/globals.css";
+import "../styles/admin-table.css";
+import '../styles/banner.css';
+import "../components/modal.css";
+import "../styles/nav-custom.css";
 
 import { useEffect } from "react";
 import { NotificationProvider } from "../contexts/NotificationContext";
@@ -51,6 +45,7 @@ function MyApp({ Component, pageProps }) {
               name="viewport"
               content="width=device-width, initial-scale=1.0"
             />
+            {/* CSS files are now imported at the top of the file */}
           </Head>
           {console.log("_app.js: Avant rendu du Component")}
           {(() => {

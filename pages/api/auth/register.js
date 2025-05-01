@@ -1,4 +1,4 @@
-import connectDB from '../../config/db';
+import db from 'config/db';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -77,7 +77,7 @@ export default async function handler(req, res) {
   
   try {
     // Connexion à MongoDB
-    const conn = await connectDB();
+    const conn = await db();
     
     if (!conn) {
       return res.status(500).json({ error: 'Erreur de connexion à la base de données' });

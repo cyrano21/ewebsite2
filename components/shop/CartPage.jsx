@@ -12,7 +12,6 @@ import {
   Card,
   Table,
   Button,
-  Form,
   Alert,
   Spinner,
 } from "react-bootstrap";
@@ -38,7 +37,7 @@ const CartPage = () => {
 
   // Pour simuler un rôle administrateur
   const isAdmin =
-    user && (user.email === "admin@example.com" || user.uid === "ADMIN_ID");
+    user && (user.email === "admin@example.com" || user._id === "ADMIN_ID");
 
   // Calcul du sous-total avec mémoïsation
   const cartSubtotal = useMemo(() => {
@@ -64,7 +63,7 @@ const CartPage = () => {
         if (user) {
           // Si l'utilisateur est connecté, essayer de récupérer son panier depuis l'API
           try {
-            const response = await axios.get(`/api/users/${user.uid}/cart`);
+            const response = await axios.get(`/api/users/${user._id}/cart`);
             if (
               response.data &&
               response.data.items &&
@@ -141,7 +140,7 @@ const CartPage = () => {
     // Update server if user is logged in
     if (user) {
       try {
-        await axios.put(`/api/users/${user.uid}/cart`, {
+        await axios.put(`/api/users/${user._id}/cart`, {
           items: updatedCartItems,
         });
       } catch (error) {
@@ -174,7 +173,7 @@ const CartPage = () => {
       // Update server if user is logged in
       if (user) {
         try {
-          await axios.put(`/api/users/${user.uid}/cart`, {
+          await axios.put(`/api/users/${user._id}/cart`, {
             items: updatedCartItems,
           });
         } catch (error) {
@@ -206,7 +205,7 @@ const CartPage = () => {
     // Update server if user is logged in
     if (user) {
       try {
-        await axios.put(`/api/users/${user.uid}/cart`, {
+        await axios.put(`/api/users/${user._id}/cart`, {
           items: updatedCart,
         });
       } catch (error) {
@@ -313,7 +312,7 @@ const CartPage = () => {
 
       // Créer une commande via l'API
       const response = await axios.post("/api/orders", {
-        user: user ? user.uid : null,
+        user: user ? user._id : null,
         items: cartItems,
         total: cartSubtotal,
         status: "pending",
@@ -653,7 +652,7 @@ const CartPage = () => {
           )}
         </Row>
       </Container>
-      <style global>{`
+      <style jsx="true">{`
         .cursor-pointer {
           cursor: pointer;
         }

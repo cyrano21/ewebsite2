@@ -1,19 +1,21 @@
-import dell from 'assets/img/brands/dell.png';
-import honda from 'assets/img/brands/honda.png';
-import xiaomi from 'assets/img/brands/xiaomi.png';
-import intel from 'assets/img/brands/intel.png';
-import asus from 'assets/img/brands/asus-rog.png';
-import yamaha from 'assets/img/brands/yamaha.png';
-import ibm from 'assets/img/brands/ibm.png';
-import apple from 'assets/img/brands/apple-2.png';
-import oppo from 'assets/img/brands/oppo.png';
-import redragon from 'assets/img/brands/redragon.png';
-import xbox from 'assets/img/brands/xbox.png';
-import lenovo from 'assets/img/brands/lenovo.png';
-import oneplus from 'assets/img/brands/oneplus-2.png';
-import suzuki from 'assets/img/brands/suzuki-2.png';
-import googleStore from 'assets/img/brands/google-store.png';
-import hp from 'assets/img/brands/hp.png';
+// Définition des chemins d'images avec des chemins absolus pour Next.js
+// Ces images doivent être disponibles dans le dossier public
+const dell = '/assets/img/brands/dell.png';
+const honda = '/assets/img/brands/honda.png';
+const xiaomi = '/assets/img/brands/xiaomi.png';
+const intel = '/assets/img/brands/intel.png';
+const asus = '/assets/img/brands/asus-rog.png';
+const yamaha = '/assets/img/brands/yamaha.png';
+const ibm = '/assets/img/brands/ibm.png';
+const apple = '/assets/img/brands/apple-2.png';
+const oppo = '/assets/img/brands/oppo.png';
+const redragon = '/assets/img/brands/redragon.png';
+const xbox = '/assets/img/brands/xbox.png';
+const lenovo = '/assets/img/brands/lenovo.png';
+const oneplus = '/assets/img/brands/oneplus-2.png';
+const suzuki = '/assets/img/brands/suzuki-2.png';
+const googleStore = '/assets/img/brands/google-store.png';
+const hp = '/assets/img/brands/hp.png';
 
 export type StoreItem = {
   name: string;

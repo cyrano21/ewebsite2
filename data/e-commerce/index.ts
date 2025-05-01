@@ -1,37 +1,39 @@
-import blueFront from 'assets/img/products/details/blue_front.png';
-import blueBack from 'assets/img/products/details/blue_back.png';
-import blueSide from 'assets/img/products/details/blue_side.png';
+// Définition des chemins d'images (à déplacer dans public/assets/img/...).
+// Pour une migration complète, ces images devraient être déplacées dans le dossier public
+const blueFront = '/assets/img/products/details/blue_front.png';
+const blueBack = '/assets/img/products/details/blue_back.png';
+const blueSide = '/assets/img/products/details/blue_side.png';
 
-import redFront from 'assets/img/products/details/red_front.png';
-import redBack from 'assets/img/products/details/red_back.png';
-import redSide from 'assets/img/products/details/red_side.png';
+const redFront = '/assets/img/products/details/red_front.png';
+const redBack = '/assets/img/products/details/red_back.png';
+const redSide = '/assets/img/products/details/red_side.png';
 
-import greenFront from 'assets/img/products/details/green_front.png';
-import greenBack from 'assets/img/products/details/green_back.png';
-import greenSide from 'assets/img/products/details/green_side.png';
+const greenFront = '/assets/img/products/details/green_front.png';
+const greenBack = '/assets/img/products/details/green_back.png';
+const greenSide = '/assets/img/products/details/green_side.png';
 
-import purpleFront from 'assets/img/products/details/purple_front.png';
-import purpleBack from 'assets/img/products/details/purple_back.png';
-import purpleSide from 'assets/img/products/details/purple_side.png';
+const purpleFront = '/assets/img/products/details/purple_front.png';
+const purpleBack = '/assets/img/products/details/purple_back.png';
+const purpleSide = '/assets/img/products/details/purple_side.png';
 
-import silverFront from 'assets/img/products/details/silver_front.png';
-import silverBack from 'assets/img/products/details/silver_back.png';
-import silverSide from 'assets/img/products/details/silver_side.png';
+const silverFront = '/assets/img/products/details/silver_front.png';
+const silverBack = '/assets/img/products/details/silver_back.png';
+const silverSide = '/assets/img/products/details/silver_side.png';
 
-import yellowFront from 'assets/img/products/details/yellow_front.png';
-import yellowBack from 'assets/img/products/details/yellow_back.png';
-import yellowSide from 'assets/img/products/details/yellow_side.png';
+const yellowFront = '/assets/img/products/details/yellow_front.png';
+const yellowBack = '/assets/img/products/details/yellow_back.png';
+const yellowSide = '/assets/img/products/details/yellow_side.png';
 
-import orangeFront from 'assets/img/products/details/orange_front.png';
-import orangeBack from 'assets/img/products/details/orange_back.png';
-import orangeSide from 'assets/img/products/details/orange_side.png';
+const orangeFront = '/assets/img/products/details/orange_front.png';
+const orangeBack = '/assets/img/products/details/orange_back.png';
+const orangeSide = '/assets/img/products/details/orange_side.png';
 
-import review11 from 'assets/img/e-commerce/review-11.jpg';
-import review12 from 'assets/img/e-commerce/review-12.jpg';
-import review13 from 'assets/img/e-commerce/review-13.jpg';
-import review14 from 'assets/img/e-commerce/review-14.jpg';
-import review15 from 'assets/img/e-commerce/review-15.jpg';
-import review16 from 'assets/img/e-commerce/review-16.jpg';
+const review11 = '/assets/img/e-commerce/review-11.jpg';
+const review12 = '/assets/img/e-commerce/review-12.jpg';
+const review13 = '/assets/img/e-commerce/review-13.jpg';
+const review14 = '/assets/img/e-commerce/review-14.jpg';
+const review15 = '/assets/img/e-commerce/review-15.jpg';
+const review16 = '/assets/img/e-commerce/review-16.jpg';
 import { BadgeBg } from 'components/base/Badge';
 
 type Category = {

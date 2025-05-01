@@ -44,7 +44,7 @@ const BestSellingProducts = ({ products, loading, error }) => {
       <ListGroup variant="flush" className={styles.productList}>
         {products.map((product) => (
           <ListGroup.Item key={product.id} className={`${styles.productItem} d-flex align-items-center`}>
-            <Link href={`/shop/${product.id}`} className={styles.productImageLink} legacyBehavior>
+            <Link href={`/shop/product/${product.id}`} className={styles.productImageLink} legacyBehavior>
               <a>
                 <Image
                   src={product.img}
@@ -58,7 +58,7 @@ const BestSellingProducts = ({ products, loading, error }) => {
               </a>
             </Link>
             <div className={`${styles.productInfo} flex-grow-1 text-truncate me-2`}>
-              <Link href={`/shop/${product.id}`} className={`${styles.productName} text-decoration-none text-dark`} title={product.name}>
+              <Link href={`/shop/product/${product.id}`} className={`${styles.productName} text-decoration-none text-dark`} title={product.name}>
                 {product.name}
               </Link>
             </div>

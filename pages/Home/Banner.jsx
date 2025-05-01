@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import SelectCategory from "../Shop/SelectCategory";
+import SelectCategory from "../../components/Shop/SelectCategory";
 import "../../styles/banner.css"; // Import du fichier CSS personnalisé
 
 const title = (

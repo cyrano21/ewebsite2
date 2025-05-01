@@ -1,6 +1,6 @@
-import connectDB from '../../../src/config/db';
+import connectDB from 'config/db';
 import mongoose from 'mongoose';
-import { withAuth } from '../../../src/middleware/authMiddleware';
+import { withAuth } from 'middleware/authMiddleware';
 
 // Définition du schéma Review pour MongoDB
 const ReviewSchema = new mongoose.Schema({
@@ -45,7 +45,7 @@ async function handler(req, res) {
     }
     
     switch (req.method) {
-      case 'GET':
+      case 'GET': {
         // Récupérer tous les avis ou filtrer par produit
         const { productId, approved } = req.query;
         let query = {};
@@ -65,8 +65,9 @@ async function handler(req, res) {
           .sort({ createdAt: -1 });
           
         return res.status(200).json(reviews);
-        
-      case 'POST':
+        break;
+      }
+      case 'POST': {
         // Créer un nouvel avis
         const { product, rating, comment } = req.body;
         
@@ -94,7 +95,8 @@ async function handler(req, res) {
         await updateProductRating(product);
         
         return res.status(201).json(newReview);
-        
+        break;
+      }
       default:
         return res.status(405).json({ error: 'Méthode non autorisée' });
     }
@@ -134,7 +136,7 @@ async function updateProductRating(productId) {
 }
 
 // Appliquer le middleware d'authentification pour les méthodes POST
-export default function(req, res) {
+export default function reviewsHandler(req, res) {
   if (req.method === 'POST') {
     return withAuth(handler)(req, res);
   } else {

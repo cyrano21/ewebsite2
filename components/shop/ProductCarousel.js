@@ -24,7 +24,7 @@ const ProductCarouselCard = ({ product }) => {
     };
 
     return (
-        <Link href={`/shop/${product.id || '#'}`} passHref legacyBehavior>
+        <Link href={`/shop/product/${product.id || '#'}`} passHref legacyBehavior>
              {/* Ajout de classes pour le style et le hover */}
             <Card as="a" className="product-card-similar border h-100 text-decoration-none overflow-hidden">
                     {/* Conteneur pour l'image avec padding et hauteur fixe */}
