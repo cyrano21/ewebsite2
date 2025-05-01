@@ -6,6 +6,7 @@ import "../styles/admin-table.css";
 import '../styles/banner.css';
 import "../components/modal.css"; // Import du CSS de la modal utilisé dans CheckoutPage
 import Head from "next/head";
+import { SessionProvider } from "next-auth/react"; // Importer le SessionProvider pour NextAuth
 import { WishlistProvider } from "../contexts/WishlistContext"; // Import du WishlistProvider
 
 console.log("_app.js: Début du chargement");
@@ -36,9 +37,10 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <AuthProvider>
-      <NotificationProvider>
-        <WishlistProvider>
+    <SessionProvider session={pageProps.session}>
+      <AuthProvider>
+        <NotificationProvider>
+          <WishlistProvider>
           {console.log("_app.js: Rendu du AuthProvider")}
           <Head>
             <meta
@@ -62,9 +64,10 @@ function MyApp({ Component, pageProps }) {
           })()}
 
           {console.log("_app.js: Après rendu du Component")}
-        </WishlistProvider>
-      </NotificationProvider>
-    </AuthProvider>
+          </WishlistProvider>
+        </NotificationProvider>
+      </AuthProvider>
+    </SessionProvider>
   );
 }
 

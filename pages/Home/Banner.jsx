@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import SelectCategory from "../../components/Shop/SelectCategory";
+import SelectCategory from "../../components/shop/SelectCategory.jsx";
 import "../../styles/banner.css"; // Import du fichier CSS personnalisé
 
 const title = (
@@ -12,6 +12,8 @@ const title = (
 );
 const desc = "Nous Avons La Plus Grande Collection de produits";
 
+// Statistiques du site (temporairement commentées car non utilisées)
+/*
 const bannerList = [
   {
     iconName: "icofont-users-alt-4",
@@ -26,6 +28,7 @@ const bannerList = [
     text: "Buy Anything Online",
   },
 ];
+*/
 
 const Banner = () => {
   // product search funtionality

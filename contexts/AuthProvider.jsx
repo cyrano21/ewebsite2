@@ -2,6 +2,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useSession, signOut } from 'next-auth/react'; // Importer les fonctionnalités de NextAuth
 
 // Création du contexte avec des valeurs par défaut
 export const AuthContext = createContext({
@@ -21,6 +22,9 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
+    
+    // Utiliser la session NextAuth
+    const { data: session, status } = useSession();
 
     // Fonction pour créer un nouvel utilsateur
     const createUser = async (name, email, password) => {
@@ -79,11 +83,17 @@ const AuthProvider = ({children}) => {
     }
 
     // Fonction pour se déconnecter
-    const logOut = () => {
+    const logOut = async () => {
         console.log('AuthProvider: logOut appelé');
+        // Nettoyer localStorage
         if (isBrowser) {
             localStorage.removeItem('auth-token');
         }
+        
+        // Déconnexion via NextAuth
+        await signOut({ redirect: false });
+        
+        // Mettre à jour l'état local
         setUser(null);
         router.push('/login');
     }
@@ -96,45 +106,53 @@ const AuthProvider = ({children}) => {
         return null;
     }
 
-    // Vérifier l'authentification au chargement - uniquement côté client
+    // Synchroniser avec NextAuth session
     useEffect(() => {
-        console.log('AuthProvider: useEffect vérification token au démarrage');
-        if (!isBrowser) {
-            setLoading(false);
-            return;
-        }
-
-        const checkAuth = async () => {
-            console.log('AuthProvider: checkAuth appelé');
-            try {
-                const token = localStorage.getItem('auth-token');
-                console.log('AuthProvider: token trouvé dans localStorage', token);
+        console.log('AuthProvider: useEffect vérification session NextAuth', status, session);
+        
+        const syncWithNextAuth = async () => {
+            if (status === 'loading') {
+                // Session en cours de chargement, ne rien faire
+                return;
+            }
+            
+            if (status === 'authenticated' && session?.user) {
+                console.log('AuthProvider: Utilisateur authentifié via NextAuth', session.user);
                 
-                if (token) {
-                    // Configurer les en-têtes pour inclure le token
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                    
-                    // Vérifier la validité du token
+                // Si le user n'est pas déjà défini ou s'il est différent
+                if (!user || user.email !== session.user.email) {
                     try {
+                        // Récupérer les données complètes de l'utilisateur
                         const response = await axios.get('/api/auth/me');
-                        console.log('AuthProvider: user reçu via /api/auth/me', response.data);
-                        setUser(response.data);
-                        console.log('AuthProvider: setUser après /api/auth/me', response.data);
+                        if (response.data && response.data.user) {
+                            setUser(response.data.user);
+                            console.log('AuthProvider: Utilisateur mis à jour via /api/auth/me', response.data.user);
+                        } else {
+                            // Utiliser les données de session si /api/auth/me ne fournit pas d'utilisateur
+                            setUser(session.user);
+                        }
                     } catch (error) {
-                        console.error('Erreur d\'authentification:', error);
-                        localStorage.removeItem('auth-token');
-                        setUser(null);
+                        console.error('Erreur lors de la récupération des données utilisateur:', error);
+                        if (error.response && error.response.status === 401) {
+                            // Si 401 Unauthorized, se déconnecter et réinitialiser l'état
+                            signOut({ redirect: false });
+                            setUser(null);
+                        } else {
+                            // Pour toute autre erreur, utiliser les données de session
+                            setUser(session.user);
+                        }
                     }
                 }
-            } catch (error) {
-                console.error('Erreur lors de la vérification d\'authentification:', error);
-            } finally {
-                setLoading(false);
+            } else if (status === 'unauthenticated') {
+                console.log('AuthProvider: Utilisateur non authentifié via NextAuth');
+                setUser(null);
             }
+            
+            setLoading(false);
         };
         
-        checkAuth();
-    }, []);
+        syncWithNextAuth();
+    }, [status, session]);
 
     // Créer l'objet de contexte avec les valeurs actuelles
     const authInfo = {

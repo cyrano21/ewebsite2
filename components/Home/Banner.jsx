@@ -1,8 +1,9 @@
+// components/Home/Banner.jsx
 "use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import SelectCategory from "../Shop/SelectCategory";
+import SelectCategory from "../shop/SelectCategory.jsx";
 
 const title = (
   <h2>
@@ -78,12 +79,24 @@ const Banner = () => {
             </button>
           </form>
           <p>{desc}</p>
-          <ul className="lab-ul">
-          {searchInput && filteredProducts.map((product) => (
+
+          {/* Affichage de la bannerList */}
+          <ul className="lab-ul banner-list">
+            {bannerList.map((item, index) => (
+              <li key={index} className="banner-item">
+                <i className={item.iconName}></i>
+                <span>{item.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Résultats de recherche */}
+          <ul className="lab-ul search-results">
+            {searchInput && filteredProducts.map((product) => (
               <li key={product.id}>
-               <Link href={`/shop/product/${product.id}`}>
-                 <span>{product.name}</span>
-               </Link>
+                <Link href={`/shop/product/${product.id}`}>
+                  <span>{product.name}</span>
+                </Link>
               </li>
             ))}
           </ul>

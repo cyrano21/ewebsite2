@@ -1,43 +1,21 @@
+"use client"
+
+
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const title = "Connexion";
 const socialTitle = "Connexion avec les réseaux sociaux";
 const btnText = "Valider";
 
-const socialList = [
-  {
-    link: "#",
-    iconName: "icofont-github",
-    className: "github",
-  },
-  {
-    link: "#",
-    iconName: "icofont-facebook",
-    className: "facebook",
-  },
-  {
-    link: "#",
-    iconName: "icofont-twitter",
-    className: "twitter",
-  },
-  {
-    link: "#",
-    iconName: "icofont-linkedin",
-    className: "linkedin",
-  },
-  {
-    link: "#",
-    iconName: "icofont-instagram",
-    className: "instagram",
-  },
-];
+// Les icônes et classes pour les boutons sociaux sont directement configurées dans le JSX
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const { signUpWithGmail, login, setUser } = useContext(AuthContext);
+  const { signUpWithGmail, setUser } = useContext(AuthContext);
 
   // console.log(signUpWithGmail);
   const router = useRouter();
@@ -53,45 +31,49 @@ const Login = () => {
   // login with google
   const handleRegister = () => {
     signUpWithGmail()
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
+        // Redirection après connexion réussie réussie
         router.push(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
 
   // login with email password
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
-    // Appel direct à l'API Next.js
-    fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    })
-      .then(async (res) => {
-        const data = await res.json();
-        if (!res.ok) {
-          setErrorMessage(data.error || "Erreur lors de la connexion");
-          return;
-        }
-        // Connexion réussie : stockage du token, mise à jour du contexte utilisateur et redirection
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('auth-token', data.token);
-        }
-        if (typeof setUser === 'function') {
-          setUser(data.user);
-        }
-        alert("Connexion réussie !");
-        router.push(from, { replace: true });
-      })
-      .catch((error) => {
-        setErrorMessage("Erreur de connexion au serveur");
+    
+    setErrorMessage('');
+    
+    try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password
       });
+      
+      if (result.error) {
+        setErrorMessage(result.error);
+        return;
+      }
+      
+      // Connexion réussie
+      if (typeof setUser === 'function') {
+        // Mettre à jour le contexte utilisateur si nécessaire
+        const userResponse = await fetch('/api/auth/me');
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          setUser(userData.user);
+        }
+      }
+      
+      router.push(from, { replace: true });
+    } catch (error) {
+      console.error('Erreur de connexion:', error);
+      setErrorMessage("Erreur de connexion au serveur");
+    }
   };
 
   return (
@@ -157,24 +139,24 @@ const Login = () => {
                   </button>
                 </li>
                 <li>
-                  <a href="/" className="facebook">
+                  <Link href="/" className="facebook">
                     <i className="icofont-facebook"></i>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="twitter">
+                  <Link href="/" className="twitter">
                     <i className="icofont-twitter"></i>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="linkedin">
+                  <Link href="/" className="linkedin">
                     <i className="icofont-linkedin"></i>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/" className="instagram">
+                  <Link href="/" className="instagram">
                     <i className="icofont-instagram"></i>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

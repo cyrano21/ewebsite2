@@ -1,6 +1,6 @@
-import dbConnect from '../../../lib/dbConnect';
+import dbConnect from '../../../utils/dbConnect';
 import Shop from '../../../models/Shop';
-import Seller from '../../../models/Seller';
+// Import de Seller retiré car non utilisé
 import { getSession } from 'next-auth/react';
 
 export default async function handler(req, res) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
-import { Container, Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
+// Imports inutilisés supprimés (Link, Container, Navbar, Nav, NavDropdown, Button)
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import NavItems from './NavItems';

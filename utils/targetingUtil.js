@@ -234,7 +234,7 @@ export const useRelevantAds = (position, type, limit = 1, rotationGroup = 'defau
   const userInterestsRef = useRef(getRecentInterests());
   
   // Utilise un effet pour empêcher les appels trop fréquents
-  const debounceTimeout = useRef(null);
+  // const debounceTimeout = useRef(null); // Commenté car non utilisé
   const fetchController = useRef(null);
   
   // Ref pour stocker la clé de cache actuelle
@@ -387,7 +387,7 @@ export const useRelevantAds = (position, type, limit = 1, rotationGroup = 'defau
         fetchController.current.abort();
       }
     };
-  }, [position, type, limit, rotationGroup]); // Dépendances réduites pour éviter les boucles
+  }, [position, type, limit, rotationGroup, lastFetchTime, pageContext, retryCount]); // Ajout des dépendances manquantes
   
   // Gérer la rotation automatique des publicités
   useEffect(() => {
