@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "components/*": ["components/*"],
-      "src/*": ["src/*"]
+      "src/*": ["src/*"],
+      "config/*": ["config/*"]
     },
     "resolveJsonModule": true,
     "isolatedModules": true,

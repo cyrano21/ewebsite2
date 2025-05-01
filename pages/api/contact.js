@@ -1,4 +1,4 @@
-import connectDB from '../config/db';
+import connectDB from 'src/config/db';
 import Settings from '../models/Settings';
 import nodemailer from 'nodemailer';
 
