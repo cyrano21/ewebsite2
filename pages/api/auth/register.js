@@ -1,4 +1,4 @@
-import connectDB from 'src/config/db';
+import connectDB from '../../config/db';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
