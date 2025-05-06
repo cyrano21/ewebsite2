@@ -1,12 +1,25 @@
-import ProductDescription from 'components/modules/e-commerce/ProductDescription';
-import ProductDetailsTab from 'components/common/ProductDetailsTab';
-import { topElectronicProducts } from 'data/e-commerce/products';
-import SimilarProducts from 'components/sliders/SimilarProducts';
 import Section from 'components/base/Section';
 import PageBreadcrumb from 'components/common/PageBreadcrumb';
 import { ecomBreadcrumbItems } from 'data/commonData';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
+// Import dynamique des composants avec SSR désactivé
+const ProductDescription = dynamic(
+  () => import('components/modules/e-commerce/ProductDescription'),
+  { ssr: false }
+);
+
+const ProductDetailsTab = dynamic(
+  () => import('components/common/ProductDetailsTab'),
+  { ssr: false }
+);
+
+const SimilarProducts = dynamic(
+  () => import('components/sliders/SimilarProducts'),
+  { ssr: false }
+);
 
 // Données de produit par défaut
 const defaultProduct = {
@@ -25,11 +38,19 @@ const ProductDetails = ({ initialId }) => {
   const { id } = router.query;
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [similarProducts, setSimilarProducts] = useState([]);
+
+  // État pour vérifier si on est côté client
+  const [isClient, setIsClient] = useState(false);
 
   // Utiliser l'ID provenant de getServerSideProps ou de router.query
   const productId = id || initialId || "default";
 
   useEffect(() => {
+    // Marquer qu'on est côté client après le montage du composant
+    setIsClient(true);
+
+    // Chargement des données du produit
     if (productId && productId !== "default") {
       // Dans un cas réel, utilisez l'ID pour faire un appel API
       // Exemple de chargement de données de produit
@@ -51,14 +72,34 @@ const ProductDetails = ({ initialId }) => {
       });
       setLoading(false);
     }
+
+    // Chargement des produits similaires
+    import('data/e-commerce/products').then((module) => {
+      setSimilarProducts(module.topElectronicProducts.slice(0, 6));
+    });
   }, [productId]);
 
   // Déterminer l'objet produit à utiliser
   const displayProduct = product || defaultProduct;
 
-  // Vérifier si nous sommes côté client
-  const isClient = typeof window !== 'undefined';
+  // Afficher un placeholder pendant le chargement côté client
+  if (!isClient) {
+    return (
+      <div className="pt-5 mb-9">
+        <Section small className="py-0">
+          <PageBreadcrumb items={ecomBreadcrumbItems} className="mb-3" />
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Chargement...</span>
+            </div>
+            <p className="mt-3">Chargement des détails du produit...</p>
+          </div>
+        </Section>
+      </div>
+    );
+  }
 
+  // Rendu principal (uniquement côté client)
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">
@@ -72,14 +113,12 @@ const ProductDetails = ({ initialId }) => {
         </div>
       </Section>
 
-      {isClient && (
-        <Section className="py-0">
-          <SimilarProducts 
-            products={topElectronicProducts.slice(0, 6)} 
-            title="Produits similaires"
-          />
-        </Section>
-      )}
+      <Section className="py-0">
+        <SimilarProducts 
+          products={similarProducts} 
+          title="Produits similaires"
+        />
+      </Section>
     </div>
   );
 };

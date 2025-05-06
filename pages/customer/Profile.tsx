@@ -2,14 +2,28 @@ import { faKey, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import Section from 'components/base/Section';
-import EcoimDefaultAddressCard from 'components/cards/EcoimDefaultAddressCard';
-import EcomProfileCard from 'components/cards/EcomProfileCard';
 import PageBreadcrumb from 'components/common/PageBreadcrumb';
-import ProfileDetailsTab from 'components/modules/e-commerce/profile/ProfileDetailsTab';
 import { defaultBreadcrumbItems } from 'data/commonData';
 import { Col, Row } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
+// Import dynamique des composants avec SSR désactivé
+const EcoimDefaultAddressCard = dynamic(
+  () => import('components/cards/EcoimDefaultAddressCard'),
+  { ssr: false }
+);
+
+const EcomProfileCard = dynamic(
+  () => import('components/cards/EcomProfileCard'),
+  { ssr: false }
+);
+
+const ProfileDetailsTab = dynamic(
+  () => import('components/modules/e-commerce/profile/ProfileDetailsTab'),
+  { ssr: false }
+);
 
 // Exemple de données utilisateur par défaut
 const defaultUser = {
@@ -27,29 +41,52 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   
-  // Vérifier si nous sommes côté client
-  const isClient = typeof window !== 'undefined';
+  // État pour vérifier si on est côté client
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (isClient) {
-      // Dans une application réelle, vous récupéreriez les données 
-      // de l'utilisateur connecté depuis votre API ou Firebase
-      
-      // Simuler un chargement des données
-      const timer = setTimeout(() => {
-        setUser(defaultUser);
-        setLoading(false);
-      }, 500);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [isClient]);
+    // Marquer qu'on est côté client après le montage du composant
+    setIsClient(true);
+    
+    // Dans une application réelle, vous récupéreriez les données 
+    // de l'utilisateur connecté depuis votre API ou Firebase
+    
+    // Simuler un chargement des données
+    const timer = setTimeout(() => {
+      setUser(defaultUser);
+      setLoading(false);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleLogout = () => {
     // Logique de déconnexion
     alert('Déconnexion');
     router.push('/login');
   };
+
+  // Afficher un placeholder pendant le chargement côté client
+  if (!isClient) {
+    return (
+      <div className="pt-5 mb-9">
+        <Section small className="py-0">
+          <PageBreadcrumb items={defaultBreadcrumbItems} />
+          <Row className="align-items-center justify-content-between g-3 mb-4">
+            <Col xs="auto">
+              <h2 className="mb-0">Profil</h2>
+            </Col>
+          </Row>
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Chargement...</span>
+            </div>
+            <p className="mt-3">Chargement de votre profil...</p>
+          </div>
+        </Section>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-5 mb-9">

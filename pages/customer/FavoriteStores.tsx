@@ -1,26 +1,58 @@
 import Section from 'components/base/Section';
 import PageBreadcrumb from 'components/common/PageBreadcrumb';
-import StoreItem from 'components/common/StoreItem';
 import { defaultBreadcrumbItems } from 'data/commonData';
-import { stores } from 'data/e-commerce/stores';
 import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import dynamic from 'next/dynamic';
+
+// Import dynamique du composant avec SSR désactivé
+const StoreItem = dynamic(
+  () => import('components/common/StoreItem'),
+  { ssr: false }
+);
 
 const FavoriteStores = () => {
-  // Vérifier l'environnement client/serveur
-  const isClient = typeof window !== 'undefined';
+  // État pour vérifier si on est côté client
+  const [isClient, setIsClient] = useState(false);
   // État pour gérer les magasins favoris
   const [favoriteStores, setFavoriteStores] = useState([]);
   
   useEffect(() => {
-    // Ne s'exécute que côté client
-    if (isClient) {
+    // Marquer qu'on est côté client après le montage du composant
+    setIsClient(true);
+    
+    // Chargement des données côté client seulement
+    import('data/e-commerce/stores').then((module) => {
       // Dans une application réelle, vous récupéreriez les favoris 
       // de l'utilisateur connecté via une API
-      setFavoriteStores(stores);
-    }
-  }, [isClient]);
+      setFavoriteStores(module.stores);
+    });
+  }, []);
 
+  // Afficher un placeholder pendant le chargement côté client
+  if (!isClient) {
+    return (
+      <div className="pt-5 mb-9">
+        <Section small className="py-0">
+          <PageBreadcrumb items={defaultBreadcrumbItems} />
+          <div className="mb-5">
+            <h2>Mes boutiques favorites</h2>
+            <p className="mb-0 text-body-tertiary fw-semibold">
+              Essentiel pour une vie meilleure
+            </p>
+          </div>
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Chargement...</span>
+            </div>
+            <p className="mt-3">Chargement de vos boutiques favorites...</p>
+          </div>
+        </Section>
+      </div>
+    );
+  }
+
+  // Rendu principal (uniquement côté client)
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">

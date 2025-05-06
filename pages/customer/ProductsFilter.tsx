@@ -1,17 +1,34 @@
-import PhoenixOffcanvas from 'components/base/PhoenixOffcanvas';
 import Section from 'components/base/Section';
 import { useState, useEffect } from 'react';
 import { Button, Col, Pagination, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Scrollbar from 'components/base/Scrollbar';
-import ProductFilterItems from 'components/modules/e-commerce/products-filter/ProductFilterItems';
-import ProductCard from 'components/common/ProductCard';
-import { allProducts } from 'data/e-commerce/products';
 import {
   faChevronLeft,
   faChevronRight,
   faFilter
 } from '@fortawesome/free-solid-svg-icons';
+import dynamic from 'next/dynamic';
+
+// Import dynamique des composants avec SSR désactivé
+const PhoenixOffcanvas = dynamic(
+  () => import('components/base/PhoenixOffcanvas'),
+  { ssr: false }
+);
+
+const Scrollbar = dynamic(
+  () => import('components/base/Scrollbar'),
+  { ssr: false }
+);
+
+const ProductFilterItems = dynamic(
+  () => import('components/modules/e-commerce/products-filter/ProductFilterItems'),
+  { ssr: false }
+);
+
+const ProductCard = dynamic(
+  () => import('components/common/ProductCard'),
+  { ssr: false }
+);
 
 const ProductsFilter = () => {
   const [show, setShow] = useState(false);
@@ -21,13 +38,33 @@ const ProductsFilter = () => {
   useEffect(() => {
     // Indiquer que nous sommes côté client
     setIsClient(true);
+    
     // Charger les produits une fois le composant monté
-    setProducts(allProducts);
+    import('data/e-commerce/products').then((module) => {
+      setProducts(module.allProducts);
+    });
   }, []);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
+  // Afficher un placeholder complet pendant le chargement côté client
+  if (!isClient) {
+    return (
+      <div>
+        <Section className="pt-5 pb-9">
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Chargement...</span>
+            </div>
+            <p className="mt-3">Chargement des produits...</p>
+          </div>
+        </Section>
+      </div>
+    );
+  }
+  
+  // Rendu principal (uniquement côté client)
   return (
     <div>
       <PhoenixOffcanvas
@@ -65,7 +102,7 @@ const ProductsFilter = () => {
             </div>
           </Col>
           <Col lg={9} xxl={10}>
-            {isClient && products.length > 0 ? (
+            {products.length > 0 ? (
               <>
                 <Row className="gx-3 gy-6 mb-8">
                   {products.map(product => (

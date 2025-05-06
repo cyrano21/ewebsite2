@@ -1,11 +1,39 @@
 import Section from '../../components/base/Section';
-import EcomCartSummaryCard from '../../components/cards/EcomCartSummaryCard';
-import PageBreadcrumb from '../../components/common/PageBreadcrumb';
-import EcomCartTable from '../../components/tables/EcomCartTable';
 import { defaultBreadcrumbItems } from '../../data/commonData';
 import { Col, Row } from 'react-bootstrap';
 import { GetServerSideProps } from 'next';
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+// Définition des interfaces pour les composants importés
+interface PageBreadcrumbProps {
+  items: Array<{ text: string; active?: boolean; link?: string }>;
+  className?: string;
+}
+
+interface EcomCartTableProps {
+  products: CartItem[];
+}
+
+interface EcomCartSummaryCardProps {
+  // Ajoutez ici les props nécessaires si le composant en attend
+}
+
+// Import dynamique des composants avec SSR désactivé et typage correct
+const PageBreadcrumb = dynamic<PageBreadcrumbProps>(
+  () => import('../../components/common/PageBreadcrumb').then(mod => mod.default || mod),
+  { ssr: false }
+);
+
+const EcomCartSummaryCard = dynamic<EcomCartSummaryCardProps>(
+  () => import('../../components/cards/EcomCartSummaryCard').then(mod => mod.default || mod),
+  { ssr: false }
+);
+
+const EcomCartTable = dynamic<EcomCartTableProps>(
+  () => import('../../components/tables/EcomCartTable').then(mod => mod.default || mod),
+  { ssr: false }
+);
 
 // Définition du type pour les produits du panier
 type CartItem = {
@@ -26,8 +54,13 @@ interface CartProps {
 const Cart = ({ initialCartItems }: CartProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
   
-  // Exemple de hook pour charger les données du panier depuis l'API
+  // État pour vérifier si on est côté client
+  const [isClient, setIsClient] = useState(false);
+  
   useEffect(() => {
+    // Marquer qu'on est côté client après le montage du composant
+    setIsClient(true);
+    
     // Cette fonction pourrait être utilisée pour rafraîchir les données du panier
     const fetchCartItems = async () => {
       try {
@@ -45,6 +78,25 @@ const Cart = ({ initialCartItems }: CartProps) => {
     // fetchCartItems();
   }, []);
 
+  // Afficher un placeholder pendant le chargement côté client
+  if (!isClient) {
+    return (
+      <div className="pt-5 mb-9">
+        <Section small className="py-0">
+          <PageBreadcrumb items={defaultBreadcrumbItems} />
+          <h2 className="mb-6">Panier</h2>
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Chargement...</span>
+            </div>
+            <p className="mt-3">Chargement de votre panier...</p>
+          </div>
+        </Section>
+      </div>
+    );
+  }
+
+  // Rendu principal (uniquement côté client)
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">

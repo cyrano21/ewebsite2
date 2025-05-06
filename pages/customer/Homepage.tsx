@@ -1,20 +1,92 @@
-import EcomCategoryNavs from 'components/navs/EcomCategoryNavs';
 import { Col, Container, Row } from 'react-bootstrap';
-import EcomWhopingBanner from 'components/banners/EcomWhopingBanner';
-import EcomGiftItemsBanner from 'components/banners/EcomGiftItemsBanner';
-import EcomBestInMarketBanner from 'components/banners/EcomBestInMarketBanner';
-import {
-  bestOfferProducts,
-  topDealsProducts,
-  topElectronicProducts
-} from 'data/e-commerce/products';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import ecom4 from 'assets/img/e-commerce/4.png';
-import EcomTopDeals from 'components/sliders/EcomTopDeals';
-import EcomTopElectronics from 'components/sliders/EcomTopElectronics';
-import EcomBestOffers from 'components/sliders/EcomBestOffers';
-import EcomBecomeMember from 'components/cta/EcomBecomeMember';
+
+// Import dynamique des composants avec SSR désactivé
+const EcomCategoryNavs = dynamic(
+  () => import('components/navs/EcomCategoryNavs'),
+  { ssr: false }
+);
+
+const EcomWhopingBanner = dynamic(
+  () => import('components/banners/EcomWhopingBanner'),
+  { ssr: false }
+);
+
+const EcomGiftItemsBanner = dynamic(
+  () => import('components/banners/EcomGiftItemsBanner'),
+  { ssr: false }
+);
+
+const EcomBestInMarketBanner = dynamic(
+  () => import('components/banners/EcomBestInMarketBanner'),
+  { ssr: false }
+);
+
+const EcomTopDeals = dynamic(
+  () => import('components/sliders/EcomTopDeals'),
+  { ssr: false }
+);
+
+const EcomTopElectronics = dynamic(
+  () => import('components/sliders/EcomTopElectronics'),
+  { ssr: false }
+);
+
+const EcomBestOffers = dynamic(
+  () => import('components/sliders/EcomBestOffers'),
+  { ssr: false }
+);
+
+const EcomBecomeMember = dynamic(
+  () => import('components/cta/EcomBecomeMember'),
+  { ssr: false }
+);
 
 const Homepage = () => {
+  // État pour vérifier si on est côté client
+  const [isClient, setIsClient] = useState(false);
+  const [productsData, setProductsData] = useState({
+    topDealsProducts: [],
+    topElectronicProducts: [],
+    bestOfferProducts: []
+  });
+
+  useEffect(() => {
+    // Marquer qu'on est côté client après le montage du composant
+    setIsClient(true);
+    
+    // Chargement des données côté client seulement
+    import('data/e-commerce/products').then((module) => {
+      setProductsData({
+        topDealsProducts: module.topDealsProducts,
+        topElectronicProducts: module.topElectronicProducts,
+        bestOfferProducts: module.bestOfferProducts
+      });
+    });
+  }, []);
+
+  // Afficher un placeholder pendant le chargement côté client
+  if (!isClient) {
+    return (
+      <div className="ecommerce-homepage pt-5 mb-9">
+        <section className="py-0 px-xl-3">
+          <Container className="px-xl-0 px-xxl-3">
+            <div className="text-center py-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Chargement...</span>
+              </div>
+              <p className="mt-3">Chargement de la page d'accueil...</p>
+            </div>
+          </Container>
+        </section>
+      </div>
+    );
+  }
+
+  // Rendu principal (uniquement côté client)
   return (
     <div className="ecommerce-homepage pt-5 mb-9">
       <section className="py-0">
@@ -39,7 +111,7 @@ const Homepage = () => {
           </Row>
           <Row className="g-4 mb-6">
             <Col xs={12} lg={9} xxl={10}>
-              <EcomTopDeals products={topDealsProducts} />
+              <EcomTopDeals products={productsData.topDealsProducts} />
             </Col>
             <Col lg={3} xxl={2} className="d-none d-lg-block">
               <div className="h-100 position-relative rounded-3 overflow-hidden">
@@ -53,10 +125,10 @@ const Homepage = () => {
             </Col>
           </Row>
           <div className="mb-6">
-            <EcomTopElectronics products={topElectronicProducts} />
+            <EcomTopElectronics products={productsData.topElectronicProducts} />
           </div>
           <div className="mb-6">
-            <EcomBestOffers products={bestOfferProducts} />
+            <EcomBestOffers products={productsData.bestOfferProducts} />
           </div>
           <EcomBecomeMember />
         </Container>
@@ -64,5 +136,12 @@ const Homepage = () => {
     </div>
   );
 };
+
+// Utiliser getServerSideProps pour éviter les erreurs de pré-rendu
+export async function getServerSideProps() {
+  return {
+    props: {}, // Les données seront chargées côté client
+  };
+}
 
 export default Homepage;
