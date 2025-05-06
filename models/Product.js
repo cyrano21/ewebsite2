@@ -1,3 +1,4 @@
+// models/Product.js
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 
@@ -15,61 +16,45 @@ const ReviewSchema = new mongoose.Schema({
   approved: { type: Boolean, default: false }
 }, { timestamps: true });
 
-// Schéma principal Product
 const ProductSchema = new mongoose.Schema({
-  name:             { type: String, required: true, trim: true },
-  slug:             { type: String, index: true },
-  description:      { type: String, required: true },
-  price:            { type: Number, required: true },
-  discountPrice:    { type: Number, default: null },
-  category:         { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
-  brand:            { type: String, trim: true },
-  seller:           { type: String, trim: true },
-  sellerId:         { type: mongoose.Schema.Types.ObjectId, ref: 'Seller' },
-
-  // Champs pour le dropshipping
-  isDropshipping:   { type: Boolean, default: false },
-  supplier:         { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier' },
-  supplierSku:      { type: String },
-  supplierPrice:    { type: Number },
-  dropshipMargin:   { type: Number, default: 30 }, // Marge en pourcentage
-
-  images:           { type: [String], default: [] },    // Galerie d’images
-  imageUrl:         { type: String },                    // Image principale
-  cloudinaryId:     { type: String },                    // Pour suppression
-
-  colors: [                                               // Couleurs disponibles
-    {
-      name: { type: String, required: true },
-      hex:  { type: String, required: true },
-      img:  { type: String }
-    }
-  ],
-  sizes:            { type: [String], default: [] },     // Tailles (S, M, L...)
-  specifications:   { type: [SpecificationSchema], default: [] },
-
-  tags:             { type: [String], default: [] },
-  rating:           { type: Number, default: 0 },
-  ratingsCount:     { type: Number, default: 0 },
-  reviews:          { type: [ReviewSchema], default: [] },
-
-  stock:            { type: Number, default: 0 },
-  quantity:         { type: Number, default: 0 },         // Quantité à ajouter au panier
-  totalSold:        { type: Number, default: 0 },         // Nombre vendu
-  viewCount:        { type: Number, default: 0 },         // Nombre de vues
-
-  isNew:            { type: Boolean, default: false },
-  isFeatured:       { type: Boolean, default: false },
-
+  name:           { type: String, required: true, trim: true },
+  slug:           { type: String, index: true },
+  description:    { type: String, required: true },
+  price:          { type: Number, required: true },
+  discountPrice:  { type: Number, default: null },
+  category:       { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+  brand:          { type: String, trim: true, default: 'Générique' },
+  sku:            { type: String, default: function() { return `SKU-${Date.now()}-${Math.floor(Math.random() * 1000)}`; } },
+  seller:         { type: String, trim: true },
+  sellerId:       { type: mongoose.Schema.Types.ObjectId, ref: 'Seller' },
+  isDropshipping: { type: Boolean, default: false },
+  supplier:       { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier' },
+  supplierSku:    { type: String },
+  supplierPrice:  { type: Number },
+  dropshipMargin: { type: Number, default: 30 },
+  images:         { type: [String], default: [] },
+  imageUrl:       { type: String },
+  cloudinaryId:   { type: String },
+  colors: [ { name: String, hex: String, img: String } ],
+  sizes:          { type: [String], default: [] },
+  specifications: { type: [SpecificationSchema], default: [] },
+  tags:           { type: [String], default: [] },
+  rating:         { type: Number, default: 0 },
+  ratingsCount:   { type: Number, default: 0 },
+  reviews:        { type: [ReviewSchema], default: [] },
+  stock:          { type: Number, default: 0 },
+  quantity:       { type: Number, default: 0 },
+  totalSold:      { type: Number, default: 0 },
+  viewCount:      { type: Number, default: 0 },
+  isNew:          { type: Boolean, default: false },
+  isFeatured:     { type: Boolean, default: false },
   boughtTogether:   [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
   similarProducts:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
-
-  legacyId:         { type: String, index: true }        // Pour import UUID
+  legacyId:       { type: String, index: true }
 }, {
   timestamps: true
 });
 
-// Génération automatique du slug
 ProductSchema.pre('save', function(next) {
   if (!this.slug && this.name) {
     this.slug = slugify(this.name, { lower: true, strict: true });

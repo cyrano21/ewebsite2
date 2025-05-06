@@ -159,3 +159,7 @@ a:hover {
 .bg-primary { background-color: var(--primary-color) !important; }
 .hover-lift { transition: var(--transition); }
 .hover-lift:hover { transform: translateY(-5px); }
+
+.icofont-ui-rating { color: #ddd; } 
+.icofont-ui-rating.rated { color: #ffc107; }
+

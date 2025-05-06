@@ -1,5 +1,5 @@
 import ProductDescription from 'components/modules/e-commerce/ProductDescription';
-import ProductDetailsTab from 'components/modules/e-commerce/ProductDetailsTab';
+import ProductDetailsTab from 'components/common/ProductDetailsTab';
 import { topElectronicProducts } from 'data/e-commerce/products';
 import SimilarProducts from 'components/sliders/SimilarProducts';
 import Section from 'components/base/Section';

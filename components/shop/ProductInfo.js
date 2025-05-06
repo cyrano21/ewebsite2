@@ -16,8 +16,8 @@ const ProductRating = ({ rating, count }) => (
         style={{ fontSize: '1.1em' }}
       />
     ))}
-    {/* Texte ajusté */}
-    <span className="ms-2 text-muted small">{count || 0} People rated and reviewed</span>
+    {/* Texte en français */}
+    <span className="ms-2 text-muted small">({count || 0} avis)</span>
   </div>
 );
 
@@ -177,7 +177,7 @@ const ProductInfo = ({
 
   return (
       <Col md={5} className="product-info-column">
-          <ProductRating rating={product.ratings} count={product.ratingsCount} />
+          <ProductRating rating={product.rating || product.ratings || 0} count={product.ratingsCount || product.numReviews || 0} />
           <h1 className="product-title h4 mb-2">{product.name || 'Product Name Unavailable'}</h1>
           {product.badges?.length > 0 && (
             <div className="badges-section mb-3">

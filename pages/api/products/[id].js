@@ -28,12 +28,12 @@ export default async function handler(req, res) {
   let raw = null;
   // 1) Si c'est un ObjectId valide
   if (mongoose.isValidObjectId(id)) {
-    raw = await Product.findById(id).lean();
+    raw = await Product.findById(id).populate('category').lean();
   }
   // 2) Sinon, recherche par legacyId ou slug
   if (!raw) {
-    raw = await Product.findOne({ legacyId: id }).lean()
-       || await Product.findOne({ slug: id }).lean();
+    raw = await Product.findOne({ legacyId: id }).populate('category').lean()
+       || await Product.findOne({ slug: id }).populate('category').lean();
   }
   // 3) Fallback statique
   if (!raw) {

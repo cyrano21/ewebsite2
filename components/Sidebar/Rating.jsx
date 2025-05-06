@@ -1,13 +1,14 @@
 import React from "react";
 
-const Rating = () => {
+const Rating = ({ ratings = 0 }) => {
   return (
     <span className="ratting">
-      <i className="icofont-ui-rating"></i>
-      <i className="icofont-ui-rating"></i>
-      <i className="icofont-ui-rating"></i>
-      <i className="icofont-ui-rating"></i>
-      <i className="icofont-ui-rating"></i>
+      {[1, 2, 3, 4, 5].map((star) => (
+        <i
+          key={star}
+          className={`icofont-ui-rating ${star <= ratings ? 'text-warning' : ''}`}
+        ></i>
+      ))}
     </span>
   );
 };
