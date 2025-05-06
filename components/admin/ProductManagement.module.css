@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* Amélioration visuelle légère des stats globales */
+.stat-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.bg-light-primary { background-color: #e7f1ff; }
+.bg-light-success { background-color: #e1f3e9; }
+.bg-light-info { background-color: #e0f7fa; }
+.bg-light-warning { background-color: #fff8e1; }
+.bg-light-danger { background-color: #fdecea; }
+
+/* Style pour les graphiques simples */
+.simple-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around; /* Espace équitable */
+  height: 100%; /* utilser la hauteur du parent */
+  padding: 10px 0 0 0; /* Espace pour le label */
+  gap: 4px; /* Espace entre les colonnes */
+}
+.chart-column {
+  display: flex;
+  flex-direction: column-reverse; /* Barres vers le haut */
+  align-items: center;
+  flex-grow: 1; /* Occuper l'espace */
+  position: relative; /* Pour le tooltip */
+  text-align: center;
+}
+.bar-views, .bar-sales, .bar-revenue {
+  width: 60%; /* Largeur des barres */
+  min-height: 2px; /* Hauteur minimale visible */
+  border-radius: 3px 3px 0 0;
+  transition: height 0.3s ease;
+  cursor: pointer; /* Indique qu'on peut survoler */
+}
+.bar-revenue {
+  max-height: 100%; /* Limite la hauteur */
+}
+.bar-sales {
+  max-height: 60%; /* Limite la hauteur */
+}
+.day-label {
+  font-size: 0.65rem; /* Très petite étiquette */
+  color: #6c757d;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+.legend-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+/* Style pour les boutons icônes dans le tableau */
+.btn-icon {
+  line-height: 1;
+  padding: 0.2rem 0.4rem; /* Ajuster le padding */
+}
+.btn-icon i {
+  vertical-align: middle;
+}
+
+/* Style pour les champs arrondis dans InputGroup */
+.input-group .form-control.rounded-pill-start {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.input-group .form-control.rounded-pill-end {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: -1px; /* Compense la double bordure */
+}
+
+/* Style pour les onglets modernes */
+.nav-tabs-modern .nav-link {
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #6c757d;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.nav-tabs-modern .nav-link:hover {
+  border-bottom-color: #dee2e6;
+  color: #495057;
+}
+.nav-tabs-modern .nav-link.active {
+  border-bottom-color: var(--bs-primary);
+  color: var(--bs-primary);
+  font-weight: 500;
+}
+.nav-tabs-modern {
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Placeholder pour l'image */
+.image-preview-container img[src*="via.placeholder.com"] {
+  filter: grayscale(80%);
+  opacity: 0.6;
+}
+.image-preview-container {
+  min-height: 200px; /* Assure une hauteur minimale */
+}
+
+/* Ajustement pour les tooltips dans les graphiques */
+.chart-column .tooltip {
+  pointer-events: none; /* Empêche le tooltip de bloquer le survol */
+}
+

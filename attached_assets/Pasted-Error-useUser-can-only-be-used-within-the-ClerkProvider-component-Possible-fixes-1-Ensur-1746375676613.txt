@@ -1,0 +1,24 @@
+Error: useUser can only be used within the <ClerkProvider /> component.
+
+Possible fixes:
+1. Ensure that the <ClerkProvider /> is correctly wrapping your application where this component is used.
+2. Check for multiple versions of the `@clerk/shared` package in your project. Use a tool like `npm ls @clerk/shared` to identify multiple versions, and update your dependencies to only rely on one.
+
+Learn more: https://clerk.com/docs/components/clerk-provider
+    at useAssertWrappedByClerkProvider (webpack-internal:///(pages-dir-browser)/./node_modules/@clerk/shared/dist/react/index.mjs:135:11)
+    at useUser (webpack-internal:///(pages-dir-browser)/./node_modules/@clerk/shared/dist/react/index.mjs:681:3)
+    at SingleProduct (webpack-internal:///(pages-dir-browser)/./components/shop/SingleProduct.jsx:51:89)
+    at renderWithHooks (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:20098:13)
+    at beginWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:21621:16)
+    at HTMLUnknownElement.callCallback (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at Object.invokeGuardedCallbackDev (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:27485:7)
+    at performUnitOfWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26591:12)
+    at workLoopSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26500:5)
+    at renderRootSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26468:7)
+    at performConcurrentWorkOnRoot (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:25772:74)
+    at workLoop (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:266:34)
+    at flushWork (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:239:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:533:21)

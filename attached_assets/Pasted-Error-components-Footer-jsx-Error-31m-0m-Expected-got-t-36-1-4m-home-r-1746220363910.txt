@@ -1,0 +1,27 @@
+Error: ./components/Footer.jsx
+Error:   [31m×[0m Expected ',', got 'été'
+    ╭─[[36;1;4m/home/runner/workspace/components/Footer.jsx[0m:87:1]
+ [2m84[0m │         link: '/newsletter',
+ [2m85[0m │     },
+ [2m86[0m │     {
+ [2m87[0m │         text: 'Sessions d'été',
+    · [35;1m                          ───[0m
+ [2m88[0m │         link: '#',
+ [2m89[0m │     },
+ [2m90[0m │     {
+    ╰────
+
+Caused by:
+    Syntax Error
+    at BuildError (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/ui/container/build-error.js:43:41)
+    at renderWithHooks (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:16305:18)
+    at updateFunctionComponent (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:19583:20)
+    at beginWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:21596:16)
+    at beginWork$1 (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:27421:14)
+    at performUnitOfWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26552:12)
+    at workLoopSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26461:5)
+    at renderRootSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26429:7)
+    at performConcurrentWorkOnRoot (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:25733:74)
+    at workLoop (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:266:34)
+    at flushWork (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:239:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:533:21)

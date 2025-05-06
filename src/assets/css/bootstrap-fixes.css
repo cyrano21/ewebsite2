@@ -1,0 +1,84 @@
+/**
+ * Bootstrap Fixes - Corrections pour les problèmes de préfixes vendeurs
+ * Ce fichier corrige les avertissements liés aux préfixes vendeurs et à l'ordre des propriétés
+ * dans bootstrap.min.css sans modifier le fichier original.
+ */
+
+/* Correction pour l'ordre de 'text-align' */
+.dropdown-item {
+  text-align: -webkit-match-parent;
+  text-align: inherit;
+}
+
+/* Correction pour les propriétés '-webkit-appearance' */
+.form-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-check-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Correction pour '-webkit-print-color-adjust' */
+.table-dark {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* Styles supplémentaires pour améliorer la responsivité du conteneur fluide */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Ajustement pour les tableaux sur petits écrans */
+  .table-responsive {
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Amélioration des boutons et contrôles pour les appareils mobiles */
+  .btn, .form-control, .form-select {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Adaptation des colonnes pour petits écrans */
+  .row > [class^="col-"] {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Styles pour améliorer la navigation sur tous les écrans */
+.navbar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .navbar-nav .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+}

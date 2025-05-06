@@ -1,0 +1,316 @@
+[01:03:56.514] Running build in Washington, D.C., USA (East) – iad1
+[01:03:56.548] Cloning github.com/cyrano21/ewebsite2 (Branch: main, Commit: eb68346)
+[01:04:01.886] Cloning completed: 5.338s
+[01:04:02.158] Restored build cache from previous deployment (F3EqDcEybEfwKqh73K3AowZdtxFo)
+[01:04:03.010] Running "vercel build"
+[01:04:03.731] Vercel CLI 41.6.2
+[01:04:03.940] WARN! When using Next.js, it is recommended to place JavaScript Functions inside of the `pages/api` (provided by Next.js) directory instead of `api` (provided by Vercel). Other languages (Python, Go, etc) should still go in the `api` directory.
+[01:04:03.941] Learn More: https://nextjs.org/docs/api-routes/introduction
+[01:04:04.713] Installing dependencies...
+[01:04:25.694] 
+[01:04:25.694] added 209 packages, removed 74 packages, and changed 192 packages in 21s
+[01:04:25.694] 
+[01:04:25.694] 137 packages are looking for funding
+[01:04:25.694]   run `npm fund` for details
+[01:04:25.721] Running "npm run build"
+[01:04:25.950] 
+[01:04:25.950] > ecommerce-website@0.0.0 build
+[01:04:25.950] > next build
+[01:04:25.950] 
+[01:04:26.834] Attention: Next.js now collects completely anonymous telemetry regarding usage.
+[01:04:26.835] This information is used to shape Next.js' roadmap and prioritize features.
+[01:04:26.835] You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[01:04:26.836] https://nextjs.org/telemetry
+[01:04:26.836] 
+[01:04:26.972]    ▲ Next.js 15.3.1
+[01:04:26.972]    - Environments: .env.local
+[01:04:26.976] 
+[01:04:27.149]    Linting and checking validity of types ...
+[01:04:27.736] 
+[01:04:27.736]  ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+[01:04:32.565] 
+[01:04:32.565] Failed to compile.
+[01:04:32.565] 
+[01:04:32.565] ./pages/Shop/CheckoutPage.jsx
+[01:04:32.566] 128:41  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.566] 
+[01:04:32.566] ./pages/Shop/SimpleCartPage.jsx
+[01:04:32.566] 19:35  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.566] 
+[01:04:32.566] ./pages/Shop/[id].js
+[01:04:32.566] 320:14  Error: Unknown property 'jsx' found  react/no-unknown-property
+[01:04:32.566] 
+[01:04:32.566] ./pages/_app-simple.js
+[01:04:32.566] 22:22  Error: 'Component' is missing in props validation  react/prop-types
+[01:04:32.566] 22:33  Error: 'pageProps' is missing in props validation  react/prop-types
+[01:04:32.566] 
+[01:04:32.566] ./pages/about.js
+[01:04:32.566] 31:30  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.566] 45:56  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.566] 
+[01:04:32.566] ./pages/admin/orders.js
+[01:04:32.566] 58:6  Warning: React Hook useEffect has a missing dependency: 'orderData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+[01:04:32.567] 
+[01:04:32.567] ./pages/api/blogs/[id].js
+[01:04:32.567] 70:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 78:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 86:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 
+[01:04:32.567] ./pages/api/blogs/index.js
+[01:04:32.567] 63:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 68:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 
+[01:04:32.567] ./pages/api/categories/index.js
+[01:04:32.567] 57:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 58:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 66:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 73:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 76:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 84:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 
+[01:04:32.567] ./pages/api/orders/[id].js
+[01:04:32.567] 134:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.567] 145:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.568] 158:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.568] 
+[01:04:32.568] ./pages/api/products/[id]/index.js
+[01:04:32.568] 23:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.568] 39:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.568] 52:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.568] 
+[01:04:32.568] ./pages/api/products/[id].js
+[01:04:32.569] 89:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.569] 121:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.569] 150:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.570] 
+[01:04:32.570] ./pages/api/products/index.js
+[01:04:32.570] 16:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.572] 17:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.573] 23:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.573] 28:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.573] 
+[01:04:32.573] ./pages/api/reviews/index.js
+[01:04:32.573] 50:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.573] 51:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.573] 63:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 71:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 74:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 83:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 
+[01:04:32.574] ./pages/api/stripe-webhook.js
+[01:04:32.574] 39:7  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 51:7  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 
+[01:04:32.574] ./pages/api/users/[id]/cart/index.js
+[01:04:32.574] 69:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 
+[01:04:32.574] ./pages/api/users/index.js
+[01:04:32.574] 89:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 94:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 97:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 102:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 106:9  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 
+[01:04:32.574] ./pages/api/webhook.js
+[01:04:32.574] 42:7  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 46:7  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 63:7  Error: Unexpected lexical declaration in case block.  no-case-declarations
+[01:04:32.574] 
+[01:04:32.575] ./pages/blog/Blog.jsx
+[01:04:32.575] 285:14  Error: Unknown property 'jsx' found  react/no-unknown-property
+[01:04:32.575] 
+[01:04:32.575] ./pages/blog/SingleBlog.jsx
+[01:04:32.575] 43:23  Error: 'blogId' is missing in props validation  react/prop-types
+[01:04:32.575] 
+[01:04:32.575] ./pages/checkout/success.js
+[01:04:32.575] 122:35  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.575] 
+[01:04:32.575] ./pages/contact.js
+[01:04:32.575] 66:27  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.575] 66:35  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.575] 121:52  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.575] 288:14  Error: Unknown property 'jsx' found  react/no-unknown-property
+[01:04:32.575] 
+[01:04:32.575] ./pages/shop.js
+[01:04:32.591] 153:177  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.591] 181:29  Error: Unknown property 'jsx' found  react/no-unknown-property
+[01:04:32.591] 
+[01:04:32.591] ./components/about/about.js
+[01:04:32.591] 112:14  Error: Unknown property 'jsx' found  react/no-unknown-property
+[01:04:32.591] 
+[01:04:32.591] ./components/admin/AdminLayout.jsx
+[01:04:32.591] 4:24  Error: 'children' is missing in props validation  react/prop-types
+[01:04:32.591] 
+[01:04:32.591] ./components/admin/BlogManagement.jsx
+[01:04:32.591] 113:6  Warning: React Hook useEffect has a missing dependency: 'fetchBlogs'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+[01:04:32.591] 
+[01:04:32.591] ./components/admin/CustomerManagement.jsx
+[01:04:32.591] 182:6  Warning: React Hook useEffect has a missing dependency: 'customerData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+[01:04:32.591] 285:29  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.592] 
+[01:04:32.592] ./components/admin/OrderManagement.jsx
+[01:04:32.592] 203:6  Warning: React Hook useEffect has a missing dependency: 'orderData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+[01:04:32.592] 
+[01:04:32.592] ./components/admin/ProductManagement.jsx
+[01:04:32.592] 415:107  Error: Irregular whitespace not allowed.  no-irregular-whitespace
+[01:04:32.592] 
+[01:04:32.592] ./components/contexts/AuthProvider.jsx
+[01:04:32.592] 18:25  Error: 'children' is missing in props validation  react/prop-types
+[01:04:32.592] 
+[01:04:32.592] ./components/shop/CartPage.jsx
+[01:04:32.592] 384:28  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.592] 
+[01:04:32.592] ./components/shop/CheckoutPage.jsx
+[01:04:32.592] 7:25  Error: 'onOrderComplete' is missing in props validation  react/prop-types
+[01:04:32.592] 418:14  Error: Unknown property 'jsx' found  react/no-unknown-property
+[01:04:32.592] 
+[01:04:32.592] ./components/shop/QuickViewModal.jsx
+[01:04:32.592] 6:27  Error: 'show' is missing in props validation  react/prop-types
+[01:04:32.593] 6:33  Error: 'onHide' is missing in props validation  react/prop-types
+[01:04:32.593] 6:41  Error: 'product' is missing in props validation  react/prop-types
+[01:04:32.593] 6:50  Error: 'onAddToCart' is missing in props validation  react/prop-types
+[01:04:32.593] 6:63  Error: 'onAddToWishlist' is missing in props validation  react/prop-types
+[01:04:32.593] 11:31  Error: 'product.name' is missing in props validation  react/prop-types
+[01:04:32.593] 17:28  Error: 'product.img' is missing in props validation  react/prop-types
+[01:04:32.593] 18:28  Error: 'product.name' is missing in props validation  react/prop-types
+[01:04:32.593] 27:24  Error: 'product.salePrice' is missing in props validation  react/prop-types
+[01:04:32.593] 29:61  Error: 'product.price' is missing in props validation  react/prop-types
+[01:04:32.593] 30:58  Error: 'product.salePrice' is missing in props validation  react/prop-types
+[01:04:32.593] 33:32  Error: 'product.price' is missing in props validation  react/prop-types
+[01:04:32.593] 36:56  Error: 'product.rating' is missing in props validation  react/prop-types
+[01:04:32.593] 37:25  Error: 'product.description' is missing in props validation  react/prop-types
+[01:04:32.593] 
+[01:04:32.593] ./components/shop/SimpleCartPage.jsx
+[01:04:32.593] 19:35  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.594] 
+[01:04:32.594] ./src/assets/js/bootstrap.min.js
+[01:04:32.594] 6:22375  Error: Do not access Object.prototype method 'hasOwnProperty' from target object.  no-prototype-builtins
+[01:04:32.594] 6:25667  Error: Do not access Object.prototype method 'hasOwnProperty' from target object.  no-prototype-builtins
+[01:04:32.594] 6:25691  Error: Do not access Object.prototype method 'hasOwnProperty' from target object.  no-prototype-builtins
+[01:04:32.594] 6:25860  Error: 'y' is assigned to itself.  no-self-assign
+[01:04:32.594] 
+[01:04:32.594] ./src/assets/js/functions.js
+[01:04:32.594] 161:13  Error: 'swiper' is already defined.  no-redeclare
+[01:04:32.594] 184:13  Error: 'swiper' is already defined.  no-redeclare
+[01:04:32.594] 202:13  Error: 'swiper' is already defined.  no-redeclare
+[01:04:32.594] 216:13  Error: 'swiper' is already defined.  no-redeclare
+[01:04:32.594] 238:13  Error: 'swiper' is already defined.  no-redeclare
+[01:04:32.594] 252:13  Error: 'swiper' is already defined.  no-redeclare
+[01:04:32.594] 278:13  Error: 'swiper' is already defined.  no-redeclare
+[01:04:32.594] 312:13  Error: Duplicate key 'disableOn'.  no-dupe-keys
+[01:04:32.594] 344:13  Error: 'skillLevel3' is already defined.  no-redeclare
+[01:04:32.595] 409:25  Error: 'newVal' is already defined.  no-redeclare
+[01:04:32.595] 
+[01:04:32.595] ./src/assets/js/isotope.pkgd.js
+[01:04:32.595] 165:41  Error: 'define' is already defined.  no-redeclare
+[01:04:32.595] 165:49  Error: 'module' is already defined.  no-redeclare
+[01:04:32.595] 165:57  Error: 'window' is already defined as a built-in global variable.  no-redeclare
+[01:04:32.595] 275:12  Error: 'console' is already defined as a built-in global variable.  no-redeclare
+[01:04:32.595] 278:41  Error: 'define' is already defined.  no-redeclare
+[01:04:32.595] 278:49  Error: 'module' is already defined.  no-redeclare
+[01:04:32.595] 485:12  Error: 'define' is already defined.  no-redeclare
+[01:04:32.595] 485:27  Error: 'module' is already defined.  no-redeclare
+[01:04:32.595] 539:39  Error: 'define' is already defined.  no-redeclare
+[01:04:32.595] 539:47  Error: 'module' is already defined.  no-redeclare
+[01:04:32.595] 539:55  Error: 'require' is already defined.  no-redeclare
+[01:04:32.595] 778:41  Error: 'define' is already defined.  no-redeclare
+[01:04:32.595] 778:49  Error: 'module' is already defined.  no-redeclare
+[01:04:32.595] 778:57  Error: 'require' is already defined.  no-redeclare
+[01:04:32.596] 1336:41  Error: 'define' is already defined.  no-redeclare
+[01:04:32.596] 1336:49  Error: 'module' is already defined.  no-redeclare
+[01:04:32.596] 1336:57  Error: 'require' is already defined.  no-redeclare
+[01:04:32.596] 2273:40  Error: 'define' is already defined.  no-redeclare
+[01:04:32.596] 2273:48  Error: 'module' is already defined.  no-redeclare
+[01:04:32.596] 2273:56  Error: 'require' is already defined.  no-redeclare
+[01:04:32.596] 2351:40  Error: 'define' is already defined.  no-redeclare
+[01:04:32.596] 2351:48  Error: 'module' is already defined.  no-redeclare
+[01:04:32.596] 2351:56  Error: 'require' is already defined.  no-redeclare
+[01:04:32.596] 2513:40  Error: 'define' is already defined.  no-redeclare
+[01:04:32.596] 2513:48  Error: 'module' is already defined.  no-redeclare
+[01:04:32.596] 2513:56  Error: 'require' is already defined.  no-redeclare
+[01:04:32.596] 2751:40  Error: 'define' is already defined.  no-redeclare
+[01:04:32.596] 2751:48  Error: 'module' is already defined.  no-redeclare
+[01:04:32.596] 2751:56  Error: 'require' is already defined.  no-redeclare
+[01:04:32.596] 2824:40  Error: 'define' is already defined.  no-redeclare
+[01:04:32.596] 2824:48  Error: 'module' is already defined.  no-redeclare
+[01:04:32.597] 2824:56  Error: 'require' is already defined.  no-redeclare
+[01:04:32.597] 2893:40  Error: 'define' is already defined.  no-redeclare
+[01:04:32.597] 2893:48  Error: 'module' is already defined.  no-redeclare
+[01:04:32.597] 2893:56  Error: 'require' is already defined.  no-redeclare
+[01:04:32.597] 2954:40  Error: 'define' is already defined.  no-redeclare
+[01:04:32.597] 2954:48  Error: 'module' is already defined.  no-redeclare
+[01:04:32.597] 2954:56  Error: 'require' is already defined.  no-redeclare
+[01:04:32.597] 
+[01:04:32.597] ./src/assets/js/jquery.js
+[01:04:32.597] 2:5376  Error: Unexpected control character(s) in regular expression: \x1f, \x1f.  no-control-regex
+[01:04:32.597] 2:5847  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:6101  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:6532  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:6758  Error: Empty block statement.  no-empty
+[01:04:32.598] 2:7320  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:9378  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:9688  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:11489  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:12064  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:12102  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:12520  Error: Empty block statement.  no-empty
+[01:04:32.598] 2:13134  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:13446  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:15271  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:15542  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:15740  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:16114  Error: Do not access Object.prototype method 'hasOwnProperty' from target object.  no-prototype-builtins
+[01:04:32.598] 2:16815  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.598] 2:19155  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:19255  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:19315  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:20674  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:21288  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:21399  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:23719  Error: Unnecessary escape character: \/.  no-useless-escape
+[01:04:32.599] 2:33344  Error: Empty block statement.  no-empty
+[01:04:32.599] 2:37050  Error: Unnecessary escape character: \/.  no-useless-escape
+[01:04:32.599] 2:38265  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:38405  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:39039  Error: Empty block statement.  no-empty
+[01:04:32.599] 2:45778  Error: Unnecessary escape character: \/.  no-useless-escape
+[01:04:32.599] 2:48087  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:49647  Error: Empty block statement.  no-empty
+[01:04:32.599] 2:57298  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:59847  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:64132  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.599] 2:65877  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:65943  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:66247  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:66313  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:66720  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:66997  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:72432  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:74924  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.600] 2:75645  Error: 'l.href' is assigned to itself.  no-self-assign
+[01:04:32.600] 2:79204  Error: Empty block statement.  no-empty
+[01:04:32.603] 2:83243  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.603] 
+[01:04:32.603] ./src/assets/js/swiper.min.js
+[01:04:32.603] 12:3217  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.603] 12:11075  Error: Empty block statement.  no-empty
+[01:04:32.603] 12:11101  Error: Empty block statement.  no-empty
+[01:04:32.603] 12:13739  Error: Expected to return a value in method 'get'.  getter-return
+[01:04:32.603] 12:13819  Error: Empty block statement.  no-empty
+[01:04:32.604] 12:36612  Error: Unnecessary escape character: \/.  no-useless-escape
+[01:04:32.604] 12:36653  Error: Unnecessary escape character: \/.  no-useless-escape
+[01:04:32.604] 12:55269  Error: Expected a conditional expression and instead saw an assignment.  no-cond-assign
+[01:04:32.604] 
+[01:04:32.604] ./src/pages/Blog/SingleBlog.jsx
+[01:04:32.605] 41:23  Error: 'blogId' is missing in props validation  react/prop-types
+[01:04:32.605] 
+[01:04:32.605] ./src/pages/Shop/CheckoutPage.jsx
+[01:04:32.605] 128:41  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.605] 
+[01:04:32.605] ./src/pages/Shop/SimpleCartPage.jsx
+[01:04:32.605] 19:35  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[01:04:32.605] 
+[01:04:32.605] info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+[01:04:32.615] Error: Command "npm run build" exited with 1
+[01:04:33.050] 
+[01:04:36.046] Exiting build container

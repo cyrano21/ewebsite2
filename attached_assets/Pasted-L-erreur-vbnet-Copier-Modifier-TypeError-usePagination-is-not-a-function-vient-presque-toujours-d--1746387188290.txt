@@ -1,0 +1,108 @@
+L’erreur
+
+vbnet
+Copier
+Modifier
+TypeError: usePagination is not a function
+vient presque toujours d’un mismatch entre ce que votre fichier usePagination.js exporte et la façon dont vous l’importez.
+
+1. Vérifiez l’export dans usePagination.js
+Ouvrez components/admin/ProductManagement/hooks/usePagination.js et regardez comment se termine le fichier :
+
+Si vous avez un export « par défaut » :
+
+js
+Copier
+Modifier
+// usePagination.js
+export default function usePagination(items, itemsPerPage = 10) {
+  // … votre logique
+}
+alors l’import doit être sans accolade :
+
+diff
+Copier
+Modifier
+- import { usePagination } from './ProductManagement/hooks/usePagination';
++ import usePagination from './ProductManagement/hooks/usePagination';
+Si vous avez un export nommé :
+
+js
+Copier
+Modifier
+// usePagination.js
+export function usePagination(items, itemsPerPage = 10) {
+  // … votre logique
+}
+alors l’import reste avec accolade :
+
+js
+Copier
+Modifier
+import { usePagination } from './ProductManagement/hooks/usePagination';
+2. Exemple de correction complète
+A) Si vous choisissez un export par défaut :
+js
+Copier
+Modifier
+// components/admin/ProductManagement/hooks/usePagination.js
+export default function usePagination(items, perPage = 10) {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const totalPages = Math.ceil(items.length / perPage);
+  const indexOfFirstItem = (currentPage - 1) * perPage;
+  const currentItems = items.slice(indexOfFirstItem, indexOfFirstItem + perPage);
+
+  return {
+    currentItems,
+    currentPage,
+    totalPages,
+    indexOfFirstItem,
+    handlePageChange: setCurrentPage
+  };
+}
+diff
+Copier
+Modifier
+// components/admin/ProductManagement.jsx
+- import { usePagination } from './ProductManagement/hooks/usePagination';
++ import usePagination from './ProductManagement/hooks/usePagination';
+
+function ProductManagement({ editProductId, productDataFromShop }) {
+  // …
+  const { currentItems, currentPage, totalPages, indexOfFirstItem, handlePageChange } =
+    usePagination(filteredProducts, 10);
+  // …
+}
+B) Si vous préférez un export nommé :
+js
+Copier
+Modifier
+// components/admin/ProductManagement/hooks/usePagination.js
+export function usePagination(items, perPage = 10) {
+  // même code…
+}
+diff
+Copier
+Modifier
+// components/admin/ProductManagement.jsx
+import { usePagination } from './ProductManagement/hooks/usePagination';
+3. Vérifiez le chemin
+Assurez-vous également que le chemin relatif est correct. Si votre arborescence est :
+
+markdown
+Copier
+Modifier
+components/
+└── admin/
+    └── ProductManagement/
+        └── hooks/
+            └── usePagination.js
+Alors depuis components/admin/ProductManagement.jsx l’import correct est :
+
+js
+Copier
+Modifier
+import usePagination from './ProductManagement/hooks/usePagination'; 
+// ou
+import { usePagination } from './ProductManagement/hooks/usePagination';
+Après avoir ajusté l’export/import pour qu’ils correspondent, relancez votre application : l’erreur usePagination is not a function disparaîtra et votre pagination fonctionnera normalement.

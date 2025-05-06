@@ -1,0 +1,97 @@
+.container {
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 2px solid #f8f9fa;
+  padding-bottom: 15px;
+}
+
+.metricCard {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  overflow: hidden;
+}
+
+.metricCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.metricIcon {
+  background-color: #f8f9fa;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metricIcon i {
+  font-size: 24px;
+}
+
+.chartContainer {
+  height: 350px;
+  width: 100%;
+  position: relative;
+  padding: 10px;
+}
+
+.filterForm {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.topAdsTable {
+  margin-top: 30px;
+}
+
+.topAdsTable th {
+  font-weight: 600;
+  color: #495057;
+}
+
+.topAdsTable td {
+  vertical-align: middle;
+}
+
+.badge {
+  padding: 6px 10px;
+  font-weight: 500;
+  font-size: 11px;
+  border-radius: 4px;
+}
+
+@media (max-width: 992px) {
+  .chartContainer {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .chartContainer {
+    height: 250px;
+  }
+  
+  .metricCard {
+    margin-bottom: 15px;
+  }
+}

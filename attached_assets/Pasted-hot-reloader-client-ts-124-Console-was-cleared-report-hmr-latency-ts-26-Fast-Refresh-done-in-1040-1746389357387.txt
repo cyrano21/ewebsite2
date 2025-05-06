@@ -1,0 +1,74 @@
+hot-reloader-client.ts:124 Console was cleared
+report-hmr-latency.ts:26 [Fast Refresh] done in 10401ms
+hot-reloader-client.ts:279 [Fast Refresh] rebuilding
+hot-reloader-client.ts:279 [Fast Refresh] rebuilding
+hot-reloader-client.ts:279 [Fast Refresh] rebuilding
+hot-reloader-client.ts:279 [Fast Refresh] rebuilding
+client.ts:57  Warning: CategoryModal: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+    at CategoryModal (webpack-internal:///(pages-dir-browser)/./components/admin/ProductManagement/CategoryModal.jsx:18:11)
+    at div
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Container.js:18:11)
+    at ProductManagement (webpack-internal:///(pages-dir-browser)/./components/admin/ProductManagement.jsx:63:96)
+    at div
+    at div
+    at AdminLayout (webpack-internal:///(pages-dir-browser)/./components/admin/AdminLayout.jsx:22:11)
+    at ProductEditPage (webpack-internal:///(pages-dir-browser)/./pages/admin/products/[id].js:21:74)
+    at main
+    at Layout (webpack-internal:///(pages-dir-browser)/./components/Layout.jsx:29:11)
+    at WishlistProvider (webpack-internal:///(pages-dir-browser)/./contexts/WishlistContext.tsx:33:11)
+    at NotificationProvider (webpack-internal:///(pages-dir-browser)/./contexts/NotificationContext.jsx:36:11)
+    at AuthProvider (webpack-internal:///(pages-dir-browser)/./contexts/AuthProvider.jsx:33:11)
+    at SessionProvider (webpack-internal:///(pages-dir-browser)/./node_modules/next-auth/react/index.js:365:24)
+    at MyApp (webpack-internal:///(pages-dir-browser)/./pages/_app.js:55:11)
+    at PathnameContextProviderAdapter (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+    at PagesDevOverlayErrorBoundary (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay-error-boundary.js:32:9)
+    at PagesDevOverlay (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay.js:18:11)
+    at Container (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:80:1)
+    at AppContainer (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:188:11)
+    at Root (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:417:11)
+nextJsHandleConsoleError @ client.ts:57
+printWarning @ react-dom.development.js:86
+error @ react-dom.development.js:60
+validateFunctionComponentInDev @ react-dom.development.js:20230
+mountIndeterminateComponent @ react-dom.development.js:20189
+beginWork @ react-dom.development.js:21626
+beginWork$1 @ react-dom.development.js:27465
+performUnitOfWork @ react-dom.development.js:26596
+workLoopSync @ react-dom.development.js:26505
+renderRootSync @ react-dom.development.js:26473
+performSyncWorkOnRoot @ react-dom.development.js:26124
+flushSyncCallbacks @ react-dom.development.js:12042
+flushSync @ react-dom.development.js:26240
+scheduleRefresh @ react-dom.development.js:27834
+eval @ react-refresh-runtime.development.js:265
+performReactRefresh @ react-refresh-runtime.development.js:254
+applyUpdate @ helpers.js:139
+statusHandler @ helpers.js:156
+setStatus @ webpack.js:497
+(anonymous) @ webpack.js:666
+Promise.then
+internalApply @ webpack.js:649
+hotApply @ webpack.js:597
+eval @ hot-reloader-client.ts:471
+Promise.then
+tryApplyUpdatesWebpack @ hot-reloader-client.ts:461
+handleApplyUpdates @ hot-reloader-client.ts:436
+eval @ hot-reloader-client.ts:475
+Promise.then
+tryApplyUpdatesWebpack @ hot-reloader-client.ts:473
+handleApplyUpdates @ hot-reloader-client.ts:436
+eval @ hot-reloader-client.ts:475
+Promise.then
+tryApplyUpdatesWebpack @ hot-reloader-client.ts:473
+handleSuccess @ hot-reloader-client.ts:153
+processMessage @ hot-reloader-client.ts:324
+eval @ hot-reloader-client.ts:90
+handleMessage @ websocket.ts:67
+ProductModal.jsx:54 === MODAL DEBUG ===
+ProductModal.jsx:55 Données productData reçues: null
+ProductModal.jsx:56 modalTitle: Produit
+ProductModal.jsx:57 Mode édition déterminé: false
+ProductModal.jsx:71 Objet product à appliquer: {id: null, imgPreview: 'https://via.placeholder.com/300x300/f8f9fa/6c757d?text=Aper%C3%A9cu', imgFile: null, isDropshipping: false}
+report-hmr-latency.ts:26 [Fast Refresh] done in 1070ms
+websocket.ts:91  WebSocket connection to 'wss://ab396c79-4c07-4f27-8be8-d5d195db2216-00-3951j7fjw8h8l.spock.replit.dev/_next/webpack-hmr' failed: Error during WebSocket handshake: Unexpected response code: 502
+init @ websocket.ts:91

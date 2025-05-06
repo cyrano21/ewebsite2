@@ -1,0 +1,102 @@
+oici un rapport de résolution synthétique et opérationnel pour garantir que le modal « Gérer ce produit » s’ouvre toujours en mode édition, sans hacks ni délais.
+
+1. Contexte & Symptôme
+Dans SingleProduct, on clique sur « Gérer ce produit » → on stocke productForEdit dans sessionStorage avec isEditMode: true → redirection vers /admin/products/[id]?edit=true.
+
+Dans ProductManagement, on récupère ces données et ouvre le modal via useModalState.
+
+Problème constaté : le modal s’affiche d’abord en mode « Ajouter un produit », puis, avec un setTimeout, on force manuellement le titre en « Modifier le produit ».
+
+2. Causes racines identifiées
+Double inférence du mode
+
+ProductModal calcule isEditMode via un useMemo complexe dépendant de multiples flags et du modalTitle.
+
+Le titre (modalTitle) est à son tour déduit de ce même isEditMode, créant une circularité et un timing défectueux.
+
+Hook useModalState
+
+Probable réinitialisation de l’état interne (données + mode) au moment de l’appel openProductModal(), écrasant le flag isEditMode juste mis en place.
+
+Hack setTimeout
+
+Présence d’un setTimeout pour modifier le titre après le rendu : symptôme d’un état mal synchronisé.
+
+3. Solutions & Plan d’action
+A. Simplifier la détection du mode
+Passer un unique flag isEditMode depuis la page d’édition :
+
+tsx
+Copier
+Modifier
+// pages/admin/products/[id].js
+setProductData(validatedProductData);    // contient isEditMode: true
+openProductModal();
+Dans ProductManagement, calculer dès le début :
+
+ts
+Copier
+Modifier
+const isEditMode = Boolean(productDataFromShop);
+Injecter explicitement ce booléen dans le modal :
+
+jsx
+Copier
+Modifier
+<ProductModal
+  show={isProductModalOpen}
+  onHide={closeProductModal}
+  modalTitle={isEditMode ? "Modifier le produit" : "Ajouter un produit"}
+  isEditMode={isEditMode}
+  productData={isEditMode ? productDataFromShop : {}}
+  …  
+/>
+B. Adapter ProductModal
+Recevoir isEditMode en prop, supprimer tout useMemo interne :
+
+tsx
+Copier
+Modifier
+function ProductModal({ show, onHide, modalTitle, isEditMode, productData, … }) {
+  // Plus de logique complexe, on fait confiance au flag passé.
+  return (
+    <Modal …>
+      <Modal.Header closeButton>
+        <Modal.Title>
+          <i className={`icofont-${isEditMode ? "edit" : "plus-circle"} me-2`} />
+          {modalTitle}
+        </Modal.Title>
+      </Modal.Header>
+      …
+    </Modal>
+  );
+}
+ProductModal.propTypes = {
+  …,
+  isEditMode: PropTypes.bool.isRequired,
+  productData: PropTypes.object,
+  …
+};
+Supprimer le setTimeout dans ProductManagement : tout devient synchrone.
+
+C. Vérifier & corriger useModalState
+Inspecter l’initialisation pour s’assurer qu’il n’écrase pas productData ou le mode par défaut.
+
+Si nécessaire, étendre le hook pour accepter un payload { data, isEditMode } et le stocker dans son état interne sans réinitialisation.
+
+4. Résultat attendu
+Au clic « Gérer ce produit », on stocke et passe immédiatement isEditMode: true + productData au modal.
+
+ProductModal s’ouvre directement en mode « Modifier le produit », sans flash de « Ajouter un produit ».
+
+Le code est plus lisible, sans hacks de timing, et plus maintenable (un seul flag source de vérité).
+
+Suivant ce plan, tu devrais pouvoir supprimer tout code de contournement et garantir un flux clair, prévisible et robuste pour l’édition de produit.
+
+
+
+
+
+
+
+

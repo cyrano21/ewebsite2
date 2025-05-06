@@ -1,0 +1,181 @@
+/* Correction pour le positionnement de la barre de navigation */
+.header-section {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Prévenir la duplication des barres de navigation */
+header.header-section:nth-of-type(n+2) {
+  display: none !important;
+}
+
+/* Hack pour empêcher la duplication dans des contextes spécifiques */
+div:has(> header.header-section) + header.header-section,
+header.header-section ~ header.header-section {
+  display: none !important;
+}
+
+/* Empêcher la duplication des logos dans l'en-tête */
+.header-section .logo-search-acte:not(:first-child),
+.header-section:not(:first-of-type),
+.header-section ~ .header-section,
+.logo-search-acte ~ .logo-search-acte {
+  display: none !important;
+}
+
+.header-fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Ajout d'un padding-top au contenu principal pour éviter le chevauchement */
+main, .main-content, .content-wrapper {
+  padding-top: 10px;
+}
+
+/* Correction pour l'espacement des titres */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  clear: both;
+}
+
+/* Assurer que le menu mobile se ferme correctement */
+@media (max-width: 991px) {
+  .menu-area .menu ul.lab-ul.active {
+    height: auto;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .header-bar.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .header-bar.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header-bar.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+}
+
+/* Styles pour les éléments de navigation personnalisés */
+
+/* Style de la barre de recherche */
+.search-wrapper {
+  position: relative;
+  margin-left: 10px;
+  width: 250px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-form input {
+  border-radius: 4px;
+  padding-right: 35px;
+  border: 1px solid #ced4da;
+  transition: all 0.3s ease;
+}
+
+.search-form input:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.search-form button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0 10px;
+  color: #6c757d;
+}
+
+.search-form button:hover {
+  color: #343a40;
+}
+
+/* Style du dropdown des catégories */
+.dropdown button {
+  height: 38px;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.dropdown button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+}
+
+/* Ajustements pour l'affichage mobile */
+@media (max-width: 991px) {
+  .menu ul.lab-ul {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+/* Style amélioré pour les éléments de menu */
+.menu ul.lab-ul li {
+  margin-right: 5px;
+}
+
+.menu ul.lab-ul li a {
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.menu ul.lab-ul li a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Styles pour les appareils mobiles */
+@media (max-width: 768px) {
+  .menu-mobile {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .menu-mobile li {
+    margin: 8px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-mobile .submenu {
+    position: relative !important;
+    width: 100%;
+    left: 0 !important;
+    box-shadow: none;
+    padding: 5px 0;
+  }
+
+  .header-section.style-3 .menu-mobile {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    box-shadow: var(--box-shadow);
+  }
+
+  .navbar-collapse {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,39 @@
+Warning: Each child in a list should have a unique &quot;key&quot; prop.
+
+Check the render method of `CustomerManagementPage`. See https://reactjs.org/link/warning-keys for more information.
+    at tr
+    at CustomerManagementPage (webpack-internal:///(pages-dir-browser)/./pages/admin/customers.js:24:86)
+    at main
+    at Layout (webpack-internal:///(pages-dir-browser)/./components/Layout.jsx:27:11)
+    at WishlistProvider (webpack-internal:///(pages-dir-browser)/./contexts/WishlistContext.tsx:33:11)
+    at NotificationProvider (webpack-internal:///(pages-dir-browser)/./contexts/NotificationContext.jsx:24:11)
+    at AuthProvider (webpack-internal:///(pages-dir-browser)/./contexts/AuthProvider.jsx:33:11)
+    at SessionProvider (webpack-internal:///(pages-dir-browser)/./node_modules/next-auth/react/index.js:365:24)
+    at MyApp (webpack-internal:///(pages-dir-browser)/./pages/_app.js:55:11)
+    at PathnameContextProviderAdapter (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+    at PagesDevOverlayErrorBoundary (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay-error-boundary.js:32:9)
+    at PagesDevOverlay (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay.js:18:11)
+    at Container (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:80:1)
+    at AppContainer (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:188:11)
+    at Root (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:417:11)
+
+Check the render method of &#x60;CustomerManagementPage&#x60;. See https://reactjs.org/link/warning-keys for more information.
+at tr
+at CustomerManagementPage (webpack-internal:///(pages-dir-browser)/./pages/admin/customers.js:24:86)
+at main
+at Layout (webpack-internal:///(pages-dir-browser)/./components/Layout.jsx:27:11)
+at WishlistProvider (webpack-internal:///(pages-dir-browser)/./contexts/WishlistContext.tsx:33:11)
+at NotificationProvider (webpack-internal:///(pages-dir-browser)/./contexts/NotificationContext.jsx:24:11)
+at AuthProvider (webpack-internal:///(pages-dir-browser)/./contexts/AuthProvider.jsx:33:11)
+at SessionProvider (webpack-internal:///(pages-dir-browser)/./node_modules/next-auth/react/index.js:365:24)
+at MyApp (webpack-internal:///(pages-dir-browser)/./pages/_app.js:55:11)
+at PathnameContextProviderAdapter (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+at PagesDevOverlayErrorBoundary (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay-error-boundary.js:32:9)
+at PagesDevOverlay (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay.js:18:11)
+at Container (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:80:1)
+at AppContainer (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:188:11)
+at Root (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:417:11)
+at t.value (https://627a424f-32e7-40dc-a8af-e6eb9329655d-00-3bdzeiopj2rv.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://627a424f-32e7-40dc-a8af-e6eb9329655d-00-3bdzeiopj2rv.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://627a424f-32e7-40dc-a8af-e6eb9329655d-00-3bdzeiopj2rv.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://627a424f-32e7-40dc-a8af-e6eb9329655d-00-3bdzeiopj2rv.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400

@@ -1,0 +1,92 @@
+/* NavItems.module.css */
+
+.navIconLink {
+    margin: 0 0.75rem;
+    display: inline-block;
+  }
+  
+  .iconWithBadge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  
+  .badgeCart {
+    position: absolute;
+    top: -0.4em;
+    right: -0.4em;
+    font-size: 0.65rem;
+    padding: 0.2em 0.4em;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    min-width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .badgeWishlist {
+    position: absolute;
+    top: -0.4em;
+    right: -0.4em;
+    font-size: 0.65rem;
+    padding: 0.2em 0.4em;
+    background-color: #ff9800;
+    color: white;
+    border-radius: 50%;
+    min-width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+
+/* Styles pour le menu mobile */
+.menuTrigger {
+  cursor: pointer;
+  display: none;
+  margin-left: 15px;
+}
+
+@media (max-width: 767px) {
+  .menuTrigger {
+    display: block;
+  }
+  
+  .menu ul.active {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 999;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    padding: 10px 0;
+  }
+  
+  .menu ul {
+    display: none !important;
+  }
+  
+  .menu ul.active li {
+    display: block;
+    margin: 0;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .menu ul.active li:last-child {
+    border-bottom: none;
+  }
+}
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  

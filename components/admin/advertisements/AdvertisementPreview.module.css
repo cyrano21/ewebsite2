@@ -1,0 +1,388 @@
+.previewContainer {
+  position: relative;
+}
+
+.positionLabel {
+  margin-bottom: 10px;
+}
+
+.previewWrapper {
+  border: 1px dashed #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.previewLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Banner Preview */
+.bannerPreview {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bannerContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+}
+
+.bannerContent h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.bannerContent p {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.bannerButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Popup Preview */
+.popupContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.popupPreview {
+  width: 300px;
+  max-width: 100%;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.popupHeader {
+  padding: 8px 10px;
+  text-align: right;
+  border-bottom: 1px solid #eee;
+}
+
+.popupClose {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #999;
+}
+
+.popupContent {
+  padding: 15px;
+}
+
+.popupImage {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.popupTextContent {
+  text-align: center;
+}
+
+.popupTextContent h3 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.popupTextContent h5 {
+  font-size: 14px;
+  margin: 0 0 10px;
+  color: #666;
+}
+
+.popupTextContent p {
+  font-size: 13px;
+  margin: 0 0 15px;
+  color: #444;
+}
+
+.popupButton {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Sidebar Preview */
+.sidebarPreview {
+  width: 160px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebarContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  text-align: center;
+}
+
+.sidebarContent h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.sidebarButton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Featured Preview */
+.featuredPreview {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.featuredContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.featuredImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.featuredContent {
+  padding: 15px;
+  background-color: white;
+}
+
+.featuredContent h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.featuredContent h5 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.featuredContent p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #444;
+}
+
+.featuredButton {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Video Preview */
+.videoPreview {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.videoContainer {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.videoIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.videoPlaceholder {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #343a40;
+  color: white;
+}
+
+.videoPlaceholder i {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.videoCaption {
+  padding: 10px;
+  background-color: white;
+}
+
+.videoCaption h4 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.videoCaption p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Carousel Preview */
+.carouselPreview {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.carouselSlide {
+  position: relative;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carouselCaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  text-align: center;
+}
+
+.carouselCaption h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.carouselCaption p {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.carouselButton {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.carouselControls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.carouselPrev,
+.carouselNext {
+  font-size: 30px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.carouselIndicators {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.indicator.active {
+  background-color: white;
+}

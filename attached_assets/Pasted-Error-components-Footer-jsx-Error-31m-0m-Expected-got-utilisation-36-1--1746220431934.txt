@@ -1,0 +1,27 @@
+Error: ./components/Footer.jsx
+Error:   [31m×[0m Expected ',', got 'utilisation'
+     ╭─[[36;1;4m/home/runner/workspace/components/Footer.jsx[0m:107:1]
+ [2m104[0m │         link: '#',
+ [2m105[0m │     },
+ [2m106[0m │     {
+ [2m107[0m │         text: 'Conditions d'utilisation',
+     · [35;1m                            ───────────[0m
+ [2m108[0m │         link: '#',
+ [2m109[0m │     },
+ [2m110[0m │ ];
+     ╰────
+
+Caused by:
+    Syntax Error
+    at BuildError (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/ui/container/build-error.js:43:41)
+    at renderWithHooks (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:16305:18)
+    at updateFunctionComponent (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:19583:20)
+    at beginWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:21596:16)
+    at beginWork$1 (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:27421:14)
+    at performUnitOfWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26552:12)
+    at workLoopSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26461:5)
+    at renderRootSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26429:7)
+    at performConcurrentWorkOnRoot (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:25733:74)
+    at workLoop (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:266:34)
+    at flushWork (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:239:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:533:21)

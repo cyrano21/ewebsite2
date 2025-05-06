@@ -1,0 +1,48 @@
+GET /assets/css/all.min.css 500 in 233ms
+_app.js: Initialisation du composant MyApp
+_app.js: Rendu du AuthProvider
+_app.js: Avant rendu du Component
+🧪 Rendu de: Custom404
+_app.js: Après rendu du Component
+ReferenceError: React is not defined
+    at useDeviceType (utils/deviceDetect.js:27:38)
+    at NavItems (components/NavItems.jsx:21:34)
+  25 |  */
+  26 | export const useDeviceType = () => {
+> 27 |   const [deviceType, setDeviceType] = React.useState(() => 
+     |                                      ^
+  28 |     typeof window !== 'undefined' ? getDeviceType() : 'desktop'
+  29 |   );
+  30 |   
+ ⨯ ReferenceError: React is not defined
+    at useDeviceType (utils/deviceDetect.js:27:38)
+    at NavItems (components/NavItems.jsx:21:34)
+  25 |  */
+  26 | export const useDeviceType = () => {
+> 27 |   const [deviceType, setDeviceType] = React.useState(() => 
+     |                                      ^
+  28 |     typeof window !== 'undefined' ? getDeviceType() : 'desktop'
+  29 |   );
+  30 |   
+ ⨯ ReferenceError: React is not defined
+    at useDeviceType (utils/deviceDetect.js:27:38)
+    at NavItems (components/NavItems.jsx:21:34)
+  25 |  */
+  26 | export const useDeviceType = () => {
+> 27 |   const [deviceType, setDeviceType] = React.useState(() => 
+     |                                      ^
+  28 |     typeof window !== 'undefined' ? getDeviceType() : 'desktop'
+  29 |   );
+  30 |   
+ GET /styles/responsive.css 500 in 224ms
+ ✓ Compiled /api/auth/[...nextauth] in 208ms (460 modules)
+ ✓ Compiled (466 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+(node:3825) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3825) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+ GET /api/auth/session 200 in 605ms
+Mongoose connecté à MongoDB
+MongoDB connecté: ac-4qtk0cv-shard-00-01.6tx8gwm.mongodb.net
+ GET /api/users? 304 in 2812ms

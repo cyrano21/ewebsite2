@@ -1,0 +1,813 @@
+
+/* Styles pour le composant Banner */
+.banner-section.style-4 {
+  background-image: url('/assets/images/banner-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Créer un overlay pour améliorer la lisibilité du texte */
+.banner-section.style-4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.banner-section.style-4 .container {
+  position: relative;
+  z-index: 1;
+}
+
+.banner-section.style-4 .banner-content {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+}
+
+.banner-section.style-4 .banner-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.banner-section.style-4 .banner-content h2 span {
+  color: #ff5b5b;
+}
+
+.banner-section.style-4 .banner-content p {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.banner-section.style-4 form {
+  background-color: #fff;
+  display: flex;
+  border-radius: 40px;
+  padding: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.banner-section.style-4 form select,
+.banner-section.style-4 form input {
+  border: none;
+  outline: none;
+  padding: 15px 20px;
+  border-radius: 40px 0 0 40px;
+}
+
+.banner-section.style-4 form select {
+  background-color: #f0f0f0;
+  width: 150px;
+}
+
+.banner-section.style-4 form input {
+  flex-grow: 1;
+}
+
+.banner-section.style-4 form button {
+  background: linear-gradient(to right, #ff5b5b, #ff8a8a);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-section.style-4 form button:hover {
+  background: linear-gradient(to right, #ff3838, #ff6b6b);
+  transform: scale(1.05);
+}
+
+.banner-section.style-4 .lab-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  left: 150px;
+  right: 50px;
+  z-index: 10;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner-section.style-4 .lab-ul li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.banner-section.style-4 .lab-ul li:hover {
+  background-color: #f9f9f9;
+}
+
+.banner-section.style-4 .lab-ul li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+/* Styles modernes pour la bannière */
+.banner-section {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+  background-image: linear-gradient(135deg, rgba(78, 84, 200, 0.1) 0%, rgba(143, 148, 251, 0.1) 100%);
+}
+
+.banner-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(78, 84, 200, 0.2) 0%, rgba(143, 148, 251, 0.2) 100%);
+  z-index: 0;
+}
+
+.banner-section::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(78, 84, 200, 0.15) 0%, rgba(143, 148, 251, 0.15) 100%);
+  z-index: 0;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Titre de la bannière */
+.banner-title-wrapper {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.banner-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.banner-content h2 span {
+  color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+}
+
+.banner-highlight-bar {
+  height: 3px;
+  width: 80px;
+  background: var(--primary-color);
+  margin: 0 auto 30px;
+  position: relative;
+  border-radius: 3px;
+}
+
+.banner-highlight-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: highlightMove 2s infinite;
+  border-radius: 3px;
+}
+
+@keyframes highlightMove {
+  0% { left: 0; }
+  100% { left: 70%; }
+}
+
+/* Formulaire de recherche */
+.modern-search-form {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  position: relative;
+}
+
+.search-container {
+  display: flex;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+  box-shadow: 0 15px 35px rgba(78, 84, 200, 0.2);
+  transform: translateY(-2px);
+}
+
+.search-input-wrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.modern-search-input {
+  flex: 1;
+  border: none;
+  padding: 15px 20px;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+}
+
+.modern-search-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modern-search-button:hover {
+  background: var(--primary-dark);
+}
+
+/* Résultats de recherche */
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  margin-top: 5px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.search-result-item {
+  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: rgba(78, 84, 200, 0.05);
+}
+
+.search-result-item-inner {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.search-result-thumbnail {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.result-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.search-result-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-name {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.result-price {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.search-result-footer {
+  padding: 10px 15px;
+  text-align: center;
+  background: rgba(78, 84, 200, 0.05);
+}
+
+.see-all-results {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.see-all-results:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.no-results {
+  padding: 15px;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Description */
+.banner-description {
+  margin-bottom: 30px;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Liste de bannière */
+.banner-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.banner-item {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.banner-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  color: var(--primary-color);
+}
+
+.banner-item span {
+  font-weight: 500;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation d'apparition progressive */
+.stagger-fade-in > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInStagger 0.5s ease forwards;
+}
+
+.stagger-fade-in > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-fade-in > *:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.stagger-fade-in > *:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeInStagger {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-section {
+    padding: 60px 0;
+  }
+  
+  .banner-content h2 {
+    font-size: 2rem;
+  }
+  
+  .search-container {
+    flex-direction: column;
+    border-radius: 15px;
+  }
+  
+  .banner-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}
+/* Styles pour les bannières */
+
+.banner {
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 2rem;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+  z-index: 1;
+}
+
+.banner-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner h1, 
+.banner h2,
+.banner h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.banner p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+}
+
+.banner-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.banner-btn:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour les bannières de promotion */
+.promo-banner {
+  background-color: #ff9800;
+  color: white;
+  padding: 0.75rem 0;
+  text-align: center;
+}
+
+.promo-banner a {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Bannière flottante */
+.floating-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 999;
+  max-width: 300px;
+}
+
+.floating-banner .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+/* Styles pour les différentes bannières */
+.banner {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.banner-primary {
+  background-color: #f0f7ff;
+  border-left: 4px solid #0d6efd;
+  color: #084298;
+}
+
+.banner-success {
+  background-color: #ecfdf5;
+  border-left: 4px solid #10b981;
+  color: #064e3b;
+}
+
+.banner-warning {
+  background-color: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  color: #7c2d12;
+}
+
+.banner-danger {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+  color: #7f1d1d;
+}
+
+.banner-info {
+  background-color: #eef2ff;
+  border-left: 4px solid #6366f1;
+  color: #312e81;
+}
+
+.banner-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner-content {
+  font-size: 0.95rem;
+}
+
+.banner-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.banner-close:hover {
+  opacity: 1;
+}
+
+/* Style spécifique pour la bannière promotionnelle */
+.promo-banner {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.promo-banner h3 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.promo-banner .btn {
+  background-color: white;
+  color: #6a11cb;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.promo-banner .btn:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Styles pour les bannières */
+
+.banner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: #f5f5f5;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+
+.banner-container {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.banner-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.banner-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.banner-action {
+  margin-top: 1rem;
+}
+
+/* Variantes de bannières */
+.banner-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.banner-primary .banner-title,
+.banner-primary .banner-subtitle {
+  color: white;
+}
+
+.banner-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.banner-info {
+  background-color: var(--info-color);
+  color: white;
+}
+
+.banner-success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.banner-warning {
+  background-color: var(--warning-color);
+  color: #333;
+}
+
+.banner-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Bannière avec image de fond */
+.banner-with-bg {
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.banner-with-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.banner-with-bg .banner-container {
+  z-index: 2;
+}
+
+/* Bannière avec image flottante */
+.banner-with-image {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.banner-with-image .banner-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.banner-with-image .banner-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.banner-with-image .banner-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive banner */
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 1.5rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 1rem;
+  }
+  
+  .banner-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Bannière de promotion */
+.promo-banner {
+  background-color: #ff5722;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: 600;
+}
+
+/* Bannière de notification */
+.notification-banner {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+.notification-banner.success {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.notification-banner.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #ffeeba;
+}
+
+.notification-banner.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}

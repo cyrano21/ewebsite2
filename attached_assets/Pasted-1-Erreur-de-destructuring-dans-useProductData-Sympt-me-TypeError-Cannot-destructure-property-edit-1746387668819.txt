@@ -1,0 +1,130 @@
+1. Erreur de destructuring dans useProductData
+Symptôme
+TypeError: Cannot destructure property 'editProductId' of 'param' as it is undefined.
+
+Cause
+Vous appeliez probablement votre hook sans lui passer d’objet, ou avec une signature différente :
+
+js
+Copier
+Modifier
+// Mauvais
+const { … } = useProductData();  
+// Mais le hook attendait un objet { editProductId, productDataFromShop }
+Solution
+Ajustez soit la signature du hook, soit son appel :
+
+Option A – Ne passer aucun paramètre et retirer la destructuration :
+
+js
+Copier
+Modifier
+// hooks/useProductData.js
+export default function useProductData() {
+  // n’utilise plus editProductId au premier niveau
+  …
+}
+Option B – Toujours appeler avec un objet, même vide :
+
+js
+Copier
+Modifier
+// ProductManagement.jsx
+const { products, … } = useProductData({ editProductId, productDataFromShop });
+Choisissez l’option qui correspond à votre design ; l’important est que useProductData et son appel soient alignés.
+
+2. usePagination is not a function
+Symptôme
+TypeError: usePagination is not a function
+
+Cause
+Vous exportiez usePagination en default, mais l’importiez avec des accolades :
+
+diff
+Copier
+Modifier
+- import { usePagination } from './hooks/usePagination';
++ import usePagination from './hooks/usePagination';
+Solution
+Vérifiez que votre hook est bien :
+
+js
+Copier
+Modifier
+// hooks/usePagination.js
+export default function usePagination(…) { … }
+Et que l’import dans ProductManagement.jsx est sans accolades.
+
+3. Mode édition du modal product­management
+Symptôme
+Le modal s’ouvre toujours en “Ajouter” même avec ?edit=true, d’où ce setTimeout pour forcer le titre.
+
+Causes identifiées
+Dépendance circulaire modalTitle → isEditMode → modalTitle.
+
+useModalState (openProductModal) écrase l’état ou l’initialise en “add” avant que setProductData(...) ait propagé le flag.
+
+Solutions
+Simplifier la détection du mode uniquement via le flag
+Dans ProductModal.jsx :
+
+js
+Copier
+Modifier
+// PLUS DE dépendance à modalTitle, _isFromShop, forcedEditMode, etc.
+const isEditMode = Boolean(productData?.isEditMode || productData?.id);
+const derivedTitle = isEditMode
+  ? 'Modifier le produit'
+  : 'Ajouter un produit';
+Puis dans le rendu :
+
+jsx
+Copier
+Modifier
+<Modal.Header closeButton>
+  <Modal.Title>{derivedTitle}</Modal.Title>
+</Modal.Header>
+Passage explicite du mode à openProductModal
+Si votre hook useModalState le permet, faites :
+
+js
+Copier
+Modifier
+// au lieu de setProductData + openProductModal séparément
+openProductModal({ initialData: cleanProductData, mode: 'edit' });
+Et dans useModalState :
+
+js
+Copier
+Modifier
+function openModal({ initialData, mode }) {
+  setModalData(initialData);
+  setModalMode(mode); // 'add' ou 'edit'
+  setIsOpen(true);
+}
+Supprimer le setTimeout de forçage du titre
+Une fois la propagation d’état corrigée, ce hack devient inutile.
+
+4. Vérification finale
+Relancez votre projet :
+
+bash
+Copier
+Modifier
+npm run dev
+Testez :
+
+Accès direct à /admin/products/123?edit=true → Modal en mode édition avec le bon titre.
+
+Pagination fonctionne sans erreur.
+
+Ajout / modification / suppression de produit fonctionnent.
+
+Récapitulatif des correctifs
+Problème	Action à mener
+useProductData destructuring	Harmoniser signature du hook et son appel (objet vs paramètres séparés).
+usePagination not a function	Passer d’import {…} à import usePagination from ….
+Modal toujours en “add”	Simplifier isEditMode, dériver modalTitle de ce flag, et pousser mode à l’ouverture.
+SetTimeout de forçage	Supprimer dès que l’état est correctement propagé.
+
+Suivez ces étapes dans l’ordre, et vous obtiendrez un flux d’édition/ajout de produit fiable et maintenable.

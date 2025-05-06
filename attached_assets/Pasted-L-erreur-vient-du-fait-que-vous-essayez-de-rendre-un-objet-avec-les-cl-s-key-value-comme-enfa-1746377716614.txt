@@ -1,0 +1,86 @@
+L’erreur vient du fait que vous essayez de rendre un objet (avec les clés { key, value }) comme enfant React, ce qui n’est pas autorisé. Dans votre cas, product.specifications est manifestement un array d’objets { key, value } (ou un objet dont certaines valeurs sont elles-mêmes des objets), et vous faites un Object.entries qui retourne une paire [index, {key,value}]. Quand vous faites <td>{value}</td>, value est donc un objet, pas une string ou un ReactNode.
+
+Deux solutions possibles
+1. Si product.specifications est un tableau d’objets { key, value }
+Remplacez entièrement ce bloc :
+
+tsx
+Copier
+Modifier
+{product.specifications && Object.entries(product.specifications).map(([key, value], i) => (
+  <tr key={i}>
+    <th>{key}</th>
+    <td>{value}</td>
+  </tr>
+))}
+par :
+
+tsx
+Copier
+Modifier
+{Array.isArray(product.specifications) && product.specifications.length > 0 ? (
+  product.specifications.map((spec, i) => (
+    <tr key={i}>
+      <th>{spec.key}</th>
+      <td>{spec.value}</td>
+    </tr>
+  ))
+) : (
+  <tr>
+    <td colSpan={2} className="text-center">Aucune spécification disponible</td>
+  </tr>
+)}
+2. Si product.specifications est un objet dont certaines valeurs sont elles-mêmes des objets
+Gardez le Object.entries mais convertissez les objets en chaîne JSON (ou affichez la propriété souhaitée) :
+
+tsx
+Copier
+Modifier
+{product.specifications && Object.entries(product.specifications).map(([key, value], i) => (
+  <tr key={i}>
+    <th>{key}</th>
+    <td>
+      {typeof value === 'object'
+        ? JSON.stringify(value)
+        : value}
+    </td>
+  </tr>
+))}
+Exemple complet du paragraphe “Spécifications” ajusté
+tsx
+Copier
+Modifier
+<Tab eventKey="specifications" title="Spécifications">
+  <div className="product-specifications pb-3">
+    <Table striped hover>
+      <tbody>
+        {product.specifications ? (
+          Array.isArray(product.specifications) ? (
+            product.specifications.map((spec, i) => (
+              <tr key={i}>
+                <th>{spec.key}</th>
+                <td>{spec.value}</td>
+              </tr>
+            ))
+          ) : (
+            Object.entries(product.specifications).map(([key, value], i) => (
+              <tr key={i}>
+                <th>{key}</th>
+                <td>
+                  {typeof value === 'object'
+                    ? JSON.stringify(value)
+                    : value}
+                </td>
+              </tr>
+            ))
+          )
+        ) : (
+          <tr>
+            <td colSpan={2} className="text-center">Aucune spécification disponible</td>
+          </tr>
+        )}
+      </tbody>
+    </Table>
+  </div>
+</Tab>
+Avec ça, vous n’essayerez plus de passer un objet brut à React. Choisissez la branche (array vs object) qui correspond à la forme réelle de product.specifications dans vos données.

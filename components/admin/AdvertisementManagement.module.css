@@ -1,0 +1,140 @@
+.container {
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 2px solid #f8f9fa;
+  padding-bottom: 15px;
+}
+
+.filterContainer {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #eaeaea;
+}
+
+.tableContainer {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.tableActions {
+  display: flex;
+  gap: 5px;
+}
+
+.statusBadge {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.formContainer {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.formTitle {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.previewContainer {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #f8f9fa;
+}
+
+.previewTitle {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.tabContent {
+  padding: 20px 0;
+}
+
+.analyticsCard {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.analyticsCard:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.analyticsCardTitle {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.analyticsCardValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.analyticsCardIcon {
+  font-size: 28px;
+  color: #e9ecef;
+}
+
+.chartContainer {
+  height: 300px;
+  margin-bottom: 30px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconButton i {
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .filterContainer {
+    padding: 10px;
+  }
+  
+  .analyticsCardValue {
+    font-size: 20px;
+  }
+  
+  .chartContainer {
+    height: 250px;
+  }
+}

@@ -1,0 +1,366 @@
+/* components/admin/AdminNavbar.module.css */
+.adminNavbar {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 0.25rem 1rem;
+}
+
+/* Logo */
+.brand {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  transition: background 0.3s;
+}
+
+.brand:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.brand .fw-bold {
+  background: linear-gradient(135deg, #4e73df, #2e59d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.2rem;
+}
+
+/* Ajout du sélecteur brandText manquant */
+.brandText {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: #344054;
+  transition: color 0.3s;
+}
+
+/* Liens de navigation */
+.navLink {
+  position: relative;
+  padding: 0.675rem 1rem !important;
+  color: #667085 !important;
+  font-weight: 500;
+  text-decoration: none; /* Added to match other navLinks */
+  transition: color 0.3s;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3b82f6;
+  transition: width 0.3s;
+}
+
+.navLink:hover::after {
+  width: 30%;
+}
+
+.navLink.active {
+  color: #344054 !important;
+}
+
+.navLink.active::after {
+  width: 70%;
+}
+
+/* Home Link */
+.homeLink {
+  position: relative;
+  padding: 0.675rem 1rem !important;
+  color: #667085 !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.homeLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3b82f6;
+  transition: width 0.3s;
+}
+
+.homeLink:hover::after {
+  width: 30%;
+}
+
+.homeLink.active {
+  color: #344054 !important;
+}
+
+.homeLink.active::after {
+  width: 70%;
+}
+
+
+/* Actions (recherche, notifications, profil) */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navActionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  color: #667085;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  transition: all 0.3s;
+}
+
+.navActionBtn:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color: #344054;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Barre de recherche */
+.searchContainer {
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+.searchForm {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  opacity: 0;
+  width: 0;
+  transition: all 0.3s;
+  visibility: hidden;
+}
+
+/* Définition explicite du sélecteur visible */
+.searchContainer.visible .searchForm {
+  opacity: 1;
+  width: 250px;
+  right: 120%;
+  visibility: visible;
+}
+
+/* Affiche la recherche lorsque visible */
+.visible {
+  opacity: 1;
+  visibility: visible;
+  width: auto;
+  transition: all 0.3s;
+}
+
+.searchInput {
+  border-radius: 20px 0 0 20px !important;
+  border-right: none;
+}
+
+.searchSubmit {
+  border-radius: 0 20px 20px 0 !important;
+}
+
+/* Notifications */
+.notificationDropdown {
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownHeader {
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+}
+
+.notificationItem {
+  padding: 0.75rem 1rem;
+  transition: background 0.2s;
+}
+
+.notificationItem:hover {
+  background-color: #f9fafb;
+}
+
+/* Définition explicite du sélecteur unread pour les notifications */
+.notificationItem.unread {
+  background-color: #f0f9ff;
+  border-left: 3px solid #3b82f6;
+}
+
+/* Style pour les notifications non lues */
+.unread {
+  background-color: #f0f9ff;
+  font-weight: 600;
+}
+
+.notificationIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f0f2f5;
+}
+
+/* Background colors for notification types */
+.bg-success-light {
+  background-color: rgba(25, 135, 84, 0.15);
+}
+
+.bg-danger-light {
+  background-color: rgba(220, 53, 69, 0.15);
+}
+
+.bg-warning-light {
+  background-color: rgba(255, 193, 7, 0.15);
+}
+
+.bg-primary-light {
+  background-color: rgba(13, 110, 253, 0.15);
+}
+
+.bg-info-light {
+  background-color: rgba(13, 202, 240, 0.15);
+}
+
+/* Style pour les éléments restreints */
+.restricted {
+  opacity: 0.9;
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.restricted:hover {
+  background-color: #f0f1f2;
+}
+
+/* Style supplémentaire pour le contenu restreint */
+.notificationItem.restricted .notificationIcon {
+  background-color: rgba(108, 117, 125, 0.2) !important;
+  color: #6c757d !important;
+}
+
+/* Profil utilisateur */
+.userDropdown {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 0.6rem !important;
+  padding: 0.25rem 0.5rem !important;
+  transition: all 0.3s;
+}
+
+.userDropdown:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatarContainer {
+  position: relative;
+}
+
+.userAvatar {
+  object-fit: cover;
+  border: 2px solid #ffffff;
+}
+
+.onlineIndicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  border: 1px solid #ffffff;
+}
+
+.userName {
+  color: #344054;
+  font-weight: 500;
+  margin-right: 0.25rem;
+}
+
+.dropdownProfileHeader {
+  background-color: #f9fafb;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Définition explicite du sélecteur active pour les éléments de navigation */
+.active {
+  color: #344054 !important;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .searchContainer.visible .searchForm {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    position: fixed !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    max-height: 60vh;
+    bottom: 0;
+    border-radius: 1rem 1rem 0 0;
+    animation: slideUpMobile 0.3s ease;
+  }
+}
+
+@keyframes slideUpMobile {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

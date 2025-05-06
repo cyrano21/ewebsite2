@@ -1,0 +1,27 @@
+Error: ./components/admin/AdvertisementManagement.jsx
+Error:   [31m×[0m Expected ',', got 'authentification'
+    ╭─[[36;1;4m/home/runner/workspace/components/admin/AdvertisementManagement.jsx[0m:69:1]
+ [2m66[0m │         const response = await axios.get('/api/advertisements', config);
+ [2m67[0m │       } catch (error) {
+ [2m68[0m │         if (error.response && error.response.status === 401) {
+ [2m69[0m │           console.error('Erreur d'authentification: Token invalide ou expiré');
+    · [35;1m                                  ────────────────[0m
+ [2m70[0m │           // Rediriger vers la page de connexion si nécessaire
+ [2m71[0m │           // window.location.href = '/login?callbackUrl=/admin/advertisements';
+ [2m72[0m │         }
+    ╰────
+
+Caused by:
+    Syntax Error
+    at BuildError (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/ui/container/build-error.js:43:41)
+    at renderWithHooks (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:16305:18)
+    at updateFunctionComponent (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:19583:20)
+    at beginWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:21596:16)
+    at beginWork$1 (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:27421:14)
+    at performUnitOfWork (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26552:12)
+    at workLoopSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26461:5)
+    at renderRootSync (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26429:7)
+    at performConcurrentWorkOnRoot (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:25733:74)
+    at workLoop (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:266:34)
+    at flushWork (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:239:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:533:21)

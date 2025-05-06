@@ -1,0 +1,43 @@
+`legacyBehavior` is deprecated and will be removed in a future release. A codemod is available to upgrade your components:
+
+npx @next/codemod@latest new-link .
+
+Learn more: https://nextjs.org/docs/app/building-your-application/upgrading/codemods#remove-a-tags-from-link-components
+Composant démonté
+Warning: Tags: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+    at Tags (webpack-internal:///(pages-dir-browser)/./components/shop/Tags.jsx:17:11)
+    at div
+    at div
+    at Transition (webpack-internal:///(pages-dir-browser)/./node_modules/react-transition-group/esm/Transition.js:134:30)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/TransitionWrapper.js:20:11)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Collapse.js:54:11)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/AccordionCollapse.js:25:15)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/AccordionBody.js:24:9)
+    at div
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/AccordionItem.js:22:9)
+    at div
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Accordion.js:35:175)
+    at FilterSection (webpack-internal:///(pages-dir-browser)/./components/shop/FilterSidebar.jsx:73:11)
+    at aside
+    at FilterSidebar (webpack-internal:///(pages-dir-browser)/./components/shop/FilterSidebar.jsx:122:11)
+    at aside
+    at div
+    at div
+    at div
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Container.js:18:11)
+    at div
+    at div
+    at Shop (webpack-internal:///(pages-dir-browser)/./pages/shop.js:927:74)
+    at main
+    at Layout (webpack-internal:///(pages-dir-browser)/./components/Layout.jsx:29:11)
+    at WishlistProvider (webpack-internal:///(pages-dir-browser)/./contexts/WishlistContext.tsx:33:11)
+    at NotificationProvider (webpack-internal:///(pages-dir-browser)/./contexts/NotificationContext.jsx:36:11)
+    at AuthProvider (webpack-internal:///(pages-dir-browser)/./contexts/AuthProvider.jsx:33:11)
+    at SessionProvider (webpack-internal:///(pages-dir-browser)/./node_modules/next-auth/react/index.js:365:24)
+    at MyApp (webpack-internal:///(pages-dir-browser)/./pages/_app.js:55:11)
+    at PathnameContextProviderAdapter (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+    at PagesDevOverlayErrorBoundary (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay-error-boundary.js:32:9)
+    at PagesDevOverlay (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay.js:18:11)
+    at Container (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:80:1)
+    at AppContainer (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:188:11)
+    at Root (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:417:11)
