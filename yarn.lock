@@ -4893,6 +4893,11 @@ react-countup@^6.5.3:
   dependencies:
     countup.js "^2.8.0"
 
+react-csv@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/react-csv/-/react-csv-2.2.2.tgz"
+  integrity sha512-RG5hOcZKZFigIGE8LxIEV/OgS1vigFQT4EkaHeKgyuCbUAu9Nbd/1RYq++bJcJJ9VOqO/n9TZRADsXNDR4VEpw==
+
 react-datepicker@^4.25.0:
   version "4.25.0"
   resolved "https://registry.npmjs.org/react-datepicker/-/react-datepicker-4.25.0.tgz"

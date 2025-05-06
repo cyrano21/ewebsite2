@@ -1,19 +1,15 @@
 import dbConnect from '../../../../utils/dbConnect';
 import Campaign from '../../../../models/Campaign';
-import auth from '../../../../middleware/auth';
-import isAdmin from '../../../../middleware/isAdmin';
+import { isAuthenticated, isAdmin } from '../../../../middleware/auth';
 
-export default async function handler(req, res) {
+// Handler protégé par authentication et vérification admin
+const handler = async (req, res) => {
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, message: 'Méthode non autorisée' });
   }
   try {
     await dbConnect();
-    const user = await auth(req, res);
-    if (!user) return;
-    const admin = await isAdmin(req, res);
-    if (!admin) return;
-
+    
     const { id } = req.query;
     const campaign = await Campaign.findById(id)
       .populate('createdBy', 'name email')
@@ -27,3 +23,5 @@ export default async function handler(req, res) {
     return res.status(500).json({ success: false, message: 'Erreur serveur' });
   }
 }
+
+export default isAuthenticated(isAdmin(handler));
