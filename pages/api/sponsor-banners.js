@@ -17,6 +17,12 @@ export default async function handler(req, res) {
 
   // Logger les infos de requête pour le débogage
   console.log(`[API sponsor-banners] Méthode: ${method}`);
+  
+  // Court-circuit pour les requêtes HEAD - évite toute connexion à MongoDB
+  if (method === 'HEAD') {
+    console.log('[API sponsor-banners] Requête HEAD détectée, réponse immédiate sans connexion DB');
+    return res.status(200).end();
+  }
 
   try {
     // Essayer de se connecter à la base de données

@@ -91,6 +91,12 @@ const Category = mongoose.models.Category || mongoose.model('Category', Category
 async function handler(req, res) {
   console.log(`🔍 [API] /api/categories - Méthode: ${req.method}, URL: ${req.url}, Query:`, req.query);
   
+  // Court-circuit pour les requêtes HEAD - évite toute connexion à MongoDB
+  if (req.method === 'HEAD') {
+    console.log('[API] Requête HEAD détectée, réponse immédiate sans connexion DB');
+    return res.status(200).end();
+  }
+  
   // Identifier le client pour débogage
   const clientIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   const userAgent = req.headers['user-agent'];

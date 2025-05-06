@@ -32,10 +32,11 @@ const FALLBACK_PRODUCTS = [
   }
 ];
 
-const BoughtTogether = ({ currentProduct }) => {
+const BoughtTogether = ({ currentProduct, checkedItems, onToggleItem, total }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     const fetchBoughtTogetherProducts = async () => {
@@ -58,60 +59,143 @@ const BoughtTogether = ({ currentProduct }) => {
         let data;
         let success = false;
         
-        // Tentative 1: API directe des produits reliés
+        // TENTATIVE 1: API directe des produits reliés
         try {
+          console.log('Tentative 1: API des produits reliés...');
           response = await fetchWithTimeout(`/api/products?limit=${limit}&related=${productId}`, {}, 3000);
+          
           if (response.ok) {
             data = await response.json();
             success = true;
-            console.log('API produits reliés OK');
+            console.log('✅ API produits reliés OK');
+          } else if (response.status === 500) {
+            console.log('⚠️ Erreur 500 sur API produits reliés - problème serveur détecté');
+            
+            // Vérifier si c'est une erreur MongoDB spécifique
+            try {
+              const errorText = await response.text();
+              if (errorText.includes('MongoNotConnectedError') || errorText.includes('MongoServerError')) {
+                console.log('⚠️ Erreur MongoDB confirmée:', errorText.substring(0, 100));
+              }
+            } catch (parseErr) {
+              console.log('Impossible de parser le texte de l\'erreur:', parseErr);
+            }
           }
         } catch (e) {
           console.log('Tentative 1 échouée:', e.message);
         }
         
-        // Tentative 2: API de la même catégorie
+        // TENTATIVE 2: API de la même catégorie
         if (!success && currentProduct.category) {
           try {
+            console.log('Tentative 2: API produits par catégorie...');
             const category = encodeURIComponent(currentProduct.category);
             response = await fetchWithTimeout(`/api/products?limit=${limit}&category=${category}`, {}, 3000);
+            
             if (response.ok) {
               data = await response.json();
               success = true;
-              console.log('API produits par catégorie OK');
+              console.log('✅ API produits par catégorie OK');
+            } else if (response.status === 500) {
+              console.log('⚠️ Erreur 500 sur API produits par catégorie - problème serveur détecté');
+              
+              // Vérifier si c'est une erreur MongoDB spécifique
+              try {
+                const errorText = await response.text();
+                if (errorText.includes('MongoNotConnectedError') || errorText.includes('MongoServerError')) {
+                  console.log('⚠️ Erreur MongoDB confirmée sur API catégorie');
+                }
+              } catch (parseErr) {
+                console.log('Impossible de parser le texte de l\'erreur catégorie:', parseErr);
+              }
             }
           } catch (e) {
             console.log('Tentative 2 échouée:', e.message);
           }
         }
         
-        // Tentative 3: API avec tous les produits
+        // TENTATIVE 3: API avec tous les produits
         if (!success) {
           try {
+            console.log('Tentative 3: API de tous les produits...');
             response = await fetchWithTimeout(`/api/products?limit=${limit}`, {}, 3000);
+            
             if (response.ok) {
               data = await response.json();
               success = true;
-              console.log('API de tous les produits OK');
+              console.log('✅ API de tous les produits OK');
+            } else if (response.status === 500) {
+              console.log('⚠️ Erreur 500 sur API de tous les produits - problème serveur détecté');
+              
+              // Puisque toutes les API ont échoué avec 500, c'est probablement un problème MongoDB global
+              console.log('⚠️ Problème de connexion MongoDB global détecté après 3 tentatives d\'API');
             }
           } catch (e) {
             console.log('Tentative 3 échouée:', e.message);
           }
         }
         
-        // Si aucune tentative n'a réussi, lancer une erreur
+        // TENTATIVE 4: Utiliser des données provenant du produit courant
+        if (!success && currentProduct.relatedProducts && Array.isArray(currentProduct.relatedProducts)) {
+          try {
+            console.log('Tentative 4: Utilisation des relatedProducts du produit courant...');
+            data = currentProduct.relatedProducts.slice(0, limit);
+            if (data.length > 0) {
+              success = true;
+              console.log('✅ Produits liés trouvés dans le produit courant');
+            }
+          } catch (e) {
+            console.log('Tentative 4 échouée:', e.message);
+          }
+        }
+        
+        // TENTATIVE 5: Utiliser des données provenant du produit courant (similarProducts)
+        if (!success && currentProduct.similarProducts && Array.isArray(currentProduct.similarProducts)) {
+          try {
+            console.log('Tentative 5: Utilisation des similarProducts du produit courant...');
+            data = currentProduct.similarProducts.slice(0, limit);
+            if (data.length > 0) {
+              success = true;
+              console.log('✅ Produits similaires trouvés dans le produit courant');
+            }
+          } catch (e) {
+            console.log('Tentative 5 échouée:', e.message);
+          }
+        }
+        
+        // TENTATIVE 6: Utiliser des données provenant du produit courant (boughtTogether)
+        if (!success && currentProduct.boughtTogether && Array.isArray(currentProduct.boughtTogether)) {
+          try {
+            console.log('Tentative 6: Utilisation des boughtTogether du produit courant...');
+            data = currentProduct.boughtTogether.slice(0, limit);
+            if (data.length > 0) {
+              success = true;
+              console.log('✅ Produits achetés ensemble trouvés dans le produit courant');
+            }
+          } catch (e) {
+            console.log('Tentative 6 échouée:', e.message);
+          }
+        }
+        
+        // SOLUTION DE SECOURS: Utiliser les produits de secours statiques
         if (!success) {
-          throw new Error("Toutes les tentatives de récupération ont échoué");
+          console.log('⚠️ Toutes les tentatives de récupération ont échoué, utilisation des produits de secours');
+          setError("Impossible de récupérer les produits associés");
+          setProducts(FALLBACK_PRODUCTS);
+          setLoading(false);
+          return;
         }
 
         // Parser les données selon leur format
         let productsData = [];
-        if (data.products) {
+        if (Array.isArray(data)) {
+          productsData = data;
+        } else if (data.products && Array.isArray(data.products)) {
           productsData = data.products;
+        } else if (data.data && Array.isArray(data.data)) {
+          productsData = data.data;
         } else if (data.success && Array.isArray(data.products)) {
           productsData = data.products;
-        } else if (Array.isArray(data)) {
-          productsData = data;
         } else {
           console.error('Format de données inattendu:', data);
           productsData = FALLBACK_PRODUCTS;
@@ -124,10 +208,12 @@ const BoughtTogether = ({ currentProduct }) => {
         });
         
         if (filteredProducts.length > 0) {
+          console.log(`✅ ${filteredProducts.length} produits associés trouvés`);
           setProducts(filteredProducts.slice(0, limit));
+          setError(null);
         } else {
           // Si on n'a pas trouvé de produits, utiliser les produits de secours
-          console.log('Aucun produit filtré trouvé, utilisation des produits de secours');
+          console.log('⚠️ Aucun produit filtré trouvé, utilisation des produits de secours');
           setProducts(FALLBACK_PRODUCTS);
         }
       } catch (err) {
@@ -135,13 +221,28 @@ const BoughtTogether = ({ currentProduct }) => {
         setError(err.message);
         // Utiliser les produits de secours
         setProducts(FALLBACK_PRODUCTS);
+        
+        // Si nous avons moins de 3 tentatives, essayer à nouveau après un délai
+        if (retryCount < 2) {
+          console.log(`Nouvelle tentative (${retryCount + 1}/2) dans 3 secondes...`);
+          setTimeout(() => {
+            setRetryCount(prevCount => prevCount + 1);
+            setLoading(true);
+          }, 3000);
+          return;
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchBoughtTogetherProducts();
-  }, [currentProduct]);
+  }, [currentProduct, retryCount]);
+
+  // Si aucun produit n'est trouvé ou s'il y a moins de 1 produit, ne pas afficher la section
+  if (!products || !Array.isArray(products) || products.length < 1) {
+    return null;
+  }
 
   if (loading) {
     return (
@@ -152,37 +253,25 @@ const BoughtTogether = ({ currentProduct }) => {
             <div className="spinner-border text-primary" role="status">
               <span className="visually-hidden">Chargement...</span>
             </div>
+            {retryCount > 0 && <p className="mt-2 text-muted">Nouvelle tentative {retryCount}/2...</p>}
           </div>
         </Col>
       </Row>
     );
-  }
-
-  if (error) {
-    return (
-      <Row className="my-5">
-        <Col>
-          <h2 className="mb-4">Souvent achetés ensemble</h2>
-          <div className="alert alert-warning">
-            Impossible de charger les recommandations pour le moment.
-          </div>
-        </Col>
-      </Row>
-    );
-  }
-
-  // Si aucun produit n'est trouvé ou s'il y a moins de 1 produit, ne pas afficher la section
-  if (!products || !Array.isArray(products) || products.length < 1) {
-    return null;
   }
 
   return (
     <Row className="my-5">
       <Col>
         <h2 className="mb-4">Souvent achetés ensemble</h2>
+        {error && (
+          <div className="alert alert-warning mb-4">
+            Certaines recommandations personnalisées ne sont pas disponibles. Voici des suggestions qui pourraient vous intéresser.
+          </div>
+        )}
         <Row>
           {products.map((product) => (
-            <Col key={product._id} md={4} sm={6} className="mb-4">
+            <Col key={product._id || product.id || `product-${Math.random().toString(36).substr(2, 9)}`} md={4} sm={6} className="mb-4">
               <Card className="h-100 product-card shadow-sm">
                 <Link href={`/shop/product/${product._id || product.id || 'fallback'}`} legacyBehavior={false}>
                   <div className="position-relative" style={{ height: '200px' }}>

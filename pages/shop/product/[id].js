@@ -31,68 +31,186 @@ const fetchProductData = async (id, baseUrl = '') => {
       throw new Error('ID de produit invalide');
     }
     
+    // Fallback data (utilisé en cas d'échec de l'API)
+    const fallbackProduct = {
+      _id: id,
+      id: id,
+      name: "Produit temporaire",
+      description: "Les détails du produit sont temporairement indisponibles. Veuillez réessayer ultérieurement.",
+      price: 99.99,
+      salePrice: 0,
+      image: "/assets/images/shop/placeholder.jpg",
+      category: "uncategorized",
+      stock: 10,
+      similarProducts: [],
+      boughtTogether: []
+    };
+    
     // 1) le produit principal
-    const res = await fetch(`${baseUrl}/api/products/${id}`);
-    
-    if (!res.ok) {
-      const errorStatus = res.status;
-      const errorText = await res.text().catch(() => 'Erreur inconnue');
-      console.error(`Erreur API (${errorStatus}):`, errorText);
-      throw new Error(`Erreur produit: ${errorStatus}`);
-    }
-    
-    const productData = await res.json();
-    
-    // Vérifier si nous avons bien reçu un objet produit
-    if (!productData || (typeof productData === 'object' && Object.keys(productData).length === 0)) {
-      throw new Error('Données de produit invalides');
-    }
-    
-    // Extraire le produit si l'API retourne un wrapper
-    const product = productData.data || productData;
-    
-    // Vérifier si le produit a une catégorie
-    if (!product.category) {
-      console.warn('Produit sans catégorie:', id);
-      product.category = 'uncategorized';
-    }
-
-    // 2) produits similaires
-    let similarProducts = [];
     try {
-      const simRes = await fetch(
-        `${baseUrl}/api/products?category=${encodeURIComponent(
-          product.category
-        )}&limit=4&exclude=${id}`
-      );
-      if (simRes.ok) {
-        const simData = await simRes.json();
-        similarProducts = Array.isArray(simData) ? simData : 
-                         (simData.data && Array.isArray(simData.data)) ? simData.data : 
-                         (simData.products && Array.isArray(simData.products)) ? simData.products : [];
+      const res = await fetch(`${baseUrl}/api/products/${id}`);
+      
+      if (!res.ok) {
+        const errorStatus = res.status;
+        const errorText = await res.text().catch(() => 'Erreur inconnue');
+        console.error(`Erreur API (${errorStatus}):`, errorText);
+        
+        // Si l'erreur est un problème de base de données (500), utiliser des données statiques
+        if (errorStatus === 500) {
+          console.log("Problème de serveur détecté, utilisation de données de secours");
+          
+          // Essayer de récupérer le produit depuis les données locales importées
+          try {
+            const localProduct = allProducts.find(p => String(p.id) === String(id) || String(p._id) === String(id));
+            if (localProduct) {
+              console.log("Produit trouvé dans les données locales");
+              return { ...localProduct, similarProducts: suggestedProducts.slice(0, 4), boughtTogether: suggestedProducts.slice(4, 7) };
+            }
+          } catch (localErr) {
+            console.warn("Échec de la récupération locale:", localErr);
+          }
+          
+          // Utiliser un produit de secours générique
+          console.log("Utilisation du produit de secours générique");
+          return fallbackProduct;
+        }
+        
+        throw new Error(`Erreur produit: ${errorStatus}`);
       }
-    } catch (e) {
-      console.warn("Impossible de charger produits similaires", e);
-    }
-
-    // 3) produits achetés ensemble
-    let boughtTogether = [];
-    try {
-      const btRes = await fetch(
-        `${baseUrl}/api/products?featured=true&limit=3&exclude=${id}`
-      );
-      if (btRes.ok) {
-        const btData = await btRes.json();
-        boughtTogether = Array.isArray(btData) ? btData : 
-                         (btData.data && Array.isArray(btData.data)) ? btData.data : 
-                         (btData.products && Array.isArray(btData.products)) ? btData.products : [];
+      
+      const productData = await res.json();
+      
+      // Vérifier si nous avons bien reçu un objet produit
+      if (!productData || (typeof productData === 'object' && Object.keys(productData).length === 0)) {
+        throw new Error('Données de produit invalides');
       }
-    } catch (e) {
-      console.warn("Impossible de charger produits achetés ensemble", e);
-    }
+      
+      // Extraire le produit si l'API retourne un wrapper
+      const product = productData.data || productData;
+      
+      // Vérifier si le produit a une catégorie
+      if (!product.category) {
+        console.warn('Produit sans catégorie:', id);
+        product.category = 'uncategorized';
+      }
 
-    // 4) injection dans l'objet final
-    return { ...product, similarProducts, boughtTogether };
+      // 2) produits similaires
+      let similarProducts = [];
+      try {
+        // Essayer d'abord l'API qui utilise la catégorie
+        console.log(`Récupération des produits similaires pour la catégorie: ${product.category}`);
+        const simRes = await fetch(
+          `${baseUrl}/api/products?category=${encodeURIComponent(
+            product.category
+          )}&limit=4&exclude=${id}`
+        );
+        
+        if (simRes.ok) {
+          const simData = await simRes.json();
+          console.log("Réponse API produits similaires:", simData);
+          
+          // Gérer différents formats de réponse possibles
+          if (Array.isArray(simData)) {
+            similarProducts = simData;
+            console.log(`✅ ${similarProducts.length} produits similaires trouvés (format tableau)`);
+          } else if (simData.data && Array.isArray(simData.data)) {
+            similarProducts = simData.data;
+            console.log(`✅ ${similarProducts.length} produits similaires trouvés (format data)`);
+          } else if (simData.products && Array.isArray(simData.products)) {
+            similarProducts = simData.products;
+            console.log(`✅ ${similarProducts.length} produits similaires trouvés (format products)`);
+          } else {
+            console.log("❌ Format de réponse inattendu pour les produits similaires:", simData);
+          }
+        } else {
+          console.log(`❌ Erreur API produits similaires: ${simRes.status}`);
+          
+          // En cas d'erreur serveur, utiliser des données statiques
+          if (simRes.status === 500) {
+            similarProducts = suggestedProducts.slice(0, 4);
+            console.log("Utilisation de produits similaires statiques");
+          }
+        }
+        
+        // Si aucun produit similaire n'a été trouvé, essayer une API de secours ou utiliser des statiques
+        if (similarProducts.length === 0) {
+          try {
+            console.log("Tentative de récupération de produits aléatoires...");
+            const fallbackRes = await fetch(`${baseUrl}/api/products?limit=4&random=true&exclude=${id}`);
+            
+            if (fallbackRes.ok) {
+              const fbData = await fallbackRes.json();
+              
+              // Gérer différents formats de réponse possibles
+              if (Array.isArray(fbData)) {
+                similarProducts = fbData;
+              } else if (fbData.data && Array.isArray(fbData.data)) {
+                similarProducts = fbData.data;
+              } else if (fbData.products && Array.isArray(fbData.products)) {
+                similarProducts = fbData.products;
+              }
+              
+              console.log(`✅ ${similarProducts.length} produits aléatoires trouvés comme alternative`);
+            } else if (fallbackRes.status === 500) {
+              // En cas d'erreur serveur, utiliser des données statiques
+              similarProducts = suggestedProducts.slice(0, 4);
+              console.log("Utilisation de produits similaires statiques (API aléatoire 500)");
+            }
+          } catch (randomErr) {
+            console.warn("Erreur lors de la récupération de produits aléatoires:", randomErr);
+            similarProducts = suggestedProducts.slice(0, 4);
+            console.log("Utilisation de produits similaires statiques après erreur");
+          }
+        }
+      } catch (e) {
+        console.warn("Impossible de charger produits similaires:", e);
+        // En cas d'erreur, utiliser des produits de secours importés
+        similarProducts = suggestedProducts.slice(0, 4);
+        console.log("Utilisation de produits similaires de secours après exception");
+      }
+
+      // 3) produits achetés ensemble
+      let boughtTogether = [];
+      try {
+        const btRes = await fetch(
+          `${baseUrl}/api/products?featured=true&limit=3&exclude=${id}`
+        );
+        if (btRes.ok) {
+          const btData = await btRes.json();
+          boughtTogether = Array.isArray(btData) ? btData : 
+                          (btData.data && Array.isArray(btData.data)) ? btData.data : 
+                          (btData.products && Array.isArray(btData.products)) ? btData.products : [];
+        } else if (btRes.status === 500) {
+          // En cas d'erreur serveur, utiliser des données statiques
+          boughtTogether = suggestedProducts.slice(4, 7);
+          console.log("Utilisation de produits 'achetés ensemble' statiques");
+        }
+      } catch (e) {
+        console.warn("Impossible de charger produits achetés ensemble:", e);
+        boughtTogether = suggestedProducts.slice(4, 7);
+      }
+
+      // 4) injection dans l'objet final
+      return { ...product, similarProducts, boughtTogether };
+      
+    } catch (fetchError) {
+      console.error('Erreur lors de la récupération du produit principal:', fetchError);
+      // Utiliser des données locales en cas d'erreur
+      const localProduct = allProducts.find(p => String(p.id) === String(id) || String(p._id) === String(id));
+      
+      if (localProduct) {
+        console.log("Produit trouvé dans les données locales après erreur");
+        return { 
+          ...localProduct,
+          similarProducts: suggestedProducts.slice(0, 4),
+          boughtTogether: suggestedProducts.slice(4, 7)
+        };
+      }
+      
+      // Si rien ne fonctionne, renvoyer l'erreur originale
+      throw fetchError;
+    }
+    
   } catch (error) {
     console.error('Erreur dans fetchProductData:', error);
     throw error; // Propagation de l'erreur pour traitement dans le composant
