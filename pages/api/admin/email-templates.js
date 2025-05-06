@@ -1,27 +1,19 @@
 // pages/api/admin/email-templates.js
 import dbConnect from "../../../utils/dbConnect";
 import EmailTemplate from "../../../models/EmailTemplate";
-import auth from "../../../middleware/auth";
-import isAdmin from "../../../middleware/isAdmin";
+import { isAuthenticated, isAdmin } from "../../../middleware/auth";
 
-export default async function handler(req, res) {
+export default isAuthenticated(isAdmin(async function handler(req, res) {
   try {
     // Connexion à la base de données
     await dbConnect();
 
-    // Vérification des droits d'administrateur
-    const user = await auth(req, res);
-    if (!user) return;
-
-    const admin = await isAdmin(req, res);
-    if (!admin) return;
-
     // Traitement selon la méthode HTTP
     switch (req.method) {
       case 'GET':
-        return await getEmailTemplates(req, res, user);
+        return await getEmailTemplates(req, res, req.user);
       case 'POST':
-        return await createEmailTemplate(req, res, user);
+        return await createEmailTemplate(req, res, req.user);
       default:
         return res.status(405).json({ success: false, message: 'Méthode non autorisée' });
     }
@@ -32,7 +24,7 @@ export default async function handler(req, res) {
       message: "Une erreur est survenue lors du traitement de la requête"
     });
   }
-}
+}));
 
 /**
  * Récupère tous les modèles d'emails

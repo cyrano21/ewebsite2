@@ -58,17 +58,22 @@ const ReviewAnalytics = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
+    console.log("[FRONTEND] Initialisation du hook useEffect, loading:", loading);
+    
     const fetchAnalytics = async () => {
       try {
+        console.log("[FRONTEND] Début de la récupération des analyses");
         setLoading(true);
         const token = localStorage.getItem('auth-token');
         
         if (!token) {
+          console.log("[FRONTEND] Pas de token disponible");
           setError('Authentification requise');
           setLoading(false);
           return;
         }
         
+        console.log("[FRONTEND] Envoi de la requête à l'API review-analytics");
         const res = await fetch('/api/admin/review-analytics', {
           headers: {
             'Content-Type': 'application/json',
@@ -76,28 +81,40 @@ const ReviewAnalytics = () => {
           }
         });
         
+        console.log("[FRONTEND] Réponse reçue de l'API, status:", res.status);
+        
         const data = await res.json();
+        console.log("[FRONTEND] Données JSON reçues:", Object.keys(data));
         
         if (data.success) {
+          console.log("[FRONTEND] Succès, mise à jour de l'état avec les données");
           setAnalytics(data);
+          setLoading(false);
         } else {
+          console.log("[FRONTEND] Erreur reçue de l'API:", data.message);
           setError(data.message || 'Erreur lors de la récupération des analyses');
+          setLoading(false);
         }
       } catch (error) {
-        setError('Erreur lors de la récupération des analyses');
-        console.error(error);
-      } finally {
+        console.error('[FRONTEND] Erreur lors de la récupération des analyses:', error);
+        setError('Erreur lors de la récupération des analyses: ' + (error.message || 'Erreur inconnue'));
         setLoading(false);
       }
     };
     
-    if (user && user.role === 'admin') {
-      fetchAnalytics();
-    } else {
-      setError('Accès réservé aux administrateurs');
+    console.log("[FRONTEND] Vérification du token avant de lancer fetchAnalytics");
+    const token = localStorage.getItem('auth-token');
+    if (!token) {
+      console.log("[FRONTEND] Pas de token, affichage de l'erreur");
+      setError('Authentification requise');
       setLoading(false);
+      return;
     }
-  }, [user]);
+    
+    console.log("[FRONTEND] Initialisation du chargement, user:", user?.role);
+    fetchAnalytics();
+    
+  }, []);
 
   // Fonction pour formater la date
   const formatDate = (dateString) => {

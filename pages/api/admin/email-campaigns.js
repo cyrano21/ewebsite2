@@ -1,20 +1,12 @@
 // pages/api/admin/email-campaigns.js
 import dbConnect from "../../../utils/dbConnect";
 import Campaign from "../../../models/Campaign";
-import auth from "../../../middleware/auth";
-import isAdmin from "../../../middleware/isAdmin";
+import { isAuthenticated, isAdmin } from "../../../middleware/auth";
 
-export default async function handler(req, res) {
+export default isAuthenticated(isAdmin(async function handler(req, res) {
   try {
     // Connexion à la base de données
     await dbConnect();
-
-    // Vérifie l'authentification et les droits d'administrateur
-    const user = await auth(req, res);
-    if (!user) return;
-
-    const admin = await isAdmin(req, res);
-    if (!admin) return;
 
     // Récupération de toutes les campagnes, triées par date de création (les plus récentes d'abord)
     const campaigns = await Campaign.find({})
@@ -33,4 +25,4 @@ export default async function handler(req, res) {
       message: "Une erreur est survenue lors de la récupération des campagnes"
     });
   }
-}
+}));

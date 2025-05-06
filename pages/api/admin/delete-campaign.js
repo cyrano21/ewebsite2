@@ -1,10 +1,9 @@
 // pages/api/admin/delete-campaign.js
 import dbConnect from "../../../utils/dbConnect";
 import Campaign from "../../../models/Campaign";
-import auth from "../../../middleware/auth";
-import isAdmin from "../../../middleware/isAdmin";
+import { isAuthenticated, isAdmin } from "../../../middleware/auth";
 
-export default async function handler(req, res) {
+export default isAuthenticated(isAdmin(async function handler(req, res) {
   try {
     // Vérifier que la méthode est DELETE
     if (req.method !== 'DELETE') {
@@ -13,13 +12,6 @@ export default async function handler(req, res) {
 
     // Connexion à la base de données
     await dbConnect();
-
-    // Vérification des droits d'administrateur
-    const user = await auth(req, res);
-    if (!user) return;
-
-    const admin = await isAdmin(req, res);
-    if (!admin) return;
 
     const { campaignId } = req.body;
 
@@ -62,4 +54,4 @@ export default async function handler(req, res) {
       message: "Une erreur est survenue lors de la suppression de la campagne"
     });
   }
-}
+}));

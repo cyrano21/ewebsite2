@@ -554,10 +554,10 @@ const EmailCampaigns = () => {
                   rows={10}
                   value={templateContent}
                   onChange={(e) => setTemplateContent(e.target.value)}
-                  placeholder="<h1>Bonjour {{nom}},</h1><p>Voici nos recommandations...</p>"
+                  placeholder="<h1>Bonjour {'{nom}'},</h1><p>Voici nos recommandations...</p>"
                 />
                 <Form.Text className="text-muted">
-                  Utilisez {{nom}} pour insérer le nom de l'utilisateur, {{produits}} pour insérer la liste des produits recommandés.
+                  Utilisez {'{nom}'} pour insérer le nom de l'utilisateur, {'{produits}'} pour insérer la liste des produits recommandés.
                 </Form.Text>
               </Form.Group>
             </Form>

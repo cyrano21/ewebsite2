@@ -24,7 +24,8 @@ const NAV_ITEMS = [
   { href: '/admin/promotions', icon: 'icofont-sale-discount', label: 'Promotions' },
   { href: '/admin/customers', icon: 'icofont-users-alt-3', label: 'Clients' },
   { href: '/admin/blog', icon: 'icofont-blogger', label: 'Blog' },
-  { href: '/admin/reviews', icon: 'icofont-star', label: 'Avis' }, // Nouveau lien pour la gestion des avis
+  { href: '/admin/reviews', icon: 'icofont-star', label: 'Avis' }, // Avis clients
+  { href: '/admin/email-campaigns', icon: 'icofont-email', label: 'Emails' }, // Nouveau lien pour la gestion des emails
   { href: '/admin/reports', icon: 'icofont-chart-line', label: 'Rapports' },
   { href: '/admin/settings', icon: 'icofont-gear', label: 'Paramètres' },
   { href: '/admin/sponsors', icon: 'icofont-sponsor', label: 'Sponsors' }
