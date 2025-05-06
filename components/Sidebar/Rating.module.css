@@ -1,0 +1,50 @@
+.ratingContainer {
+  display: flex;
+  align-items: center;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.count {
+  margin-left: 0.5rem;
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+/* Styles pour les différentes tailles */
+.small i {
+  font-size: 0.75rem;
+  margin-right: 2px;
+}
+
+.medium i {
+  font-size: 1rem;
+  margin-right: 3px;
+}
+
+.large i {
+  font-size: 1.25rem;
+  margin-right: 4px;
+}
+
+.extraLarge i {
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+
+/* Animation pour les étoiles interactives */
+.interactive {
+  transition: transform 0.2s ease;
+}
+
+.interactive:hover {
+  transform: scale(1.2);
+}
+
+/* Couleur par défaut pour les étoiles inactives */
+.rating i {
+  color: #e2e5e9;
+}

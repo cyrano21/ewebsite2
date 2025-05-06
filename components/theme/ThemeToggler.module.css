@@ -1,0 +1,91 @@
+.themeToggler {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Alignement */
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
+
+/* Bouton icône */
+.themeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+/* Animation de rotation pour l'icône */
+.themeButton i {
+  transition: transform 0.5s ease;
+}
+
+.themeButton:hover i {
+  transform: rotate(30deg);
+}
+
+/* Styles pour dark mode */
+:global([data-theme="dark"]) .themeButton {
+  color: #f8f9fa;
+}
+
+/* Switch */
+.themeSwitch {
+  padding: 0.5rem;
+}
+
+.themeSwitch label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Select */
+.themeSelect {
+  max-width: 150px;
+  border-radius: 0.5rem;
+}
+
+/* Effets hover */
+.themeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+:global([data-theme="dark"]) .themeButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animation de transition pour le switch */
+.themeSwitch :global(.form-check-input) {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Styles responsifs */
+@media (max-width: 576px) {
+  .themeButton {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+  
+  .themeSelect {
+    max-width: 120px;
+  }
+}

@@ -1,0 +1,143 @@
+.compareContainer {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.compareTable {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 100%;
+}
+
+.compareTable th,
+.compareTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.labelCol {
+  position: sticky;
+  left: 0;
+  background-color: #f8f9fa;
+  font-weight: 600;
+  text-align: left !important;
+  z-index: 1;
+  width: 150px;
+  max-width: 150px;
+  min-width: 150px;
+  box-shadow: 4px 0 5px -2px rgba(0, 0, 0, 0.05);
+}
+
+.productCol {
+  min-width: 180px;
+  max-width: 250px;
+}
+
+.productImage {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.productImage:hover {
+  transform: scale(1.05);
+}
+
+.productName {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.productName:hover {
+  color: #0d6efd;
+}
+
+.removeProduct {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price, .discountPrice {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.discountPrice {
+  color: #dc3545;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.discountBadge {
+  margin-top: 0.25rem;
+}
+
+.description {
+  max-height: 100px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Surbrillance pour les cellules différentes */
+.highlight {
+  background-color: rgba(255, 243, 205, 0.5);
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+  .productCol {
+    min-width: 150px;
+  }
+  
+  .labelCol {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+  }
+}

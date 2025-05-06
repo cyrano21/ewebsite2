@@ -1,0 +1,188 @@
+.searchContainer {
+  position: relative;
+  width: 100%;
+}
+
+.searchForm {
+  width: 100%;
+}
+
+.searchInput {
+  border-radius: 0.375rem;
+  padding-right: 3rem;
+}
+
+.searchInput.dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.searchInput.dark::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.searchButton {
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.categorySelect {
+  max-width: 180px;
+  flex-shrink: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Conteneur de suggestions */
+.suggestionsContainer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+  z-index: 1000;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+/* Sections de suggestions */
+.suggestionsSection {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestionsSection:last-child {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+/* Items de suggestion */
+.suggestionItem {
+  padding: 0.5rem 0.75rem;
+  border: none;
+}
+
+.suggestionContent {
+  display: flex;
+  align-items: center;
+}
+
+.thumbnailContainer {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.suggestionDetails {
+  flex-grow: 1;
+}
+
+.suggestionName {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.suggestionMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.suggestionCategory {
+  color: #6c757d;
+}
+
+.suggestionPrice {
+  font-weight: 600;
+  color: #212529;
+}
+
+/* Recherches récentes */
+.searchHistoryItem {
+  padding: 0.5rem 0.75rem;
+  border: none;
+}
+
+.clearHistoryContainer {
+  text-align: right;
+  padding-top: 0.5rem;
+}
+
+.clearHistory {
+  font-size: 0.8rem;
+  padding: 0;
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.clearHistory:hover {
+  color: #dc3545;
+  text-decoration: underline;
+}
+
+/* Recherches populaires */
+.popularSearches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.popularSearch {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50rem;
+}
+
+/* Chargement */
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #6c757d;
+}
+
+.loadingContainer span {
+  margin-left: 0.75rem;
+}
+
+/* Pas de résultat */
+.noResults {
+  padding: 1.5rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .categorySelect {
+    display: none;
+  }
+  
+  .suggestionsContainer {
+    max-height: 350px;
+  }
+}
