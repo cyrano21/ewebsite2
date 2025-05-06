@@ -3,8 +3,9 @@ import { Table, Button, Badge, Container, Row, Col, Card, Form, Tabs, Tab, Alert
 import AdminLayout from '../../components/admin/AdminLayout';
 import Head from 'next/head';
 import { AuthContext } from '../../contexts/AuthProvider';
-import { FaStar, FaSearch, FaCheck, FaTimes, FaTrashAlt, FaExclamationTriangle } from 'react-icons/fa';
+import { FaStar, FaSearch, FaCheck, FaTimes, FaTrashAlt, FaExclamationTriangle, FaChartBar } from 'react-icons/fa';
 import { Bar } from 'react-chartjs-2';
+import Link from 'next/link';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -576,6 +577,13 @@ const AdminReviews = () => {
             <p className="text-muted">
               Gérez les avis clients, approuvez ou rejetez les nouveaux avis, et consultez les statistiques.
             </p>
+          </Col>
+          <Col md="auto" className="d-flex align-items-center">
+            <Link href="/admin/review-analytics">
+              <Button variant="outline-primary">
+                <FaChartBar className="me-2" /> Analyses avancées des avis
+              </Button>
+            </Link>
           </Col>
         </Row>
 
