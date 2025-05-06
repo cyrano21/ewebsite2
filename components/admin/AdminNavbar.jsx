@@ -9,8 +9,9 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import styles from './AdminNavbar.module.css';
 // Importer le contexte de notification
 import { useNotifications, NOTIFICATION_TYPES } from '../../contexts/NotificationContext';
-// Importation du nouveau composant
+// Importation des composants de notification
 import ReviewNotificationItem from './ReviewNotificationItem';
+import SellerNotificationItem from './SellerNotificationItem';
 
 const NAV_ITEMS = [
   { href: '/admin/products', icon: 'icofont-box', label: 'Produits' },
@@ -41,6 +42,9 @@ export default function AdminNavbar() {
   const [unreadCount, setUnreadCount] = useState(0);
   const [pendingReviewsCount, setPendingReviewsCount] = useState(0);
   const [pendingReviews, setPendingReviews] = useState([]);
+  // Ajout des états pour les vendeurs
+  const [pendingSellersCount, setPendingSellersCount] = useState(0);
+  const [pendingSellers, setPendingSellers] = useState([]);
 
   // Effet de scroll
   useEffect(() => {
@@ -185,6 +189,75 @@ export default function AdminNavbar() {
     }
   }, [user, fetchPendingReviews, applyFallbackData, pendingReviews.length, pendingReviewsCount, router.pathname]);
   // Ajout de router.pathname aux dépendances
+
+  // Fonction pour récupérer les vendeurs en attente
+  const fetchPendingSellers = useCallback(async () => {
+    try {
+      // Vérifier si on est sur une route admin
+      const isAdminRoute = router.pathname.startsWith('/admin');
+      
+      // Récupérer le token JWT du localStorage
+      const token = localStorage.getItem('auth-token');
+      
+      // Si pas de token ou pas en zone admin, ne rien faire
+      if (!token || !isAdminRoute) {
+        console.warn('Token d\'authentification manquant ou accès non autorisé');
+        return;
+      }
+      
+      try {
+        // Ajouter un cache buster pour éviter les problèmes de cache
+        const apiUrl = `/api/sellers?status=pending&t=${new Date().getTime()}`;
+        
+        // Timeout pour la requête
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+        
+        const res = await fetch(apiUrl, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!res.ok) {
+          console.warn(`Erreur API vendeurs: ${res.status} ${res.statusText}`);
+          return;
+        }
+        
+        const data = await res.json();
+        
+        if (data.success) {
+          setPendingSellers(data.sellers || []);
+          setPendingSellersCount(data.count || 0);
+        } else {
+          console.warn('Réponse API vendeurs non valide:', data.message || 'Erreur inconnue');
+        }
+      } catch (fetchError) {
+        console.error('Erreur réseau lors de la récupération des vendeurs:', fetchError);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération des vendeurs en attente:', error);
+    }
+  }, [router.pathname]);
+
+  // Effet pour récupérer les vendeurs en attente
+  useEffect(() => {
+    // Si nous sommes sur le dashboard admin, on récupère les vendeurs en attente
+    if (router.pathname.startsWith('/admin')) {
+      fetchPendingSellers();
+      
+      // Rafraîchir toutes les 5 minutes
+      const interval = setInterval(fetchPendingSellers, 5 * 60 * 1000);
+      
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [fetchPendingSellers, router.pathname]);
 
   // --- Helpers (inchangés) ---
   const isActive = useMemo(() => path => router.pathname === path, [router.pathname]);
@@ -381,6 +454,49 @@ export default function AdminNavbar() {
                   className="text-center small text-primary py-2"
                 >
                   Gérer tous les avis
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Bouton Notifications des Vendeurs */}
+            <Dropdown align="end">
+              <Dropdown.Toggle as={Button} className={styles.navActionBtn} id="dropdown-sellers">
+                <i className="icofont-business-man fs-5" />
+                {pendingSellersCount > 0 && (
+                  <span className="position-absolute top-0 start-100 translate-middle p-1 bg-warning border border-light rounded-circle">
+                    {pendingSellersCount > 9 ? '9+' : pendingSellersCount}
+                    <span className="visually-hidden">{pendingSellersCount} vendeurs en attente</span>
+                  </span>
+                )}
+              </Dropdown.Toggle>
+              <Dropdown.Menu className={styles.notificationDropdown}>
+                <div className={styles.dropdownHeader}>
+                  <h6 className="mb-0 fw-bold">
+                    Vendeurs en attente ({pendingSellersCount})
+                  </h6>
+                </div>
+                <Dropdown.Divider className="my-0" />
+
+                {pendingSellers && pendingSellers.length > 0 ? (
+                  <>
+                    {pendingSellers.slice(0, 5).map((seller) => (
+                      <SellerNotificationItem key={seller._id} seller={seller} />
+                    ))}
+                  </>
+                ) : (
+                  <div className="text-center py-3 text-muted">
+                    <i className="icofont-business-man fs-4 d-block mb-1"></i>
+                    <small>Aucun vendeur en attente</small>
+                  </div>
+                )}
+
+                <Dropdown.Divider className="my-0" />
+                <Dropdown.Item 
+                  as={Link} 
+                  href="/admin/sellers?filter=pending" 
+                  className="text-center small text-primary py-2"
+                >
+                  Gérer tous les vendeurs
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

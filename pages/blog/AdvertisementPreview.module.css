@@ -340,22 +340,25 @@
   display: block;
 }
 
-h3, h4, h5, p {
+.textContent h3, 
+.textContent h4, 
+.textContent h5, 
+.textContent p {
   margin: 0 0 10px;
 }
 
-h3 {
+.textContent h3 {
   font-size: 1.5rem;
 }
 
-h4 {
+.textContent h4 {
   font-size: 1.2rem;
 }
 
-h5 {
+.textContent h5 {
   font-size: 1rem;
 }
 
-p {
+.textContent p {
   font-size: 0.875rem;
 }

@@ -2,6 +2,7 @@ import dbConnect from '../../../utils/dbConnect';
 import Seller from '../../../models/Seller';
 import User from '../../../models/User';
 import { getSession } from 'next-auth/react';
+import { sendSellerStatusEmail } from '../../../utils/mailer';
 
 export default async function handler(req, res) {
   const { id } = req.query;
@@ -42,11 +43,13 @@ export default async function handler(req, res) {
     try {
       // Si c'est un admin qui fait la mise à jour, vérifier s'il y a un changement de statut
       if (isAdmin && req.body.status) {
-        const seller = await Seller.findOne({ user: id });
+        const seller = await Seller.findOne({ user: id }).populate('user', 'name email');
         const newStatus = req.body.status;
+        const adminMessage = req.body.adminMessage || '';
         
         // Mettre à jour le statut du vendeur dans la table User
         if (seller && seller.status !== newStatus) {
+          // Mettre à jour le statut du vendeur
           if (newStatus === 'approved') {
             await User.findByIdAndUpdate(id, { role: 'seller', sellerStatus: 'approved' });
             req.body.approvedAt = new Date();
@@ -54,6 +57,22 @@ export default async function handler(req, res) {
             await User.findByIdAndUpdate(id, { sellerStatus: 'rejected' });
           } else if (newStatus === 'suspended') {
             await User.findByIdAndUpdate(id, { sellerStatus: 'suspended' });
+          }
+          
+          // Envoyer un email au vendeur pour l'informer du changement de statut
+          if (seller.user && seller.user.email) {
+            try {
+              await sendSellerStatusEmail(
+                seller.user.email,
+                seller.companyName || seller.user.name,
+                newStatus,
+                adminMessage
+              );
+              console.log(`Email de notification de statut '${newStatus}' envoyé à ${seller.user.email}`);
+            } catch (emailError) {
+              console.error('Erreur lors de l\'envoi de l\'email de notification:', emailError);
+              // Ne pas bloquer la mise à jour si l'envoi d'email échoue
+            }
           }
         }
       }

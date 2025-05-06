@@ -1,0 +1,12 @@
+.productImageContainer {
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  background-color: var(--bs-success-bg-subtle);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+}
+
+.textContent {
+  color: inherit;
+}
