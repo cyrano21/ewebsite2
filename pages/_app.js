@@ -18,6 +18,8 @@ import "../styles/admin-table.css";
 import '../styles/banner.css';
 import "../components/modal.css";
 import "../styles/nav-custom.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import { useEffect } from "react";
 import { NotificationProvider } from "../contexts/NotificationContext";
