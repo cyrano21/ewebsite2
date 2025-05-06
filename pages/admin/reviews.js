@@ -57,16 +57,50 @@ const AdminReviews = () => {
 
   const handleApproveReview = async (productId, reviewId) => {
     try {
+      // Récupérer le token JWT du localStorage comme dans la fonction fetchPendingReviews
+      const token = localStorage.getItem('auth-token');
+      
+      if (!token) {
+        alert('Authentification requise pour approuver les avis');
+        return;
+      }
+      
       const res = await fetch(`/api/products/${productId}/reviews/${reviewId}/approve`, {
-        method: 'PUT'
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       });
       
-      if (res.ok) {
+      const data = await res.json();
+      
+      if (res.ok && data.success) {
         // Mettre à jour la liste des avis après approbation
         setPendingReviews(pendingReviews.filter(review => review._id !== reviewId));
+        
+        // Confirmer l'action à l'utilisateur
+        const confirmationElement = document.createElement('div');
+        confirmationElement.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3';
+        confirmationElement.role = 'alert';
+        confirmationElement.innerHTML = `
+          <strong>Succès!</strong> L'avis a été approuvé.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        document.body.appendChild(confirmationElement);
+        
+        // Supprimer la notification après 3 secondes
+        setTimeout(() => {
+          confirmationElement.remove();
+        }, 3000);
+      } else {
+        // Afficher un message d'erreur
+        alert(data.message || 'Erreur lors de l\'approbation de l\'avis');
+        console.error('Erreur API:', data);
       }
     } catch (error) {
       console.error('Erreur lors de l\'approbation de l\'avis:', error);
+      alert('Une erreur est survenue lors de l\'approbation de l\'avis');
     }
   };
 
