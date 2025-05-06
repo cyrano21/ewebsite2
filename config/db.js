@@ -42,13 +42,12 @@ const connectDB = async () => {
   connectionPromise = (async () => {
     try {
       const conn = await mongoose.connect(MONGODB_URI, {
-        // Ces options sont maintenant obsolètes dans les nouvelles versions de MongoDB
-        // mais on les garde pour la compatibilité avec les anciennes versions
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        // Options modernes pour MongoDB 4.0+
         bufferCommands: true,
         serverSelectionTimeoutMS: 5000,
         socketTimeoutMS: 45000,
+        // Les options useNewUrlParser et useUnifiedTopology sont supprimées
+        // car elles sont dépréciées depuis Node.js Driver version 4.0.0
       });
 
       isConnected = true;
