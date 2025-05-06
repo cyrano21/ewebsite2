@@ -13,23 +13,81 @@ import { useNotifications, NOTIFICATION_TYPES } from '../../contexts/Notificatio
 import ReviewNotificationItem from './ReviewNotificationItem';
 import SellerNotificationItem from './SellerNotificationItem';
 
-const NAV_ITEMS = [
-  { href: '/admin/products', icon: 'icofont-box', label: 'Produits' },
-  { href: '/admin/categories', icon: 'icofont-listine-dots', label: 'Catégories' },
-  { href: '/admin/orders', icon: 'icofont-cart', label: 'Commandes' },
-  { href: '/admin/shipping', icon: 'icofont-truck', label: 'Livraisons' },
-  { href: '/admin/dropshipping', icon: 'icofont-exchange', label: 'Dropshipping' },
-  { href: '/admin/sellers', icon: 'icofont-business-man', label: 'Vendeurs' },
-  { href: '/admin/shops', icon: 'icofont-shop', label: 'Boutiques' },
-  { href: '/admin/advertisements', icon: 'icofont-megaphone', label: 'Publicités' },
-  { href: '/admin/promotions', icon: 'icofont-sale-discount', label: 'Promotions' },
-  { href: '/admin/customers', icon: 'icofont-users-alt-3', label: 'Clients' },
-  { href: '/admin/blog', icon: 'icofont-blogger', label: 'Blog' },
-  { href: '/admin/reviews', icon: 'icofont-star', label: 'Avis' }, // Avis clients
-  { href: '/admin/email-campaigns', icon: 'icofont-email', label: 'Emails' }, // Nouveau lien pour la gestion des emails
-  { href: '/admin/reports', icon: 'icofont-chart-line', label: 'Rapports' },
-  { href: '/admin/settings', icon: 'icofont-gear', label: 'Paramètres' },
-  { href: '/admin/sponsors', icon: 'icofont-sponsor', label: 'Sponsors' }
+// Structure révisée - Regroupement thématique des éléments de navigation
+const NAV_GROUPS = [
+  {
+    id: 'dashboard',
+    icon: 'icofont-dashboard',
+    label: 'Dashboard',
+    href: '/admin'
+  },
+  {
+    id: 'products',
+    icon: 'icofont-box',
+    label: 'Produits',
+    children: [
+      { href: '/admin/products', icon: 'icofont-box', label: 'Tous les produits' },
+      { href: '/admin/categories', icon: 'icofont-listine-dots', label: 'Catégories' }
+    ]
+  },
+  {
+    id: 'orders',
+    icon: 'icofont-cart',
+    label: 'Commandes & Ventes',
+    children: [
+      { href: '/admin/orders', icon: 'icofont-cart', label: 'Commandes' },
+      { href: '/admin/invoices', icon: 'icofont-paper', label: 'Factures' },
+      { href: '/admin/shipping', icon: 'icofont-truck', label: 'Livraisons' }
+    ]
+  },
+  {
+    id: 'users',
+    icon: 'icofont-users-alt-3',
+    label: 'Utilisateurs',
+    children: [
+      { href: '/admin/customers', icon: 'icofont-users-alt-3', label: 'Clients' },
+      { href: '/admin/sellers', icon: 'icofont-business-man', label: 'Vendeurs' },
+      { href: '/admin/shops', icon: 'icofont-shop', label: 'Boutiques' }
+    ]
+  },
+  {
+    id: 'marketing',
+    icon: 'icofont-megaphone',
+    label: 'Marketing',
+    children: [
+      { href: '/admin/advertisements', icon: 'icofont-megaphone', label: 'Publicités' },
+      { href: '/admin/promotions', icon: 'icofont-sale-discount', label: 'Promotions' },
+      { href: '/admin/email-campaigns', icon: 'icofont-email', label: 'Emails' },
+      { href: '/admin/sponsors', icon: 'icofont-sponsor', label: 'Sponsors' }
+    ]
+  },
+  {
+    id: 'content',
+    icon: 'icofont-blogger',
+    label: 'Contenu',
+    children: [
+      { href: '/admin/blog', icon: 'icofont-blogger', label: 'Blog' },
+      { href: '/admin/reviews', icon: 'icofont-star', label: 'Avis' }
+    ]
+  },
+  {
+    id: 'reports',
+    icon: 'icofont-chart-line',
+    label: 'Rapports',
+    href: '/admin/reports'
+  },
+  {
+    id: 'settings',
+    icon: 'icofont-gear',
+    label: 'Paramètres',
+    href: '/admin/settings'
+  },
+  {
+    id: 'dropshipping',
+    icon: 'icofont-exchange',
+    label: 'Dropshipping',
+    href: '/admin/dropshipping'
+  }
 ];
 
 export default function AdminNavbar() {
@@ -42,11 +100,9 @@ export default function AdminNavbar() {
   const [unreadCount, setUnreadCount] = useState(0);
   const [pendingReviewsCount, setPendingReviewsCount] = useState(0);
   const [pendingReviews, setPendingReviews] = useState([]);
-  // Ajout des états pour les vendeurs
   const [pendingSellersCount, setPendingSellersCount] = useState(0);
   const [pendingSellers, setPendingSellers] = useState([]);
 
-  // Effet de scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll);
@@ -54,213 +110,17 @@ export default function AdminNavbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Fonction de repli avec paramètre explicite pour indiquer si admin
-  const applyFallbackData = useCallback((isAdmin) => {
-    // Si aucune valeur n'est fournie, détecter si admin par le contexte ou la route
-    const adminStatus = isAdmin !== undefined 
-      ? isAdmin 
-      : (router.pathname.startsWith('/admin') || (user && user.role === 'admin'));
-    
-    console.info(`Utilisation des données de secours. Admin: ${adminStatus}`);
-    
-    if (pendingReviews.length === 0) {
-      if (adminStatus) {
-        // Pour les admins: données temporaires d'avis en attente
-        setPendingReviews([
-          {
-            _id: 'temp-id-1',
-            productId: 'product-1',
-            productName: 'Avis en attente de connexion serveur',
-            rating: 4,
-            date: new Date().toISOString(),
-            status: 'pending'
-          }
-        ]);
-        setPendingReviewsCount(1);
-      } else {
-        // Pour les non-admins: message d'accès restreint
-        setPendingReviews([
-          {
-            _id: 'access-denied',
-            productId: 'access-denied',
-            productName: 'Accès réservé aux administrateurs',
-            rating: 0,
-            date: new Date().toISOString(),
-            status: 'restricted'
-          }
-        ]);
-        setPendingReviewsCount(1);
-      }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.pathname, user]);
+  const isActive = useMemo(() => path => router.pathname === path || router.pathname.startsWith(path), [router.pathname]);
 
-  // Effet pour récupérer les avis en attente
-  const fetchPendingReviews = useCallback(async () => {
-    try {
-      // Considérons d'abord que le contexte admin est valide si nous sommes sur une route admin
-      const isAdminRoute = router.pathname.startsWith('/admin');
-      
-      // Récupérer le token JWT du localStorage
-      const token = localStorage.getItem('auth-token');
-      
-      // Si pas de token mais route admin, utiliser des données temporaires
-      if (!token && isAdminRoute) {
-        console.warn('Token d\'authentification manquant mais sur route admin');
-        applyFallbackData(true); // true = on est admin car sur route admin
-        return;
-      } else if (!token) {
-        console.warn('Token d\'authentification manquant');
-        applyFallbackData(false);
-        return;
-      }
-      
-      try {
-        // Ajouter un cache buster pour éviter les problèmes de cache
-        const apiUrl = `/api/admin/pending-reviews?t=${new Date().getTime()}&isAdmin=${isAdminRoute ? 'true' : 'false'}`;
-        
-        // Timeout pour la requête
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000);
-        
-        const res = await fetch(apiUrl, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          signal: controller.signal
-        });
-        
-        clearTimeout(timeoutId);
-        
-        if (!res.ok) {
-          console.warn(`Erreur API: ${res.status} ${res.statusText}`);
-          applyFallbackData(isAdminRoute); // Considérer comme admin si sur route admin
-          return;
-        }
-        
-        const data = await res.json();
-        
-        if (data.success) {
-          setPendingReviews(data.data || []);
-          setPendingReviewsCount(data.count || 0);
-        } else {
-          console.warn('Réponse API non valide:', data.message || 'Erreur inconnue');
-          applyFallbackData(isAdminRoute);
-        }
-      } catch (fetchError) {
-        console.error('Erreur réseau lors de la récupération des avis:', fetchError);
-        applyFallbackData(isAdminRoute);
-      }
-    } catch (error) {
-      console.error('Erreur lors de la récupération des avis en attente:', error);
-      applyFallbackData(router.pathname.startsWith('/admin'));
+  const isGroupActive = useCallback((group) => {
+    if (group.href && isActive(group.href)) {
+      return true;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.pathname]);
-
-  useEffect(() => {
-    // Si nous sommes sur le dashboard admin, on présume que l'utilisateur est autorisé
-    const isAdminDashboard = router.pathname.startsWith('/admin');
-    
-    // Vérifier si l'utilisateur est connecté ou si on est déjà sur le dashboard admin
-    if (isAdminDashboard || (user && user.role === 'admin')) {
-      // L'utilisateur est un admin ou est sur le dashboard admin, on récupère les avis en attente
-      fetchPendingReviews();
-      
-      // En cas d'échec, réessayer après 3 secondes (une seule fois)
-      const retryTimeout = setTimeout(() => {
-        if (pendingReviewsCount === 0 && pendingReviews.length === 0) {
-          console.info('Nouvelle tentative de récupération des avis...');
-          fetchPendingReviews();
-        }
-      }, 3000);
-      
-      // Rafraîchir toutes les 5 minutes
-      const interval = setInterval(fetchPendingReviews, 5 * 60 * 1000);
-      
-      return () => {
-        clearInterval(interval);
-        clearTimeout(retryTimeout);
-      };
-    } else {
-      // L'utilisateur n'est pas un admin et n'est pas sur le dashboard
-      applyFallbackData();
+    if (group.children) {
+      return group.children.some(item => isActive(item.href));
     }
-  }, [user, fetchPendingReviews, applyFallbackData, pendingReviews.length, pendingReviewsCount, router.pathname]);
-  // Ajout de router.pathname aux dépendances
-
-  // Fonction pour récupérer les vendeurs en attente
-  const fetchPendingSellers = useCallback(async () => {
-    try {
-      // Vérifier si on est sur une route admin
-      const isAdminRoute = router.pathname.startsWith('/admin');
-      
-      // Récupérer le token JWT du localStorage
-      const token = localStorage.getItem('auth-token');
-      
-      // Si pas de token ou pas en zone admin, ne rien faire
-      if (!token || !isAdminRoute) {
-        console.warn('Token d\'authentification manquant ou accès non autorisé');
-        return;
-      }
-      
-      try {
-        // Ajouter un cache buster pour éviter les problèmes de cache
-        const apiUrl = `/api/sellers?status=pending&t=${new Date().getTime()}`;
-        
-        // Timeout pour la requête
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000);
-        
-        const res = await fetch(apiUrl, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          signal: controller.signal
-        });
-        
-        clearTimeout(timeoutId);
-        
-        if (!res.ok) {
-          console.warn(`Erreur API vendeurs: ${res.status} ${res.statusText}`);
-          return;
-        }
-        
-        const data = await res.json();
-        
-        if (data.success) {
-          setPendingSellers(data.sellers || []);
-          setPendingSellersCount(data.count || 0);
-        } else {
-          console.warn('Réponse API vendeurs non valide:', data.message || 'Erreur inconnue');
-        }
-      } catch (fetchError) {
-        console.error('Erreur réseau lors de la récupération des vendeurs:', fetchError);
-      }
-    } catch (error) {
-      console.error('Erreur lors de la récupération des vendeurs en attente:', error);
-    }
-  }, [router.pathname]);
-
-  // Effet pour récupérer les vendeurs en attente
-  useEffect(() => {
-    // Si nous sommes sur le dashboard admin, on récupère les vendeurs en attente
-    if (router.pathname.startsWith('/admin')) {
-      fetchPendingSellers();
-      
-      // Rafraîchir toutes les 5 minutes
-      const interval = setInterval(fetchPendingSellers, 5 * 60 * 1000);
-      
-      return () => {
-        clearInterval(interval);
-      };
-    }
-  }, [fetchPendingSellers, router.pathname]);
-
-  // --- Helpers (inchangés) ---
-  const isActive = useMemo(() => path => router.pathname === path, [router.pathname]);
+    return false;
+  }, [isActive]);
 
   const handleLogout = async () => {
     try {
@@ -279,14 +139,13 @@ export default function AdminNavbar() {
       return;
     }
     try {
-      // TODO: Implémenter la recherche
       console.log('Recherche:', searchQuery);
       addNotification(`Recherche pour: ${searchQuery}`, NOTIFICATION_TYPES.INFO);
     } catch (error) {
       addNotification(`Erreur de recherche: ${error.message}`, NOTIFICATION_TYPES.ERROR);
     }
     setSearchQuery('');
-    setSearchVisible(false); // Cache la recherche après soumission
+    setSearchVisible(false);
   };
 
   const toggleSearch = () => setSearchVisible(!searchVisible);
@@ -320,7 +179,6 @@ export default function AdminNavbar() {
     }
   };
 
-  // Effet pour calculer le nombre de notifications non lues
   useEffect(() => {
     if (notifications && notifications.length > 0) {
       const unread = notifications.filter(notif => !notif.read).length;
@@ -337,7 +195,6 @@ export default function AdminNavbar() {
       className={`${styles.adminNavbar} ${scrolled ? styles.scrolled : ''}`}
     >
       <Container fluid>
-        {/* Logo */}
         <Navbar.Brand as={Link} href="/admin/dashboard" className={styles.brand}>
           <i className="icofont-dashboard fs-4 text-primary me-2" />
           <span className={styles.brandText}>
@@ -346,14 +203,11 @@ export default function AdminNavbar() {
           </span>
         </Navbar.Brand>
 
-        {/* Toggle pour mobile */}
         <Navbar.Toggle aria-controls="admin-nav-collapse" className="border-0">
            <i className="icofont-navigation-menu fs-4" />
         </Navbar.Toggle>
 
-        {/* Contenu de la barre de navigation */}
         <Navbar.Collapse id="admin-nav-collapse">
-          {/* Navigation Principale */}
           <Nav className="me-auto flex-wrap py-2 py-lg-0">
             <Nav.Link
               as={Link}
@@ -366,34 +220,55 @@ export default function AdminNavbar() {
               Accueil
             </Nav.Link>
 
-            <Nav.Link
-              as={Link}
-              href="/admin" 
-              className={`${styles.homeLink} ${isActive('/admin') ? styles.active : ''}`}
-            >
-              <i className="icofont-dashboard me-1" />
-              Dashboard
-            </Nav.Link>
-
-            {NAV_ITEMS.map(item => (
-              <Nav.Link
-                key={item.href}
-                as={Link}
-                href={item.href}
-                className={`${styles.navLink} ${isActive(item.href) ? styles.active : ''}`}
-              >
-                <i className={`${item.icon} me-1`} />
-                {item.label}
-                {item.href === '/admin/reviews' && pendingReviewsCount > 0 && (
-                  <span className="badge bg-danger rounded-pill ms-1">
-                    {pendingReviewsCount}
-                  </span>
-                )}
-              </Nav.Link>
+            {NAV_GROUPS.map(group => (
+              group.children ? (
+                <Dropdown key={group.id} as={Nav.Item} className={styles.navDropdown}>
+                  <Dropdown.Toggle 
+                    as={Nav.Link} 
+                    className={`${styles.navLink} ${isGroupActive(group) ? styles.active : ''}`}
+                  >
+                    <i className={`${group.icon} me-1`} />
+                    {group.label}
+                    {group.id === 'content' && pendingReviewsCount > 0 && (
+                      <span className="badge bg-danger rounded-pill ms-1">
+                        {pendingReviewsCount}
+                      </span>
+                    )}
+                    <i className="icofont-simple-down ms-1 small"></i>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className={styles.menuDropdown}>
+                    {group.children.map(item => (
+                      <Dropdown.Item 
+                        key={item.href}
+                        as={Link}
+                        href={item.href}
+                        className={`${styles.dropdownItem} ${isActive(item.href) ? styles.active : ''}`}
+                      >
+                        <i className={`${item.icon} me-2`} />
+                        {item.label}
+                        {item.href === '/admin/reviews' && pendingReviewsCount > 0 && (
+                          <span className="badge bg-danger rounded-pill ms-1">
+                            {pendingReviewsCount}
+                          </span>
+                        )}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              ) : (
+                <Nav.Link
+                  key={group.id}
+                  as={Link}
+                  href={group.href}
+                  className={`${styles.navLink} ${isActive(group.href) ? styles.active : ''}`}
+                >
+                  <i className={`${group.icon} me-1`} />
+                  {group.label}
+                </Nav.Link>
+              )
             ))}
           </Nav>
 
-          {/* Actions à droite */}
           <div className={styles.actions}>
             <div className={`${styles.searchContainer} ${searchVisible ? styles.visible : ''}`}>
               <Form onSubmit={handleSearchSubmit} className={styles.searchForm}>
@@ -415,7 +290,6 @@ export default function AdminNavbar() {
               </Button>
             </div>
 
-            {/* Bouton Notifications des Avis */}
             <Dropdown align="end">
               <Dropdown.Toggle as={Button} className={styles.navActionBtn} id="dropdown-reviews">
                 <i className="icofont-star fs-5" />
@@ -458,7 +332,6 @@ export default function AdminNavbar() {
               </Dropdown.Menu>
             </Dropdown>
 
-            {/* Bouton Notifications des Vendeurs */}
             <Dropdown align="end">
               <Dropdown.Toggle as={Button} className={styles.navActionBtn} id="dropdown-sellers">
                 <i className="icofont-business-man fs-5" />
@@ -501,7 +374,6 @@ export default function AdminNavbar() {
               </Dropdown.Menu>
             </Dropdown>
 
-            {/* Bouton Notifications */}
             <Dropdown align="end">
               <Dropdown.Toggle as={Button} className={styles.navActionBtn} id="dropdown-notifications">
                 <i className="icofont-notification fs-5" />
@@ -571,7 +443,6 @@ export default function AdminNavbar() {
               </Dropdown.Menu>
             </Dropdown>
 
-            {/* Dropdown Profil Utilisateur */}
             <Dropdown align="end">
               <Dropdown.Toggle as={Button} className={styles.userDropdown} id="dropdown-user">
                 <div className={styles.avatarContainer}>

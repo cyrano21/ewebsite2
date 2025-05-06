@@ -1,0 +1,48 @@
+.phoenixOffcanvas {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.offcanvasHeader {
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem 1.5rem;
+}
+
+.offcanvasTitle {
+  font-weight: 600;
+}
+
+.offcanvasFooter {
+  border-top: 1px solid #e9ecef;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+}
+
+.offcanvasScrollable {
+  overflow-y: auto;
+}
+
+/* Tailles */
+.offcanvasSm {
+  width: 280px !important;
+}
+
+.offcanvasLg {
+  width: 420px !important;
+}
+
+.offcanvasXl {
+  width: 600px !important;
+}
+
+/* Media queries pour les écrans mobiles */
+@media (max-width: 576px) {
+  .phoenixOffcanvas {
+    width: 80% !important;
+  }
+  
+  .offcanvasSm, 
+  .offcanvasLg, 
+  .offcanvasXl {
+    width: 80% !important;
+  }
+}
