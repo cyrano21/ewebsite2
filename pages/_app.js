@@ -1,30 +1,33 @@
 import AuthProvider from '../contexts/AuthProvider';
 import Layout from "../components/Layout";
-// import "../styles/App.css";
-// import "../styles/index.css";
-import "../styles/admin-table.css";
-import '../styles/banner.css';
-import "../components/modal.css"; // Import du CSS de la modal utilisé dans CheckoutPage
 import Head from "next/head";
-import { SessionProvider } from "next-auth/react"; // Importer le SessionProvider pour NextAuth
-import { WishlistProvider } from "../contexts/WishlistContext"; // Import du WishlistProvider
+import { SessionProvider } from "next-auth/react";
+import { WishlistProvider } from "../contexts/WishlistContext";
+import { NotificationProvider } from "../contexts/NotificationContext";
+import PropTypes from "prop-types";
+import { useEffect } from "react";
 
-console.log("_app.js: Début du chargement");
-
-// bootstrap css
+// Importation organisée des styles CSS
+// 1. Styles de base externes
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/globals.css";
-import "../styles/admin-table.css";
-import '../styles/banner.css';
-import "../components/modal.css";
-import "../styles/nav-custom.css";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { useEffect } from "react";
-import { NotificationProvider } from "../contexts/NotificationContext";
+// 2. Styles globaux de l'application
+import "../styles/globals.css";
 
-import PropTypes from "prop-types";
+// 3. Styles spécifiques des composants et fonctionnalités
+import "../styles/admin-table.css";
+import '../styles/banner.css';
+import "../styles/nav-custom.css";
+import "../components/modal.css";
+
+// 4. Styles pour les assets statiques (si nécessaire)
+import "../public/styles/theme.css";
+import "../public/styles/animations.css";
+import "../public/styles/responsive.css";
+
+console.log("_app.js: Début du chargement");
 
 function MyApp({ Component, pageProps }) {
   console.log("_app.js: Initialisation du composant MyApp");
@@ -49,7 +52,6 @@ function MyApp({ Component, pageProps }) {
               name="viewport"
               content="width=device-width, initial-scale=1.0"
             />
-            {/* CSS files are now imported at the top of the file */}
           </Head>
           {console.log("_app.js: Avant rendu du Component")}
           {(() => {

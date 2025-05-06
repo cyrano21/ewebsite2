@@ -1,15 +1,6 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const path = request.nextUrl.pathname;
-  
-  // Journaliser tous les types de requêtes
-  if (path.startsWith('/api')) {
-    console.log(`API appelée: ${path}`);
-  } else {
-    console.log(`Requête vers: ${path}`);
-  }
-  
   // Clone the request headers
   const requestHeaders = new Headers(request.headers);
   
@@ -38,9 +29,10 @@ export function middleware(request) {
   return response;
 }
 
+// Définir sur quels chemins s'applique ce middleware
 export const config = {
   matcher: [
-    // Appliquer ce middleware à toutes les pages et APIs
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    // Appliquer à toutes les pages sauf les ressources statiques et les API
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
-}
+};

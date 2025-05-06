@@ -8,6 +8,16 @@
   ],
   "routes": [
     {
+      "src": "/styles/(.*)",
+      "headers": { "cache-control": "public, max-age=31536000, immutable" },
+      "dest": "/styles/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "headers": { "cache-control": "public, max-age=31536000, immutable" },
+      "dest": "/assets/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/"
     }
