@@ -26,7 +26,7 @@ import ProductCards from "../../components/shop/ProductCards";
 import FilterSidebar from "../../components/shop/FilterSidebar";
 
 // Données
-import Data from "/products.json"; // Ajuster chemin si nécessaire
+import Data from "../../products.json";
 
 console.log("🧪 ProductCards:", ProductCards);
 console.log("🧪 FilterSidebar:", FilterSidebar);
@@ -507,7 +507,7 @@ const initialProductsData = Array.isArray(enrichedData) ? enrichedData : [];
 // --- CONSTANTES ---
 const PRODUCTS_PER_PAGE = 12; // <<< DÉCLARATION ICI (en dehors du composant)
 
-const Shop = () => {
+function ShopPage(props) {
   // ...états et hooks
 
   const router = useRouter();
@@ -1905,40 +1905,16 @@ const Shop = () => {
   );
 };
 
-// Remplacer complètement getServerSideProps par une version statique
+// Remplacer complètement getStaticProps par une version simplifiée et robuste
 export async function getStaticProps() {
-  try {
-    // Récupération des données de manière statique
-    let categories = [];
-    try {
-      categories = await getCategoriesWithFallback();
-    } catch (error) {
-      console.error("Erreur lors de la récupération des catégories:", error);
-      categories = [];
-    }
-    
-    // Utiliser directement les données statiques pour éviter toute erreur
-    return {
-      props: {
-        serverCategories: categories,
-        serverProducts: Data || [],
-      },
-      // Revalider toutes les 10 minutes
-      revalidate: 600,
-    };
-  } catch (error) {
-    console.error("Erreur globale dans getStaticProps pour /shop:", error);
-    
-    // Fallback de sécurité
-    return {
-      props: {
-        serverCategories: [],
-        serverProducts: Data || [],
-        error: "Erreur lors du chargement initial des données"
-      },
-      revalidate: 60, // Réessayer plus rapidement en cas d'erreur
-    };
-  }
+  return {
+    props: {
+      serverCategories: [],
+      serverProducts: [], // On laisse le composant utiliser Data importé directement
+    },
+    // Revalider toutes les 10 minutes
+    revalidate: 600,
+  };
 }
 
-export default Shop;
+export default ShopPage;

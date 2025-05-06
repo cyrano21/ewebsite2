@@ -25,37 +25,78 @@ import {
 
 // --- UPDATED DATA FETCH FUNCTION ---
 const fetchProductData = async (id, baseUrl = '') => {
-  // 1) le produit principal
-  const res = await fetch(`${baseUrl}/api/products/${id}`);
-  if (!res.ok) throw new Error(`Erreur produit: ${res.status}`);
-  const product = await res.json();
-
-  // 2) produits similaires
-  let similarProducts = [];
   try {
-    const simRes = await fetch(
-      `${baseUrl}/api/products?category=${encodeURIComponent(
-        product.category
-      )}&limit=4&exclude=${id}`
-    );
-    if (simRes.ok) similarProducts = await simRes.json();
-  } catch (e) {
-    console.warn("Impossible de charger produits similaires", e);
-  }
+    // Vérifier si l'id est valide
+    if (!id) {
+      throw new Error('ID de produit invalide');
+    }
+    
+    // 1) le produit principal
+    const res = await fetch(`${baseUrl}/api/products/${id}`);
+    
+    if (!res.ok) {
+      const errorStatus = res.status;
+      const errorText = await res.text().catch(() => 'Erreur inconnue');
+      console.error(`Erreur API (${errorStatus}):`, errorText);
+      throw new Error(`Erreur produit: ${errorStatus}`);
+    }
+    
+    const productData = await res.json();
+    
+    // Vérifier si nous avons bien reçu un objet produit
+    if (!productData || (typeof productData === 'object' && Object.keys(productData).length === 0)) {
+      throw new Error('Données de produit invalides');
+    }
+    
+    // Extraire le produit si l'API retourne un wrapper
+    const product = productData.data || productData;
+    
+    // Vérifier si le produit a une catégorie
+    if (!product.category) {
+      console.warn('Produit sans catégorie:', id);
+      product.category = 'uncategorized';
+    }
 
-  // 3) produits achetés ensemble
-  let boughtTogether = [];
-  try {
-    const btRes = await fetch(
-      `${baseUrl}/api/products?featured=true&limit=3&exclude=${id}`
-    );
-    if (btRes.ok) boughtTogether = await btRes.json();
-  } catch (e) {
-    console.warn("Impossible de charger produits achetés ensemble", e);
-  }
+    // 2) produits similaires
+    let similarProducts = [];
+    try {
+      const simRes = await fetch(
+        `${baseUrl}/api/products?category=${encodeURIComponent(
+          product.category
+        )}&limit=4&exclude=${id}`
+      );
+      if (simRes.ok) {
+        const simData = await simRes.json();
+        similarProducts = Array.isArray(simData) ? simData : 
+                         (simData.data && Array.isArray(simData.data)) ? simData.data : 
+                         (simData.products && Array.isArray(simData.products)) ? simData.products : [];
+      }
+    } catch (e) {
+      console.warn("Impossible de charger produits similaires", e);
+    }
 
-  // 4) injection dans l'objet final
-  return { ...product, similarProducts, boughtTogether };
+    // 3) produits achetés ensemble
+    let boughtTogether = [];
+    try {
+      const btRes = await fetch(
+        `${baseUrl}/api/products?featured=true&limit=3&exclude=${id}`
+      );
+      if (btRes.ok) {
+        const btData = await btRes.json();
+        boughtTogether = Array.isArray(btData) ? btData : 
+                         (btData.data && Array.isArray(btData.data)) ? btData.data : 
+                         (btData.products && Array.isArray(btData.products)) ? btData.products : [];
+      }
+    } catch (e) {
+      console.warn("Impossible de charger produits achetés ensemble", e);
+    }
+
+    // 4) injection dans l'objet final
+    return { ...product, similarProducts, boughtTogether };
+  } catch (error) {
+    console.error('Erreur dans fetchProductData:', error);
+    throw error; // Propagation de l'erreur pour traitement dans le composant
+  }
 };
 
 // --- SSR: récupération du produit côté serveur ---
@@ -70,14 +111,6 @@ export async function getServerSideProps(context) {
   } catch (err) {
     return { props: { ssrProduct: null, ssrError: err.message || 'Erreur inconnue' } };
   }
-}
-
-// --- STATIC PATHS ---
-export async function getStaticPaths() {
-  return {
-    paths: [], // Ne pas pré-générer les pages à la construction
-    fallback: 'blocking' // Attendre que la page soit générée à la demande
-  };
 }
 
 // --- DÉFINITION DU COMPOSANT ProductPage ---
@@ -548,16 +581,15 @@ const ProductPage = ({ ssrProduct, ssrError }) => {
         </Row>
 
         {/* Section Produits Similaires */}
-        {Array.isArray(product.similarProducts) && product.similarProducts.length > 0 ? (
-          <SimilarProducts
-            products={product.similarProducts}
-            categorySlug={
-              product.categoryBreadcrumbs?.[1]
-                ?.toLowerCase()
-                .replace(/ /g, "-") || "all"
-            }
-          />
-        ) : null}
+        {console.log("Debug similarProducts:", product.similarProducts)}
+        <SimilarProducts
+          products={product.similarProducts || []}
+          categorySlug={
+            product.categoryBreadcrumbs?.[1]
+              ?.toLowerCase()
+              .replace(/ /g, "-") || product.category?.toLowerCase().replace(/ /g, "-") || "all"
+          }
+        />
       </Container>
       {/* Styles Globaux pour la page */}
       <style jsx global>{`

@@ -184,16 +184,16 @@ const BoughtTogether = ({ currentProduct }) => {
           {products.map((product) => (
             <Col key={product._id} md={4} sm={6} className="mb-4">
               <Card className="h-100 product-card shadow-sm">
-                <Link href={`/shop/product/${product._id}`} passHref>
+                <Link href={`/shop/product/${product._id || product.id || 'fallback'}`} legacyBehavior={false}>
                   <div className="position-relative" style={{ height: '200px' }}>
                     <Image
-                      src={product.image || '/assets/images/shop/placeholder.jpg'}
+                      src={product.imageUrl || product.image || '/assets/images/shop/placeholder.jpg'}
                       alt={product.name}
                       fill
                       style={{ objectFit: 'contain' }}
                       className="card-img-top p-2"
                       onError={(e) => {
-                        console.error("Erreur de chargement d'image:", product.image);
+                        console.error("Erreur de chargement d'image:", product.imageUrl || product.image);
                         e.target.src = '/assets/images/shop/placeholder.jpg';
                       }}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"

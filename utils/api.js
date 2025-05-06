@@ -116,11 +116,28 @@ export async function getCategoriesWithFallback() {
     { name: "Livres", slug: "livres", imageUrl: "/assets/images/category/06.jpg" }
   ];
 
-  return fetchApi('/api/categories', {}, {
-    defaultValue: DEFAULT_CATEGORIES,
-    retries: 2,
-    verbose: true
-  });
+  try {
+    // Déterminer si nous sommes côté client ou serveur
+    const isServer = typeof window === 'undefined';
+    
+    // Pendant le rendu serveur (SSR/SSG), retourner simplement les catégories par défaut
+    // pour éviter les redirections en boucle et les problèmes de génération
+    if (isServer) {
+      console.log('🔍 [API] Rendu serveur détecté, utilisation des catégories par défaut');
+      return DEFAULT_CATEGORIES;
+    }
+    
+    // Côté client seulement, tenter l'appel API complet
+    const fullUrl = `${API_URL}/categories`;
+    return fetchApi(fullUrl, {}, {
+      defaultValue: DEFAULT_CATEGORIES,
+      retries: 1, // Réduit le nombre de tentatives pour éviter de ralentir la page
+      verbose: true
+    });
+  } catch (error) {
+    console.error("Erreur dans getCategoriesWithFallback:", error);
+    return DEFAULT_CATEGORIES;
+  }
 }
 
 /**
@@ -129,18 +146,34 @@ export async function getCategoriesWithFallback() {
  * @returns {Promise<Array>} Liste des produits ou tableau vide
  */
 export async function getProductsWithFallback(options = {}) {
-  const params = new URLSearchParams();
-  if (options.featured) params.append("featured", "true");
-  if (options.limit) params.append("limit", options.limit.toString());
-  if (options.page) params.append("page", options.page.toString());
-  if (options.category) params.append("category", options.category);
-  if (options.related) params.append("related", options.related);
+  try {
+    // Déterminer si nous sommes côté client ou serveur
+    const isServer = typeof window === 'undefined';
+    
+    // Pendant le rendu serveur, retourner un tableau vide pour éviter les redirections
+    if (isServer) {
+      console.log('🔍 [API] Rendu serveur détecté, utilisation d\'un tableau vide pour les produits');
+      return [];
+    }
+    
+    const params = new URLSearchParams();
+    if (options.featured) params.append("featured", "true");
+    if (options.limit) params.append("limit", options.limit.toString());
+    if (options.page) params.append("page", options.page.toString());
+    if (options.category) params.append("category", options.category);
+    if (options.related) params.append("related", options.related);
 
-  return fetchApi(`/api/products?${params.toString()}`, {}, {
-    defaultValue: [],
-    retries: 1,
-    verbose: true
-  });
+    // Utiliser l'URL absolue avec API_URL
+    const fullUrl = `${API_URL}/products?${params.toString()}`;
+    return fetchApi(fullUrl, {}, {
+      defaultValue: [],
+      retries: 1,
+      verbose: true
+    });
+  } catch (error) {
+    console.error("Erreur dans getProductsWithFallback:", error);
+    return [];
+  }
 }
 
 /**

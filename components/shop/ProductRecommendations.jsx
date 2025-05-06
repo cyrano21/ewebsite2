@@ -15,6 +15,9 @@ const ProductRecommendations = ({
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // Ajout d'un state pour déboguer la réponse de l'API
+  const [debugApiResponse, setDebugApiResponse] = useState(null);
 
   const fetchRecommendedProducts = async () => {
     setLoading(true);
@@ -27,13 +30,31 @@ const ProductRecommendations = ({
       if (!productId && !categoryId) {
         try {
           // Utiliser l'API d'origine pour les produits populaires
+          console.log('Chargement des produits populaires...');
           const response = await axios.get('/api/products/popular');
+          
+          // Débogage - Loguer la réponse complète
+          console.log('Réponse API populaires:', {
+            status: response.status,
+            headers: response.headers,
+            dataType: typeof response.data,
+            isArray: Array.isArray(response.data),
+            dataLength: Array.isArray(response.data) ? response.data.length : 'N/A',
+            data: response.data
+          });
+          setDebugApiResponse(response.data);
+          
           if (response.data && Array.isArray(response.data)) {
             products = response.data;
+            console.log(`✅ Récupéré ${products.length} produits populaires (format tableau direct)`);
           } else if (response.data && Array.isArray(response.data.products)) {
             products = response.data.products;
+            console.log(`✅ Récupéré ${products.length} produits populaires (format response.data.products)`);
           } else if (response.data && Array.isArray(response.data.data)) {
             products = response.data.data;
+            console.log(`✅ Récupéré ${products.length} produits populaires (format response.data.data)`);
+          } else {
+            console.warn('❌ Format de réponse inattendu pour les produits populaires:', response.data);
           }
         } catch (popularError) {
           console.warn('Impossible de charger les produits populaires, fallback vers des produits récents', popularError);
@@ -131,6 +152,16 @@ const ProductRecommendations = ({
       
       // Limiter le nombre de produits affichés
       const limitedProducts = products.slice(0, limit || 4);
+      
+      // Débogage - Vérifier chaque produit
+      if (limitedProducts.length > 0) {
+        console.log('Premier produit à afficher:', limitedProducts[0]);
+        console.log('Champs disponibles:', Object.keys(limitedProducts[0]));
+        console.log('URL image:', limitedProducts[0].image || limitedProducts[0].img || 'Pas d\'image');
+      } else {
+        console.warn('❌ Aucun produit à afficher après filtrage/limitation');
+      }
+      
       setRecommendedProducts(limitedProducts);
       
     } catch (error) {
@@ -197,6 +228,14 @@ const ProductRecommendations = ({
     return (
       <Container className="my-5">
         <h2 className="mb-4">{title}</h2>
+        {debugApiResponse && (
+          <div className="mb-3 p-3 border border-warning rounded">
+            <p className="text-warning mb-2">Informations de débogage API:</p>
+            <pre className="text-muted small" style={{maxHeight: '200px', overflow: 'auto'}}>
+              {JSON.stringify(debugApiResponse, null, 2)}
+            </pre>
+          </div>
+        )}
         <Alert variant="info">
           Aucun produit recommandé pour le moment. Veuillez réessayer plus tard.
         </Alert>
@@ -215,10 +254,11 @@ const ProductRecommendations = ({
                 <a className="text-decoration-none">
                   <div className="position-relative" style={{ height: '180px' }}>
                     <Image
-                      src={product.image || product.img || '/assets/images/shop/placeholder.jpg'}
+                      src={product.imageUrl || product.image || product.img || '/assets/images/shop/placeholder.jpg'}
                       alt={product.name}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ objectFit: 'cover' }}
                       className="card-img-top"
                     />
                   </div>
