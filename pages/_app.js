@@ -27,7 +27,7 @@ import PropTypes from "prop-types";
 function MyApp({ Component, pageProps }) {
   console.log("_app.js: Initialisation du composant MyApp");
 
-  // Vérifier si le composant a un layout personnalisé
+  // Utiliser le layout personnalisé du composant s'il existe, sinon utiliser Layout
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
 
   // Charger Bootstrap JS côté client uniquement
@@ -56,6 +56,7 @@ function MyApp({ Component, pageProps }) {
                 "🧪 Rendu de:",
                 Component?.name || "Component inconnu"
               );
+              // Appliquer directement le layout
               return getLayout(<Component {...pageProps} />);
             } catch (e) {
               console.error("❌ Erreur lors du rendu de Component:", Component);

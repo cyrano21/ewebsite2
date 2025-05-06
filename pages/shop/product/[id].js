@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { Container, Row, Col, Spinner, Button, Card } from "react-bootstrap";
 import Link from "next/link";
-import Layout from "../../../components/Layout";
 import SingleProduct from '../../../components/shop/SingleProduct';
 import ProductRecommendations from '../../../components/shop/ProductRecommendations';
 import BoughtTogether from '../../../components/shop/BoughtTogether';
@@ -505,54 +504,48 @@ const ProductPage = ({ ssrProduct, ssrError }) => {
   // Affichage pendant le chargement
   if (loading) {
     return (
-      <Layout>
-        <Container
-          className="d-flex justify-content-center align-items-center"
-          style={{ minHeight: "60vh" }}
-        >
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </Container>
-      </Layout>
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "60vh" }}
+      >
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
     );
   }
 
   // Affichage en cas d'erreur
   if (error) {
     return (
-      <Layout>
-        <Container className="text-center py-5 mt-5">
-          <p className="text-danger fs-5 mb-4">{error}</p>
-          <Link href="/shop" passHref legacyBehavior>
-            <a>
-              <Button variant="primary">Retour à la boutique</Button>
-            </a>
-          </Link>
-        </Container>
-      </Layout>
+      <Container className="text-center py-5 mt-5">
+        <p className="text-danger fs-5 mb-4">{error}</p>
+        <Link href="/shop" passHref legacyBehavior>
+          <a>
+            <Button variant="primary">Retour à la boutique</Button>
+          </a>
+        </Link>
+      </Container>
     );
   }
 
   // Affichage si le produit n'est pas trouvé (après chargement)
   if (!product || !product.id) {
     return (
-      <Layout>
-        <Container className="text-center py-5 mt-5">
-          <p className="text-danger fs-5 mb-4">Produit introuvable.</p>
-          <Link href="/shop" passHref legacyBehavior>
-            <a>
-              <Button variant="primary">Retour à la boutique</Button>
-            </a>
-          </Link>
-        </Container>
-      </Layout>
+      <Container className="text-center py-5 mt-5">
+        <p className="text-danger fs-5 mb-4">Produit introuvable.</p>
+        <Link href="/shop" passHref legacyBehavior>
+          <a>
+            <Button variant="primary">Retour à la boutique</Button>
+          </a>
+        </Link>
+      </Container>
     );
   }
 
   // Affichage si le produit est trouvé
   return (
-    <Layout>
+    <>
       <SEOHead title={product.name} description={product.description?.substring(0, 160) || `Détails pour ${product.name || "Product"}`} />
       <Container className="product-page-container pt-4 pb-5">
         {/* DEBUG: Affichage temporaire de l'objet user pour vérifier le contexte et le rôle */}
@@ -958,12 +951,9 @@ const ProductPage = ({ ssrProduct, ssrError }) => {
           padding: 0.25rem 0.6rem;
         }
       `}</style>
-    </Layout>
+    </>
   );
 };
-
-// --- Assignation du Layout ---
-ProductPage.getLayout = (page) => <Layout>{page}</Layout>;
 
 // --- Exportation du Composant Page ---
 export default ProductPage;

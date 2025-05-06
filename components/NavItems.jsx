@@ -18,7 +18,6 @@ const CustomLink = ({ href, className, children, ...props }) => {
   );
 };
 
-
 const NavItems = () => {
   const [menuToggle, setMenuToggle] = useState(false);
   const [socialToggle, setSocialToggle] = useState(false);
@@ -26,8 +25,9 @@ const NavItems = () => {
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
 
-  // Vérification pour empêcher la duplication
-  const [isMainInstance, setIsMainInstance] = useState(true);
+  // Système pour éviter la duplication des NavItems
+  const [isMainInstance, setIsMainInstance] = useState(false);
+  const navInstanceId = React.useId(); // Identifiant unique pour cette instance
 
   // Gestion robuste du contexte d'authentification avec des valeurs par défaut
   // Permet de gérer les cas où le contexte n'est pas encore initialisé
@@ -36,23 +36,40 @@ const NavItems = () => {
   const logOut = authContext?.logOut || (() => {});
   const loading = authContext?.loading ?? true;
 
+  // Vérification pour éviter les duplications de NavItems
   useEffect(() => {
-    // Si ce composant n'est pas dans le header principal, ne pas l'afficher
-    const checkMainInstance = () => {
-      if (typeof window !== 'undefined') {
-        const mainHeader = document.getElementById('main-navigation-header');
-        const currentHeader = document.querySelector('header:has(.header-section)');
+    // Attribuer un attribut data-nav-instance à cette instance
+    const checkInstanceStatus = () => {
+      if (typeof window === 'undefined') return;
 
-        if (mainHeader && currentHeader && !mainHeader.contains(currentHeader)) {
-          setIsMainInstance(false);
-          return false;
-        }
+      // Trouver toutes les instances NavItems
+      const allNavs = document.querySelectorAll('header:has(.header-section)');
+      if (allNavs.length <= 1) {
+        setIsMainInstance(true);
+        return;
       }
-      return true;
+
+      // Vérifier si celle-ci est déjà marquée comme principale
+      const mainNavExists = document.querySelector('header[data-main-nav="true"]');
+
+      // Si aucun nav principal n'est défini, marquer cette instance comme principale
+      // si elle est la première dans le DOM
+      if (!mainNavExists) {
+        const currentHeader = document.querySelector(`[data-nav-id="${navInstanceId}"]`);
+        if (currentHeader && currentHeader === allNavs[0]) {
+          currentHeader.setAttribute('data-main-nav', 'true');
+          setIsMainInstance(true);
+        }
+      } else {
+        // Sinon, cette instance n'est pas principale si elle n'est pas déjà marquée
+        const currentHeader = document.querySelector(`[data-nav-id="${navInstanceId}"]`);
+        setIsMainInstance(currentHeader && currentHeader.getAttribute('data-main-nav') === 'true');
+      }
     };
 
-    checkMainInstance();
-  }, []);
+    // Exécuter après le rendu complet
+    setTimeout(checkInstanceStatus, 100);
+  }, [navInstanceId]);
 
   useEffect(() => {
     const scrollHandler = () => {
@@ -120,13 +137,16 @@ const NavItems = () => {
       });
   };
 
-  // Ne pas rendre si ce n'est pas l'instance principale
-  if (!isMainInstance) return null;
+  // Si cette instance n'est pas l'instance principale, ne pas rendre le composant
+  if (!isMainInstance) {
+    return null;
+  }
 
   return (
     <header
       className={`header-section style-4 ${headerFixed ? "header-fixed fadeInUp" : ""}`}
       style={{ position: 'sticky', top: 0, zIndex: 1000 }}
+      data-nav-id={navInstanceId}
     >
       {/* ------ header top: first div ----- */}
       <div className={`header-top d-md-none ${socialToggle ? "open" : ""}`}>

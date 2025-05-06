@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 const title = "À propos de ShopCart";
@@ -136,8 +137,50 @@ const footerbottomList = [
 ];
 
 const Footer = () => {
+    // État pour suivre si ce footer est l'instance principale
+    const [isMainInstance, setIsMainInstance] = useState(false);
+    const footerInstanceId = React.useId(); // Identifiant unique pour cette instance
+
+    // Vérification pour éviter les duplications de Footer
+    useEffect(() => {
+        const checkInstanceStatus = () => {
+            if (typeof window === 'undefined') return;
+            
+            // Trouver tous les footers
+            const allFooters = document.querySelectorAll('footer.style-2');
+            if (allFooters.length <= 1) {
+                setIsMainInstance(true);
+                return;
+            }
+            
+            // Vérifier si un footer principal est déjà défini
+            const mainFooterExists = document.querySelector('footer[data-main-footer="true"]');
+            
+            // Si aucun footer principal n'est défini, marquer cette instance comme principale
+            if (!mainFooterExists) {
+                const currentFooter = document.querySelector(`[data-footer-id="${footerInstanceId}"]`);
+                if (currentFooter && currentFooter === allFooters[0]) {
+                    currentFooter.setAttribute('data-main-footer', 'true');
+                    setIsMainInstance(true);
+                }
+            } else {
+                // Sinon, cette instance n'est pas principale si elle n'est pas déjà marquée
+                const currentFooter = document.querySelector(`[data-footer-id="${footerInstanceId}"]`);
+                setIsMainInstance(currentFooter && currentFooter.getAttribute('data-main-footer') === 'true');
+            }
+        };
+        
+        // Exécuter après le rendu complet
+        setTimeout(checkInstanceStatus, 100);
+    }, [footerInstanceId]);
+
+    // Ne pas rendre le footer s'il n'est pas l'instance principale
+    if (!isMainInstance) {
+        return null;
+    }
+
     return (
-        <footer className="style-2">
+        <footer className="style-2" data-footer-id={footerInstanceId}>
             <div className="footer-top dark-view padding-tb">
                 <div className="container">
                     <div className="row g-4 row-cols-xl-4 row-cols-sm-2 row-cols-1 justify-content-center">
