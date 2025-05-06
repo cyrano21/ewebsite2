@@ -1,11 +1,35 @@
+/* components/Sidebar/Rating.module.css */
 .ratingContainer {
   display: flex;
   align-items: center;
 }
 
 .rating {
-  display: flex;
-  align-items: center;
+  display: inline-flex;
+}
+
+.small i {
+  font-size: 0.75rem;
+}
+
+.medium i {
+  font-size: 1rem;
+}
+
+.large i {
+  font-size: 1.25rem;
+}
+
+.extraLarge i {
+  font-size: 1.5rem;
+}
+
+.interactive {
+  transition: transform 0.2s;
+}
+
+.interactive:hover {
+  transform: scale(1.2);
 }
 
 .count {
@@ -14,37 +38,29 @@
   font-size: 0.875rem;
 }
 
-/* Styles pour les différentes tailles */
-.small i {
-  font-size: 0.75rem;
+/* Style des étoiles par défaut (vides) */
+.rating i {
+  color: #e4e5e9;
   margin-right: 2px;
 }
 
-.medium i {
-  font-size: 1rem;
-  margin-right: 3px;
+/* Style des étoiles actives */
+.rating i.text-warning {
+  color: #ffc107 !important;
 }
 
-.large i {
-  font-size: 1.25rem;
-  margin-right: 4px;
+.rating i.text-primary {
+  color: #0d6efd !important;
 }
 
-.extraLarge i {
-  font-size: 1.5rem;
-  margin-right: 5px;
+.rating i.text-danger {
+  color: #dc3545 !important;
 }
 
-/* Animation pour les étoiles interactives */
-.interactive {
-  transition: transform 0.2s ease;
+.rating i.text-success {
+  color: #198754 !important;
 }
 
-.interactive:hover {
-  transform: scale(1.2);
-}
-
-/* Couleur par défaut pour les étoiles inactives */
-.rating i {
-  color: #e2e5e9;
+.rating i.text-info {
+  color: #0dcaf0 !important;
 }

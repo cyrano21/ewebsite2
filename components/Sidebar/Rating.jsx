@@ -4,6 +4,7 @@ import styles from "./Rating.module.css";
 
 const Rating = ({ 
   ratings = 0, 
+  value, // Ajout de la prop 'value' pour compatibilité
   maxRating = 5, 
   interactive = false, 
   size = "md", 
@@ -12,8 +13,11 @@ const Rating = ({
   count = 0,
   onRatingChange = null
 }) => {
+  // Utiliser 'value' si fourni, sinon utiliser 'ratings'
+  const actualRating = value !== undefined ? value : ratings;
+  
   const [hoverRating, setHoverRating] = useState(0);
-  const [selectedRating, setSelectedRating] = useState(ratings);
+  const [selectedRating, setSelectedRating] = useState(actualRating);
 
   // Déterminer la classe de taille
   const getSizeClass = () => {
@@ -73,7 +77,7 @@ const Rating = ({
     if (hoverRating >= star) {
       return true;
     }
-    if (hoverRating === 0 && (interactive ? selectedRating : ratings) >= star) {
+    if (hoverRating === 0 && (interactive ? selectedRating : actualRating) >= star) {
       return true;
     }
     return false;
@@ -110,6 +114,7 @@ const Rating = ({
 
 Rating.propTypes = {
   ratings: PropTypes.number,
+  value: PropTypes.number, // Ajout de la prop 'value' aux PropTypes
   maxRating: PropTypes.number,
   interactive: PropTypes.bool,
   size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
