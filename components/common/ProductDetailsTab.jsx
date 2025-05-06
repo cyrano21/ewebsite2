@@ -3,14 +3,19 @@ import { Tab, Nav } from 'react-bootstrap';
 import Rating from 'components/common/Rating';
 import { useRouter } from 'next/router';
 
-const ProductDetailsTab = () => {
+const ProductDetailsTab = ({ productId }) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { id } = router.query;
+  // Utiliser l'ID passé en prop ou celui de l'URL
+  const id = productId || router.query.id;
+
+  // Protéger contre les erreurs côté serveur (SSR)
+  const isClient = typeof window !== 'undefined';
 
   useEffect(() => {
-    if (!id) return;
+    // Ne s'exécute que côté client et si ID existe
+    if (!isClient || !id) return;
     
     const fetchReviews = async () => {
       setLoading(true);
@@ -31,7 +36,7 @@ const ProductDetailsTab = () => {
     };
 
     fetchReviews();
-  }, [id]);
+  }, [id, isClient]);
 
   return (
     <Tab.Container defaultActiveKey="description">

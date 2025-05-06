@@ -1,8 +1,15 @@
 import React from 'react';
 import { Card, Form, Button, Table } from 'react-bootstrap';
-import { currencyFormat } from 'helpers/utils';
 
 const CheckoutSummaryCard = () => {
+  // Fonction interne pour formater les prix
+  const currencyFormat = (value) => {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(value);
+  };
+
   // Données d'exemple pour l'affichage du panier
   const cartItems = [
     { id: 1, name: 'Produit 1', price: 299.99, quantity: 1 },
@@ -10,7 +17,7 @@ const CheckoutSummaryCard = () => {
   ];
 
   // Calcul des totaux
-  const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   const shipping = 15.99;
   const tax = subtotal * 0.1; // 10% de taxe
   const total = subtotal + shipping + tax;

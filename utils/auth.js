@@ -94,3 +94,26 @@ export function hasRole(user, roles) {
   
   return user.role === roles;
 }
+
+/**
+ * Middleware d'authentification pour les API routes
+ * @param {Function} handler - Handler de l'API route
+ * @returns {Function} - Middleware d'authentification
+ */
+export function withAuth(handler) {
+  return async (req, res) => {
+    const authResult = await verifyAuth(req);
+    
+    if (!authResult.success) {
+      return res.status(401).json({ 
+        error: authResult.message || 'Non autorisé' 
+      });
+    }
+    
+    // Ajouter l'utilisateur à la requête pour les handlers suivants
+    req.user = authResult.user;
+    
+    // Continuer avec le handler de l'API route
+    return handler(req, res);
+  };
+}

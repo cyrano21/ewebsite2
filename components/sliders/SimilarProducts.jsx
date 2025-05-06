@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import Image from 'next/image';
 import Link from 'next/link';
 import Slider from 'react-slick';
+
+// Wrapper pour éviter les erreurs de rendu côté serveur avec Slider
+const SliderWrapper = ({ children, settings }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  if (!mounted) {
+    // Rendu simplifié pour SSR
+    return (
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+        {children}
+      </div>
+    );
+  }
+  
+  return <Slider {...settings}>{children}</Slider>;
+};
 
 const SimilarProducts = ({ products, title = "Produits similaires" }) => {
   // Configuration du slider
@@ -39,17 +59,32 @@ const SimilarProducts = ({ products, title = "Produits similaires" }) => {
     return null;
   }
 
+  // Assurez-vous que tous les produits ont les propriétés nécessaires
+  const validProducts = products.map(product => ({
+    id: product.id || 'unknown',
+    name: product.name || 'Produit sans nom',
+    price: product.price || 0,
+    category: product.category || '',
+    rating: product.rating || 0,
+    ratingsCount: product.ratingsCount || 0,
+    images: product.images || [],
+    stock: product.stock || 0,
+    discountPrice: product.discountPrice,
+    discount: product.discount,
+    isNew: product.isNew
+  }));
+
   return (
     <Card className="border-0 shadow-sm mb-4">
       <Card.Header className="bg-white">
         <h5 className="mb-0">{title}</h5>
       </Card.Header>
       <Card.Body>
-        <Slider {...settings}>
-          {products.map((product) => (
+        <SliderWrapper settings={settings}>
+          {validProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </Slider>
+        </SliderWrapper>
       </Card.Body>
     </Card>
   );

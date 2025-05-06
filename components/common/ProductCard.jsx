@@ -37,8 +37,26 @@ const ProductCard = ({
     router.push(`/customer/ProductDetails?id=${product.id}`);
   };
 
+  // Formatage sécurisé des prix avec gestion des valeurs undefined
+  const formatPrice = (price) => {
+    // Vérifier si le prix est défini et est un nombre
+    if (price === undefined || price === null || isNaN(Number(price))) {
+      return 'Prix non disponible';
+    }
+    
+    // Formater le prix
+    try {
+      return price.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+    } catch (error) {
+      console.error('Erreur de formatage du prix:', error);
+      return `${price} €`;
+    }
+  };
+
   // Calcul du pourcentage de réduction
-  const discountPercentage = product.discountPrice !== undefined && product.price > 0
+  const discountPercentage = product.discountPrice !== undefined && 
+    product.price !== undefined && 
+    product.price > 0
     ? Math.round((1 - product.discountPrice / product.price) * 100)
     : 0;
 
@@ -146,25 +164,27 @@ const ProductCard = ({
         
         {/* Prix */}
         <div className="product-price mb-2">
-          {product.discountPrice !== undefined && product.discountPrice < product.price ? (
+          {product.discountPrice !== undefined && 
+           product.price !== undefined && 
+           product.discountPrice < product.price ? (
             <div className={`${isGridLayout ? '' : 'd-flex align-items-center'}`}>
               <span className="new-price fw-bold me-2">
-                {product.discountPrice.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                {formatPrice(product.discountPrice)}
               </span>
               <span className="old-price text-muted text-decoration-line-through small">
-                {product.price.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                {formatPrice(product.price)}
               </span>
             </div>
           ) : (
             <span className="price fw-bold">
-              {product.price.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+              {formatPrice(product.price)}
             </span>
           )}
         </div>
         
         {/* Disponibilité */}
         <div className="product-availability mb-3">
-          {product.stock > 0 ? (
+          {(product.stock > 0) ? (
             <span className="text-success small">
               <i className="icofont-check-circled me-1"></i>
               En stock
