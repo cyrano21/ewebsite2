@@ -231,7 +231,7 @@ export async function getCategoriesWithFallback() {
     }
     
     // Côté client seulement, tenter l'appel API complet
-    const categories = await fetchApi('/categories', {}, {
+    const categories = await fetchApi('/api/categories', {}, {
       defaultValue: DEFAULT_CATEGORIES,
       retries: 2, // Augmenter légèrement pour améliorer les chances de succès
       retryDelay: 500, // Délai plus court pour une meilleure réactivité
