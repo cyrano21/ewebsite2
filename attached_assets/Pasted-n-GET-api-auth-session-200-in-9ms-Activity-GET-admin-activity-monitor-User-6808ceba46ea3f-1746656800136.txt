@@ -1,0 +1,80 @@
+n)
+ GET /api/auth/session 200 in 9ms
+[Activity] GET /admin/activity-monitor - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 62ms
+ ○ Compiling /admin/activity-monitor ...
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 151ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[Activity] GET /become-seller - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /become-seller - User: 6808ceba46ea3f58ac26c135 (admin)
+ ✓ Compiled /admin/activity-monitor in 5.6s (2773 modules)
+ GET /become-seller 200 in 3033ms
+ GET /assets/images/seller-hero.png 404 in 5845ms
+ GET /become-seller 200 in 3579ms
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: 'fetch failed',
+    stack: 'TypeError: fetch failed\n' +
+      '    at node:internal/deps/undici/undici:13392:13\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    name: 'TypeError'
+  },
+  url: 'http://localhost:4000/api/auth/session',
+  message: 'fetch failed'
+}
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 11ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 4ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 5ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 4ms
+ GET /assets/images/seller-hero.png 404 in 212ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 6ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 5ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 4ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 4ms
+ GET /assets/images/seller-hero.png 404 in 216ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 4ms
+[Activity] GET /admin/activity-monitor - User: 6808ceba46ea3f58ac26c135 (admin)
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: 'fetch failed',
+    stack: 'TypeError: fetch failed\n' +
+      '    at node:internal/deps/undici/undici:13392:13\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    name: 'TypeError'
+  },
+  url: 'http://localhost:4000/api/auth/session',
+  message: 'fetch failed'
+}
+ GET /admin/activity-monitor 307 in 224ms
+[Activity] GET /login - User: 6808ceba46ea3f58ac26c135 (admin)
+ ○ Compiling /login ...
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[Activity] GET /become-seller - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /become-seller - User: 6808ceba46ea3f58ac26c135 (admin)
+ ✓ Compiled /login in 1364ms (2779 modules)
+ GET /become-seller 200 in 667ms
+ GET /become-seller 200 in 700ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 13ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 4ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 4ms
+[Activity] GET /api/auth/session - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 7ms
+ GET /assets/images/seller-hero.png 404 in 218ms
