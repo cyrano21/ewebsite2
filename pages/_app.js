@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
       <AuthProvider>
         <NotificationProvider>
           <WishlistProvider>

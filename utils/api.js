@@ -54,6 +54,7 @@ if (typeof window !== 'undefined') {
  * @param {number} fallbackOptions.retries - Nombre de tentatives (défaut: 1)
  * @param {number} fallbackOptions.retryDelay - Délai entre les tentatives en ms (défaut: 1000)
  * @param {boolean} fallbackOptions.verbose - Afficher des logs détaillés (défaut: false)
+ * @param {boolean} fallbackOptions.ignoreAuthErrors - Ignorer les erreurs d'authentification (défaut: false)
  * @returns {Promise<any>} Résultat de la requête ou valeur par défaut
  */
 export async function fetchApi(url, options = {}, fallbackOptions = {}) {

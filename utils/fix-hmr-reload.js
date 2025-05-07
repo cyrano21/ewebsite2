@@ -147,13 +147,21 @@ if (typeof window !== 'undefined') {
  */
 
 if (typeof window !== 'undefined') {
-  // Intercepter les requêtes HMR problématiques
+  // Intercepter les requêtes HMR problématiques et auth errors
   const originalFetch = window.fetch;
   
   window.fetch = function(url, options) {
     // Vérifier si c'est une requête HMR webpack problématique
     if (typeof url === 'string' && url.includes('webpack.hot-update.json')) {
       console.log('🛑 Interception de requête HMR problématique:', url);
+    }
+    
+    // Corriger les URL d'authentification mal configurées qui pointent vers localhost:4000
+    if (typeof url === 'string' && url.includes('localhost:4000/api/auth')) {
+      // Remplacer par l'URL réelle de l'application
+      const newUrl = url.replace('http://localhost:4000', window.location.origin);
+      console.log('🔄 Redirection automatique de requête auth:', url, '->', newUrl);
+      url = newUrl;
     }
     
     // Continuer avec la requête normale

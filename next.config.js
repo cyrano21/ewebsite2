@@ -42,4 +42,10 @@ const nextConfig = {
   },
 };
 
+// Ajout de configuration pour éviter les erreurs d'authentification
+nextConfig.env = {
+  ...nextConfig.env,
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'https://' + process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co',
+};
+
 module.exports = nextConfig;
