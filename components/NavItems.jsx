@@ -271,6 +271,8 @@ const NavItems = () => {
                     <>
                       <NavDropdown.Divider />
                       <NavDropdown.Item href="/admin">Tableau de bord Admin</NavDropdown.Item>
+                      <NavDropdown.Item href="/admin/traffic-analytics">Analyse du trafic</NavDropdown.Item>
+                      <NavDropdown.Item href="/admin/transactions">Transactions</NavDropdown.Item>
                     </>
                   )}
                   <NavDropdown.Divider />
