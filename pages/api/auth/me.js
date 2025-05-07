@@ -1,3 +1,4 @@
+
 // pages/api/auth/me.js
 import { getServerSession } from 'next-auth';
 import { authOptions } from './[...nextauth]';
@@ -57,5 +58,4 @@ export default async function handler(req, res) {
   // Aucune méthode d'authentification réussie
   console.log('[API] Aucune méthode d\'authentification valide pour /api/auth/me');
   return res.status(401).json({ error: 'Non authentifié' });
-}
 }
