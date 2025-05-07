@@ -1,0 +1,225 @@
+/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ ✓ Compiled /api/auth/[...nextauth] in 198ms (284 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 469ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ GET /api/auth/session 200 in 7ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ GET /api/auth/session 200 in 5ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ ✓ Compiled /404 in 244ms (927 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /api/auth/session 200 in 206ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ GET /become-seller 200 in 237ms
+ GET /assets/images/seller-hero.png 404 in 650ms
+ GET /become-seller 200 in 255ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ GET /api/auth/session 200 in 6ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ GET /api/auth/session 200 in 6ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ GET /api/auth/session 200 in 13ms
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+Erreur de journalisation: Error: fetch failed
+    at context.fetch (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/context.js:322:60)
+    at middleware (webpack-internal:///(middleware)/./middleware.js:52:13)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=%2Fhome%2Frunner%2Fworkspace%2Fmiddleware.js&page=%2Fmiddleware&rootDir=%2Fhome%2Frunner%2Fworkspace&matchers=&preferredRegion=&middlewareConfig=e30%3D!:32:20)
+    at async eval (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:254:28)
+    at async adapter (webpack-internal:///(middleware)/./node_modules/next/dist/esm/server/web/adapter.js:205:16)
+    at async /home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:108:26
+    at async runWithTaggedErrors (/home/runner/workspace/node_modules/next/dist/server/web/sandbox/sandbox.js:105:9)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/next-server.js:1164:22)
+    at async DevServer.runMiddleware (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:270:28)
+    at async NextNodeServer.handleCatchallMiddlewareRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:354:26)
+    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:905:28)
+    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:371:20
+    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:368:24)
+    at async handleRoute (/home/runner/workspace/node_modules/next/dist/server/lib/router-utils/resolve-routes.js:311:33) {
+  
+}
+ GET /api/auth/session 200 in 3ms
+ GET /assets/images/seller-hero.png 404 in 213ms
