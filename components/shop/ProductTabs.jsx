@@ -202,11 +202,16 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
   const fetchReviews = async () => {
     try {
       setLoading(true);
-      console.log('Tentative de récupération des avis pour le produit:', productId);
+      console.log('ProductTabs - Tentative de récupération des avis pour le produit:', productId);
       
       // 1. Essayer d'abord d'utiliser les avis fournis en props
       if (Array.isArray(reviews) && reviews.length > 0) {
-        console.log('✅ Utilisation des avis fournis en props:', reviews.length);
+        console.log('✅ ProductTabs - Utilisation des avis fournis en props:', reviews.length);
+        console.log('ProductTabs - Détails des avis fournis:', reviews.map(r => ({
+          id: r._id,
+          rating: r.rating,
+          user: r.user?.name || 'Anonyme'
+        })));
         setReviewList(reviews);
         
         // Calculer la note moyenne
@@ -371,13 +376,16 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
   // Activer la récupération des avis depuis l'API
   useEffect(() => {
     if (productId) {
+      console.log('ProductTabs - Chargement des avis pour le produit:', productId);
       fetchReviews();
+    } else {
+      console.log('ProductTabs - Aucun productId disponible pour charger les avis');
     }
     
     // Ajouter une logique de nouvelle tentative en cas d'échec
     const retryTimeout = setTimeout(() => {
       if (reviewList.length === 0 && productId) {
-        console.log('Nouvelle tentative de récupération des avis...');
+        console.log('ProductTabs - Nouvelle tentative de récupération des avis...');
         fetchReviews();
       }
     }, 3000);

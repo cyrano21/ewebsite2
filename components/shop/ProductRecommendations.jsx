@@ -11,20 +11,21 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
   const fetchRecommendedProducts = async () => {
     try {
       setLoading(true);
-
       console.log(`Récupération des produits recommandés pour le produit: ${productId}`);
-      
+
       // URL de base pour les produits
       let apiUrl = `/api/products?limit=${limit}`;
-      
+
       // Ajouter le paramètre related seulement si productId existe
       if (productId) {
         apiUrl += `&related=${productId}`;
       }
-      
+
+      console.log(`URL de requête : ${apiUrl}`);
       let response = await fetch(apiUrl);
 
       if (!response.ok) {
+        console.error(`Erreur HTTP! Statut: ${response.status}, message: ${response.statusText}`);
         throw new Error(`Erreur HTTP! Statut: ${response.status}`);
       }
 
@@ -37,6 +38,7 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
         console.log("Pas assez de produits, tentative avec produits populaires");
         try {
           const backupResponse = await fetch(`/api/products/popular?limit=${limit}`);
+          console.log(`URL de requête backup : /api/products/popular?limit=${limit}`);
 
           if (backupResponse.ok) {
             const backupData = await backupResponse.json();
@@ -64,6 +66,8 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
               data = backupData;
               console.log("Utilisation des produits populaires:", data.length);
             }
+          } else {
+            console.error(`Erreur lors de la récupération des produits populaires: Status ${backupResponse.status}, message: ${backupResponse.statusText}`);
           }
         } catch (backupError) {
           console.error("Erreur lors de la récupération des produits populaires:", backupError);
@@ -87,7 +91,7 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
           };
         });
 
-        console.log("Produits traités avant setState:", processedProducts.length);
+        console.log("Produits traités avant setState:", processedProducts.length, processedProducts);
         if (processedProducts.length > 0) {
           setProducts(processedProducts);
         } else {
@@ -116,7 +120,7 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
     };
 
     loadProducts();
-    
+
     // Debug: Surveiller les changements dans les produits
     console.log("ProductRecommendations - Début chargement, ID:", productId);
   }, [productId, limit]);

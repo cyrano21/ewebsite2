@@ -14,17 +14,24 @@ import Image from 'next/image';
  * @param {number} limit - Nombre maximum de produits à afficher
  */
 const SimilarProducts = ({ products = [], categorySlug = 'all', limit = 4 }) => {
-  // Si aucun produit n'est fourni ou si la liste est vide, ne rien afficher
-  if (!Array.isArray(products) || products.length === 0) {
+  // Si aucun produit n'est disponible, ne pas afficher la section
+  if (!products || !Array.isArray(products) || products.length === 0) {
     console.log('Aucun produit similaire à afficher');
     return null;
   }
-  
-  console.log(`Debug SimilarProducts: ${products.length} produits reçus`);
+
+  console.log(`Debug SimilarProducts: ${products.length} produits similaires disponibles`);
+  console.log('Détails des produits similaires:', products.map(p => ({
+    id: p.id || p._id,
+    name: p.name,
+    rating: p.rating || p.ratings,
+    ratingsCount: p.ratingsCount || 0,
+    reviews: p.reviews ? p.reviews.length : 0
+  })));
 
   // Limiter le nombre de produits à afficher
   const displayProducts = products.slice(0, limit);
-  
+
   console.log(`Affichage de ${displayProducts.length} produits similaires sur ${products.length} disponibles`);
 
   return (
@@ -35,7 +42,7 @@ const SimilarProducts = ({ products = [], categorySlug = 'all', limit = 4 }) => 
           <span className="text-primary cursor-pointer">Voir plus &rarr;</span>
         </Link>
       </div>
-      
+
       <Row>
         {displayProducts.map((product) => (
           <Col key={product._id || product.id} xs={12} sm={6} md={3} className="mb-4">

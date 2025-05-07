@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => {
@@ -8,10 +7,13 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
   // S'assurer que count est un nombre
   const safeCount = count === null || count === undefined ? 0 : count;
   const reviewCount = typeof safeCount === 'number' ? safeCount : 0;
-  
+
+  // Log pour suivre les valeurs de rating reçues
+  console.log(`Rating - Props reçues: value=${value}, count=${count}, size=${size}, showCount=${showCount}`);
+
   // Arrondir à 0.5 près pour un affichage d'étoiles partielles
   const roundedValue = Math.round(normalizedValue * 2) / 2;
-  
+
   return (
     <div className="rating-container">
       <div className="stars-container">
@@ -23,7 +25,7 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
           } else if (i < Math.ceil(roundedValue) && roundedValue % 1 !== 0) {
             starType = "half";
           }
-          
+
           return (
             <span key={i} className={`star-wrapper ${size === 'small' ? 'small' : ''}`}>
               {starType === "full" && (
@@ -42,38 +44,38 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
           );
         })}
       </div>
-      
+
       {showCount && (
         <small className="text-muted ms-1">
           ({reviewCount})
         </small>
       )}
-      
+
       <style jsx>{`
         .rating-container {
           display: flex;
           align-items: center;
         }
-        
+
         .stars-container {
           display: flex;
         }
-        
+
         .star-wrapper {
           position: relative;
           margin-right: 2px;
           font-size: ${size === 'small' ? '0.9rem' : '1.2rem'};
         }
-        
+
         .small {
           font-size: 0.9rem;
         }
-        
+
         .half-star-container {
           position: relative;
           display: inline-block;
         }
-        
+
         .half-star-cover {
           position: absolute;
           top: 0;
@@ -84,11 +86,11 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
           z-index: 1;
           overflow: hidden;
         }
-        
+
         .text-warning {
           color: #ffc107 !important;
         }
-        
+
         .text-muted {
           color: #d9d9d9 !important;
         }
