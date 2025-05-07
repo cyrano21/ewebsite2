@@ -46,7 +46,7 @@ export default async function middleware(req) {
 
   // Déclarer token en dehors du bloc try/catch pour le rendre accessible dans tout le middleware
   let token = null;
-  
+
   try {
     // Récupérer le token d'authentification si disponible
     token = await getToken({ 
