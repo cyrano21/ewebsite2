@@ -3,9 +3,13 @@ import React from 'react';
 
 const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => {
   // Assurer que la valeur est un nombre entre 0 et 5
-  const normalizedValue = typeof value === 'number' ? Math.min(Math.max(value, 0), 5) : 0;
+  const safeValue = value === null || value === undefined ? 0 : value;
+  const normalizedValue = typeof safeValue === 'number' ? Math.min(Math.max(safeValue, 0), 5) : 0;
   // S'assurer que count est un nombre
-  const reviewCount = typeof count === 'number' ? count : 0;
+  const safeCount = count === null || count === undefined ? 0 : count;
+  const reviewCount = typeof safeCount === 'number' ? safeCount : 0;
+  
+  console.log(`Rating rendu avec value=${value}, normalizedValue=${normalizedValue}, count=${count}`);
   // Arrondir à 0.5 près pour un affichage d'étoiles partielles
   const roundedValue = Math.round(normalizedValue * 2) / 2;
   

@@ -95,6 +95,11 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
     };
 
     loadProducts();
+    
+    // Debug: Surveiller les changements dans les produits
+    return () => {
+      console.log("ProductRecommendations - Produits chargés:", products.length);
+    };
   }, [productId, limit]);
 
   if (loading) {
@@ -147,12 +152,14 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
                   {product.name}
                 </h6>
                 <div className="d-flex flex-column">
-                  <Rating 
-                    value={product.ratings || 0} 
-                    count={product.ratingsCount || 0} 
-                    showCount={true} 
-                    size="small" 
-                  />
+                  {typeof product.ratings !== 'undefined' && (
+                    <Rating 
+                      value={product.ratings !== null ? product.ratings : 0} 
+                      count={product.ratingsCount !== null ? product.ratingsCount : 0} 
+                      showCount={true} 
+                      size="small" 
+                    />
+                  )}
                   <div className="product-price mt-1">
                     {product.salePrice > 0 && product.salePrice < product.price ? (
                       <>
