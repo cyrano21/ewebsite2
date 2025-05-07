@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Rating from '../common/Rating';
-import styles from '../../styles/components/ProductRecommendations.module.css';
 
 const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations personnalisées pour vous" }) => {
   const [products, setProducts] = useState([]);
