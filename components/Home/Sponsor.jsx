@@ -73,14 +73,14 @@ const Sponsor = () => {
             try {
                 if (isMounted) setLoading(true);
                 
-                // Utiliser un timeout plus court pour éviter les longues attentes
+                // Augmenter le timeout pour donner plus de temps au chargement
                 const controller = new AbortController();
-                timeoutId = setTimeout(() => controller.abort(), 3000);
+                timeoutId = setTimeout(() => controller.abort(), 5000);
 
                 try {
                     const { data } = await axios.get('/api/sponsor-banners', {
                         signal: controller.signal,
-                        timeout: 3000 // Timeout explicite pour Axios
+                        timeout: 5000 // Timeout plus long pour Axios
                     });
                     
                     if (!isMounted) return;
@@ -147,10 +147,20 @@ const Sponsor = () => {
         }
     }, [usingFallbacks]);
 
-    // Ne pas afficher la section si aucun sponsor n'est disponible
-    if (sponsors.length === 0 && !loading) {
-        return null;
-    }
+    // Toujours afficher la section, même si on utilise les sponsors de secours
+    useEffect(() => {
+        // Si après 3 secondes on n'a toujours pas de sponsors, utiliser les fallbacks
+        const fallbackTimer = setTimeout(() => {
+            if (sponsors.length === 0 && loading) {
+                setSponsors(fallbackSponsors);
+                setUsingFallbacks(true);
+                setLoading(false);
+                console.log('Utilisation des sponsors de secours après timeout');
+            }
+        }, 3000);
+        
+        return () => clearTimeout(fallbackTimer);
+    }, [sponsors.length, loading]);
 
     return (
         <div style={sponsorStyle.sponsorSection} className="sponsor-section">
@@ -168,40 +178,52 @@ const Sponsor = () => {
                                     animation: 'ticker 20s linear infinite'
                                 }}>
                                     {/* Répéter les sponsors pour un défilement infini */}
-                                    {[...sponsors, ...sponsors].map((sponsor, i) => (
-                                        <div 
-                                            key={`${sponsor._id || i}-${i}`}
-                                            style={{
-                                                ...sponsorStyle.sponsorItem,
-                                                minWidth: '160px',
-                                                margin: '0 15px',
-                                                flex: '0 0 auto'
-                                            }} 
-                                            className="sponsor-item"
-                                            onMouseEnter={() => setHoveredIndex(i)}
-                                            onMouseLeave={() => setHoveredIndex(null)}
-                                        >
-                                            <a 
-                                                href={sponsor.link || '#'} 
-                                                target={sponsor.link ? "_blank" : "_self"}
-                                                rel="noopener noreferrer"
-                                                style={{ display: 'block' }}
+                                    {sponsors.length > 0 ? (
+                                        [...sponsors, ...sponsors].map((sponsor, i) => (
+                                            <div 
+                                                key={`${sponsor._id || sponsor.name || i}-${i}`}
+                                                style={{
+                                                    ...sponsorStyle.sponsorItem,
+                                                    minWidth: '160px',
+                                                    margin: '0 15px',
+                                                    flex: '0 0 auto'
+                                                }} 
+                                                className="sponsor-item"
+                                                onMouseEnter={() => setHoveredIndex(i)}
+                                                onMouseLeave={() => setHoveredIndex(null)}
                                             >
-                                                <div className="sponsor-thumb">
-                                                    <img 
-                                                        style={{
-                                                            ...sponsorStyle.sponsorThumb,
-                                                            ...(hoveredIndex === i ? sponsorStyle.sponsorThumbHover : {})
-                                                        }}
-                                                        src={sponsor.imageUrl} 
-                                                        alt={sponsor.name} 
-                                                        width="140" 
-                                                        height="60"
-                                                    />
-                                                </div>
-                                            </a>
+                                                <a 
+                                                    href={sponsor.link || '#'} 
+                                                    target={sponsor.link ? "_blank" : "_self"}
+                                                    rel="noopener noreferrer"
+                                                    style={{ display: 'block' }}
+                                                >
+                                                    <div className="sponsor-thumb">
+                                                        <img 
+                                                            style={{
+                                                                ...sponsorStyle.sponsorThumb,
+                                                                ...(hoveredIndex === i ? sponsorStyle.sponsorThumbHover : {})
+                                                            }}
+                                                            src={sponsor.imageUrl} 
+                                                            alt={sponsor.name || 'Sponsor'} 
+                                                            width="140" 
+                                                            height="60"
+                                                            onError={(e) => {
+                                                                // Remplacer les images cassées par une image de substitution
+                                                                e.target.onerror = null;
+                                                                e.target.src = '/assets/images/placeholder.jpg';
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        // Afficher un message si aucun sponsor n'est disponible
+                                        <div style={{ padding: '20px', textAlign: 'center' }}>
+                                            Nos partenaires seront bientôt disponibles
                                         </div>
-                                    ))}
+                                    )}
                                 </div>
                                 
                                 <style jsx>{`
