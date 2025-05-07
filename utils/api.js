@@ -1,21 +1,39 @@
 // Fonctions pour interagir avec les API de produits
 import axios from "axios";
 
-// Configuration de l'URL de l'API - Utilisation stricte des variables d'environnement
+// Configuration de l'URL de l'API avec stratégie de résilience
 const isServer = typeof window === 'undefined';
 
-// Utiliser exclusivement l'URL définie dans .env et s'assurer que nous utilisons port 4000
-const HOST = process.env.NEXT_PUBLIC_APP_URL || (isServer ? '' : 'http://localhost:4000');
-// Garantir que l'URL finit bien par /api
-const API_URL = HOST.endsWith("/api") ? HOST : `${HOST}/api`;
+// Déterminer l'URL de base à utiliser
+const getApiBaseUrl = () => {
+  // En mode serveur, utiliser des URL relatives
+  if (isServer) {
+    return '/api';
+  }
+  
+  // En mode client, essayer d'utiliser la variable d'environnement
+  const envUrl = process.env.NEXT_PUBLIC_APP_URL;
+  if (envUrl) {
+    const normalizedUrl = envUrl.endsWith("/api") ? envUrl : `${envUrl}/api`;
+    console.log(`🔗 [API] URL configurée via env: ${normalizedUrl}`);
+    return normalizedUrl;
+  }
+  
+  // Si aucune URL n'est configurée, utiliser l'URL relative (fallback sécurisé)
+  console.log(`🔗 [API] Fallback vers URL relative: /api`);
+  return '/api';
+};
+
+// Définir l'URL API en fonction du contexte
+const API_URL = getApiBaseUrl();
+
+// URL de secours en cas d'échec (toujours relative pour maximiser la compatibilité)
+const LOCAL_API_URL = "/api";
 
 // Journaliser l'URL pour déboguer
 if (typeof window !== 'undefined') {
-  console.log(`🔗 [API] Utilisation de l'URL API: ${API_URL}`);
+  console.log(`🔗 [API] Configuration finale API: ${API_URL}`);
 }
-
-// Fallback en cas d'échec - utiliser des chemins relatifs
-const LOCAL_API_URL = "/api";
 
 /**
  * Fonction améliorée pour effectuer des requêtes API avec gestion d'erreurs robuste
@@ -51,49 +69,77 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
     return cache.get(cacheKey);
   }
 
+  // Détermine si l'URL est absolue ou relative
+  const isAbsoluteUrl = url.startsWith('http://') || url.startsWith('https://');
+  
+  // Si l'URL n'est pas absolue et ne commence pas par '/', ajouter la base API_URL
+  const requestUrl = isAbsoluteUrl ? url : (url.startsWith('/') ? url : `${LOCAL_API_URL}/${url}`);
+  
+  verbose && console.log(`🔍 [API] URL finale: ${requestUrl}`);
+
   // Controller pour le timeout
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-  // Options par défaut pour fetch
+  // Options par défaut pour fetch avec credentials inclus
   const fetchOptions = {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin', // Inclure les cookies pour l'authentification
     ...options,
     signal: controller.signal
   };
 
-  verbose && console.log(`🔍 [API] Appel de ${url}`);
+  verbose && console.log(`🔍 [API] Appel de ${requestUrl}`);
   
   // Tentatives multiples avec délai exponentiel
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       if (attempt > 0) {
-        verbose && console.log(`🔄 [API] Tentative ${attempt}/${retries} pour ${url}`);
+        verbose && console.log(`🔄 [API] Tentative ${attempt}/${retries} pour ${requestUrl}`);
         // Attendre avant de réessayer (délai exponentiel)
         await new Promise(resolve => setTimeout(resolve, retryDelay * Math.pow(2, attempt - 1)));
       }
 
-      const response = await fetch(url, fetchOptions);
-      clearTimeout(timeoutId);
-      
-      verbose && console.log(`🔍 [API] Réponse reçue: status=${response.status} pour ${url}`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      // Essayer d'abord avec l'URL demandée
+      try {
+        const response = await fetch(requestUrl, fetchOptions);
+        clearTimeout(timeoutId);
+        
+        verbose && console.log(`🔍 [API] Réponse reçue: status=${response.status} pour ${requestUrl}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-      const data = await response.json();
-      
-      // Stocker dans le cache si nécessaire
-      if (useCache) {
-        cache.set(cacheKey, data);
+        const data = await response.json();
+        
+        // Stocker dans le cache si nécessaire
+        if (useCache) {
+          cache.set(cacheKey, data);
+        }
+        
+        return data;
+      } catch (primaryError) {
+        // Si l'URL absolue échoue, essayer avec l'URL de fallback si nécessaire
+        if (isAbsoluteUrl && attempt === retries - 1) {
+          verbose && console.log(`🔄 [API] Échec avec URL absolue, essai avec fallback: ${LOCAL_API_URL}${url}`);
+          const fallbackResponse = await fetch(`${LOCAL_API_URL}${url}`, fetchOptions);
+          
+          if (fallbackResponse.ok) {
+            const data = await fallbackResponse.json();
+            if (useCache) {
+              cache.set(cacheKey, data);
+            }
+            return data;
+          }
+        }
+        throw primaryError; // Re-lance l'erreur pour être capturée par le bloc catch externe
       }
       
-      return data;
     } catch (error) {
       if (attempt === retries) {
         // Nettoyer le timeout si c'est la dernière tentative
@@ -101,9 +147,9 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
         
         // Gestion d'erreur finale
         if (error.name === 'AbortError') {
-          console.error(`⚠️ [API] Timeout après ${timeout}ms pour ${url}`);
+          console.error(`⚠️ [API] Timeout après ${timeout}ms pour ${requestUrl}`);
         } else {
-          console.error(`❌ [API] Erreur pour ${url}:`, error.message);
+          console.error(`❌ [API] Erreur pour ${requestUrl}:`, error.message);
         }
         
         return defaultValue;
@@ -138,16 +184,67 @@ export async function getCategoriesWithFallback() {
       return DEFAULT_CATEGORIES;
     }
     
+    // Vérifier si nous avons des catégories en cache local (pour utilisation immédiate)
+    const localCacheKey = 'app_categories_cache';
+    const cachedCategories = sessionStorage.getItem(localCacheKey);
+    
+    if (cachedCategories) {
+      try {
+        const parsed = JSON.parse(cachedCategories);
+        console.log('🔍 [API] Utilisation des catégories du cache local (temporaire)');
+        
+        // Rafraîchir le cache en arrière-plan
+        setTimeout(() => {
+          refreshCategoriesCache(localCacheKey);
+        }, 2000);
+        
+        return parsed;
+      } catch (e) {
+        // Erreur de parsing, ignorer le cache
+        console.warn('⚠️ [API] Erreur de parsing du cache local, ignorer');
+      }
+    }
+    
     // Côté client seulement, tenter l'appel API complet
-    const fullUrl = `${API_URL}/categories`;
-    return fetchApi(fullUrl, {}, {
+    const categories = await fetchApi('/categories', {}, {
       defaultValue: DEFAULT_CATEGORIES,
-      retries: 1, // Réduit le nombre de tentatives pour éviter de ralentir la page
-      verbose: true
+      retries: 2, // Augmenter légèrement pour améliorer les chances de succès
+      retryDelay: 500, // Délai plus court pour une meilleure réactivité
+      verbose: true,
+      timeout: 5000 // Timeout plus court pour éviter des attentes trop longues
     });
+    
+    // Mettre en cache les résultats dans le stockage local
+    if (categories && categories.length && categories !== DEFAULT_CATEGORIES) {
+      try {
+        sessionStorage.setItem(localCacheKey, JSON.stringify(categories));
+      } catch (e) {
+        console.warn('⚠️ [API] Impossible de mettre en cache les catégories:', e);
+      }
+    }
+    
+    return categories;
   } catch (error) {
     console.error("Erreur dans getCategoriesWithFallback:", error);
     return DEFAULT_CATEGORIES;
+  }
+}
+
+// Fonction auxiliaire pour rafraîchir le cache en arrière-plan
+async function refreshCategoriesCache(cacheKey) {
+  try {
+    const freshData = await fetchApi('/categories', {}, {
+      retries: 1,
+      verbose: false,
+      timeout: 8000
+    });
+    
+    if (freshData && freshData.length) {
+      sessionStorage.setItem(cacheKey, JSON.stringify(freshData));
+      console.log('🔄 [API] Cache des catégories rafraîchi en arrière-plan');
+    }
+  } catch (error) {
+    console.warn('⚠️ [API] Échec du rafraîchissement du cache en arrière-plan:', error);
   }
 }
 
