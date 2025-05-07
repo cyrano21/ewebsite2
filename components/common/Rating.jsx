@@ -9,7 +9,6 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
   const safeCount = count === null || count === undefined ? 0 : count;
   const reviewCount = typeof safeCount === 'number' ? safeCount : 0;
   
-  console.log(`Rating rendu avec value=${value}, normalizedValue=${normalizedValue}, count=${count}`);
   // Arrondir à 0.5 près pour un affichage d'étoiles partielles
   const roundedValue = Math.round(normalizedValue * 2) / 2;
   

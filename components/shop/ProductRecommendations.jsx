@@ -21,34 +21,43 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
 
       // Traiter la réponse
       let data = await response.json();
+      console.log("Données brutes reçues:", data);
 
       // Si nous n'avons pas assez de produits, compléter avec des produits populaires
       if (!data || !Array.isArray(data) || data.length < limit) {
-        const backupResponse = await fetch(`/api/products/popular?limit=${limit}`);
+        console.log("Pas assez de produits, tentative avec produits populaires");
+        try {
+          const backupResponse = await fetch(`/api/products/popular?limit=${limit}`);
 
-        if (backupResponse.ok) {
-          const backupData = await backupResponse.json();
+          if (backupResponse.ok) {
+            const backupData = await backupResponse.json();
+            console.log("Données de backup reçues:", backupData);
 
-          // Si nous avons des données de recommandation, les fusionner avec les produits populaires
-          if (data && Array.isArray(data) && data.length > 0) {
-            // Obtenir uniquement les IDs des produits déjà dans nos recommandations
-            const existingIds = data.map(product => product.id || product._id);
+            // Si nous avons des données de recommandation, les fusionner avec les produits populaires
+            if (data && Array.isArray(data) && data.length > 0) {
+              // Obtenir uniquement les IDs des produits déjà dans nos recommandations
+              const existingIds = data.map(product => product.id || product._id);
 
-            // Filtrer les produits de sauvegarde pour éviter les doublons
-            const additionalProducts = backupData.filter(product => {
-              const productId = product.id || product._id;
-              return !existingIds.includes(productId);
-            });
+              // Filtrer les produits de sauvegarde pour éviter les doublons
+              const additionalProducts = backupData.filter(product => {
+                const productId = product.id || product._id;
+                return !existingIds.includes(productId);
+              });
 
-            // Ajouter les produits supplémentaires jusqu'à atteindre la limite
-            if (additionalProducts.length > 0) {
-              let productsNeeded = limit - data.length;
-              data = [...data, ...additionalProducts.slice(0, productsNeeded)];
+              // Ajouter les produits supplémentaires jusqu'à atteindre la limite
+              if (additionalProducts.length > 0) {
+                let productsNeeded = limit - data.length;
+                data = [...data, ...additionalProducts.slice(0, productsNeeded)];
+                console.log("Produits fusionnés:", data.length);
+              }
+            } else {
+              // Si aucune recommandation, utiliser directement les produits populaires
+              data = backupData;
+              console.log("Utilisation des produits populaires:", data.length);
             }
-          } else {
-            // Si aucune recommandation, utiliser directement les produits populaires
-            data = backupData;
           }
+        } catch (backupError) {
+          console.error("Erreur lors de la récupération des produits populaires:", backupError);
         }
       }
 
@@ -69,9 +78,16 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
           };
         });
 
-        setProducts(processedProducts);
+        console.log("Produits traités avant setState:", processedProducts.length);
+        if (processedProducts.length > 0) {
+          setProducts(processedProducts);
+        } else {
+          console.warn("Aucun produit traité disponible");
+          setProducts([]);
+        }
       } else {
         // Si aucune donnée ou format inapproprié
+        console.warn("Format de données inapproprié:", data);
         setProducts([]);
       }
 
@@ -97,10 +113,13 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
     loadProducts();
     
     // Debug: Surveiller les changements dans les produits
-    return () => {
-      console.log("ProductRecommendations - Produits chargés:", products.length);
-    };
+    console.log("ProductRecommendations - Début chargement, ID:", productId);
   }, [productId, limit]);
+
+  // Enregistrer les changements d'état des produits
+  useEffect(() => {
+    console.log("ProductRecommendations - Produits chargés:", products.length, products);
+  }, [products]);
 
   if (loading) {
     return (
