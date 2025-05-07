@@ -1,0 +1,46 @@
+Activity] GET /admin/activity-monitor - User: 6808ceba46ea3f58ac26c135 (admin)
+ ○ Compiling /admin/activity-monitor ...
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[Activity] GET /seller - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /admin - User: 6808ceba46ea3f58ac26c135 (admin)
+ ✓ Compiled /admin/activity-monitor in 4s (2790 modules)
+ GET /admin 200 in 2354ms
+ GET /seller 404 in 2360ms
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: 'fetch failed',
+    stack: 'TypeError: fetch failed\n' +
+      '    at node:internal/deps/undici/undici:13392:13\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    name: 'TypeError'
+  },
+  url: 'http://localhost:4000/api/auth/session',
+  message: 'fetch failed'
+}
+ GET /_next/data/development/admin/activity-monitor.json 200 in 4798ms
+ GET /api/auth/session 200 in 16ms
+ GET /api/auth/session 200 in 11ms
+[Activity] GET /api/products/best-selling - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /api/admin/stats - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /api/admin/monthly-sales - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /api/admin/category-stats - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /api/orders - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/admin/monthly-sales 200 in 34ms
+ GET /api/auth/session 200 in 6ms
+ GET /api/admin/category-stats 200 in 140ms
+[Activity] GET /api/admin/monthly-sales - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/admin/monthly-sales 200 in 4ms
+ GET /api/auth/session 200 in 6ms
+ GET /api/products/best-selling 200 in 226ms
+ GET /api/orders?limit=5&sort=-createdAt 304 in 244ms
+[Activity] GET /api/admin/category-stats - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /api/products/best-selling - User: 6808ceba46ea3f58ac26c135 (admin)
+[Activity] GET /api/orders - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/admin/category-stats 200 in 110ms
+ GET /api/products/best-selling 200 in 218ms
+ GET /api/orders?limit=5&sort=-createdAt 304 in 215ms
+ GET /api/admin/stats 304 in 666ms
+[Activity] GET /api/admin/stats - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/admin/stats 304 in 655ms
