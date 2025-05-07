@@ -11,12 +11,19 @@ const getApiBaseUrl = () => {
     return '/api';
   }
 
-  // En mode client, essayer d'utiliser la variable d'environnement
+  // En mode client, essayer d'utiliser la variable d'environnement ou l'URL courante
   const envUrl = process.env.NEXT_PUBLIC_APP_URL;
   if (envUrl) {
     const normalizedUrl = envUrl.endsWith("/api") ? envUrl : `${envUrl}/api`;
     console.log(`🔗 [API] URL configurée via env: ${normalizedUrl}`);
     return normalizedUrl;
+  }
+  
+  // Utiliser l'URL courante en fallback (plus fiable dans les environnements Replit)
+  if (typeof window !== 'undefined') {
+    const origin = window.location.origin;
+    console.log(`🔗 [API] URL détectée automatiquement: ${origin}/api`);
+    return `${origin}/api`;
   }
 
   // Si aucune URL n'est configurée, utiliser l'URL relative (fallback sécurisé)

@@ -38,6 +38,26 @@ function MyApp({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap.min.js");
   }, []);
 
+  // Utilisation de useEffect avec une gestion d'erreurs améliorée
+  useEffect(() => {
+    try {
+      // Chargement asynchrone avec gestion d'erreur
+      const loadModule = async () => {
+        try {
+          await import('../utils/fix-hmr-reload');
+          console.log('Module HMR fix chargé avec succès');
+        } catch (error) {
+          console.warn('Impossible de charger le module HMR fix:', error.message);
+          // Continue l'exécution même en cas d'erreur de chargement
+        }
+      };
+
+      loadModule();
+    } catch (e) {
+      console.warn('Erreur lors de l\'initialisation du fix HMR:', e);
+    }
+  }, []);
+
   return (
     <SessionProvider session={pageProps.session}>
       <AuthProvider>

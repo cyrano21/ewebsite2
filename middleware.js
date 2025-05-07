@@ -1,59 +1,60 @@
-import { NextResponse } from 'next/server'
-import { getToken } from 'next-auth/jwt'
+// Middleware Next.js pour gérer l'authentification et la journalisation
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
 
-// Middleware function
-export async function middleware(req) {
-  const path = req.nextUrl.pathname
+// Configurer les chemins qui ne nécessitent pas d'authentification
+const publicPaths = [
+  '/',
+  '/login',
+  '/sign-up',
+  '/forgetpass',
+  '/api/auth/signin',
+  '/api/auth/signup',
+  '/api/auth/signout',
+  '/api/auth/session',
+  '/api/auth/providers',
+  '/api/auth/callback',
+  '/shop',
+  '/blog',
+  '/about',
+  '/contact',
+  '/products',
+];
 
-  // Définir quelles routes sont publiques (accessibles sans authentification)
-  const publicPaths = [
-    '/',
-    '/login',
-    '/sign-up',
-    '/forgetpass',
-    '/reset-password',
-    '/api/auth/signin',
-    '/api/auth/signup',
-    '/api/auth/forgetpass',
-    '/api/auth/reset-password',
-    '/about',
-    '/contact',
-    '/shop',
-    '/blog',
-  ]
+// Vérifier si un chemin est public en comparant avec les chemins publics définis
+const isPublic = (path) => {
+  return publicPaths.find((p) => 
+    path === p || 
+    path.startsWith('/api/') || 
+    path.startsWith('/shop/') ||
+    path.startsWith('/_next/') ||
+    path.startsWith('/assets/') ||
+    path.startsWith('/images/') ||
+    path.startsWith('/category/') ||
+    path.endsWith('.jpg') ||
+    path.endsWith('.png') ||
+    path.endsWith('.svg') ||
+    path.endsWith('.css') ||
+    path.endsWith('.js') ||
+    path.endsWith('.ico')
+  );
+};
 
-  // Vérifier si la route actuelle est une route publique ou commence par /shop/, /api/, /assets/, /blog/
-  const isPublicPath = publicPaths.includes(path) || 
-                       path.startsWith('/shop/') || 
-                       path.startsWith('/api/') || 
-                       path.startsWith('/assets/') || 
-                       path.startsWith('/_next/') || 
-                       path.startsWith('/blog/') ||
-                       path.endsWith('.png') || 
-                       path.endsWith('.jpg') || 
-                       path.endsWith('.jpeg') || 
-                       path.endsWith('.svg') || 
-                       path.endsWith('.css') || 
-                       path.endsWith('.js')
+// Middleware principal
+export default async function middleware(req) {
+  const path = req.nextUrl.pathname;
 
-  // Récupérer le token (session)
-  const token = await getToken({ req })
-  const isAuthenticated = !!token
-
-  // Enregistrer l'activité pour l'analyse
-  // Nous utilisons une approche simplifiée pour éviter les erreurs de fetch dans le middleware
   try {
-    const path = req.nextUrl.pathname;
+    // Récupérer le token d'authentification si disponible
+    const token = await getToken({ 
+      req, 
+      secret: process.env.NEXTAUTH_SECRET 
+    });
 
-    // Redirectionner les chemins qui devraient inclure /api/
-    if (path === '/categories') {
-      return NextResponse.redirect(new URL('/api/categories', req.url));
-    }
-
-    // Ignorer les requêtes API et statiques pour des raisons de performance
-    if (!path.startsWith('/api/') && 
+    // Journaliser les activités importantes
+    if (path &&
         !path.startsWith('/_next/') && 
-        !path.startsWith('/favicon.ico') && 
+        !path.startsWith('/api/auth/') && 
         !path.endsWith('.jpg') && 
         !path.endsWith('.png') && 
         !path.endsWith('.ico')) {
@@ -70,36 +71,37 @@ export async function middleware(req) {
     console.error('Erreur dans le middleware de journalisation:', error);
   }
 
-  // 1. Routes à accès restreint : rediriger si l'utilisateur n'est pas authentifié
-  if (!isPublicPath && !isAuthenticated) {
-    return NextResponse.redirect(new URL(`/login?callbackUrl=${encodeURIComponent(path)}`, req.url))
+  // Vérifier si l'accès aux routes admin est autorisé
+  if (path.startsWith('/admin')) {
+    // Si l'utilisateur n'est pas connecté ou n'a pas le rôle admin
+    if (!token || token.role !== 'admin') {
+      // Rediriger vers la page de connexion
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
   }
 
-  // 2. Routes admin : vérifier si l'utilisateur est administrateur
-  if (path.startsWith('/admin') && (!isAuthenticated || token.role !== 'admin')) {
-    return NextResponse.redirect(new URL('/', req.url))
+  // Vérifier si l'accès aux routes vendeur est autorisé
+  if (path.startsWith('/seller')) {
+    // Si l'utilisateur n'est pas connecté ou n'a pas le rôle seller
+    if (!token || (token.role !== 'seller' && token.role !== 'admin')) {
+      // Rediriger vers la page de connexion
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
   }
 
-  // 3. Routes vendeur : vérifier si l'utilisateur est vendeur
-  if (path.startsWith('/seller') && 
-      (!isAuthenticated || (token.role !== 'seller' && token.role !== 'admin'))) {
-    return NextResponse.redirect(new URL('/become-seller', req.url))
-  }
-
-  // Continuer si tout est en ordre
-  return NextResponse.next()
+  // Continuer le traitement normal pour tous les autres cas
+  return NextResponse.next();
 }
 
-// Configurer les routes sur lesquelles le middleware doit s'exécuter
+// Configurer les chemins sur lesquels le middleware doit s'exécuter
 export const config = {
   matcher: [
     /*
-     * Match all request paths except:
-     * 1. /api/auth/* (authentication routes)
-     * 2. /_next/* (Next.js internals)
-     * 3. /static/* (static files)
-     * 4. /favicon.ico, /sitemap.xml (common system files)
+     * Correspond à tous les chemins sauf ceux commençant par:
+     * - _next/static (fichiers statiques)
+     * - _next/image (optimisation d'images)
+     * - favicon.ico (icône du site)
      */
-    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml).*)',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
-}
+};
