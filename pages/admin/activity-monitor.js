@@ -716,7 +716,12 @@ export async function getServerSideProps(context) {
     };
   }
   
-  if (session.user.role !== 'admin') {
+  // Vérification du rôle admin avec logging pour débogage
+  console.log("Session utilisateur:", JSON.stringify(session.user, null, 2));
+  
+  // Accepter 'admin' ou 'ADMIN' pour plus de flexibilité
+  if (session.user.role !== 'admin' && session.user.role !== 'ADMIN') {
+    console.log(`Accès refusé: l'utilisateur a le rôle ${session.user.role} au lieu de 'admin'`);
     return {
       redirect: {
         destination: '/',
@@ -725,8 +730,11 @@ export async function getServerSideProps(context) {
     };
   }
   
+  console.log("Accès admin autorisé pour:", session.user.email || session.user.name);
   return {
-    props: {}
+    props: {
+      user: session.user
+    }
   };
 }
 
