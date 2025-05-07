@@ -508,10 +508,20 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
             {successMsg && <Alert variant="success" className="py-2 small">{successMsg}</Alert>}
 
             {/* Liste des avis */}
-            {reviewList.length > 0 ? (
+            {loading ? (
+                <div className="text-center py-3">
+                    <div className="spinner-border spinner-border-sm text-primary" role="status">
+                        <span className="visually-hidden">Chargement des avis...</span>
+                    </div>
+                    <p className="text-muted small mt-2">Chargement des avis...</p>
+                </div>
+            ) : reviewList.length > 0 ? (
                 reviewList.map((r) => <ProductReview key={r._id} review={r} />)
             ) : (
-                <p className="text-muted">Aucun avis pour le moment. Soyez le premier à donner votre avis !</p>
+                <div className="p-3 text-center border-light rounded">
+                    <i className="icofont-star-alt-1 display-4 text-muted"></i>
+                    <p className="text-muted">Aucun avis pour le moment. Soyez le premier à donner votre avis !</p>
+                </div>
             )}
 
             {/* Bouton d'ajout d'avis & Formulaire */}

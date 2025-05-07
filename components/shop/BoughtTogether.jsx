@@ -228,12 +228,34 @@ const BoughtTogether = ({ currentProduct, checkedItems, onToggleItem, total }) =
           console.log('BoughtTogether - ⚠️ Utilisation des produits de secours en raison du format de données inattendu');
           productsData = FALLBACK_PRODUCTS;
         }
+        
+        // Normaliser les données avant utilisation
+        console.log('Données brutes reçues:', productsData);
+        
+        // Traiter chaque produit pour s'assurer que les valeurs de rating et autres propriétés sont correctement définies
+        const processedProducts = productsData.map(product => ({
+          ...product,
+          // Normaliser l'ID
+          id: product._id || product.id || `product-${Math.random().toString(36).substring(2, 9)}`,
+          // Normaliser les ratings
+          ratings: typeof product.ratings === 'number' ? product.ratings : 
+                 typeof product.rating === 'number' ? product.rating : 0,
+          // Normaliser les counts
+          ratingsCount: typeof product.ratingsCount === 'number' ? product.ratingsCount : 0,
+          // S'assurer qu'il y a une URL d'image
+          img: product.img || product.image || product.imageUrl || '/assets/images/shop/placeholder.jpg',
+          // S'assurer qu'il y a un prix
+          price: typeof product.price === 'number' ? product.price : 0,
+          salePrice: typeof product.salePrice === 'number' ? product.salePrice : 0
+        }));
 
         // Filtrer pour exclure le produit actuel
-        const filteredProducts = productsData.filter(p => {
+        const filteredProducts = processedProducts.filter(p => {
           const pId = p._id || p.id || p.legacyId;
           return pId !== productId;
         });
+
+        console.log('Produits traités avant setState:', processedProducts.length, processedProducts);
 
         if (filteredProducts.length > 0) {
           console.log(`BoughtTogether - ✅ ${filteredProducts.length} produits associés trouvés`);

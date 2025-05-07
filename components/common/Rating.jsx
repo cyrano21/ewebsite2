@@ -1,102 +1,45 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faEmptyStar } from '@fortawesome/free-regular-svg-icons';
 
-const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => {
-  // Assurer que la valeur est un nombre entre 0 et 5
-  const safeValue = value === null || value === undefined ? 0 : value;
-  const normalizedValue = typeof safeValue === 'number' ? Math.min(Math.max(safeValue, 0), 5) : 0;
-  // S'assurer que count est un nombre
-  const safeCount = count === null || count === undefined ? 0 : count;
-  const reviewCount = typeof safeCount === 'number' ? safeCount : 0;
-
-  // Logs détaillés pour suivre les valeurs de rating reçues
+const Rating = ({ value, count, size = 'small', showCount = true }) => {
+  // Log des props reçues pour le débogage
   console.log(`Rating - Props reçues: value=${value} (${typeof value}), count=${count} (${typeof count}), size=${size}, showCount=${showCount}`);
-  console.log(`Rating - Valeurs normalisées: safeValue=${safeValue}, normalizedValue=${normalizedValue}, safeCount=${safeCount}, reviewCount=${reviewCount}`);
 
-  // Arrondir à 0.5 près pour un affichage d'étoiles partielles
-  const roundedValue = Math.round(normalizedValue * 2) / 2;
+  // S'assurer que la valeur est un nombre valide
+  const safeValue = typeof value === 'number' ? value : 0;
+  const normalizedValue = safeValue > 5 ? 5 : safeValue < 0 ? 0 : safeValue;
+
+  // S'assurer que count est un nombre valide
+  const safeCount = typeof count === 'number' ? count : 0;
+  const reviewCount = Math.max(0, safeCount);
+
+  // Arrondir la valeur pour l'affichage des étoiles
+  const roundedValue = Math.round(normalizedValue);
+  console.log(`Rating - Valeurs normalisées: safeValue=${safeValue}, normalizedValue=${normalizedValue}, safeCount=${safeCount}, reviewCount=${reviewCount}`);
   console.log(`Rating - Valeur arrondie: ${roundedValue}`);
 
-  return (
-    <div className="rating-container">
-      <div className="stars-container">
-        {[...Array(5)].map((_, i) => {
-          // Logique pour déterminer le type d'étoile à afficher
-          let starType = "empty";
-          if (i < Math.floor(roundedValue)) {
-            starType = "full";
-          } else if (i < Math.ceil(roundedValue) && roundedValue % 1 !== 0) {
-            starType = "half";
-          }
+  // Déterminer la taille des étoiles
+  const iconSize = size === 'large' ? '1.5rem' : size === 'medium' ? '1rem' : '0.8rem';
 
-          return (
-            <span key={i} className={`star-wrapper ${size === 'small' ? 'small' : ''}`}>
-              {starType === "full" && (
-                <i className="icofont-ui-rating text-warning" title={`${roundedValue} sur 5`}></i>
-              )}
-              {starType === "half" && (
-                <span className="half-star-container">
-                  <i className="icofont-ui-rating text-warning" title={`${roundedValue} sur 5`}></i>
-                  <span className="half-star-cover"></span>
-                </span>
-              )}
-              {starType === "empty" && (
-                <i className="icofont-ui-rating text-muted" title={`${roundedValue} sur 5`}></i>
-              )}
-            </span>
-          );
-        })}
-      </div>
+  return (
+    <div className="d-flex align-items-center">
+      {[...Array(5)].map((_, index) => (
+        <span key={index} style={{ color: '#FFD700', fontSize: iconSize, marginRight: '0.1rem' }}>
+          {index < roundedValue ? (
+            <FontAwesomeIcon icon={faStar} />
+          ) : (
+            <FontAwesomeIcon icon={faEmptyStar} />
+          )}
+        </span>
+      ))}
 
       {showCount && (
-        <small className="text-muted ms-1">
-          ({reviewCount})
-        </small>
+        <span className="ms-1 text-muted small">
+          {reviewCount > 0 ? `(${reviewCount})` : '(0)'}
+        </span>
       )}
-
-      <style jsx>{`
-        .rating-container {
-          display: flex;
-          align-items: center;
-        }
-
-        .stars-container {
-          display: flex;
-        }
-
-        .star-wrapper {
-          position: relative;
-          margin-right: 2px;
-          font-size: ${size === 'small' ? '0.9rem' : '1.2rem'};
-        }
-
-        .small {
-          font-size: 0.9rem;
-        }
-
-        .half-star-container {
-          position: relative;
-          display: inline-block;
-        }
-
-        .half-star-cover {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 50%;
-          height: 100%;
-          background-color: #f8f9fa;
-          z-index: 1;
-          overflow: hidden;
-        }
-
-        .text-warning {
-          color: #ffc107 !important;
-        }
-
-        .text-muted {
-          color: #d9d9d9 !important;
-        }
-      `}</style>
     </div>
   );
 };
