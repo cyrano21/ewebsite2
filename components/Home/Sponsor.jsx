@@ -66,19 +66,24 @@ const Sponsor = () => {
     
     // Récupération des sponsors depuis l'API
     useEffect(() => {
+        let isMounted = true;
+        let timeoutId = null;
+        
         const fetchSponsors = async () => {
             try {
-                setLoading(true);
+                if (isMounted) setLoading(true);
                 
-                // Ajouter un timeout pour éviter que la requête ne bloque trop longtemps
+                // Utiliser un timeout plus court pour éviter les longues attentes
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000);
+                timeoutId = setTimeout(() => controller.abort(), 3000);
 
                 try {
                     const { data } = await axios.get('/api/sponsor-banners', {
-                        signal: controller.signal
+                        signal: controller.signal,
+                        timeout: 3000 // Timeout explicite pour Axios
                     });
                     
+                    if (!isMounted) return;
                     clearTimeout(timeoutId);
                     
                     // Filtrer uniquement les sponsors actifs
@@ -92,55 +97,47 @@ const Sponsor = () => {
                         setError(false);
                     } else {
                         console.log('Aucun sponsor actif trouvé dans la base de données, utilisation des sponsors de secours');
-                        setSponsors(fallbackSponsors);
-                        setUsingFallbacks(true);
+                        if (isMounted) {
+                            setSponsors(fallbackSponsors);
+                            setUsingFallbacks(true);
+                        }
                     }
                 } catch (fetchError) {
+                    // Ignorer les erreurs d'annulation (c'est normal)
+                    if (fetchError.name === 'CanceledError' || fetchError.name === 'AbortError') {
+                        console.log('Requête de sponsors annulée, utilisation des sponsors de secours');
+                    } else {
+                        console.error('Erreur lors de la récupération des sponsors:', fetchError);
+                    }
+                    
+                    if (!isMounted) return;
+                    
                     // Si l'API échoue, utiliser immédiatement les sponsors de secours
-                    console.error('Erreur lors de la récupération des sponsors:', fetchError);
                     setSponsors(fallbackSponsors);
                     setUsingFallbacks(true);
                     setError(true);
                     
-                    // Tenter d'ajouter les sponsors de secours en arrière-plan (sans attendre)
-                    try {
-                        // Vérifier d'abord si l'API est accessible
-                        const testResponse = await fetch('/api/sponsor-banners', { 
-                            method: 'HEAD',
-                            cache: 'no-store'
-                        });
-                        
-                        if (testResponse.ok) {
-                            console.log('L\'API est accessible, tentative d\'ajout des sponsors de secours...');
-                            // Ne pas attendre l'ajout des sponsors (exécution en arrière-plan)
-                            fallbackSponsors.forEach(async (sponsor, index) => {
-                                try {
-                                    await axios.post('/api/sponsor-banners', {
-                                        name: sponsor.name,
-                                        imageUrl: sponsor.imageUrl,
-                                        isActive: true,
-                                        order: index
-                                    });
-                                } catch (postError) {
-                                    console.error(`Échec de l'ajout du sponsor ${sponsor.name}:`, postError);
-                                }
-                            });
-                        }
-                    } catch (testError) {
-                        console.log('API inaccessible, utilisation des sponsors de secours locaux');
-                    }
+                    // Ne pas tenter d'ajouter les sponsors en cas d'erreur, 
+                    // ce qui pourrait causer plus de problèmes
                 }
             } catch (err) {
+                if (!isMounted) return;
                 console.error('Erreur globale dans fetchSponsors:', err);
                 setSponsors(fallbackSponsors);
                 setUsingFallbacks(true);
                 setError(true);
             } finally {
-                setLoading(false);
+                if (isMounted) setLoading(false);
             }
         };
 
         fetchSponsors();
+        
+        // Nettoyage pour éviter les mises à jour sur un composant démonté
+        return () => {
+            isMounted = false;
+            if (timeoutId) clearTimeout(timeoutId);
+        };
     }, []);
     
     // Log pour faciliter le débogage
