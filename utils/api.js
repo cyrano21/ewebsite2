@@ -106,7 +106,20 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
 
       // Essayer d'abord avec l'URL demandée
       try {
-        const response = await fetch(requestUrl, fetchOptions);
+        // Ajouter des options pour éviter les problèmes CORS
+        const enhancedOptions = {
+          ...fetchOptions,
+          // S'assurer que les credentials sont correctement gérés 
+          credentials: 'include',
+          // Ajouter des headers pour aider à résoudre les problèmes CORS
+          headers: {
+            ...fetchOptions.headers,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }
+        };
+        
+        const response = await fetch(requestUrl, enhancedOptions);
         clearTimeout(timeoutId);
         
         verbose && console.log(`🔍 [API] Réponse reçue: status=${response.status} pour ${requestUrl}`);
@@ -124,19 +137,31 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
         
         return data;
       } catch (primaryError) {
+        // Logger l'erreur pour déboguer
+        verbose && console.error(`🔄 [API] Erreur lors de la requête principale:`, primaryError.message);
+        
         // Si l'URL absolue échoue, essayer avec l'URL de fallback si nécessaire
         if (isAbsoluteUrl && attempt === retries - 1) {
           verbose && console.log(`🔄 [API] Échec avec URL absolue, essai avec fallback: ${LOCAL_API_URL}${url}`);
-          const fallbackResponse = await fetch(`${LOCAL_API_URL}${url}`, fetchOptions);
-          
-          if (fallbackResponse.ok) {
-            const data = await fallbackResponse.json();
-            if (useCache) {
-              cache.set(cacheKey, data);
+          try {
+            const fallbackResponse = await fetch(`${LOCAL_API_URL}${url}`, fetchOptions);
+            
+            if (fallbackResponse.ok) {
+              const data = await fallbackResponse.json();
+              if (useCache) {
+                cache.set(cacheKey, data);
+              }
+              return data;
             }
-            return data;
+          } catch (fallbackError) {
+            verbose && console.error(`🔄 [API] Échec également avec l'URL de fallback:`, fallbackError.message);
           }
         }
+        
+        if (attempt < retries) {
+          verbose && console.log(`🔄 [API] Nouvel essai ${attempt + 1}/${retries} prévu...`);
+        }
+        
         throw primaryError; // Re-lance l'erreur pour être capturée par le bloc catch externe
       }
       
