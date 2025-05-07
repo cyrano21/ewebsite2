@@ -40,32 +40,26 @@ export async function middleware(req) {
   const token = await getToken({ req })
   const isAuthenticated = !!token
 
-  // Enregistrer l'activité pour l'analyse (appeler une API interne)
+  // Enregistrer l'activité pour l'analyse
+  // Nous utilisons une approche simplifiée pour éviter les erreurs de fetch dans le middleware
   try {
     // Ne pas bloquer le middleware avec cette opération
-    // Journaliser l'activité de manière asynchrone
-    if (!path.startsWith('/_next/') && !path.includes('/api/admin/activity')) {
-      const logData = {
-        url: path,
-        method: req.method,
-        userAgent: req.headers.get('user-agent') || 'Unknown',
-        referrer: req.headers.get('referer') || '',
-        userId: token?.id || null,
-        userType: token?.role || 'visitor',
-        userName: token?.name || 'Anonymous'
-      };
-
-      // Faire une requête asynchrone à l'API d'activité
-      fetch(`${req.nextUrl.origin}/api/admin/activity-log`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(logData),
-      }).catch(err => {
-        // Ignorer les erreurs de journalisation pour ne pas bloquer l'utilisateur
-        console.error('Erreur de journalisation:', err);
-      });
+    // Et ne pas journaliser les requêtes internes, statiques ou les appels API d'activité
+    if (!path.startsWith('/_next/') && 
+        !path.includes('/api/admin/activity') && 
+        !path.includes('/assets/') && 
+        !path.endsWith('.js') && 
+        !path.endsWith('.css') && 
+        !path.endsWith('.jpg') && 
+        !path.endsWith('.png') && 
+        !path.endsWith('.ico')) {
+      
+      // Ici, nous nous contentons de logger les informations sans faire d'appel API
+      // car les appels fetch dans le middleware Next.js peuvent être problématiques
+      console.log(`[Activity] ${req.method} ${path} - User: ${token?.id || 'Anonymous'} (${token?.role || 'visitor'})`);
+      
+      // Les logs peuvent être traités côté serveur ultérieurement
+      // ou collectés via une autre approche comme l'analytics client-side
     }
   } catch (error) {
     // Ne pas bloquer le processus en cas d'erreur de journalisation

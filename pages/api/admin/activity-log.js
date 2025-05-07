@@ -1,89 +1,71 @@
-
 import connectDB from '../../../config/db';
 import AdminActivityLog from '../../../models/AdminActivityLog';
+// Configuration pour limiter les logs et améliorer les performances
+const SAMPLE_RATE = process.env.ACTIVITY_LOG_SAMPLE_RATE || 1; // 1 = tous les logs, 2 = 50%, 10 = 10%
+const LOG_MAX_PER_MINUTE = process.env.ACTIVITY_LOG_MAX_PER_MINUTE || 500;
+
+// Cache pour limiter le débit
+let logCounter = 0;
+let lastResetTime = Date.now();
 
 export default async function handler(req, res) {
-  // Accepter uniquement les méthodes POST pour l'enregistrement des logs
+  // Réinitialiser le compteur chaque minute
+  if (Date.now() - lastResetTime > 60000) {
+    logCounter = 0;
+    lastResetTime = Date.now();
+  }
+
+  // Vérifier si nous avons atteint la limite
+  if (logCounter >= LOG_MAX_PER_MINUTE) {
+    // Répondre avec succès même si nous ne sauvegardons pas pour ne pas causer de problèmes côté client
+    return res.status(200).json({ success: true, message: 'Rate limited, skipping log' });
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, message: 'Méthode non autorisée' });
   }
 
+  // Échantillonnage - ne pas enregistrer tous les logs pour réduire la charge
+  if (Math.random() * SAMPLE_RATE > 1) {
+    return res.status(200).json({ success: true, message: 'Skipped by sampling' });
+  }
+
+  // Incrémenter le compteur
+  logCounter++;
+
   try {
-    // Connexion à la base de données
     await connectDB();
 
-    // Extraire les données de la requête
-    const {
-      url,
-      method,
-      userAgent,
-      referrer,
-      userId,
-      userType = 'visitor',
-      userName = 'Anonymous',
-      activityType = 'view',
-      description = 'Visite de page',
-      objectType,
-      objectId
-    } = req.body;
+    const logData = req.body;
 
-    // Analyser l'URL pour déterminer automatiquement le type d'activité si non spécifié
-    let detectedActivityType = activityType;
-    let detectedObjectType = objectType;
-    let detectedDescription = description;
-
-    if (url) {
-      if (url.includes('/shop/product/')) {
-        detectedActivityType = 'view';
-        detectedObjectType = 'product';
-        detectedDescription = 'Consultation de page produit';
-        
-        // Extraire l'ID du produit de l'URL si possible
-        const productIdMatch = url.match(/\/product\/([^\/\?]+)/);
-        if (productIdMatch && productIdMatch[1] && !objectId) {
-          objectId = productIdMatch[1];
-        }
-      } else if (url.includes('/checkout')) {
-        detectedActivityType = 'purchase';
-        detectedDescription = 'Processus de paiement';
-      } else if (url.includes('/admin/')) {
-        detectedActivityType = 'admin_action';
-        detectedDescription = 'Action admin';
-      } else if (url.includes('/seller/')) {
-        detectedActivityType = 'seller_action';
-        detectedDescription = 'Action vendeur';
-      }
+    // Valider les données d'entrée pour éviter les erreurs
+    if (!logData || typeof logData !== 'object') {
+      return res.status(400).json({ success: false, message: 'Données invalides' });
     }
 
-    // Récupérer l'adresse IP du client
-    const ipAddress = req.headers['x-forwarded-for'] || 
-                      req.headers['x-real-ip'] || 
-                      req.connection.remoteAddress;
-
-    // Créer une nouvelle entrée de log
-    const logEntry = new AdminActivityLog({
-      userId,
-      userType,
-      userName,
-      activityType: detectedActivityType,
-      description: detectedDescription,
-      objectType: detectedObjectType,
-      objectId,
-      ipAddress,
-      userAgent,
-      referrer,
-      url,
-      method,
-      statusCode: 200, // Par défaut
+    const activityLog = new AdminActivityLog({
+      url: logData.url || req.url || 'unknown',
+      method: logData.method || req.method || 'GET',
+      userAgent: logData.userAgent || req.headers['user-agent'] || 'unknown',
+      referrer: logData.referrer || req.headers.referer || '',
+      userId: logData.userId || null,
+      userType: logData.userType || 'visitor',
+      timestamp: new Date(),
+      // Données supplémentaires pour le traçage et l'analyse
+      clientData: {
+        screenSize: logData.screenSize,
+        clientTimestamp: logData.clientTimestamp,
+        type: logData.type || 'page_view',
+        action: logData.action || 'view',
+      }
     });
 
-    // Enregistrer le log
-    await logEntry.save();
+    await activityLog.save();
 
-    // Répondre avec succès
-    res.status(200).json({ success: true, message: 'Activité enregistrée avec succès' });
+    return res.status(200).json({ success: true, message: 'Activité enregistrée' });
   } catch (error) {
     console.error('Erreur lors de l\'enregistrement de l\'activité:', error);
-    res.status(500).json({ success: false, message: 'Erreur lors de l\'enregistrement de l\'activité', error: error.message });
+    // Toujours retourner 200 pour éviter les erreurs côté client
+    return res.status(200).json({ success: false, message: 'Erreur traitée' });
   }
 }
