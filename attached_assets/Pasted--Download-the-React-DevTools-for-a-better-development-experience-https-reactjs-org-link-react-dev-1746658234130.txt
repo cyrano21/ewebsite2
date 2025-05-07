@@ -1,0 +1,33 @@
+ Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+ [HMR] Module de stabilisation chargé
+ 🔧 Installation du correctif amélioré pour Next.js HMR
+ ✅ Correctif HMR avancé installé avec succès
+ [HMR] connected
+ Module HMR fix chargé avec succès
+ Module HMR fix chargé avec succès
+ 🔒 HMR temporairement désactivé pour stabiliser l'application
+ [Intervention] Images loaded lazily and replaced with placeholders. Load events are deferred. See https://go.microsoft.com/fwlink/?linkid=2048113
+ NavItems: État complet {user: {…}, loading: false, authContextAvailable: true, isAdmin: true}
+ NavItems: État complet {user: {…}, loading: false, authContextAvailable: true, isAdmin: true}
+ NavItems: État complet {user: {…}, loading: false, authContextAvailable: true, isAdmin: true}
+ NavItems: État complet {user: {…}, loading: false, authContextAvailable: true, isAdmin: true}
+  Image with src "/assets/images/logo/logo2.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+warnOnce @ webpack-internal:///…ils/warn-once.js:16
+eval @ webpack-internal:///…ge-component.js:111
+Promise.then
+handleLoading @ webpack-internal:///…age-component.js:36
+onLoad @ webpack-internal:///…ge-component.js:191
+callCallback @ webpack-internal:///…development.js:4164
+invokeGuardedCallbackDev @ webpack-internal:///…development.js:4213
+invokeGuardedCallback @ webpack-internal:///…development.js:4277
+invokeGuardedCallbackAndCatchFirstError @ webpack-internal:///…development.js:4291
+executeDispatch @ webpack-internal:///…development.js:9041
+processDispatchQueueItemsInOrder @ webpack-internal:///…development.js:9073
+processDispatchQueue @ webpack-internal:///…development.js:9086
+dispatchEventsForPlugins @ webpack-internal:///…development.js:9097
+eval @ webpack-internal:///…development.js:9288
+batchedUpdates$1 @ webpack-internal:///…evelopment.js:26174
+batchedUpdates @ webpack-internal:///…development.js:3991
+dispatchEventForPluginEventSystem @ webpack-internal:///…development.js:9287
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ webpack-internal:///…development.js:6465
+dispatchEvent @ webpack-internal:///…development.js:6457
