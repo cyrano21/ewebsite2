@@ -53,14 +53,14 @@ export async function middleware(req) {
         !path.endsWith('.jpg') && 
         !path.endsWith('.png') && 
         !path.endsWith('.ico')) {
-      
-      // Ici, nous nous contentons de logger les informations sans faire d'appel API
-      // car les appels fetch dans le middleware Next.js peuvent être problématiques
-      console.log(`[Activity] ${req.method} ${path} - User: ${token?.id || 'Anonymous'} (${token?.role || 'visitor'})`);
-      
-      // Les logs peuvent être traités côté serveur ultérieurement
-      // ou collectés via une autre approche comme l'analytics client-side
-    }
+
+        // Ici, nous nous contentons de logger les informations sans faire d'appel API
+        // car les appels fetch dans le middleware Next.js peuvent être problématiques
+        console.log(`[Activity] ${req.method} ${path} - User: ${token?.id || 'Anonymous'} (${token?.role || 'visitor'})`);
+
+        // Les logs sont collectés via l'analytics client-side
+        // voir utils/client-analytics.js pour l'implémentation complète
+      }
   } catch (error) {
     // Ne pas bloquer le processus en cas d'erreur de journalisation
     console.error('Erreur dans le middleware de journalisation:', error);

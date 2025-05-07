@@ -21,19 +21,24 @@ export const logActivity = async (data) => {
       url: window.location.pathname
     };
 
-    // Envoyer les données à notre API d'activity-log
-    const response = await fetch('/api/admin/activity-log', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(enrichedData),
-      // Utiliser une requête qui n'attend pas de réponse pour ne pas bloquer
-      credentials: 'same-origin'
-    });
+    try {
+      // Envoyer les données à notre API d'activity-log
+      const response = await fetch('/api/admin/activity-log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(enrichedData),
+        // Utiliser une requête qui n'attend pas de réponse pour ne pas bloquer
+        credentials: 'same-origin'
+      });
 
-    if (!response.ok) {
-      console.warn('Erreur lors de l'enregistrement de l'activité:', response.status);
+      if (!response.ok) {
+        console.warn('Erreur lors de l\'enregistrement de l\'activité:', response.status);
+      }
+    } catch (fetchError) {
+      // Ignorer les erreurs de fetch pour éviter de bloquer l'UX
+      console.warn('Échec de la requête d\'activité:', fetchError.message);
     }
   } catch (error) {
     // Gérer silencieusement les erreurs pour ne pas affecter l'expérience utilisateur

@@ -40,29 +40,34 @@ export default async function handler(req, res) {
 
     // Valider les données d'entrée pour éviter les erreurs
     if (!logData || typeof logData !== 'object') {
-      return res.status(400).json({ success: false, message: 'Données invalides' });
+      return res.status(200).json({ success: false, message: 'Données invalides' });
     }
 
-    const activityLog = new AdminActivityLog({
-      url: logData.url || req.url || 'unknown',
-      method: logData.method || req.method || 'GET',
-      userAgent: logData.userAgent || req.headers['user-agent'] || 'unknown',
-      referrer: logData.referrer || req.headers.referer || '',
-      userId: logData.userId || null,
-      userType: logData.userType || 'visitor',
-      timestamp: new Date(),
-      // Données supplémentaires pour le traçage et l'analyse
-      clientData: {
-        screenSize: logData.screenSize,
-        clientTimestamp: logData.clientTimestamp,
-        type: logData.type || 'page_view',
-        action: logData.action || 'view',
-      }
-    });
+    try {
+      const activityLog = new AdminActivityLog({
+        url: logData.url || req.url || 'unknown',
+        method: logData.method || req.method || 'GET',
+        userAgent: logData.userAgent || req.headers['user-agent'] || 'unknown',
+        referrer: logData.referrer || req.headers.referer || '',
+        userId: logData.userId || null,
+        userType: logData.userType || 'visitor',
+        timestamp: new Date(),
+        // Données supplémentaires pour le traçage et l'analyse
+        clientData: {
+          screenSize: logData.screenSize,
+          clientTimestamp: logData.clientTimestamp,
+          type: logData.type || 'page_view',
+          action: logData.action || 'view',
+        }
+      });
 
-    await activityLog.save();
-
-    return res.status(200).json({ success: true, message: 'Activité enregistrée' });
+      await activityLog.save();
+      
+      return res.status(200).json({ success: true, message: 'Activité enregistrée' });
+    } catch (dbError) {
+      console.error('Erreur lors de l\'enregistrement dans la base de données:', dbError);
+      return res.status(200).json({ success: false, message: 'Erreur DB traitée' });
+    }
   } catch (error) {
     console.error('Erreur lors de l\'enregistrement de l\'activité:', error);
     // Toujours retourner 200 pour éviter les erreurs côté client
