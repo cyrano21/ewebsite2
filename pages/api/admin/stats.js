@@ -1,4 +1,3 @@
-
 import dbConnect from '../../../utils/dbConnect';
 import Product from '../../../models/Product';
 import Order from '../../../models/Order';
@@ -8,9 +7,10 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
-  
+
+  // Vérification que l'utilisateur est un administrateur
   if (!session || session.user.role !== 'admin') {
-    return res.status(401).json({ success: false, message: 'Non autorisé' });
+    return res.status(403).json({ success: false, message: 'Accès non autorisé' });
   }
 
   if (req.method !== 'GET') {
@@ -22,20 +22,20 @@ export default async function handler(req, res) {
 
     // Récupérer le nombre total de commandes
     const totalOrders = await Order.countDocuments();
-    
+
     // Récupérer le nombre total de produits
     const totalProducts = await Product.countDocuments();
-    
+
     // Récupérer le nombre total de clients
     const totalCustomers = await User.countDocuments({ role: 'user' });
-    
+
     // Récupérer le revenu total (somme des totalAmount de toutes les commandes)
     const orders = await Order.find();
     const totalRevenue = orders.reduce((sum, order) => sum + (order.totalAmount || 0), 0);
-    
+
     // Récupérer le nombre de commandes en attente
     const pendingOrders = await Order.countDocuments({ status: 'En attente' });
-    
+
     // Récupérer le nombre de produits en rupture de stock (stock = 0)
     const outOfStockProducts = await Product.countDocuments({ stock: 0 });
 

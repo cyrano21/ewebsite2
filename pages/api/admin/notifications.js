@@ -6,7 +6,7 @@ import { getSession } from 'next-auth/react';
 export default async function handler(req, res) {
   const session = await getSession({ req });
 
-  // Vérifier que l'utilisateur est un administrateur
+  // Vérification que l'utilisateur est un administrateur
   if (!session || session.user.role !== 'admin') {
     return res.status(403).json({ success: false, message: 'Accès non autorisé' });
   }
@@ -17,33 +17,33 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const { type, limit = 10, read } = req.query;
-      
+
       // Construire la requête
       const query = { 
         recipientId: session.user.id,
       };
-      
+
       // Filtrer par type si spécifié
       if (type) {
         query.type = type;
       }
-      
+
       // Filtrer par statut de lecture si spécifié
       if (read !== undefined) {
         query.read = read === 'true';
       }
-      
+
       // Trouver les notifications et les trier par date
       const notifications = await Notification.find(query)
         .sort({ createdAt: -1 })
         .limit(parseInt(limit));
-      
+
       // Compter les notifications non lues
       const unreadCount = await Notification.countDocuments({
         recipientId: session.user.id,
         read: false
       });
-      
+
       return res.status(200).json({
         success: true,
         data: notifications,
@@ -59,14 +59,14 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     try {
       const { ids, all } = req.body;
-      
+
       if (all) {
         // Marquer toutes les notifications comme lues
         await Notification.updateMany(
           { recipientId: session.user.id, read: false },
           { $set: { read: true, readAt: new Date() } }
         );
-        
+
         return res.status(200).json({
           success: true,
           message: 'Toutes les notifications ont été marquées comme lues'
@@ -77,7 +77,7 @@ export default async function handler(req, res) {
           { _id: { $in: ids }, recipientId: session.user.id },
           { $set: { read: true, readAt: new Date() } }
         );
-        
+
         return res.status(200).json({
           success: true,
           message: 'Notifications marquées comme lues'
@@ -98,11 +98,11 @@ export default async function handler(req, res) {
   if (req.method === 'DELETE') {
     try {
       const { ids, all } = req.body;
-      
+
       if (all) {
         // Supprimer toutes les notifications de l'utilisateur
         await Notification.deleteMany({ recipientId: session.user.id });
-        
+
         return res.status(200).json({
           success: true,
           message: 'Toutes les notifications ont été supprimées'
@@ -113,7 +113,7 @@ export default async function handler(req, res) {
           _id: { $in: ids }, 
           recipientId: session.user.id 
         });
-        
+
         return res.status(200).json({
           success: true,
           message: 'Notifications supprimées avec succès'
