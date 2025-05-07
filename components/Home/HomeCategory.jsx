@@ -73,28 +73,28 @@ const HomeCategory = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      setLoading(true);
-      
-      try {
-        // Utiliser la nouvelle fonction qui gère automatiquement les erreurs et les fallbacks
-        const data = await getCategoriesWithFallback();
-        console.log('🔍 HomeCategory: Catégories chargées avec succès', data.length);
-        
-        // S'assurer que chaque catégorie a un slug et une image
-        const processedCategories = data.map((cat, index) => ({
-          ...cat,
-          slug: cat.slug || cat.name?.toLowerCase().replace(/\s+/g, '-') || `category-${index}`,
-          imageUrl: cat.imageUrl || getCategoryImage(index)
-        }));
-        
-        setCategories(processedCategories);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchCategories();
+      const fetchCategories = async () => {
+        setLoading(true);
+
+        try {
+          // Utiliser la nouvelle fonction qui gère automatiquement les erreurs et les fallbacks
+          const data = await getCategoriesWithFallback();
+          console.log('🔍 HomeCategory: Catégories chargées avec succès', data.length);
+
+          // S'assurer que chaque catégorie a un slug et une image
+          const processedCategories = data.map((cat, index) => ({
+            ...cat,
+            slug: cat.slug || cat.name?.toLowerCase().replace(/\s+/g, '-') || `category-${index}`,
+            imageUrl: cat.imageUrl || getCategoryImage(index)
+          }));
+
+          setCategories(processedCategories);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchCategories();
   }, []);
 
   return (

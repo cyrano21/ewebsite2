@@ -10,7 +10,7 @@ const getApiBaseUrl = () => {
   if (isServer) {
     return '/api';
   }
-  
+
   // En mode client, essayer d'utiliser la variable d'environnement
   const envUrl = process.env.NEXT_PUBLIC_APP_URL;
   if (envUrl) {
@@ -18,7 +18,7 @@ const getApiBaseUrl = () => {
     console.log(`🔗 [API] URL configurée via env: ${normalizedUrl}`);
     return normalizedUrl;
   }
-  
+
   // Si aucune URL n'est configurée, utiliser l'URL relative (fallback sécurisé)
   console.log(`🔗 [API] Fallback vers URL relative: /api`);
   return '/api';
@@ -62,7 +62,7 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
   // Cache en mémoire pour les requêtes
   const cacheKey = `${url}-${JSON.stringify(options)}`;
   const cache = fetchApi.cache || (fetchApi.cache = new Map());
-  
+
   // Vérifier si on a une version en cache
   if (useCache && cache.has(cacheKey)) {
     verbose && console.log(`🔍 [API] Utilisation du cache pour ${url}`);
@@ -71,10 +71,10 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
 
   // Détermine si l'URL est absolue ou relative
   const isAbsoluteUrl = url.startsWith('http://') || url.startsWith('https://');
-  
+
   // Si l'URL n'est pas absolue et ne commence pas par '/', ajouter la base API_URL
   const requestUrl = isAbsoluteUrl ? url : (url.startsWith('/') ? url : `${LOCAL_API_URL}/${url}`);
-  
+
   verbose && console.log(`🔍 [API] URL finale: ${requestUrl}`);
 
   // Controller pour le timeout
@@ -94,7 +94,7 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
   };
 
   verbose && console.log(`🔍 [API] Appel de ${requestUrl}`);
-  
+
   // Tentatives multiples avec délai exponentiel
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
@@ -118,34 +118,34 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
             'Content-Type': 'application/json',
           }
         };
-        
+
         const response = await fetch(requestUrl, enhancedOptions);
         clearTimeout(timeoutId);
-        
+
         verbose && console.log(`🔍 [API] Réponse reçue: status=${response.status} pour ${requestUrl}`);
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
-        
+
         // Stocker dans le cache si nécessaire
         if (useCache) {
           cache.set(cacheKey, data);
         }
-        
+
         return data;
       } catch (primaryError) {
         // Logger l'erreur pour déboguer
         verbose && console.error(`🔄 [API] Erreur lors de la requête principale:`, primaryError.message);
-        
+
         // Si l'URL absolue échoue, essayer avec l'URL de fallback si nécessaire
         if (isAbsoluteUrl && attempt === retries - 1) {
           verbose && console.log(`🔄 [API] Échec avec URL absolue, essai avec fallback: ${LOCAL_API_URL}${url}`);
           try {
             const fallbackResponse = await fetch(`${LOCAL_API_URL}${url}`, fetchOptions);
-            
+
             if (fallbackResponse.ok) {
               const data = await fallbackResponse.json();
               if (useCache) {
@@ -157,26 +157,26 @@ export async function fetchApi(url, options = {}, fallbackOptions = {}) {
             verbose && console.error(`🔄 [API] Échec également avec l'URL de fallback:`, fallbackError.message);
           }
         }
-        
+
         if (attempt < retries) {
           verbose && console.log(`🔄 [API] Nouvel essai ${attempt + 1}/${retries} prévu...`);
         }
-        
+
         throw primaryError; // Re-lance l'erreur pour être capturée par le bloc catch externe
       }
-      
+
     } catch (error) {
       if (attempt === retries) {
         // Nettoyer le timeout si c'est la dernière tentative
         clearTimeout(timeoutId);
-        
+
         // Gestion d'erreur finale
         if (error.name === 'AbortError') {
           console.error(`⚠️ [API] Timeout après ${timeout}ms pour ${requestUrl}`);
         } else {
           console.error(`❌ [API] Erreur pour ${requestUrl}:`, error.message);
         }
-        
+
         return defaultValue;
       }
     }
@@ -201,35 +201,35 @@ export async function getCategoriesWithFallback() {
   try {
     // Déterminer si nous sommes côté client ou serveur
     const isServer = typeof window === 'undefined';
-    
+
     // Pendant le rendu serveur (SSR/SSG), retourner simplement les catégories par défaut
     // pour éviter les redirections en boucle et les problèmes de génération
     if (isServer) {
       console.log('🔍 [API] Rendu serveur détecté, utilisation des catégories par défaut');
       return DEFAULT_CATEGORIES;
     }
-    
+
     // Vérifier si nous avons des catégories en cache local (pour utilisation immédiate)
     const localCacheKey = 'app_categories_cache';
     const cachedCategories = sessionStorage.getItem(localCacheKey);
-    
+
     if (cachedCategories) {
       try {
         const parsed = JSON.parse(cachedCategories);
         console.log('🔍 [API] Utilisation des catégories du cache local (temporaire)');
-        
+
         // Rafraîchir le cache en arrière-plan
         setTimeout(() => {
           refreshCategoriesCache(localCacheKey);
         }, 2000);
-        
+
         return parsed;
       } catch (e) {
         // Erreur de parsing, ignorer le cache
         console.warn('⚠️ [API] Erreur de parsing du cache local, ignorer');
       }
     }
-    
+
     // Côté client seulement, tenter l'appel API complet
     const categories = await fetchApi('/api/categories', {}, {
       defaultValue: DEFAULT_CATEGORIES,
@@ -238,7 +238,7 @@ export async function getCategoriesWithFallback() {
       verbose: true,
       timeout: 5000 // Timeout plus court pour éviter des attentes trop longues
     });
-    
+
     // Mettre en cache les résultats dans le stockage local
     if (categories && categories.length && categories !== DEFAULT_CATEGORIES) {
       try {
@@ -247,7 +247,7 @@ export async function getCategoriesWithFallback() {
         console.warn('⚠️ [API] Impossible de mettre en cache les catégories:', e);
       }
     }
-    
+
     return categories;
   } catch (error) {
     console.error("Erreur dans getCategoriesWithFallback:", error);
@@ -258,12 +258,12 @@ export async function getCategoriesWithFallback() {
 // Fonction auxiliaire pour rafraîchir le cache en arrière-plan
 async function refreshCategoriesCache(cacheKey) {
   try {
-    const freshData = await fetchApi('/categories', {}, {
+    const freshData = await fetchApi('/api/categories', {}, {
       retries: 1,
       verbose: false,
       timeout: 8000
     });
-    
+
     if (freshData && freshData.length) {
       sessionStorage.setItem(cacheKey, JSON.stringify(freshData));
       console.log('🔄 [API] Cache des catégories rafraîchi en arrière-plan');
@@ -282,13 +282,13 @@ export async function getProductsWithFallback(options = {}) {
   try {
     // Déterminer si nous sommes côté client ou serveur
     const isServer = typeof window === 'undefined';
-    
+
     // Pendant le rendu serveur, retourner un tableau vide pour éviter les redirections
     if (isServer) {
       console.log('🔍 [API] Rendu serveur détecté, utilisation d\'un tableau vide pour les produits');
       return [];
     }
-    
+
     const params = new URLSearchParams();
     if (options.featured) params.append("featured", "true");
     if (options.limit) params.append("limit", options.limit.toString());
@@ -319,7 +319,7 @@ export async function getProductsWithFallback(options = {}) {
 export async function fetchWithTimeout(url, options = {}, timeout = 8000) {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
-  
+
   try {
     const response = await fetch(url, {
       ...options,
@@ -355,7 +355,7 @@ export async function getProducts(options = {}) {
 
     // Déterminer si nous sommes côté client ou serveur
     const isServer = typeof window === 'undefined';
-    
+
     // Pendant le rendu serveur, retourner un tableau vide pour éviter les redirections
     if (isServer) {
       console.log('🔍 [API] Rendu serveur détecté dans getProducts, utilisation d\'un tableau vide');

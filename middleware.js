@@ -43,13 +43,17 @@ export async function middleware(req) {
   // Enregistrer l'activité pour l'analyse
   // Nous utilisons une approche simplifiée pour éviter les erreurs de fetch dans le middleware
   try {
-    // Ne pas bloquer le middleware avec cette opération
-    // Et ne pas journaliser les requêtes internes, statiques ou les appels API d'activité
-    if (!path.startsWith('/_next/') && 
-        !path.includes('/api/admin/activity') && 
-        !path.includes('/assets/') && 
-        !path.endsWith('.js') && 
-        !path.endsWith('.css') && 
+    const path = req.nextUrl.pathname;
+
+    // Redirectionner les chemins qui devraient inclure /api/
+    if (path === '/categories') {
+      return NextResponse.redirect(new URL('/api/categories', req.url));
+    }
+
+    // Ignorer les requêtes API et statiques pour des raisons de performance
+    if (!path.startsWith('/api/') && 
+        !path.startsWith('/_next/') && 
+        !path.startsWith('/favicon.ico') && 
         !path.endsWith('.jpg') && 
         !path.endsWith('.png') && 
         !path.endsWith('.ico')) {
