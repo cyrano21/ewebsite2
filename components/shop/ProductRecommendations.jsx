@@ -149,7 +149,7 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
                 <div className="d-flex flex-column">
                   <Rating 
                     value={product.ratings} 
-                    count={product.ratingsCount} 
+                    count={product.ratingsCount || 0} 
                     showCount={true} 
                     size="small" 
                   />
