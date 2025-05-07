@@ -12,8 +12,17 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
     try {
       setLoading(true);
 
-      // Tenter d'abord d'obtenir des recommandations personnalisées basées sur l'historique
-      let response = await fetch(`/api/products?limit=${limit}&related=${productId}`);
+      console.log(`Récupération des produits recommandés pour le produit: ${productId}`);
+      
+      // URL de base pour les produits
+      let apiUrl = `/api/products?limit=${limit}`;
+      
+      // Ajouter le paramètre related seulement si productId existe
+      if (productId) {
+        apiUrl += `&related=${productId}`;
+      }
+      
+      let response = await fetch(apiUrl);
 
       if (!response.ok) {
         throw new Error(`Erreur HTTP! Statut: ${response.status}`);
@@ -102,12 +111,8 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
 
   useEffect(() => {
     const loadProducts = async () => {
-      if (productId) {
-        await fetchRecommendedProducts();
-      } else {
-        setLoading(false);
-        setProducts([]);
-      }
+      // Toujours tenter de charger des produits, même sans ID on peut avoir des recommandations populaires
+      await fetchRecommendedProducts();
     };
 
     loadProducts();
