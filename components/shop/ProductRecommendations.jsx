@@ -151,7 +151,7 @@ const ProductRecommendations = ({
       }
       
       // Limiter le nombre de produits affichés
-      const limitedProducts = products.slice(0, limit || 4);
+      let limitedProducts = products.slice(0, limit || 4);
       
       // Débogage - Vérifier chaque produit
       if (limitedProducts.length > 0) {
