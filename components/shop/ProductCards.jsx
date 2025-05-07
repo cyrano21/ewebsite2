@@ -178,7 +178,7 @@ const ProductCards = ({ products, GridList }) => {
                       )}
                     </div>
                     <div className="product-rating-row d-flex align-items-center mb-2">
-                      <Rating value={product.rating} />
+                      <Rating value={product.rating || 0} count={product.numReviews || 0} showCount={true} />
                       <span className="num-reviews ms-2 text-muted small">
                         ({product.numReviews || 0} avis)
                       </span>
@@ -228,7 +228,7 @@ const ProductCards = ({ products, GridList }) => {
                         <h5 className="product-title mb-2">{product.name}</h5>
                       </Link>
                       <div className="product-rating-row d-flex align-items-center mb-2">
-                        <Rating value={product.rating} />
+                        <Rating value={product.rating || 0} count={product.numReviews || 0} showCount={true} />
                         <span className="num-reviews ms-2">({product.numReviews || 0})</span>
                       </div>
                       <p className="product-desc mb-2">{product.description ? product.description.substring(0, 100) + '...' : 'Aucune description disponible'}</p>
