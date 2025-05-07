@@ -5,8 +5,25 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
 
+// Définition de l'interface pour le composant PageBreadcrumb
+interface PageBreadcrumbItem {
+  label: string;
+  href?: string;
+  active?: boolean;
+}
+
+// Définition de l'interface pour StoreItem
+interface StoreItemProps {
+  store: {
+    name: string;
+    image?: string;
+    logoImage?: string;
+    [key: string]: any;
+  };
+}
+
 // Import dynamique du composant avec SSR désactivé
-const StoreItem = dynamic(
+const StoreItem = dynamic<StoreItemProps>(
   () => import('components/common/StoreItem'),
   { ssr: false }
 );
@@ -34,7 +51,7 @@ const FavoriteStores = () => {
     return (
       <div className="pt-5 mb-9">
         <Section small className="py-0">
-          <PageBreadcrumb items={defaultBreadcrumbItems} />
+          <PageBreadcrumb items={defaultBreadcrumbItems} className="mb-3" />
           <div className="mb-5">
             <h2>Mes boutiques favorites</h2>
             <p className="mb-0 text-body-tertiary fw-semibold">
@@ -56,7 +73,7 @@ const FavoriteStores = () => {
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">
-        <PageBreadcrumb items={defaultBreadcrumbItems} />
+        <PageBreadcrumb items={defaultBreadcrumbItems} className="mb-3" />
         <div className="mb-5">
           <h2>Mes boutiques favorites</h2>
           <p className="mb-0 text-body-tertiary fw-semibold">

@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Table, Button, Badge, Form, Modal, Alert, Tab, Tabs } from 'react-bootstrap';
+// Importations individuelles de react-bootstrap au lieu d'importations groupées
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import Alert from 'react-bootstrap/Alert';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 import PageHeader from '../PageHeader';
 import LoadingSpinner from '../LoadingSpinner';

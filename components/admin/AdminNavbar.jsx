@@ -1,7 +1,15 @@
 // components/admin/AdminNavbar.jsx
 
 import React, { useState, useEffect, useContext, useMemo, useCallback } from 'react';
-import { Navbar, Container, Nav, Dropdown, Button, Form, InputGroup, Image } from 'react-bootstrap';
+// Importations individuelles de react-bootstrap au lieu d'importations groupées
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Image from 'react-bootstrap/Image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../contexts/AuthProvider';

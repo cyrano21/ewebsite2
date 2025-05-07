@@ -138,40 +138,35 @@ const footerbottomList = [
 
 const Footer = () => {
     // État pour suivre si ce footer est l'instance principale
-    const [isMainInstance, setIsMainInstance] = useState(false);
+    const [isMainInstance, setIsMainInstance] = useState(true);
     const footerInstanceId = React.useId(); // Identifiant unique pour cette instance
 
     // Vérification pour éviter les duplications de Footer
     useEffect(() => {
-        const checkInstanceStatus = () => {
-            if (typeof window === 'undefined') return;
-            
-            // Trouver tous les footers
-            const allFooters = document.querySelectorAll('footer.style-2');
-            if (allFooters.length <= 1) {
-                setIsMainInstance(true);
-                return;
-            }
-            
-            // Vérifier si un footer principal est déjà défini
-            const mainFooterExists = document.querySelector('footer[data-main-footer="true"]');
-            
-            // Si aucun footer principal n'est défini, marquer cette instance comme principale
-            if (!mainFooterExists) {
-                const currentFooter = document.querySelector(`[data-footer-id="${footerInstanceId}"]`);
-                if (currentFooter && currentFooter === allFooters[0]) {
-                    currentFooter.setAttribute('data-main-footer', 'true');
-                    setIsMainInstance(true);
-                }
-            } else {
-                // Sinon, cette instance n'est pas principale si elle n'est pas déjà marquée
-                const currentFooter = document.querySelector(`[data-footer-id="${footerInstanceId}"]`);
-                setIsMainInstance(currentFooter && currentFooter.getAttribute('data-main-footer') === 'true');
-            }
-        };
+        if (typeof window === 'undefined') return;
         
-        // Exécuter après le rendu complet
-        setTimeout(checkInstanceStatus, 100);
+        // Créer une variable globale pour suivre les instances de Footer
+        if (!window.__footerInstances) {
+            window.__footerInstances = [];
+        }
+        
+        // Si cette instance est déjà enregistrée, ne rien faire
+        if (window.__footerInstances.includes(footerInstanceId)) {
+            return;
+        }
+        
+        // Si d'autres instances existent déjà, cette instance n'est pas la principale
+        if (window.__footerInstances.length > 0) {
+            setIsMainInstance(false);
+        }
+        
+        // Enregistrer cette instance
+        window.__footerInstances.push(footerInstanceId);
+        
+        // Nettoyer lors du démontage
+        return () => {
+            window.__footerInstances = window.__footerInstances.filter(id => id !== footerInstanceId);
+        };
     }, [footerInstanceId]);
 
     // Ne pas rendre le footer s'il n'est pas l'instance principale

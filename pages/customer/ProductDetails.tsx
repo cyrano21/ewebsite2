@@ -16,8 +16,8 @@ const ProductDetailsTab = dynamic(
   { ssr: false }
 );
 
-const SimilarProducts = dynamic(
-  () => import('components/sliders/SimilarProducts'),
+const SimilarProductsCarousel = dynamic(
+  () => import('components/sliders/SimilarProductsCarousel'),
   { ssr: false }
 );
 
@@ -114,7 +114,7 @@ const ProductDetails = ({ initialId }) => {
       </Section>
 
       <Section className="py-0">
-        <SimilarProducts 
+        <SimilarProductsCarousel 
           products={similarProducts} 
           title="Produits similaires"
         />

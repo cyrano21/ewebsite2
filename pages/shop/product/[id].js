@@ -10,7 +10,7 @@ import BoughtTogether from '../../../components/shop/BoughtTogether';
 import RecentlyViewedProducts from '../../../components/shop/RecentlyViewedProducts';
 import SEOHead from '../../../components/SEOHead';
 import ProductTabs from '../../../components/shop/ProductTabs';
-import SimilarProducts from '../../../components/shop/SimilarProducts';
+import SimilarProductsGrid from '../../../components/shop/SimilarProductsGrid';
 import Tags from '../../../components/shop/Tags';
 
 // --- IMPORT YOUR ACTUAL PRODUCT DATA ---
@@ -693,7 +693,7 @@ const ProductPage = ({ ssrProduct, ssrError }) => {
 
         {/* Section Produits Similaires */}
         {console.log("Debug similarProducts:", product.similarProducts)}
-        <SimilarProducts
+        <SimilarProductsGrid
           products={product.similarProducts || []}
           categorySlug={
             product.categoryBreadcrumbs?.[1]

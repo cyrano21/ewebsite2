@@ -1,7 +1,6 @@
-
 /* Styles pour le composant Banner */
 .banner-section.style-4 {
-  background-image: url('/assets/images/banner-bg.jpg');
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

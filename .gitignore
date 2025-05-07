@@ -8,7 +8,6 @@
 /node_modules
 /.pnp
 .pnp.js
-.yarn/install-state.gz
 
 # testing
 /coverage
@@ -31,8 +30,11 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.env*
-.env
+.env.development
+.env.test
+
+# Ne pas ignorer .env.production car nécessaire pour Vercel
+# .env.production
 
 # vercel
 .vercel

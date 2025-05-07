@@ -1,7 +1,21 @@
 import React from 'react';
 import { Card, Form, Button, Table } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
-const CheckoutSummaryCard = () => {
+/**
+ * Composant de carte récapitulative pour le processus de paiement
+ * @param {Object} props - Propriétés du composant
+ * @param {boolean} props.small - Version réduite de la carte
+ * @param {React.ReactNode} props.children - Éléments enfants
+ * @param {string} props.className - Classes CSS additionnelles
+ * @returns {React.ReactElement}
+ */
+const CheckoutSummaryCard = ({
+  small = false,
+  children,
+  className = '',
+  ...rest
+}) => {
   // Fonction interne pour formater les prix
   const currencyFormat = (value) => {
     return new Intl.NumberFormat('fr-FR', {
@@ -23,15 +37,10 @@ const CheckoutSummaryCard = () => {
   const total = subtotal + shipping + tax;
 
   return (
-    <Card className="mb-3">
-      <Card.Header className="bg-light d-flex justify-content-between">
-        <h3 className="mb-0">Résumé de commande</h3>
-        <Button variant="link" size="sm" className="p-0">
-          Modifier
-        </Button>
-      </Card.Header>
-
+    <Card className={`checkout-summary-card ${className} ${small ? 'checkout-summary-card-small' : ''}`} {...rest}>
       <Card.Body>
+        <h5 className="mb-3">Récapitulatif de commande</h5>
+
         {/* Liste des produits */}
         <Table className="fs-7 mb-0" borderless>
           <tbody>
@@ -88,9 +97,18 @@ const CheckoutSummaryCard = () => {
             </div>
           </Form.Group>
         </Form>
+
+        {children}
       </Card.Body>
     </Card>
   );
+};
+
+// Définition des PropTypes pour la validation des props
+CheckoutSummaryCard.propTypes = {
+  small: PropTypes.bool,
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
 export default CheckoutSummaryCard;

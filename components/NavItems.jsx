@@ -26,7 +26,7 @@ const NavItems = () => {
   const [wishlistCount, setWishlistCount] = useState(0);
 
   // Système pour éviter la duplication des NavItems
-  const [isMainInstance, setIsMainInstance] = useState(false);
+  const [isMainInstance, setIsMainInstance] = useState(true);
   const navInstanceId = React.useId(); // Identifiant unique pour cette instance
 
   // Gestion robuste du contexte d'authentification avec des valeurs par défaut
@@ -38,37 +38,30 @@ const NavItems = () => {
 
   // Vérification pour éviter les duplications de NavItems
   useEffect(() => {
-    // Attribuer un attribut data-nav-instance à cette instance
-    const checkInstanceStatus = () => {
-      if (typeof window === 'undefined') return;
-
-      // Trouver toutes les instances NavItems
-      const allNavs = document.querySelectorAll('header:has(.header-section)');
-      if (allNavs.length <= 1) {
-        setIsMainInstance(true);
-        return;
-      }
-
-      // Vérifier si celle-ci est déjà marquée comme principale
-      const mainNavExists = document.querySelector('header[data-main-nav="true"]');
-
-      // Si aucun nav principal n'est défini, marquer cette instance comme principale
-      // si elle est la première dans le DOM
-      if (!mainNavExists) {
-        const currentHeader = document.querySelector(`[data-nav-id="${navInstanceId}"]`);
-        if (currentHeader && currentHeader === allNavs[0]) {
-          currentHeader.setAttribute('data-main-nav', 'true');
-          setIsMainInstance(true);
-        }
-      } else {
-        // Sinon, cette instance n'est pas principale si elle n'est pas déjà marquée
-        const currentHeader = document.querySelector(`[data-nav-id="${navInstanceId}"]`);
-        setIsMainInstance(currentHeader && currentHeader.getAttribute('data-main-nav') === 'true');
-      }
+    if (typeof window === 'undefined') return;
+    
+    // Créer une variable globale pour suivre les instances de NavItems
+    if (!window.__navItemsInstances) {
+      window.__navItemsInstances = [];
+    }
+    
+    // Si cette instance est déjà enregistrée, ne rien faire
+    if (window.__navItemsInstances.includes(navInstanceId)) {
+      return;
+    }
+    
+    // Si d'autres instances existent déjà, cette instance n'est pas la principale
+    if (window.__navItemsInstances.length > 0) {
+      setIsMainInstance(false);
+    }
+    
+    // Enregistrer cette instance
+    window.__navItemsInstances.push(navInstanceId);
+    
+    // Nettoyer lors du démontage
+    return () => {
+      window.__navItemsInstances = window.__navItemsInstances.filter(id => id !== navInstanceId);
     };
-
-    // Exécuter après le rendu complet
-    setTimeout(checkInstanceStatus, 100);
   }, [navInstanceId]);
 
   useEffect(() => {

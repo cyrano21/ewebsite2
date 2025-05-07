@@ -5,8 +5,28 @@ import { Button, Col, Form, Row } from 'react-bootstrap';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
+// Définition de l'interface pour le composant PageBreadcrumb
+interface PageBreadcrumbItem {
+  label: string;
+  href?: string;
+  active?: boolean;
+}
+
+interface PageBreadcrumbProps {
+  items: PageBreadcrumbItem[];
+  className: string;
+}
+
+// Définition de l'interface pour CheckoutSummaryCard
+interface CheckoutSummaryCardProps {
+  small: boolean;
+  children?: any;
+  className?: string;
+  [key: string]: any;
+}
+
 // Import dynamique du composant avec SSR désactivé
-const CheckoutSummaryCard = dynamic(
+const CheckoutSummaryCard = dynamic<CheckoutSummaryCardProps>(
   () => import('components/modules/e-commerce/checkout/CheckoutSummaryCard'),
   { ssr: false }
 );
@@ -25,7 +45,7 @@ const ShippingInfo = () => {
     return (
       <div className="pt-5 mb-9">
         <Section small className="py-0">
-          <PageBreadcrumb items={defaultBreadcrumbItems} />
+          <PageBreadcrumb items={defaultBreadcrumbItems} className="mb-3" />
           <h2 className="mb-5">Paiement</h2>
           <div className="text-center py-5">
             <div className="spinner-border text-primary" role="status">
@@ -42,7 +62,7 @@ const ShippingInfo = () => {
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">
-        <PageBreadcrumb items={defaultBreadcrumbItems} />
+        <PageBreadcrumb items={defaultBreadcrumbItems} className="mb-3" />
         <h2 className="mb-5">Paiement</h2>
         <Row className="justify-content-between gy-6 gx-5">
           <Col lg={7}>
@@ -150,7 +170,7 @@ const ShippingInfo = () => {
             </Row>
           </Col>
           <Col lg={5} xl={{ span: 4, offset: 1 }}>
-            <CheckoutSummaryCard />
+            <CheckoutSummaryCard small={true} className="" />
           </Col>
         </Row>
       </Section>

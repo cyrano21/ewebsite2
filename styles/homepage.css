@@ -1,0 +1,33 @@
+/* Styles pour la page d'accueil */
+
+/* Style pour l'arrière-plan du produit */
+.product-bg {
+  background-image: url('../../assets/img/e-commerce/4.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Autres styles spécifiques à la page d'accueil */
+.ecommerce-homepage {
+  --homepage-spacing: 2rem;
+}
+
+.ecommerce-homepage .scrollbar {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+}
+
+.ecommerce-homepage .scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ecommerce-homepage .scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--primary-color-rgb), 0.2);
+}

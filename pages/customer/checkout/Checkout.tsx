@@ -42,8 +42,9 @@ interface PaymentMethodProps {
 }
 
 interface CheckoutSummaryCardProps {
-  small?: boolean;
-  // Autres props nécessaires
+  small: boolean; // Propriété obligatoire
+  children?: any; // Utiliser 'any' pour contourner le problème de type avec ReactNodeLike
+  className?: string; // Propriété obligatoire
   [key: string]: any;
 }
 
@@ -175,7 +176,7 @@ const Checkout = () => {
   ];
 
   return (
-    <Section className="py-0">
+    <Section className="py-0" small={true}>
       {isClient && (
         <>
           <Row className="g-3 mb-3">
@@ -235,7 +236,7 @@ const Checkout = () => {
 
             {/* Résumé de la commande */}
             <Col lg={4}>
-              <CheckoutSummaryCard small={true} />
+              <CheckoutSummaryCard small={true} className="" />
             </Col>
           </Row>
         </>

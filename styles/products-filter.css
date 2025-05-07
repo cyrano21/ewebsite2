@@ -1,0 +1,15 @@
+/* Styles pour le composant ProductsFilter */
+.product-filter-sticky {
+  position: sticky;
+  top: 1rem;
+  height: calc(100vh - 2rem);
+}
+
+.product-filter-offcanvas {
+  width: 300px;
+  top: 92px;
+}
+
+.product-scrollbar {
+  max-height: calc(100vh - 3rem);
+}

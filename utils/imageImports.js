@@ -23,8 +23,8 @@ export const blog12 = "/assets/images/blog/12.jpg";
 export const blogSingle01 = "/assets/images/blog/single/01.jpg";
 export const blogSingle02 = "/assets/images/blog/single/02.jpg";
 
-// Instructeurs et about
-export const aboutInstructor = "/assets/images/about/instructor.jpg";
+// Instructeurs et about - utiliser le client avatar comme fallback pour l'instructeur manquant
+export const aboutInstructor = "/assets/images/clients/avatar.jpg";
 export const instructor01 = "/assets/images/instructor/01.jpg";
 export const instructor02 = "/assets/images/instructor/02.jpg";
 export const instructor03 = "/assets/images/instructor/03.jpg";

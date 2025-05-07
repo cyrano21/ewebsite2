@@ -1,10 +1,21 @@
 // Fonctions pour interagir avec les API de produits
 import axios from "axios";
 
-// On récupère la variable d'env NEXT_PUBLIC_API_URL
-const HOST = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:5000";
+// Configuration de l'URL de l'API - Utilisation stricte des variables d'environnement
+const isServer = typeof window === 'undefined';
+
+// Utiliser exclusivement l'URL définie dans .env et s'assurer que nous utilisons port 4000
+const HOST = process.env.NEXT_PUBLIC_APP_URL || (isServer ? '' : 'http://localhost:4000');
 // Garantir que l'URL finit bien par /api
 const API_URL = HOST.endsWith("/api") ? HOST : `${HOST}/api`;
+
+// Journaliser l'URL pour déboguer
+if (typeof window !== 'undefined') {
+  console.log(`🔗 [API] Utilisation de l'URL API: ${API_URL}`);
+}
+
+// Fallback en cas d'échec - utiliser des chemins relatifs
+const LOCAL_API_URL = "/api";
 
 /**
  * Fonction améliorée pour effectuer des requêtes API avec gestion d'erreurs robuste
@@ -220,10 +231,28 @@ export async function getProducts(options = {}) {
     if (options.page)       params.append("page", options.page.toString());
     if (options.category)   params.append("category", options.category);
 
-    const { data } = await axios.get(`${API_URL}/products?${params.toString()}`);
-    return data;
+    // Déterminer si nous sommes côté client ou serveur
+    const isServer = typeof window === 'undefined';
+    
+    // Pendant le rendu serveur, retourner un tableau vide pour éviter les redirections
+    if (isServer) {
+      console.log('🔍 [API] Rendu serveur détecté dans getProducts, utilisation d\'un tableau vide');
+      return [];
+    }
+
+    // Utiliser un try-catch spécifique pour Axios avec un timeout
+    try {
+      const { data } = await axios.get(`${API_URL}/products?${params.toString()}`, {
+        timeout: 5000 // Timeout de 5 secondes pour éviter les attentes trop longues
+      });
+      return data;
+    } catch (axiosError) {
+      // Erreur spécifique à Axios - logger et retourner une liste vide
+      console.warn(`⚠️ [API] Erreur Axios dans getProducts: ${axiosError.message}`);
+      return [];
+    }
   } catch (error) {
-    console.error("Erreur lors de la récupération des produits :", error);
+    console.error("Erreur lors de la récupération des produits :", error);
     return [];
   }
 }
