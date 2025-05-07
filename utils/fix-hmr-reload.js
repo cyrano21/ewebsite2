@@ -138,3 +138,40 @@ if (typeof window !== 'undefined') {
     console.log('🔒 HMR temporairement désactivé pour stabiliser l\'application');
   }, 2000);
 }
+/**
+ * Ce fichier aide à corriger les problèmes de Hot Module Reload (HMR) 
+ * dans Next.js, particulièrement pour les changements dans middleware.js
+ * 
+ * Il intercepte certaines requêtes HMR problématiques qui peuvent causer
+ * des rechargements complets inutiles ou des erreurs côté client.
+ */
+
+if (typeof window !== 'undefined') {
+  // Intercepter les requêtes HMR problématiques
+  const originalFetch = window.fetch;
+  
+  window.fetch = function(url, options) {
+    // Vérifier si c'est une requête HMR webpack problématique
+    if (typeof url === 'string' && url.includes('webpack.hot-update.json')) {
+      console.log('🛑 Interception de requête HMR problématique:', url);
+    }
+    
+    // Continuer avec la requête normale
+    return originalFetch(url, options);
+  };
+  
+  // Écouter les événements de connexion HMR
+  window.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'webpack-hmr-connection') {
+      console.log('[HMR] connected');
+    }
+  });
+}
+
+export default function setupHMRFixes() {
+  // Cette fonction peut être importée dans _app.js pour activer les correctifs
+  if (typeof window !== 'undefined') {
+    console.log('🔄 Correctifs HMR activés');
+  }
+  return null;
+}

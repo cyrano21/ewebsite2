@@ -44,9 +44,12 @@ const isPublic = (path) => {
 export default async function middleware(req) {
   const path = req.nextUrl.pathname;
 
+  // Déclarer token en dehors du bloc try/catch pour le rendre accessible dans tout le middleware
+  let token = null;
+  
   try {
     // Récupérer le token d'authentification si disponible
-    const token = await getToken({ 
+    token = await getToken({ 
       req, 
       secret: process.env.NEXTAUTH_SECRET 
     });
