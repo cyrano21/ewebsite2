@@ -158,6 +158,17 @@ const ProductRecommendations = ({
         console.log('Premier produit à afficher:', limitedProducts[0]);
         console.log('Champs disponibles:', Object.keys(limitedProducts[0]));
         console.log('URL image:', limitedProducts[0].image || limitedProducts[0].img || 'Pas d\'image');
+        
+        // Normaliser les données pour l'affichage des ratings
+        limitedProducts = limitedProducts.map(product => ({
+          ...product,
+          rating: product.rating || product.ratings || 0,
+          ratingsCount: product.ratingsCount || product.reviewCount || 0,
+          // Extraire l'état des avis si disponible
+          reviewsStatus: product.reviews && product.reviews.length > 0 
+            ? (product.reviews.some(r => r.approved === false) ? 'pending' : 'approved') 
+            : null
+        }));
       } else {
         console.warn('❌ Aucun produit à afficher après filtrage/limitation');
       }
@@ -264,11 +275,30 @@ const ProductRecommendations = ({
                   </div>
                   <Card.Body>
                     <Card.Title className="text-dark">{product.name}</Card.Title>
+                    <div className="mb-1">
+                      <span className="d-flex align-items-center">
+                        {[1, 2, 3, 4, 5].map(i => (
+                          <i
+                            key={i}
+                            className={`icofont-ui-rating ${i <= (product.rating || product.ratings || 0) ? 'text-warning' : 'text-muted'}`}
+                            style={{fontSize: '0.85rem'}}
+                          />
+                        ))}
+                        <small className="text-muted ms-1">
+                          ({product.ratingsCount || product.reviewCount || 0})
+                        </small>
+                      </span>
+                    </div>
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="text-dark fw-bold">{(product.price || 0).toFixed(2)} €</span>
                       {product.relevanceScore && (
                         <span className="badge bg-info">
                           Score: {product.relevanceScore}%
+                        </span>
+                      )}
+                      {product.reviewsStatus && (
+                        <span className={`badge bg-${product.reviewsStatus === 'approved' ? 'success' : 'warning'}`}>
+                          {product.reviewsStatus === 'approved' ? 'Approuvé' : 'En attente'}
                         </span>
                       )}
                     </div>
