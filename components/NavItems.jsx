@@ -39,25 +39,25 @@ const NavItems = () => {
   // Vérification pour éviter les duplications de NavItems
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
+
     // Créer une variable globale pour suivre les instances de NavItems
     if (!window.__navItemsInstances) {
       window.__navItemsInstances = [];
     }
-    
+
     // Si cette instance est déjà enregistrée, ne rien faire
     if (window.__navItemsInstances.includes(navInstanceId)) {
       return;
     }
-    
+
     // Si d'autres instances existent déjà, cette instance n'est pas la principale
     if (window.__navItemsInstances.length > 0) {
       setIsMainInstance(false);
     }
-    
+
     // Enregistrer cette instance
     window.__navItemsInstances.push(navInstanceId);
-    
+
     // Nettoyer lors du démontage
     return () => {
       window.__navItemsInstances = window.__navItemsInstances.filter(id => id !== navInstanceId);
@@ -109,7 +109,8 @@ const NavItems = () => {
           email: user.email || 'N/A',
           photoURL: user.photoURL || null,
           id: user.id || null,
-          role: user.role || 'N/A'
+          role: user.role || 'N/A',
+          sellerStatus: user.sellerStatus || 'N/A'
         } : null,
         loading: loading,
         authContextAvailable: !!authContext,
@@ -199,6 +200,22 @@ const NavItems = () => {
                   <li><CustomLink href="/contact">Contact</CustomLink></li>
                   <li><CustomLink href="/wishlist">Liste de souhaits</CustomLink></li>
                   <li><CustomLink href="/shop/compare">Comparer des produits</CustomLink></li>
+                  {/* Afficher "Devenir vendeur" uniquement si l'utilisateur n'est pas déjà vendeur */}
+                  {user && user.sellerStatus !== 'approved' && (
+                    <li>
+                      <Link href="/become-seller" className="nav-link">
+                        {user.sellerStatus === 'pending' ? 'Demande en cours' : 'Devenir vendeur'}
+                      </Link>
+                    </li>
+                  )}
+                  {/* Afficher "Espace vendeur" uniquement si l'utilisateur est un vendeur approuvé */}
+                  {user && user.sellerStatus === 'approved' && (
+                    <li>
+                      <Link href="/seller/dashboard" className="nav-link">
+                        Espace vendeur
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
 
