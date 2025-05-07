@@ -76,28 +76,39 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
 
       // Standardiser le format des produits pour l'affichage
       if (data && Array.isArray(data)) {
-        // Vérification de débogage pour chaque produit
-        const processedProducts = data.map(product => {
-          // S'assurer que chaque produit a les propriétés nécessaires
-          return {
-            id: product.id || product._id || '',
-            name: product.name || 'Produit sans nom',
-            price: product.price || 0,
-            salePrice: product.salePrice || product.discountPrice || 0,
-            img: product.img || product.imageUrl || product.images?.[0] || '/images/placeholder.png',
-            ratings: product.rating || product.ratings || 0,
-            ratingsCount: product.ratingsCount || product.reviews?.length || 0,
-            reviewsData: product.reviews || []
-          };
-        });
+          // Vérification de débogage pour chaque produit
+          const processedProducts = data.map(product => {
+            // Détails plus précis sur les propriétés d'avis du produit
+            console.log(`ProductRecommendations - Détails du produit ${product.id || product._id}:`, {
+              hasRating: product.rating !== undefined || product.ratings !== undefined,
+              ratingValue: product.rating || product.ratings,
+              ratingType: product.rating !== undefined ? typeof product.rating : (product.ratings !== undefined ? typeof product.ratings : 'undefined'),
+              hasReviews: product.reviews !== undefined,
+              reviewCount: product.reviews ? product.reviews.length : (product.ratingsCount || 0),
+              reviewsType: product.reviews ? typeof product.reviews : 'undefined',
+              isArrayReviews: product.reviews ? Array.isArray(product.reviews) : false
+            });
 
-        console.log("Produits traités avant setState:", processedProducts.length, processedProducts);
-        if (processedProducts.length > 0) {
-          setProducts(processedProducts);
-        } else {
-          console.warn("Aucun produit traité disponible");
-          setProducts([]);
-        }
+            // S'assurer que chaque produit a les propriétés nécessaires
+            return {
+              id: product.id || product._id || '',
+              name: product.name || 'Produit sans nom',
+              price: product.price || 0,
+              salePrice: product.salePrice || product.discountPrice || 0,
+              img: product.img || product.imageUrl || product.images?.[0] || '/images/placeholder.png',
+              ratings: product.rating || product.ratings || 0,
+              ratingsCount: product.ratingsCount || (product.reviews ? product.reviews.length : 0) || 0,
+              reviewsData: product.reviews || []
+            };
+          });
+
+          console.log("Produits traités avant setState:", processedProducts.length, processedProducts);
+          if (processedProducts.length > 0) {
+            setProducts(processedProducts);
+          } else {
+            console.warn("Aucun produit traité disponible");
+            setProducts([]);
+          }
       } else {
         // Si aucune donnée ou format inapproprié
         console.warn("Format de données inapproprié:", data);

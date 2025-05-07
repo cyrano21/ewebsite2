@@ -43,20 +43,20 @@ const AddReviewForm = ({ productId, onSuccess, onCancel, setReviewList }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!rating || !comment.trim()) {
       setError("Veuillez fournir une note et un commentaire.");
       return;
     }
-    
+
     try {
       setSubmitting(true);
       setError(null);
-      
+
       // Configuration de l'API
       const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
       const apiUrl = `${API_URL}/api/products/${productId}/reviews`;
-      
+
       console.log("=== DÉBOGAGE SOUMISSION AVIS ===");
       console.log("Envoi d'avis - URL:", apiUrl);
       console.log("Envoi d'avis - Données:", { rating, comment });
@@ -64,14 +64,14 @@ const AddReviewForm = ({ productId, onSuccess, onCancel, setReviewList }) => {
       console.log("Valeur de rating:", rating);
       console.log("Type de comment:", typeof comment);
       console.log("Longueur de comment:", comment.length);
-      
+
       // Récupération du token d'authentification avec la bonne clé
       const token = localStorage.getItem('auth-token');
       console.log("Token présent:", !!token);
-      
+
       // Informations sur l'utilisateur
       console.log("Utilisateur connecté:", user ? `ID: ${user._id}, Nom: ${user.name}` : "Non connecté");
-      
+
       // Envoyer l'avis directement sans vérifier l'API
       const response = await axios.post(apiUrl, {
         rating: Number(rating),
@@ -83,10 +83,10 @@ const AddReviewForm = ({ productId, onSuccess, onCancel, setReviewList }) => {
           'Authorization': token ? `Bearer ${token}` : ''
         }
       });
-      
+
       console.log("Réponse reçue:", response.status, response.data);
       console.log("=== FIN DÉBOGAGE SOUMISSION AVIS ===");
-      
+
       if (response.data.success) {
         onSuccess(response.data.message || "Votre avis a été soumis avec succès et sera visible après validation.");
       } else {
@@ -94,17 +94,17 @@ const AddReviewForm = ({ productId, onSuccess, onCancel, setReviewList }) => {
       }
     } catch (err) {
       console.error("Erreur lors de l'envoi de l'avis:", err);
-      
+
       // Message d'erreur plus précis pour aider au débogage
       let errorMessage = "Une erreur est survenue lors de l'envoi de l'avis.";
-      
+
       if (err.response) {
         // La requête a été faite et le serveur a répondu avec un code d'état
         errorMessage = `Erreur ${err.response.status}: ${err.response.data?.message || err.message}`;
-        
+
         if (err.response.status === 404) {
           errorMessage = "L'API des avis n'est pas disponible pour le moment. Votre avis a été enregistré localement.";
-          
+
           // Simuler un succès lorsque l'API est indisponible pour améliorer l'expérience utilisateur
           // Stockage temporaire en local storage
           try {
@@ -133,7 +133,7 @@ const AddReviewForm = ({ productId, onSuccess, onCancel, setReviewList }) => {
         // La requête a été faite mais aucune réponse n'a été reçue
         errorMessage = "Aucune réponse du serveur. Veuillez vérifier votre connexion.";
       }
-      
+
       setError(errorMessage);
     } finally {
       setSubmitting(false);
@@ -203,7 +203,7 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
     try {
       setLoading(true);
       console.log('ProductTabs - Tentative de récupération des avis pour le produit:', productId);
-      
+
       // 1. Essayer d'abord d'utiliser les avis fournis en props
       if (Array.isArray(reviews) && reviews.length > 0) {
         console.log('✅ ProductTabs - Utilisation des avis fournis en props:', reviews.length);
@@ -213,21 +213,21 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
           user: r.user?.name || 'Anonyme'
         })));
         setReviewList(reviews);
-        
+
         // Calculer la note moyenne
         const sum = reviews.reduce((acc, review) => acc + (review.rating || 0), 0);
         setAverageRating((sum / reviews.length).toFixed(1));
         setLoading(false);
         return;
       }
-      
+
       // 2. Essayer l'API des avis
       try {
         // Corriger l'URL pour être sûr de pointer vers le bon endpoint
         const apiUrl = `/api/products/${productId}/reviews`;
         console.log('URL API des avis:', apiUrl);
         const token = localStorage.getItem('auth-token');
-        
+
         const response = await axios.get(apiUrl, {
           headers: {
             'Content-Type': 'application/json',
@@ -235,29 +235,50 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
           },
           timeout: 8000 // Augmenter le timeout pour donner plus de temps à MongoDB
         });
-        
+
         // Traitement des données de la réponse
         let reviewsData = [];
         if (response && response.data) {
           console.log('Réponse de l\'API des avis:', response.status, typeof response.data);
-          
+          console.log('Réponse complète:', JSON.stringify(response.data));
+
           if (Array.isArray(response.data)) {
             reviewsData = response.data;
-            console.log('Format réponse: tableau direct');
+            console.log('Format réponse: tableau direct', reviewsData.length, 'avis trouvés');
           } else if (response.data.data && Array.isArray(response.data.data)) {
             reviewsData = response.data.data;
-            console.log('Format réponse: propriété data');
+            console.log('Format réponse: propriété data', reviewsData.length, 'avis trouvés');
           } else if (response.data.reviews && Array.isArray(response.data.reviews)) {
             reviewsData = response.data.reviews;
-            console.log('Format réponse: propriété reviews');
+            console.log('Format réponse: propriété reviews', reviewsData.length, 'avis trouvés');
+          } else if (response.data.success !== undefined) {
+            // Essai de récupération d'un autre format possible
+            console.log('Format avec success détecté:', response.data.success);
+            if (response.data.count !== undefined) {
+              console.log('Nombre d\'avis selon la réponse:', response.data.count);
+            }
+
+            // Chercher un tableau à n'importe quel niveau de la réponse
+            for (const key in response.data) {
+              if (Array.isArray(response.data[key])) {
+                reviewsData = response.data[key];
+                console.log(`Format alternatif: propriété ${key} contient un tableau de ${reviewsData.length} éléments`);
+                break;
+              }
+            }
+
+            if (reviewsData.length === 0) {
+              console.log('Structure de la réponse complète:', JSON.stringify(response.data));
+            }
           } else {
-            console.log('Structure de la réponse:', JSON.stringify(response.data).substring(0, 200));
+            console.log('Structure de la réponse:', JSON.stringify(response.data));
           }
-          
+
           if (reviewsData.length > 0) {
             console.log(`✅ ${reviewsData.length} avis récupérés avec succès`);
+            console.log('Échantillon d\'avis:', JSON.stringify(reviewsData[0]));
             setReviewList(reviewsData);
-            const sum = reviewsData.reduce((acc, review) => acc + (review.rating || 0), 0);
+            const sum = reviewsData.reduce((acc, review) => acc + (Number(review.rating) || 0), 0);
             setAverageRating((sum / reviewsData.length).toFixed(1));
             setLoading(false);
             return;
@@ -273,7 +294,7 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
           console.error(`Statut de l'erreur: ${axiosError.response.status}`);
           console.error('Données de réponse:', axiosError.response.data);
           console.error('En-têtes de réponse:', axiosError.response.headers);
-          
+
           // Si c'est une erreur 500, c'est probablement lié à MongoDB
           if (axiosError.response.status === 500) {
             console.error('Erreur 500 détectée - Problème potentiel avec MongoDB');
@@ -285,25 +306,25 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
           // Une erreur s'est produite lors de la configuration de la requête
           console.error('Erreur de configuration de la requête:', axiosError.message);
         }
-        
+
         // 3. En cas d'erreur, récupérer les avis depuis le produit
         try {
           console.log('Tentative de récupération du produit complet...');
           const productResponse = await axios.get(`/api/products/${productId}`, {
             timeout: 5000
           });
-          
+
           if (productResponse.data) {
             // Extraire les avis en fonction du format de réponse
             let productReviews = [];
-            
+
             if (productResponse.data.reviews && Array.isArray(productResponse.data.reviews)) {
               productReviews = productResponse.data.reviews;
             } else if (productResponse.data.data && productResponse.data.data.reviews && 
                       Array.isArray(productResponse.data.data.reviews)) {
               productReviews = productResponse.data.data.reviews;
             }
-            
+
             if (productReviews.length > 0) {
               console.log(`✅ ${productReviews.length} avis trouvés dans les données du produit`);
               setReviewList(productReviews);
@@ -319,12 +340,12 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
           console.error('Erreur lors de la récupération du produit:', err);
         }
       }
-      
+
       // 4. Vérifier les avis locaux (utilisateur actuel)
       try {
         const localReviews = JSON.parse(localStorage.getItem('pendingReviews') || '[]')
           .filter(r => r.productId === productId);
-        
+
         if (localReviews.length > 0) {
           console.log(`✅ ${localReviews.length} avis locaux trouvés`);
           setReviewList(localReviews);
@@ -334,13 +355,13 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
       } catch (e) {
         console.error('Erreur lors de la récupération des avis locaux:', e);
       }
-      
+
       // Si nous arrivons ici, aucune méthode n'a fonctionné
       console.log('⚠️ Aucun avis trouvé par aucune méthode');
-      
+
       // Ne pas utiliser d'avis fictifs, mais simplement afficher un message approprié
       setReviewList([]);
-      
+
     } catch (error) {
       console.error('Erreur générale lors de la récupération des avis:', error);
       setReviewList([]);
@@ -355,20 +376,20 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
       setUserHasReviewed(false);
       return;
     }
-    
+
     // Vérifier si le produit et son ID existent
     if (!productId) {
       setUserHasReviewed(false);
       return;
     }
-    
+
     // Recherche d'un avis de l'utilisateur actuel pour ce produit
     const hasReviewed = reviewList.some(review => 
       review && 
       review.user && 
       (review.user._id === user._id || review.user.id === user._id || review.userId === user._id)
     );
-    
+
     console.log('L\'utilisateur a-t-il déjà laissé un avis?', hasReviewed);
     setUserHasReviewed(hasReviewed);
   };
@@ -381,7 +402,7 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
     } else {
       console.log('ProductTabs - Aucun productId disponible pour charger les avis');
     }
-    
+
     // Ajouter une logique de nouvelle tentative en cas d'échec
     const retryTimeout = setTimeout(() => {
       if (reviewList.length === 0 && productId) {
@@ -389,22 +410,22 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
         fetchReviews();
       }
     }, 3000);
-    
+
     return () => clearTimeout(retryTimeout);
   }, [productId]);
 
   const handleReviewSuccess = (message) => {
     setSuccessMsg(message);
     setShowAddForm(false);
-    
+
     // Rafraîchir la liste des avis après l'ajout d'un nouvel avis
     if (productId) {
       // Récupérer les avis actualisés depuis l'API
       const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
-      
+
       // Récupérer le token avec la bonne clé
       const token = localStorage.getItem('auth-token');
-      
+
       // Utiliser l'API relative interne de Next.js
       axios.get(`${API_URL}/api/products/${productId}/reviews`, {
         headers: {
@@ -419,12 +440,12 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
         })
         .catch(error => {
           console.error("Erreur lors de la récupération des avis après ajout:", error);
-          
+
           // En cas d'échec de l'API, récupérer les avis locaux
           try {
             const localReviews = JSON.parse(localStorage.getItem('pendingReviews') || '[]')
               .filter(r => r.productId === productId);
-            
+
             if (localReviews.length > 0) {
               setReviewList(prevReviews => {
                 // Éviter les doublons en filtrant sur les IDs
@@ -438,7 +459,7 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
           }
         });
     }
-    
+
     // Masquer le message de succès après 5 secondes
     setTimeout(() => setSuccessMsg(null), 5000);
   };
@@ -485,14 +506,14 @@ const ProductTabs = ({ description, specifications, reviews, productId }) => {
         <div className="pt-3 tab-content-section">
             {/* Message de succès */}
             {successMsg && <Alert variant="success" className="py-2 small">{successMsg}</Alert>}
-            
+
             {/* Liste des avis */}
             {reviewList.length > 0 ? (
                 reviewList.map((r) => <ProductReview key={r._id} review={r} />)
             ) : (
                 <p className="text-muted">Aucun avis pour le moment. Soyez le premier à donner votre avis !</p>
             )}
-            
+
             {/* Bouton d'ajout d'avis & Formulaire */}
             {user ? (
               userHasReviewed ? (

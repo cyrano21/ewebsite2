@@ -197,17 +197,34 @@ const BoughtTogether = ({ currentProduct, checkedItems, onToggleItem, total }) =
         if (Array.isArray(data)) {
           productsData = data;
           console.log('BoughtTogether - ✅ Format tableau détecté avec', data.length, 'produits');
+          console.log('BoughtTogether - Détails format tableau:', 
+            data.length > 0 ? 
+            `Premier produit: ${JSON.stringify({id: data[0]._id || data[0].id, rating: data[0].rating || data[0].ratings, reviews: data[0].reviews ? data[0].reviews.length : 'aucun'})}` : 
+            'Aucun produit');
         } else if (data.products && Array.isArray(data.products)) {
           productsData = data.products;
           console.log('BoughtTogether - ✅ Format data.products détecté avec', data.products.length, 'produits');
+          console.log('BoughtTogether - Détails format data.products:', 
+            data.products.length > 0 ? 
+            `Premier produit: ${JSON.stringify({id: data.products[0]._id || data.products[0].id, rating: data.products[0].rating || data.products[0].ratings, reviews: data.products[0].reviews ? data.products[0].reviews.length : 'aucun'})}` : 
+            'Aucun produit');
         } else if (data.data && Array.isArray(data.data)) {
           productsData = data.data;
           console.log('BoughtTogether - ✅ Format data.data détecté avec', data.data.length, 'produits');
+          console.log('BoughtTogether - Détails format data.data:', 
+            data.data.length > 0 ? 
+            `Premier produit: ${JSON.stringify({id: data.data[0]._id || data.data[0].id, rating: data.data[0].rating || data.data[0].ratings, reviews: data.data[0].reviews ? data.data[0].reviews.length : 'aucun'})}` : 
+            'Aucun produit');
         } else if (data.success && Array.isArray(data.products)) {
           productsData = data.products;
           console.log('BoughtTogether - ✅ Format data.success.products détecté avec', data.products.length, 'produits');
+          console.log('BoughtTogether - Détails format data.success.products:', 
+            data.products.length > 0 ? 
+            `Premier produit: ${JSON.stringify({id: data.products[0]._id || data.products[0].id, rating: data.products[0].rating || data.products[0].ratings, reviews: data.products[0].reviews ? data.products[0].reviews.length : 'aucun'})}` : 
+            'Aucun produit');
         } else {
           console.error('BoughtTogether - Format de données inattendu:', data);
+          console.log('BoughtTogether - Structure des données reçues:', Object.keys(data).join(', '));
           console.log('BoughtTogether - ⚠️ Utilisation des produits de secours en raison du format de données inattendu');
           productsData = FALLBACK_PRODUCTS;
         }

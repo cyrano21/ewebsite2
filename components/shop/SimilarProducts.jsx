@@ -20,14 +20,13 @@ const SimilarProducts = ({ products = [], categorySlug = 'all', limit = 4 }) => 
     return null;
   }
 
-  console.log(`Debug SimilarProducts: ${products.length} produits similaires disponibles`);
-  console.log('Détails des produits similaires:', products.map(p => ({
-    id: p.id || p._id,
+  console.log('Debug SimilarProducts:', products.length, 'produits reçus');
+  console.log('SimilarProducts - Détails des produits:', JSON.stringify(products.map(p => ({
+    id: p._id || p.id,
     name: p.name,
-    rating: p.rating || p.ratings,
-    ratingsCount: p.ratingsCount || 0,
-    reviews: p.reviews ? p.reviews.length : 0
-  })));
+    ratings: p.ratings || p.rating,
+    ratingsCount: p.ratingsCount || (p.reviews ? p.reviews.length : 0)
+  }))));
 
   // Limiter le nombre de produits à afficher
   const displayProducts = products.slice(0, limit);

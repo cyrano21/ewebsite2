@@ -8,11 +8,13 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
   const safeCount = count === null || count === undefined ? 0 : count;
   const reviewCount = typeof safeCount === 'number' ? safeCount : 0;
 
-  // Log pour suivre les valeurs de rating reçues
-  console.log(`Rating - Props reçues: value=${value}, count=${count}, size=${size}, showCount=${showCount}`);
+  // Logs détaillés pour suivre les valeurs de rating reçues
+  console.log(`Rating - Props reçues: value=${value} (${typeof value}), count=${count} (${typeof count}), size=${size}, showCount=${showCount}`);
+  console.log(`Rating - Valeurs normalisées: safeValue=${safeValue}, normalizedValue=${normalizedValue}, safeCount=${safeCount}, reviewCount=${reviewCount}`);
 
   // Arrondir à 0.5 près pour un affichage d'étoiles partielles
   const roundedValue = Math.round(normalizedValue * 2) / 2;
+  console.log(`Rating - Valeur arrondie: ${roundedValue}`);
 
   return (
     <div className="rating-container">
