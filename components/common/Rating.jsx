@@ -9,28 +9,25 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
   // Arrondir à 0.5 près pour un affichage d'étoiles partielles
   const roundedValue = Math.round(normalizedValue * 2) / 2;
   
+  // Approche alternative - utiliser des étoiles complètes plutôt que des demi-étoiles
   return (
     <span className="rating d-flex align-items-center">
-      {[1, 2, 3, 4, 5].map(star => {
-        let starClass = '';
-        
-        if (star <= roundedValue) {
-          // Étoile pleine
-          starClass = 'text-warning';
-        } else if (star - 0.5 === roundedValue) {
-          // Demi-étoile (simulée avec une classe CSS)
-          starClass = 'text-warning half-star';
-        }
-        
-        return (
-          <i
-            key={star}
-            className={`icofont-ui-rating ${starClass} ${size === 'small' ? 'fs-6' : ''}`}
-            aria-hidden="true"
-            title={`${roundedValue} sur 5`}
-          />
-        );
-      })}
+      {/* Afficher les étoiles pleines et vides directement */}
+      {[...Array(5)].map((_, i) => (
+        <i
+          key={i}
+          className={`icofont-ui-rating ${i < Math.floor(roundedValue) ? 'text-warning' : 
+                     (i < Math.ceil(roundedValue) && roundedValue % 1 !== 0) ? 'text-warning half-star' : 'text-muted'} 
+                     ${size === 'small' ? 'fs-6' : ''}`}
+          aria-hidden="true"
+          title={`${roundedValue} sur 5`}
+          style={{ 
+            marginRight: '2px',
+            position: 'relative'
+          }}
+        />
+      ))}
+      
       {showCount && (
         <small className="text-muted ms-1">
           ({reviewCount})
@@ -49,8 +46,20 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
           right: 0;
           width: 50%;
           height: 100%;
-          background-color: white;
+          background-color: #f8f9fa;
           z-index: 1;
+        }
+        
+        .icofont-ui-rating {
+          font-size: ${size === 'small' ? '0.9rem' : '1.2rem'};
+        }
+        
+        .text-warning {
+          color: #ffc107 !important;
+        }
+        
+        .text-muted {
+          color: #d9d9d9 !important;
         }
       `}</style>
     </span>
