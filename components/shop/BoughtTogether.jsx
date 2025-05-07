@@ -52,6 +52,7 @@ const BoughtTogether = ({ currentProduct, checkedItems, onToggleItem, total }) =
 
       // Tentative de récupération des produits achetés ensemble
       console.log('Récupération des produits achetés ensemble...', productId);
+      console.log('BoughtTogether - Produit courant:', currentProduct);
 
       try {
         // Plusieurs tentatives de récupération avec différents formats d'URL
@@ -190,14 +191,19 @@ const BoughtTogether = ({ currentProduct, checkedItems, onToggleItem, total }) =
         let productsData = [];
         if (Array.isArray(data)) {
           productsData = data;
+          console.log('✅ Format tableau détecté avec', data.length, 'produits');
         } else if (data.products && Array.isArray(data.products)) {
           productsData = data.products;
+          console.log('✅ Format data.products détecté avec', data.products.length, 'produits');
         } else if (data.data && Array.isArray(data.data)) {
           productsData = data.data;
+          console.log('✅ Format data.data détecté avec', data.data.length, 'produits');
         } else if (data.success && Array.isArray(data.products)) {
           productsData = data.products;
+          console.log('✅ Format data.success.products détecté avec', data.products.length, 'produits');
         } else {
           console.error('Format de données inattendu:', data);
+          console.log('⚠️ Utilisation des produits de secours en raison du format de données inattendu');
           productsData = FALLBACK_PRODUCTS;
         }
         
@@ -241,8 +247,11 @@ const BoughtTogether = ({ currentProduct, checkedItems, onToggleItem, total }) =
 
   // Si aucun produit n'est trouvé ou s'il y a moins de 1 produit, ne pas afficher la section
   if (!products || !Array.isArray(products) || products.length < 1) {
+    console.log('BoughtTogether - Aucun produit à afficher, returning null');
     return null;
   }
+  
+  console.log('BoughtTogether - Produits à afficher:', products.length);
 
   if (loading) {
     return (

@@ -19,6 +19,8 @@ const SimilarProducts = ({ products = [], categorySlug = 'all', limit = 4 }) => 
     console.log('Aucun produit similaire à afficher');
     return null;
   }
+  
+  console.log(`Debug SimilarProducts: ${products.length} produits reçus`);
 
   // Limiter le nombre de produits à afficher
   const displayProducts = products.slice(0, limit);
