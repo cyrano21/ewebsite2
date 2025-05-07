@@ -1,0 +1,18 @@
+ChunkLoadError
+    at __webpack_require__.f.j (https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/_next/static/chunks/webpack.js:753:29)
+    at https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/_next/static/chunks/webpack.js:153:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/_next/static/chunks/webpack.js:152:67)
+    at fn.e (https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/_next/static/chunks/webpack.js:380:50)
+    at MyApp.useEffect (webpack-internal:///(pages-dir-browser)/./pages/_app.js:85:33)
+    at commitHookEffectListMount (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:23184:26)
+    at commitPassiveMountOnFiber (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:24960:13)
+    at commitPassiveMountEffects_complete (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:24925:9)
+    at commitPassiveMountEffects_begin (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:24912:7)
+    at commitPassiveMountEffects (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:24900:3)
+    at flushPassiveEffectsImpl (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:27073:3)
+    at flushPassiveEffects (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:27018:14)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom.development.js:26803:9)
+    at workLoop (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:266:34)
+    at flushWork (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:239:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(pages-dir-browser)/./node_modules/scheduler/cjs/scheduler.development.js:533:21)

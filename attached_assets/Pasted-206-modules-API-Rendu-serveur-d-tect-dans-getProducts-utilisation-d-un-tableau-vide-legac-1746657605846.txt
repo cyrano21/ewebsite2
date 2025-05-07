@@ -1,0 +1,184 @@
+206 modules)
+🔍 [API] Rendu serveur détecté dans getProducts, utilisation d'un tableau vide
+`legacyBehavior` is deprecated and will be removed in a future release. A codemod is available to upgrade your components:
+
+npx @next/codemod@latest new-link .
+
+Learn more: https://nextjs.org/docs/app/building-your-application/upgrading/codemods#remove-a-tags-from-link-components
+ GET / 200 in 2454ms
+ GET /seller 404 in 2889ms
+[next-auth][error][CLIENT_FETCH_ERROR] 
+https://next-auth.js.org/errors#client_fetch_error fetch failed {
+  error: {
+    message: 'fetch failed',
+    stack: 'TypeError: fetch failed\n' +
+      '    at node:internal/deps/undici/undici:13392:13\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    name: 'TypeError'
+  },
+  url: 'http://localhost:4000/api/auth/session',
+  message: 'fetch failed'
+}
+[API products] Filtre final utilisé pour Product.find: {}
+📥 [API] Requête entrante vers /api/categories - Méthode: GET
+🔓 [API] Pas de middleware d'authentification nécessaire
+🔍 [API] /api/categories - Méthode: GET, URL: /api/categories, Query: {}
+🔍 [API] Client: 176.168.194.80,..., Agent: Mozilla/5.0 (Windows NT 10.0; ...
+🔍 [API] En-têtes importants: {
+  referer: 'https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/',
+  host: 'd8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev',
+  origin: undefined
+}
+🔍 [API] Tentative de connexion à MongoDB...
+🔍 [API] Connexion à MongoDB réussie
+🔍 [API] Recherche de catégories avec query: {}
+[API sponsor-banners] Méthode: GET
+[API sponsor-banners] Connexion à la base de données réussie
+ GET /api/public/advertisements?position=home&type=banner&status=active&isActive=true&limit=3&currentDate=2025-05-07T22%3A39%3A27.033Z 200 in 123ms
+ GET /api/public/advertisements?position=home&type=featured&status=active&isActive=true&limit=3&currentDate=2025-05-07T22%3A39%3A27.037Z 200 in 123ms
+ GET /api/public/advertisements?position=home&type=banner&status=active&isActive=true&limit=3&currentDate=2025-05-07T22%3A39%3A27.040Z 200 in 103ms
+🔍 [API] 9 catégories trouvées
+🔍 [API] Réponse: 200 OK avec catégories de la BDD
+🔍 [API] Traitement terminé pour /api/categories
+📤 [API] Réponse envoyée pour /api/categories avec statut: 200
+ GET /api/categories 200 in 156ms
+[API sponsor-banners] 0 sponsors récupérés
+[API sponsor-banners] Aucun sponsor trouvé, utilisation des sponsors de secours
+ GET /api/sponsor-banners 304 in 109ms
+ GET /api/auth/session 200 in 8ms
+📥 [API] Requête entrante vers /api/categories - Méthode: GET
+🔓 [API] Pas de middleware d'authentification nécessaire
+🔍 [API] /api/categories - Méthode: GET, URL: /api/categories, Query: {}
+🔍 [API] Client: 176.168.194.80,..., Agent: Mozilla/5.0 (Windows NT 10.0; ...
+🔍 [API] En-têtes importants: {
+  referer: 'https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/',
+  host: 'd8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev',
+  origin: undefined
+}
+🔍 [API] Tentative de connexion à MongoDB...
+🔍 [API] Connexion à MongoDB réussie
+🔍 [API] Recherche de catégories avec query: {}
+[API products] Param category reçu: 680e371181d8c842d26ca52d
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca52d') }
+🔍 [API] 9 catégories trouvées
+🔍 [API] Réponse: 200 OK avec catégories de la BDD
+🔍 [API] Traitement terminé pour /api/categories
+📤 [API] Réponse envoyée pour /api/categories avec statut: 200
+ GET /api/categories 200 in 109ms
+[API products] Nombre de produits trouvés: 76
+ GET /api/products 200 in 446ms
+[API products] Param category reçu: 680e371181d8c842d26ca533
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca533') }
+[API products] Param category reçu: 680e371181d8c842d26ca530
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca530') }
+[API products] Param category reçu: 680e3da5051db357adbd761e
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e3da5051db357adbd761e') }
+[API products] Param category reçu: 680e396fe1d50c962e6fc1c8
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e396fe1d50c962e6fc1c8') }
+[API products] Param category reçu: 680e371181d8c842d26ca52a
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca52a') }
+[API products] Nombre de produits trouvés: 0
+ GET /api/products?category=680e3da5051db357adbd761e&limit=10 200 in 110ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca52d&limit=10 200 in 217ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca533&limit=10 200 in 216ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca530&limit=10 200 in 213ms
+[API products] Param category reçu: 680e371181d8c842d26ca527
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca527') }
+[API sponsor-banners] Méthode: GET
+[API sponsor-banners] Connexion à la base de données réussie
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e396fe1d50c962e6fc1c8&limit=10 200 in 215ms
+[API products] Nombre de produits trouvés: 5
+ GET /api/products?category=680e371181d8c842d26ca52a&limit=10 200 in 213ms
+[API products] Param category reçu: 680d4c833cb1ce9d26a274d4
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680d4c833cb1ce9d26a274d4') }
+[API products] Param category reçu: 680e3da4051db357adbd761b
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e3da4051db357adbd761b') }
+[API sponsor-banners] 0 sponsors récupérés
+[API sponsor-banners] Aucun sponsor trouvé, utilisation des sponsors de secours
+ GET /api/sponsor-banners 304 in 109ms
+ GET /api/auth/session 200 in 5ms
+[API products] Nombre de produits trouvés: 0
+ GET /api/products?category=680e3da4051db357adbd761b&limit=10 200 in 107ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca527&limit=10 200 in 212ms
+[API products] Filtre final utilisé pour Product.find: {}
+[API products] Param category reçu: 680e371181d8c842d26ca52d
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca52d') }
+[API products] Param category reçu: 680e371181d8c842d26ca533
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca533') }
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680d4c833cb1ce9d26a274d4&limit=10 200 in 218ms
+[API products] Param category reçu: 680e371181d8c842d26ca530
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca530') }
+[API products] Param category reçu: 680e3da5051db357adbd761e
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e3da5051db357adbd761e') }
+[API products] Param category reçu: 680e396fe1d50c962e6fc1c8
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e396fe1d50c962e6fc1c8') }
+[API products] Nombre de produits trouvés: 0
+ GET /api/products?category=680e3da5051db357adbd761e&limit=10 200 in 107ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca52d&limit=10 200 in 213ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca533&limit=10 200 in 211ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca530&limit=10 200 in 211ms
+[API products] Param category reçu: 680e371181d8c842d26ca52a
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca52a') }
+[API products] Param category reçu: 680e371181d8c842d26ca527
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e371181d8c842d26ca527') }
+[API products] Param category reçu: 680d4c833cb1ce9d26a274d4
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680d4c833cb1ce9d26a274d4') }
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e396fe1d50c962e6fc1c8&limit=10 200 in 213ms
+[API products] Param category reçu: 680e3da4051db357adbd761b
+[API products] Filtre final utilisé pour Product.find: { category: new ObjectId('680e3da4051db357adbd761b') }
+[API products] Nombre de produits trouvés: 76
+ GET /api/products 200 in 421ms
+[API products] Nombre de produits trouvés: 5
+ GET /api/products?category=680e371181d8c842d26ca52a&limit=10 200 in 213ms
+ GET /api/auth/session 200 in 3ms
+[API products] Nombre de produits trouvés: 0
+ GET /api/products?category=680e3da4051db357adbd761b&limit=10 200 in 107ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680e371181d8c842d26ca527&limit=10 200 in 213ms
+[API products] Nombre de produits trouvés: 10
+ GET /api/products?category=680d4c833cb1ce9d26a274d4&limit=10 200 in 212ms
+ GET /api/auth/session 200 in 3ms
+📥 [API] Requête entrante vers /api/categories - Méthode: GET
+🔓 [API] Pas de middleware d'authentification nécessaire
+🔍 [API] /api/categories - Méthode: GET, URL: /api/categories, Query: {}
+🔍 [API] Client: 176.168.194.80,..., Agent: Mozilla/5.0 (Windows NT 10.0; ...
+🔍 [API] En-têtes importants: {
+  referer: 'https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/',
+  host: 'd8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev',
+  origin: undefined
+}
+🔍 [API] Tentative de connexion à MongoDB...
+🔍 [API] Connexion à MongoDB réussie
+🔍 [API] Recherche de catégories avec query: {}
+🔍 [API] 9 catégories trouvées
+🔍 [API] Réponse: 200 OK avec catégories de la BDD
+🔍 [API] Traitement terminé pour /api/categories
+📤 [API] Réponse envoyée pour /api/categories avec statut: 304
+ GET /api/categories 304 in 110ms
+📥 [API] Requête entrante vers /api/categories - Méthode: GET
+🔓 [API] Pas de middleware d'authentification nécessaire
+🔍 [API] /api/categories - Méthode: GET, URL: /api/categories, Query: {}
+🔍 [API] Client: 176.168.194.80,..., Agent: Mozilla/5.0 (Windows NT 10.0; ...
+🔍 [API] En-têtes importants: {
+  referer: 'https://d8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev/',
+  host: 'd8364303-7ebc-4d04-9449-96cc061113ed-00-2ed64lnhegze6.picard.replit.dev',
+  origin: undefined
+}
+🔍 [API] Tentative de connexion à MongoDB...
+🔍 [API] Connexion à MongoDB réussie
+🔍 [API] Recherche de catégories avec query: {}
+🔍 [API] 9 catégories trouvées
+🔍 [API] Réponse: 200 OK avec catégories de la BDD
+🔍 [API] Traitement terminé pour /api/categories
+📤 [API] Réponse envoyée pour /api/categories avec statut: 304
+ GET /api/categories 304 in 108ms
