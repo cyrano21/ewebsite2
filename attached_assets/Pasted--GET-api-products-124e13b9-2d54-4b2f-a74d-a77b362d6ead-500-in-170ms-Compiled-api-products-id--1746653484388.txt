@@ -1,0 +1,67 @@
+ GET /api/products/124e13b9-2d54-4b2f-a74d-a77b362d6ead 500 in 170ms
+ ✓ Compiled /api/products/[id]/view in 315ms (1010 modules)
+ GET /api/auth/session 304 in 14ms
+ GET /api/auth/session 304 in 4ms
+ GET /api/products/124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 225ms
+ GET /api/auth/session 304 in 3ms
+ GET /api/auth/session 304 in 9ms
+[API products] Param category reçu: Men's Sneaker
+[API products] Recherche catégorie par slug: men's sneaker
+[API products] Résultat recherche catégorie: {
+  _id: new ObjectId('680d4c833cb1ce9d26a274d4'),
+  name: "Men's Sneaker",
+  slug: 'mens-sneaker',
+  isActive: true,
+  order: 0,
+  createdAt: 2025-04-26T21:13:39.459Z,
+  updatedAt: 2025-04-26T21:13:39.459Z,
+  __v: 0
+}
+[API products] Filtre final utilisé pour Product.find: {
+  category: new ObjectId('680d4c833cb1ce9d26a274d4'),
+  legacyId: { '$ne': '124e13b9-2d54-4b2f-a74d-a77b362d6ead' }
+}
+ GET /api/products/124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 212ms
+[API products] Nombre de produits trouvés: 4
+ GET /api/products?category=Men%27s%20Sneaker&limit=4&exclude=124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 321ms
+ GET /api/products/124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 212ms
+[API products] Filtre final utilisé pour Product.find: {
+  isFeatured: true,
+  legacyId: { '$ne': '124e13b9-2d54-4b2f-a74d-a77b362d6ead' }
+}
+[API products] Nombre de produits trouvés: 0
+ GET /api/products?featured=true&limit=3&exclude=124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 108ms
+[API products] Param category reçu: Men's Sneaker
+[API products] Recherche catégorie par slug: men's sneaker
+[API products] Résultat recherche catégorie: {
+  _id: new ObjectId('680d4c833cb1ce9d26a274d4'),
+  name: "Men's Sneaker",
+  slug: 'mens-sneaker',
+  isActive: true,
+  order: 0,
+  createdAt: 2025-04-26T21:13:39.459Z,
+  updatedAt: 2025-04-26T21:13:39.459Z,
+  __v: 0
+}
+[API products] Filtre final utilisé pour Product.find: {
+  category: new ObjectId('680d4c833cb1ce9d26a274d4'),
+  legacyId: { '$ne': '124e13b9-2d54-4b2f-a74d-a77b362d6ead' }
+}
+ GET /api/products/124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 214ms
+[API products] Filtre final utilisé pour Product.find: {}
+[API products] Nombre de produits trouvés: 4
+ GET /api/products?category=Men%27s%20Sneaker&limit=4&exclude=124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 316ms
+[API products] Nombre de produits trouvés: 3
+ GET /api/products?limit=3&related=680d29d470a602604bdeb922 200 in 213ms
+[API products] Filtre final utilisé pour Product.find: {
+  isFeatured: true,
+  legacyId: { '$ne': '124e13b9-2d54-4b2f-a74d-a77b362d6ead' }
+}
+[API products] Filtre final utilisé pour Product.find: {}
+[API products] Nombre de produits trouvés: 0
+ GET /api/products?featured=true&limit=3&exclude=124e13b9-2d54-4b2f-a74d-a77b362d6ead 200 in 110ms
+[API products] Nombre de produits trouvés: 3
+ GET /api/products?limit=3&related=680d29d470a602604bdeb922 200 in 213ms
+[API products] Filtre final utilisé pour Product.find: {}
+[API products] Nombre de produits trouvés: 3
+ GET /api/products?limit=3&related=680d29d470a602604bdeb922 200 in 213ms
