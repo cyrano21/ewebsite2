@@ -636,6 +636,19 @@ const AdminDashboard = () => {
           </Col>
 
           <Col md={3} sm={6} className="mb-4">
+            <Card className="text-center shadow-sm h-100 border-primary">
+              <Card.Body>
+                <div className="icon-box bg-primary bg-opacity-10 rounded-circle mx-auto mb-3 p-3 d-flex align-items-center justify-content-center" style={{ width: '60px', height: '60px' }}>
+                  <i className="icofont-eye-alt fs-4 text-primary"></i>
+                </div>
+                <h5>Moniteur d'activité</h5>
+                <p className="text-muted small">Surveillez toutes les activités de la plateforme en temps réel</p>
+                <Button variant="primary" size="sm" as={Link} href="/admin/activity-monitor">Accéder</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col md={3} sm={6} className="mb-4">
             <Card className="text-center shadow-sm h-100">
               <Card.Body>
                 <div className="icon-box bg-light rounded-circle mx-auto mb-3 p-3 d-flex align-items-center justify-content-center" style={{ width: '60px', height: '60px' }}>
