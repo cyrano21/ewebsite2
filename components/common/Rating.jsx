@@ -9,24 +9,36 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
   // Arrondir à 0.5 près pour un affichage d'étoiles partielles
   const roundedValue = Math.round(normalizedValue * 2) / 2;
   
-  // Approche alternative - utiliser des étoiles complètes plutôt que des demi-étoiles
   return (
-    <span className="rating d-flex align-items-center">
-      {/* Afficher les étoiles pleines et vides directement */}
-      {[...Array(5)].map((_, i) => (
-        <i
-          key={i}
-          className={`icofont-ui-rating ${i < Math.floor(roundedValue) ? 'text-warning' : 
-                     (i < Math.ceil(roundedValue) && roundedValue % 1 !== 0) ? 'text-warning half-star' : 'text-muted'} 
-                     ${size === 'small' ? 'fs-6' : ''}`}
-          aria-hidden="true"
-          title={`${roundedValue} sur 5`}
-          style={{ 
-            marginRight: '2px',
-            position: 'relative'
-          }}
-        />
-      ))}
+    <div className="rating-container">
+      <div className="stars-container">
+        {[...Array(5)].map((_, i) => {
+          // Logique pour déterminer le type d'étoile à afficher
+          let starType = "empty";
+          if (i < Math.floor(roundedValue)) {
+            starType = "full";
+          } else if (i < Math.ceil(roundedValue) && roundedValue % 1 !== 0) {
+            starType = "half";
+          }
+          
+          return (
+            <span key={i} className={`star-wrapper ${size === 'small' ? 'small' : ''}`}>
+              {starType === "full" && (
+                <i className="icofont-ui-rating text-warning" title={`${roundedValue} sur 5`}></i>
+              )}
+              {starType === "half" && (
+                <span className="half-star-container">
+                  <i className="icofont-ui-rating text-warning" title={`${roundedValue} sur 5`}></i>
+                  <span className="half-star-cover"></span>
+                </span>
+              )}
+              {starType === "empty" && (
+                <i className="icofont-ui-rating text-muted" title={`${roundedValue} sur 5`}></i>
+              )}
+            </span>
+          );
+        })}
+      </div>
       
       {showCount && (
         <small className="text-muted ms-1">
@@ -35,12 +47,31 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
       )}
       
       <style jsx>{`
-        .half-star {
-          position: relative;
-          overflow: hidden;
+        .rating-container {
+          display: flex;
+          align-items: center;
         }
-        .half-star:after {
-          content: '';
+        
+        .stars-container {
+          display: flex;
+        }
+        
+        .star-wrapper {
+          position: relative;
+          margin-right: 2px;
+          font-size: ${size === 'small' ? '0.9rem' : '1.2rem'};
+        }
+        
+        .small {
+          font-size: 0.9rem;
+        }
+        
+        .half-star-container {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .half-star-cover {
           position: absolute;
           top: 0;
           right: 0;
@@ -48,10 +79,7 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
           height: 100%;
           background-color: #f8f9fa;
           z-index: 1;
-        }
-        
-        .icofont-ui-rating {
-          font-size: ${size === 'small' ? '0.9rem' : '1.2rem'};
+          overflow: hidden;
         }
         
         .text-warning {
@@ -62,7 +90,7 @@ const Rating = ({ value = 0, count = 0, showCount = true, size = 'normal' }) => 
           color: #d9d9d9 !important;
         }
       `}</style>
-    </span>
+    </div>
   );
 };
 
