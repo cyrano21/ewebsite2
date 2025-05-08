@@ -26,8 +26,8 @@ const NavItems = () => {
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
 
-    // Utiliser un useRef pour indiquer si nous sommes côté client
-  const isMounted = useRef(false);
+    // Utiliser un useState pour indiquer si nous sommes côté client
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
   // Gestion robuste du contexte d'authentification avec des valeurs par défaut
@@ -40,7 +40,7 @@ const NavItems = () => {
   // pour éviter les erreurs d'hydratation
   useEffect(() => {
     // Marquer que le composant est monté côté client
-    isMounted.current = true;
+    setIsMounted(true);
     
     // Gestion du défilement pour l'en-tête fixe
     const scrollHandler = () => {
@@ -92,7 +92,7 @@ const NavItems = () => {
   // Éviter de générer des logs pendant le rendu initial pour éviter les problèmes d'hydratation
   useEffect(() => {
     // Log uniquement après que le composant soit monté côté client
-    if (isMounted.current) {
+    if (isMounted) {
       // Log réduit pour minimiser l'impact sur la performance
       console.log('NavItems: utilisateur chargé', {
         userLoggedIn: !!user,
@@ -100,7 +100,7 @@ const NavItems = () => {
         sellerStatus: user?.sellerStatus || 'N/A',
       });
     }
-  }, [user]);
+  }, [user, isMounted]);
 
   const handleLogout = () => {
     logOut()

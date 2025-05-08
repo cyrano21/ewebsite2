@@ -13,10 +13,10 @@ const ProductDisplay = ({ item }) => {
   const [coupon, setCoupon] = useState("");
   const [size, setSize] = useState("Select Size");
   const [color, setColor] = useState("Select Color");
-  
+
   // Obtenir les informations d'authentification de l'utilsateur
   const { user } = useContext(AuthContext);
-  
+
   // Pour simuler un rôle administrateur, normalement cela viendrait d'une vérification de rôle côté serveur
   // Dans un environnement réel, vous vérifieriez si l'utilsateur a un rôle admin dans votre système d'authentification
   const isAdmin = user ? true : false; // Pour la démo, tout utilsateur connecté est considéré comme admin
@@ -97,13 +97,12 @@ const ProductDisplay = ({ item }) => {
         <h4>${price}</h4>
         <h6>{seller}</h6>
         <p>{desc}</p>
-        
+
         {/* Bouton d'administration visible uniquement pour les utilsateurs admin */}
         {isAdmin && (
           <Link
             href={`/admin/products?edit=${id}`}
-            className="lab-btn bg-warning mb-3"
-            legacyBehavior>
+            className="lab-btn bg-warning mb-3">
             <i className="icofont-ui-edit me-1"></i>
             <span>Gérer ce produit</span>
           </Link>
@@ -161,17 +160,17 @@ const ProductDisplay = ({ item }) => {
           <span>Add To Cart</span>
         </button>
 
-        <Link href="/panier" className="lab-btn bg-primary" legacyBehavior>
-          <span>Check Out</span>
+        <Link href="/panier" className="lab-btn bg-primary">
+          Check Out
         </Link>
-        
+
         <button 
           type="button" 
           className="lab-btn bg-secondary"
           onClick={() => {
             // Récupérer les produits existants à comparer du localStorage
             const existingProductIds = JSON.parse(localStorage.getItem('comparisonProducts') || '[]');
-            
+
             // Vérifier si le produit est déjà dans la liste
             if (!existingProductIds.includes(id)) {
               // Limiter à 4 produits maximum
@@ -188,7 +187,7 @@ const ProductDisplay = ({ item }) => {
         </button>
       </div>
     </form>
-    
+
     {/* Boutons de partage social */}
     <SocialShareButtons 
       url={typeof window !== 'undefined' ? window.location.href : ''}
