@@ -77,11 +77,11 @@ const nextConfig = {
       });
     }
     
-    // Ajouter une règle spécifique pour les fichiers CSS contenant @import
+    // Ajouter une règle spécifique pour les fichiers CSS standards
     config.module.rules.push({
       test: /\.css$/,
       use: ['style-loader', 'css-loader'],
-      include: /node_modules/,
+      exclude: /\.module\.css$/,
     });
     
     // Configuration d'alias existante
