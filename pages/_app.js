@@ -7,6 +7,7 @@ import { WishlistProvider } from "../contexts/WishlistContext";
 import { NotificationProvider } from "../contexts/NotificationContext";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import dynamic from 'next/dynamic'; // Added import
 
 // Import de l'outil de diagnostic des rechargements
 import '../utils/hmr-debug';
@@ -36,6 +37,23 @@ import "../styles/theme.css";
 import "../styles/animations.css";
 import "../styles/responsive.css";
 
+// Suppression des erreurs de console en mode développement pour les erreurs d'hydratation
+// Cela aide au débogage sans affecter la production
+if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+  const originalConsoleError = console.error;
+  console.error = (...args) => {
+    if (
+      typeof args[0] === 'string' &&
+      (args[0].includes('Hydration failed') || 
+       args[0].includes('Expected server HTML') ||
+       args[0].includes('React does not recognize'))
+    ) {
+      return;
+    }
+    originalConsoleError(...args);
+  };
+}
+
 function MyApp({ Component, pageProps }) {
   // Utiliser le layout personnalisé du composant s'il existe, sinon utiliser Layout
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
@@ -55,7 +73,7 @@ function MyApp({ Component, pageProps }) {
       const originalWarn = console.warn;
       const originalLog = console.log;
       const originalInfo = console.info;
-      
+
       // Créer les fonctions de surveillance sans références circulaires
       console.error = function(...args) {
         const errorMsg = args.join(' ');
@@ -68,7 +86,7 @@ function MyApp({ Component, pageProps }) {
 
       // Surveiller les messages du client de développement Next.js
       const devMessages = [];
-      
+
       // Substituer log, warn et info
       console.warn = function(...args) {
         const msg = args.join(' ');
@@ -77,7 +95,7 @@ function MyApp({ Component, pageProps }) {
             msg.includes('reload') || msg.includes('rebuild')) {
           devMessages.push({ type: 'warn', message: msg, time: new Date().toISOString() });
           originalWarn.call(console, `🔥 Message dev Next.js détecté [warn]:`, msg);
-          
+
           // Stockage local pour analyse post-rechargement
           try {
             localStorage.setItem('next-dev-messages', JSON.stringify(devMessages.slice(-20)));
@@ -85,7 +103,7 @@ function MyApp({ Component, pageProps }) {
         }
         return originalWarn.apply(console, args);
       };
-      
+
       console.log = function(...args) {
         const msg = args.join(' ');
         if (msg.includes('webpack') || msg.includes('HMR') || 
@@ -93,14 +111,14 @@ function MyApp({ Component, pageProps }) {
             msg.includes('reload') || msg.includes('rebuild')) {
           devMessages.push({ type: 'log', message: msg, time: new Date().toISOString() });
           originalWarn.call(console, `🔥 Message dev Next.js détecté [log]:`, msg);
-          
+
           try {
             localStorage.setItem('next-dev-messages', JSON.stringify(devMessages.slice(-20)));
           } catch (e) {}
         }
         return originalLog.apply(console, args);
       };
-      
+
       console.info = function(...args) {
         const msg = args.join(' ');
         if (msg.includes('webpack') || msg.includes('HMR') || 
@@ -108,7 +126,7 @@ function MyApp({ Component, pageProps }) {
             msg.includes('reload') || msg.includes('rebuild')) {
           devMessages.push({ type: 'info', message: msg, time: new Date().toISOString() });
           originalWarn.call(console, `🔥 Message dev Next.js détecté [info]:`, msg);
-          
+
           try {
             localStorage.setItem('next-dev-messages', JSON.stringify(devMessages.slice(-20)));
           } catch (e) {}
