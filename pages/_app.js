@@ -49,17 +49,19 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       console.log('🔄 _app.js: Composant racine monté/rechargé à', new Date().toISOString());
-      
+
       // Surveiller les erreurs non gérées qui pourraient causer des rechargements
-      const originalError = console.error;
-      console.error = function(...args) {
+      const originalConsole = console;
+      const safeError = function(...args) {
         const errorMsg = args.join(' ');
         if (errorMsg.includes('Hydration') || errorMsg.includes('Rendering') || 
             errorMsg.includes('React state') || errorMsg.includes('chunk load')) {
-          console.warn('⚠️ Erreur potentiellement liée aux rechargements détectée:', errorMsg);
+          safeWarn('⚠️ Erreur potentiellement liée aux rechargements détectée:', errorMsg);
         }
-        return originalError.apply(console, args);
+        return originalConsole.error.apply(console, args);
       };
+      console.error = safeError;
+
 
       // Surveiller les messages du client de développement Next.js
       const devMessages = [];
@@ -69,21 +71,37 @@ function MyApp({ Component, pageProps }) {
         warn: console.warn
       };
 
+      const safeWarn = function(...args) {
+        originalConsole.warn(...args);
+      };
+      const safeLog = function(...args) {
+        originalConsole.log(...args);
+      };
+
       Object.keys(devOriginals).forEach(key => {
+        let wrappedConsoleMethod;
+        if (key === 'warn') {
+          wrappedConsoleMethod = safeWarn;
+        } else if (key === 'log') {
+          wrappedConsoleMethod = safeLog;
+        } else {
+          wrappedConsoleMethod = devOriginals[key];
+        }
+
         console[key] = function(...args) {
           const msg = args.join(' ');
           if (msg.includes('webpack') || msg.includes('HMR') || 
               msg.includes('hot') || msg.includes('module replacement') ||
               msg.includes('reload') || msg.includes('rebuild')) {
             devMessages.push({ type: key, message: msg, time: new Date().toISOString() });
-            console.warn(`🔥 Message dev Next.js détecté [${key}]:`, msg);
-            
+            safeWarn(`🔥 Message dev Next.js détecté [${key}]:`, msg);
+
             // Stockage local pour analyse post-rechargement
             try {
               localStorage.setItem('next-dev-messages', JSON.stringify(devMessages.slice(-20)));
             } catch (e) {}
           }
-          return devOriginals[key].apply(console, args);
+          return wrappedConsoleMethod.apply(console, args);
         };
       });
     }
