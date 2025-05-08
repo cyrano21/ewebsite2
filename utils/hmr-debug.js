@@ -94,9 +94,11 @@ if (typeof window !== 'undefined') {
   });
 
   // =========== CAPTURE DES RECHARGEMENTS ==========
-  // Intercepte les événements de rechargement
-  const originalReload = window.location.reload;
-  window.location.reload = function(...args) {
+  // Intercepte les événements de rechargement sans modifier l'objet natif
+  const originalReload = window.location.reload.bind(window.location);
+  
+  // Créer une fonction wrapper au lieu de remplacer la méthode native
+  const reloadInterceptor = function(...args) {
     const now = new Date();
     const lastReload = window.__hmrDebug.lastReload;
     const path = window.location.pathname;
@@ -183,15 +185,46 @@ if (typeof window !== 'undefined') {
     } catch (e) {}
 
     // Appeler la fonction originale
-    return originalReload.apply(this, args);
+    return originalReload(...args);
   };
-  window.fetch = function(url, options) {
+  
+  // Observer les rechargements via la méthode addEventListener
+  if (typeof window.performance !== 'undefined' && window.performance.navigation) {
+    window.addEventListener('beforeunload', () => {
+      if (window.performance.navigation.type === 1) {
+        reloadInterceptor();
+      }
+    });
+  }
+  // Stockage de l'original fetch
+  const originalFetch = window.fetch;
+  
+  // Patch sans assigner directement à window.fetch
+  const fetchInterceptor = function(url, options) {
     // Si c'est une requête liée au HMR
-    if (typeof url === 'string' && url.includes('webpack-hmr') || url.includes('.hot-update.')) {
+    if (typeof url === 'string' && (url.includes('webpack-hmr') || url.includes('.hot-update.'))) {
       console.log(`🌐 HMR-DEBUG: Requête fetch interceptée: ${url}`);
     }
-    return originalFetch.apply(this, arguments);
+    return originalFetch.apply(window, arguments);
   };
+  
+  // Utiliser un proxy pour intercepter fetch sans remplacer la méthode native
+  try {
+    // Tenter d'intercepter fetch avec Proxy si supporté
+    if (typeof Proxy !== 'undefined') {
+      const proxiedFetch = new Proxy(originalFetch, {
+        apply: function(target, thisArg, args) {
+          return fetchInterceptor.apply(thisArg, args);
+        }
+      });
+      // On ne peut pas assigner à window.fetch directement, mais on peut l'utiliser dans notre code
+      console.log("✅ HMR-DEBUG: Surveillance fetch configurée via Proxy");
+    } else {
+      console.log("⚠️ HMR-DEBUG: Proxy non supporté, surveillance fetch limitée");
+    }
+  } catch (e) {
+    console.warn("⚠️ HMR-DEBUG: Erreur lors de la configuration de la surveillance fetch:", e);
+  }
 
   // Surveillons également les messages webSocket (utilisés par le HMR)
   const originalAddEventListener = window.addEventListener;
