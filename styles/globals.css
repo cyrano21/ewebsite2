@@ -1,5 +1,5 @@
 /* Import global CSS files */
-@import "/assets/css/bootstrap-fixes.css";
+@import "../public/assets/css/bootstrap-fixes.css";
 @import "/assets/css/icofont.min.css";
 @import "/assets/css/animate.css";
 @import "/assets/css/style.min.css";
@@ -162,4 +162,3 @@ a:hover {
 
 .icofont-ui-rating { color: #ddd; } 
 .icofont-ui-rating.rated { color: #ffc107; }
-
