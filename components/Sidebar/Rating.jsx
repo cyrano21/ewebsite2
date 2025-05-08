@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Rating.module.css';
 
+// Vérification des styles au chargement du composant
+console.debug('Styles chargés Rating.module.css:', styles);
+
 const Rating = ({ initialRating = 0, size = 'medium', readOnly = false, onChange, totalStars = 5, showValue = true, id = 'rating' }) => {
   const [rating, setRating] = useState(initialRating);
   const [hoverRating, setHoverRating] = useState(0);
@@ -56,13 +59,16 @@ const Rating = ({ initialRating = 0, size = 'medium', readOnly = false, onChange
     const stars = [];
     const displayRating = hoverRating || rating;
     const starSize = getStarSize();
+    
+    // Accès sécurisé aux styles
+    const safeStyles = styles || {};
 
     for (let i = 1; i <= totalStars; i++) {
       const filled = i <= displayRating;
       stars.push(
         <span
           key={`star-${i}`}
-          className={`${styles.star} ${filled ? styles.filled : ''} icofont-ui-rating ${filled ? 'rated' : ''}`}
+          className={`${safeStyles.star || 'star'} ${filled ? (safeStyles.filled || 'filled') : ''} icofont-ui-rating ${filled ? 'rated' : ''}`}
           onClick={() => handleStarClick(i)}
           onMouseEnter={() => handleStarHover(i)}
           style={{ fontSize: starSize, cursor: readOnly ? 'default' : 'pointer' }}
@@ -74,20 +80,22 @@ const Rating = ({ initialRating = 0, size = 'medium', readOnly = false, onChange
     return stars;
   };
 
-  // Utiliser une vérification de sécurité pour éviter l'erreur
+  // Utiliser des classes par défaut si les styles ne sont pas chargés correctement
+  const safeStyles = styles || {};
+  
   return (
     <div 
-      className={styles.ratingContainer} 
+      className={safeStyles.ratingContainer || 'rating-container'} 
       ref={ratingContainerRef}
       onMouseLeave={handleMouseLeave}
       id={`${id}-container`}
       data-testid="rating-component"
     >
-      <div className={styles.starContainer} ref={ratingRef}>
+      <div className={safeStyles.starContainer || 'star-container'} ref={ratingRef}>
         {renderStars()}
       </div>
       {showValue && (
-        <span className={styles.ratingValue}>
+        <span className={safeStyles.ratingValue || 'rating-value'}>
           {rating.toFixed(1)}
         </span>
       )}
