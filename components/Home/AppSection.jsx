@@ -84,9 +84,11 @@ export default function AppSection() {
           <div className="w-40 h-auto"> {/* Contrôle la taille si nécessaire */}
             <Image
               src={cameraImage} // Utilise l'import de l'image de la caméra
-              alt="Appareil photo"
-              width={160} // Ajustez la taille d'affichage souhaitée
-              height={107} // Ajustez la taille d'affichage souhaitée (maintenir ratio)
+              alt="App Store"
+              width={160} // Largeur fixe
+              height={0} // Hauteur auto
+              sizes="100vw"
+              style={{ width: '100%', height: 'auto' }} // Maintient le ratio d'aspect
               className="object-contain" // Assure que l'image entière est visible
             />
           </div>
@@ -95,9 +97,11 @@ export default function AppSection() {
            <div className="w-40 h-auto"> {/* Contrôle la taille si nécessaire */}
              <Image
                src={shoeImage} // Utilise l'import de l'image de la chaussure
-               alt="Chaussure homme"
-               width={160} // Ajustez la taille d'affichage souhaitée
-               height={200} // Ajustez la taille d'affichage souhaitée (maintenir ratio)
+               alt="Google Play"
+               width={160} // Largeur fixe
+               height={0} // Hauteur auto
+               sizes="100vw"
+               style={{ width: '100%', height: 'auto' }} // Maintient le ratio d'aspect
                className="object-contain"
              />
            </div>

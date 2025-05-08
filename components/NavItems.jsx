@@ -35,31 +35,31 @@ const NavItems = () => {
   const user = authContext?.user;
   const logOut = authContext?.logOut || (() => {});
   const loading = authContext?.loading ?? true;
-  
+
   // Important: Éviter toute manipulation de DOM/window pendant le rendu initial
   // pour éviter les erreurs d'hydratation
   useEffect(() => {
     // Marquer que le composant est monté côté client
     setIsMounted(true);
-    
+
     // Gestion du défilement pour l'en-tête fixe
     const scrollHandler = () => {
       const scrollThreshold = 200;
       setHeaderFixed(window.scrollY > scrollThreshold);
     };
-    
+
     // Ajouter les écouteurs d'événements uniquement côté client
     window.addEventListener("scroll", scrollHandler);
     scrollHandler(); // Appliquer immédiatement
-    
+
     // Fonction pour charger les compteurs depuis localStorage
     const updateCounts = () => {
       try {
         if (typeof window === 'undefined') return; // Sécurité supplémentaire
-        
+
         const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
         const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
-        
+
         setCartCount(cartItems.length);
         setWishlistCount(wishlistItems.length);
       } catch (error) {
@@ -68,20 +68,20 @@ const NavItems = () => {
         setWishlistCount(0);
       }
     };
-    
+
     // Écouter les changements de stockage (pour les autres onglets)
     const storageHandler = (e) => {
       if (e.key === 'cart' || e.key === 'wishlist') {
         updateCounts();
       }
     };
-    
+
     // Initialiser les compteurs
     updateCounts();
-    
+
     // Ajouter les écouteurs de stockage
     window.addEventListener('storage', storageHandler);
-    
+
     // Nettoyer les écouteurs lors du démontage
     return () => {
       window.removeEventListener("scroll", scrollHandler);
@@ -160,7 +160,7 @@ const NavItems = () => {
                       width={150} 
                       height={60} 
                       priority 
-                      style={{ width: 'auto', height: '60px' }}
+                      style={{ width: 'auto', height: 'auto' }} // Corrected line
                     />
                   </span>
                 </CustomLink>
@@ -229,6 +229,7 @@ const NavItems = () => {
                         alt="Profile" 
                         width={40} 
                         height={40} 
+                        style={{ width: 'auto', height: 'auto' }} // Added style
                         onError={(e) => { e.target.src = clientAvatar; }}
                       />
                     ) : (
@@ -237,7 +238,8 @@ const NavItems = () => {
                         className="nav-profile rounded-circle"
                         alt="Default avatar"
                         width={40} 
-                        height={40} 
+                        height={40}
+                        style={{ width: 'auto', height: 'auto' }} // Added style
                       />
                     )
                   }
