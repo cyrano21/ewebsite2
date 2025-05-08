@@ -191,8 +191,15 @@ const SellerProducts = () => {
     );
   };
 
+  // Pour éviter les erreurs d'hydratation, on rend côté client uniquement
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   // État de chargement pendant la vérification de la session
-  if (status === 'loading') {
+  if (!mounted || status === 'loading') {
     return (
       <SellerLayout title="Produits">
         <Container className="py-5 text-center">
@@ -204,6 +211,8 @@ const SellerProducts = () => {
     );
   }
 
+  // Si non authentifié ou accès refusé, ces retours sont déjà gérés dans le useEffect
+  
   return (
     <SellerLayout title="Gestion des Produits">
       <Container fluid className="py-4">

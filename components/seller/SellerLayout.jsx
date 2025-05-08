@@ -25,6 +25,13 @@ const SellerLayout = ({ children, title = "Espace Vendeur" }) => {
     { label: 'Paramètres', path: '/seller/settings', icon: 'icofont-settings' },
   ];
 
+  // Utilisation d'useEffect pour éviter les erreurs d'hydratation
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <>
       <Head>
@@ -68,7 +75,7 @@ const SellerLayout = ({ children, title = "Espace Vendeur" }) => {
                 </Nav.Link>
               </Link>
               
-              {session?.user && (
+              {isMounted && session?.user && (
                 <Dropdown align="end">
                   <Dropdown.Toggle variant="outline-light" id="dropdown-seller-profile">
                     <i className="icofont-user me-1"></i>
