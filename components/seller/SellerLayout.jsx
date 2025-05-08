@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Container, Nav, Navbar, Dropdown, Button } from 'react-bootstrap';
 import { useSession, signOut } from 'next-auth/react';
