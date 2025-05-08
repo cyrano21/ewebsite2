@@ -1,0 +1,63 @@
+ecommerce-website@0.0.0 dev
+   ▲ Next.js 15.3.1
+   - Local:        http://localhost:4000
+   - Network:      http://172.31.128.43:4000
+   - Environments: .env
+
+ ✓ Starting...
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     Unrecognized key(s) in object: 'webpackDevMiddleware'
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ✓ Ready in 1822ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 848ms (250 modules)
+[Activity] GET / - User: Anonymous (visitor)
+ ○ Compiling / ...
+ ✓ Compiled / in 6.3s (1315 modules)
+ ⨯ ReferenceError: window is not defined
+    at eval (utils/hmr-debug.js:550:0)
+    at (pages-dir-node)/./utils/hmr-debug.js (.next/server/pages/_app.js:222:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(pages-dir-node)/./pages/_app.js:21:75)
+    at __webpack_require__.a (.next/server/webpack-runtime.js:97:13)
+    at eval (webpack-internal:///(pages-dir-node)/./pages/_app.js:1:21)
+    at (pages-dir-node)/./pages/_app.js (.next/server/pages/_app.js:141:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at __webpack_exec__ (.next/server/pages/_app.js:667:39)
+    at <unknown> (.next/server/pages/_app.js:668:193)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:215:21)
+    at <unknown> (.next/server/pages/_app.js:668:47)
+    at Object.<anonymous> (.next/server/pages/_app.js:671:3)
+  548 |
+  549 | // Fonctions utilitaires pour aider à résoudre les problèmes HMR courants
+> 550 | window.__hmrDebugGetStatus = function() {
+  551 |   if (!window.__hmrDebug) return 'Outil de débogage HMR non initialisé';
+  552 |   
+  553 |   return { {
+  page: '/'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1767ms (1315 modules)
+ ⨯ ReferenceError: window is not defined
+    at eval (utils/hmr-debug.js:550:0)
+    at (pages-dir-node)/./utils/hmr-debug.js (.next/server/pages/_app.js:222:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(pages-dir-node)/./pages/_app.js:21:75)
+    at __webpack_require__.a (.next/server/webpack-runtime.js:97:13)
+    at eval (webpack-internal:///(pages-dir-node)/./pages/_app.js:1:21)
+    at (pages-dir-node)/./pages/_app.js (.next/server/pages/_app.js:141:1)
+    at __webpack_require__ (.next/server/webpack-runtime.js:33:42)
+    at __webpack_exec__ (.next/server/pages/_app.js:667:39)
+    at <unknown> (.next/server/pages/_app.js:668:193)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:215:21)
+    at <unknown> (.next/server/pages/_app.js:668:47)
+    at Object.<anonymous> (.next/server/pages/_app.js:671:3)
+  548 |
+  549 | // Fonctions utilitaires pour aider à résoudre les problèmes HMR courants
+> 550 | window.__hmrDebugGetStatus = function() {
+  551 |   if (!window.__hmrDebug) return 'Outil de débogage HMR non initialisé';
+  552 |   
+  553 |   return {
+ GET / 500 in 9518ms
+ ⚠ Cross origin request detected from 7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
