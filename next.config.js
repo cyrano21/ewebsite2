@@ -46,12 +46,24 @@ const nextConfig = {
               ...rule.options,
               importLoaders: 2,
               url: false,
+              import: true,
+              modules: {
+                auto: true,
+                localIdentName: '[local]_[hash:base64:5]',
+              }
             }
           };
         }
         return rule;
       });
     }
+    
+    // Ajouter une règle spécifique pour les fichiers CSS contenant @import
+    config.module.rules.push({
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
+      include: /node_modules/,
+    });
     
     // Configuration d'alias existante
     config.resolve.alias = {

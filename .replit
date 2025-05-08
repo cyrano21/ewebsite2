@@ -35,3 +35,12 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "NODE_OPTIONS=\"--max-old-space-size=4096\" npm run dev -- -p 4000"
+
+[[workflows.workflow]]
+name = "Développement sans HMR"
+author = 34914625
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_OPTIONS=\"--max-old-space-size=4096\" NEXT_DISABLE_HMR=true npm run dev -- -p 4000"

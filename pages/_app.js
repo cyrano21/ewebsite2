@@ -9,13 +9,10 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import dynamic from 'next/dynamic'; // Added import
 
-// Import de l'outil de diagnostic des rechargements
-import '../utils/hmr-debug';
+// Désactiver temporairement le HMR pour éviter les rechargements en boucle
+import '../utils/disable-hmr';
 
-// Le correctif pour le rechargement a été supprimé car il causait des rechargements en boucle
-
-
-// Importer l'outil de débogage HMR
+// L'outil de diagnostic restera disponible mais en mode passif
 import setupHMRDebug from '../utils/hmr-debug';
 
 // Styles importés de façon optimisée pour la production
