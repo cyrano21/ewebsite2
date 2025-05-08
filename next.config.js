@@ -21,6 +21,36 @@ const nextConfig = {
         aggregateTimeout: 300,
         ignored: /node_modules/,
       };
+      
+      // Désactiver la limite de taille des hot updates pour éviter les erreurs
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        chunks: 'all',
+        cacheGroups: {
+          ...config.optimization.splitChunks.cacheGroups,
+          default: false,
+        },
+      };
+    }
+    
+    // Améliorer la gestion des règles CSS pour éviter le problème "@import rules are not allowed here"
+    const rules = config.module.rules.find(rule => typeof rule.oneOf === 'object').oneOf;
+    const cssRule = rules.find(rule => rule.sideEffects === false && rule.test && rule.test.toString().includes('css'));
+    
+    if (cssRule) {
+      cssRule.use = cssRule.use.map(rule => {
+        if (rule.loader && rule.loader.includes('css-loader')) {
+          return {
+            ...rule,
+            options: {
+              ...rule.options,
+              importLoaders: 2,
+              url: false,
+            }
+          };
+        }
+        return rule;
+      });
     }
     
     // Configuration d'alias existante
