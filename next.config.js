@@ -36,6 +36,13 @@ const nextConfig = {
     // Améliorer la gestion des règles CSS pour éviter le problème "@import rules are not allowed here"
     const rules = config.module.rules.find(rule => typeof rule.oneOf === 'object').oneOf;
     
+    // Configuration pour les data URLs SVG dans les CSS
+    config.module.rules.push({
+      test: /\.svg$/i,
+      type: 'asset',
+      resourceQuery: /url/, // *.svg?url
+    });
+    
     // Configuration spécifique pour CSS Modules
     config.module.rules.push({
       test: /\.module\.css$/,
@@ -48,6 +55,9 @@ const nextConfig = {
               localIdentName: '[local]_[hash:base64:5]',
             },
             importLoaders: 1,
+            url: {
+              filter: (url) => !url.startsWith('data:'),
+            },
           },
         },
       ],
@@ -64,7 +74,9 @@ const nextConfig = {
             options: {
               ...rule.options,
               importLoaders: 2,
-              url: false,
+              url: {
+                filter: (url) => !url.startsWith('data:'),
+              },
               import: true,
               modules: {
                 auto: true,
@@ -77,10 +89,21 @@ const nextConfig = {
       });
     }
     
-    // Ajouter une règle spécifique pour les fichiers CSS standards
+    // Ajouter une règle spécifique pour Bootstrap et autres fichiers CSS standards
     config.module.rules.push({
       test: /\.css$/,
-      use: ['style-loader', 'css-loader'],
+      use: [
+        'style-loader', 
+        {
+          loader: 'css-loader',
+          options: {
+            url: {
+              filter: (url) => !url.startsWith('data:'),
+            },
+            importLoaders: 1,
+          }
+        }
+      ],
       exclude: /\.module\.css$/,
     });
     

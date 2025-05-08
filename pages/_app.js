@@ -17,7 +17,11 @@ import setupHMRDebug from '../utils/hmr-debug';
 
 // Styles importés de façon optimisée pour la production
 // Styles externes
-import "bootstrap/dist/css/bootstrap.min.css";
+// Import Bootstrap JS d'abord
+import { useEffect } from 'react';
+
+// Import CSS avec une approche qui évite les problèmes de data URLs
+import '../styles/bootstrap-custom.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -57,7 +61,7 @@ function MyApp({ Component, pageProps }) {
 
   // Charger Bootstrap JS côté client uniquement
   useEffect(() => {
-    import("bootstrap/dist/js/bootstrap.min.js");
+    import("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
 
   // Ajout d'un log pour identifier les montages/rechargements du composant racine
