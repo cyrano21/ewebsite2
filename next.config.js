@@ -35,6 +35,25 @@ const nextConfig = {
     
     // Améliorer la gestion des règles CSS pour éviter le problème "@import rules are not allowed here"
     const rules = config.module.rules.find(rule => typeof rule.oneOf === 'object').oneOf;
+    
+    // Configuration spécifique pour CSS Modules
+    config.module.rules.push({
+      test: /\.module\.css$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              localIdentName: '[local]_[hash:base64:5]',
+            },
+            importLoaders: 1,
+          },
+        },
+      ],
+    });
+    
+    // Configuration générale pour les fichiers CSS standards
     const cssRule = rules.find(rule => rule.sideEffects === false && rule.test && rule.test.toString().includes('css'));
     
     if (cssRule) {

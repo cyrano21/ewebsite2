@@ -1,19 +1,20 @@
+
 /* NavItems.module.css */
 
 .navIconLink {
     margin: 0 0.75rem;
     display: inline-block;
-  }
+}
   
-  .iconWithBadge {
+.iconWithBadge {
     position: relative;
     display: inline-flex;
     align-items: center;
     font-size: 1.25rem;
     line-height: 1;
-  }
+}
   
-  .badgeCart {
+.badgeCart {
     position: absolute;
     top: -0.4em;
     right: -0.4em;
@@ -29,9 +30,9 @@
     justify-content: center;
     font-weight: 600;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
   
-  .badgeWishlist {
+.badgeWishlist {
     position: absolute;
     top: -0.4em;
     right: -0.4em;
@@ -46,6 +47,8 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 /* Styles pour le menu mobile */
 .menuTrigger {
@@ -86,7 +89,3 @@
     border-bottom: none;
   }
 }
-
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
