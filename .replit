@@ -16,7 +16,7 @@ localPort = 3001
 externalPort = 3001
 
 [workflows]
-runButton = "Run"
+runButton = "Développement avec correctif HMR"
 
 [[workflows.workflow]]
 name = "Run"
@@ -44,3 +44,12 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "NODE_OPTIONS=\"--max-old-space-size=4096\" NEXT_DISABLE_HMR=true npm run dev -- -p 4000"
+
+[[workflows.workflow]]
+name = "Développement avec correctif HMR"
+author = 34914625
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_OPTIONS=\"--max-old-space-size=4096\" NEXT_PUBLIC_DISABLE_HMR=false npm run dev -- -p 4000"

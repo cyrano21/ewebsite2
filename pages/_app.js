@@ -9,8 +9,8 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import dynamic from 'next/dynamic'; // Added import
 
-// Désactiver temporairement le HMR pour éviter les rechargements en boucle
-import '../utils/disable-hmr';
+// Remplacer le désactivateur HMR par le correctif WebSocket HMR
+import setupFixWebsocketHMR from '../utils/fix-websocket-hmr';
 
 // L'outil de diagnostic restera disponible mais en mode passif
 import setupHMRDebug from '../utils/hmr-debug';
