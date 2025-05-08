@@ -1,0 +1,635 @@
+f07ea26f-16cb-48fd-8a5d-7dcecdab061d:7 
+            
+            
+           POST https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g net::ERR_BLOCKED_BY_CLIENT
+qgZet @ f07ea26f-16cb-48fd-8a5d-7dcecdab061d:7
+window.<computed> @ f07ea26f-16cb-48fd-8a5d-7dcecdab061d:7
+(anonymous) @ f07ea26f-16cb-48fd-8a5d-7dcecdab061d:7
+(anonymous) @ f07ea26f-16cb-48fd-8a5d-7dcecdab061d:10
+hmr-debug.js:6 🔍 HMR-DEBUG: Initialisation de l'outil de diagnostic des rechargements
+hmr-debug.js:135 🔄 EVENT HMR: ✅ HMR-DEBUG: Surveillance fetch configurée
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+eval @ hmr-debug.js:401
+(pages-dir-browser)/./utils/hmr-debug.js @ _app.js:326
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+fn @ webpack.js:360
+eval @ _app.js:22
+(pages-dir-browser)/./pages/_app.js @ _app.js:245
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+fn @ webpack.js:360
+eval @ next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app!:5
+eval @ route-loader.js:238
+Promise.then
+onEntrypoint @ route-loader.js:238
+register @ index.js:163
+eval @ next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app!:2
+(pages-dir-browser)/./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app! @ _app.js:234
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+__webpack_exec__ @ _app.js:382
+(anonymous) @ _app.js:383
+__webpack_require__.O @ webpack.js:84
+(anonymous) @ _app.js:384
+webpackJsonpCallback @ webpack.js:1283
+(anonymous) @ _app.js:9
+hmr-debug.js:160 ✅ HMR-DEBUG: Surveillance fetch configurée
+hmr-debug.js:135 🔄 EVENT HMR: ✅ HMR-DEBUG: Surveillance des ressources réseau configurée
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+eval @ hmr-debug.js:439
+(pages-dir-browser)/./utils/hmr-debug.js @ _app.js:326
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+fn @ webpack.js:360
+eval @ _app.js:22
+(pages-dir-browser)/./pages/_app.js @ _app.js:245
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+fn @ webpack.js:360
+eval @ next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app!:5
+eval @ route-loader.js:238
+Promise.then
+onEntrypoint @ route-loader.js:238
+register @ index.js:163
+eval @ next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app!:2
+(pages-dir-browser)/./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app! @ _app.js:234
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+__webpack_exec__ @ _app.js:382
+(anonymous) @ _app.js:383
+__webpack_require__.O @ webpack.js:84
+(anonymous) @ _app.js:384
+webpackJsonpCallback @ webpack.js:1283
+(anonymous) @ _app.js:9
+hmr-debug.js:160 ✅ HMR-DEBUG: Surveillance des ressources réseau configurée
+hmr-debug.js:135 🔄 EVENT HMR: ✅ HMR-DEBUG: Surveillance complète du rechargement activée
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+eval @ hmr-debug.js:546
+(pages-dir-browser)/./utils/hmr-debug.js @ _app.js:326
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+fn @ webpack.js:360
+eval @ _app.js:22
+(pages-dir-browser)/./pages/_app.js @ _app.js:245
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+fn @ webpack.js:360
+eval @ next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app!:5
+eval @ route-loader.js:238
+Promise.then
+onEntrypoint @ route-loader.js:238
+register @ index.js:163
+eval @ next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app!:2
+(pages-dir-browser)/./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=private-next-pages%2F_app&page=%2F_app! @ _app.js:234
+options.factory @ webpack.js:703
+__webpack_require__ @ webpack.js:37
+__webpack_exec__ @ _app.js:382
+(anonymous) @ _app.js:383
+__webpack_require__.O @ webpack.js:84
+(anonymous) @ _app.js:384
+webpackJsonpCallback @ webpack.js:1283
+(anonymous) @ _app.js:9
+hmr-debug.js:160 ✅ HMR-DEBUG: Surveillance complète du rechargement activée
+hmr-debug.js:135 🔄 EVENT HMR: [HMR] connected
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+handleOnline @ websocket.js:42
+hmr-debug.js:160 [HMR] connected
+hmr-debug.js:135 🔄 EVENT HMR: 🌐 HMR-DEBUG: Requête fetch HMR interceptée: /_next/static/webpack/a970b868786213df.webpack.hot-update.json
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+fetchInterceptor @ hmr-debug.js:348
+window.fetch @ hmr-debug.js:399
+__webpack_require__.hmrM @ webpack.js:1262
+Promise.then
+hotCheck @ webpack.js:544
+tryApplyUpdatesWebpack @ hot-reloader-client.js:355
+handleSuccess @ hot-reloader-client.js:114
+processMessage @ hot-reloader-client.js:240
+eval @ hot-reloader-client.js:71
+handleMessage @ websocket.js:65
+hmr-debug.js:160 🌐 HMR-DEBUG: Requête fetch HMR interceptée: /_next/static/webpack/a970b868786213df.webpack.hot-update.json
+logo.png:1 
+            
+            
+           GET https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/seller/logo.png 404 (Not Found)
+Image
+4gaGD @ content.06af5f40.js:1
+f @ content.06af5f40.js:1
+4gaGD @ content.06af5f40.js:1
+(anonymous) @ content.06af5f40.js:1
+hmr-debug.js:135 🔄 EVENT HMR: 📊 HMR-DEBUG: Ressource HMR chargée (fetch): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/a970b868786213df.webpack.hot-update.json
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:160 📊 HMR-DEBUG: Ressource HMR chargée (fetch): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/a970b868786213df.webpack.hot-update.json
+hmr-debug.js:160 🔄 _app.js: Composant racine monté/rechargé à 2025-05-08T13:37:56.270Z
+hmr-debug.js:160 🔄 _app.js: Composant racine monté/rechargé à 2025-05-08T13:37:56.288Z
+hmr-debug.js:160 Image with src "/assets/images/logo/logo2.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+warnOnce @ warn-once.js:16
+eval @ image-component.js:111
+Promise.then
+handleLoading @ image-component.js:36
+eval @ image-component.js:153
+applyRef @ use-merged-ref.js:49
+eval @ use-merged-ref.js:39
+commitAttachRef @ react-dom.development.js:23679
+commitLayoutEffectOnFiber @ react-dom.development.js:23537
+commitLayoutMountEffects_complete @ react-dom.development.js:24722
+commitLayoutEffects_begin @ react-dom.development.js:24708
+commitLayoutEffects @ react-dom.development.js:24646
+commitRootImpl @ react-dom.development.js:26857
+commitRoot @ react-dom.development.js:26716
+finishConcurrentRender @ react-dom.development.js:26015
+performConcurrentWorkOnRoot @ react-dom.development.js:25843
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:160 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:160 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:113
+MyApp.useEffect @ _app.js:119
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:160 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:113
+MyApp.useEffect @ _app.js:119
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:135 🔄 EVENT HMR: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:119
+MyApp.useEffect @ _app.js:119
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410
+hmr-debug.js:160 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.a970b868786213df.hot-update.js
+hmr-debug.js:160 NavItems: utilisateur chargé {userLoggedIn: false, role: 'N/A', sellerStatus: 'N/A'}
+content-scripts.js:2 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at h (content-scripts.js:2:97219)
+h @ content-scripts.js:2
+dashboard:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+hmr-debug.js:135 🔄 EVENT HMR: [Fast Refresh] done in 1746711477696ms
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:119
+MyApp.useEffect @ _app.js:119
+reportHmrLatency @ report-hmr-latency.js:14
+handleApplyUpdates @ hot-reloader-client.js:351
+eval @ hot-reloader-client.js:366
+Promise.then
+tryApplyUpdatesWebpack @ hot-reloader-client.js:365
+handleSuccess @ hot-reloader-client.js:114
+processMessage @ hot-reloader-client.js:240
+eval @ hot-reloader-client.js:71
+handleMessage @ websocket.js:65
+hmr-debug.js:160 [Fast Refresh] done in 1746711477696ms
+hmr-debug.js:160 NavItems: utilisateur chargé {userLoggedIn: true, role: 'admin', sellerStatus: 'N/A'}
+dashboard:1 Access to fetch at 'https://extensions.aitopia.ai/ai/prompts' from origin 'https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+5b6d41c8f3d086816edf7147d0e5be66.js:11 
+            
+            
+           POST https://extensions.aitopia.ai/ai/prompts net::ERR_FAILED
+fetchWithTimeout @ 5b6d41c8f3d086816edf7147d0e5be66.js:11
+apiCall @ 5b6d41c8f3d086816edf7147d0e5be66.js:11
+(anonymous) @ 1c25847c7fc02d4653adfd0d76358356.js:40
+Promise.then
+getPrompts @ 1c25847c7fc02d4653adfd0d76358356.js:40
+finish @ 1c25847c7fc02d4653adfd0d76358356.js:36
+mounted @ 1c25847c7fc02d4653adfd0d76358356.js:40
+(anonymous) @ ead41015014512fa5b1aedaebaed4448.js:14
+cn @ ead41015014512fa5b1aedaebaed4448.js:13
+Ve @ ead41015014512fa5b1aedaebaed4448.js:13
+t.__weh.t.__weh @ ead41015014512fa5b1aedaebaed4448.js:14
+Vn @ ead41015014512fa5b1aedaebaed4448.js:13
+vr @ ead41015014512fa5b1aedaebaed4448.js:14
+mount @ ead41015014512fa5b1aedaebaed4448.js:14
+t.mount @ ead41015014512fa5b1aedaebaed4448.js:18
+(anonymous) @ a06923325df9fc23634226f1be1668ff.js:1
+hmr-debug.js:135 🔄 EVENT HMR: Warning: validateDOMNesting(...): %s cannot appear as a descendant of <%s>.%s <a> a 
+    at a
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/@restart/ui/esm/Anchor.js:30:7)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/NavLink.js:24:11)
+    at a
+    at LinkComponent (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/link.js:134:19)
+    at div
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/@restart/ui/esm/Nav.js:36:11)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Nav.js:32:212)
+    at div
+    at Transition (webpack-internal:///(pages-dir-browser)/./node_modules/react-transition-group/esm/Transition.js:134:30)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/TransitionWrapper.js:20:11)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Collapse.js:54:11)
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/NavbarCollapse.js:20:11)
+    at div
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Container.js:18:11)
+    at nav
+    at eval (webpack-internal:///(pages-dir-browser)/./node_modules/react-bootstrap/esm/Navbar.js:37:170)
+    at div
+    at SellerLayout (webpack-internal:///(pages-dir-browser)/./components/seller/SellerLayout.jsx:26:11)
+    at SellerDashboard (webpack-internal:///(pages-dir-browser)/./pages/seller/dashboard.js:32:98)
+    at main
+    at Layout (webpack-internal:///(pages-dir-browser)/./components/Layout.jsx:29:11)
+    at WishlistProvider (webpack-internal:///(pages-dir-browser)/./contexts/WishlistContext.tsx:33:11)
+    at NotificationProvider (webpack-internal:///(pages-dir-browser)/./contexts/NotificationContext.jsx:36:11)
+    at AuthProvider (webpack-internal:///(pages-dir-browser)/./contexts/AuthProvider.jsx:33:11)
+    at SessionProvider (webpack-internal:///(pages-dir-browser)/./node_modules/next-auth/react/index.js:365:24)
+    at MyApp (webpack-internal:///(pages-dir-browser)/./pages/_app.js:93:11)
+    at PathnameContextProviderAdapter (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/shared/lib/router/adapters.js:81:11)
+    at PagesDevOverlayErrorBoundary (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay-error-boundary.js:32:9)
+    at PagesDevOverlay (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay.js:18:11)
+    at Container (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:80:1)
+    at AppContainer (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:188:11)
+    at Root (webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/index.js:417:11)
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+console.error @ _app.js:53
+MyApp.useEffect @ _app.js:84
+MyApp.useEffect @ _app.js:84
+printWarning @ react-dom.development.js:86
+error @ react-dom.development.js:60
+validateDOMNesting @ react-dom.development.js:10849
+createInstance @ react-dom.development.js:10930
+completeWork @ react-dom.development.js:22221
+completeUnitOfWork @ react-dom.development.js:26630
+performUnitOfWork @ react-dom.development.js:26602
+workLoopSync @ react-dom.development.js:26500
+renderRootSync @ react-dom.development.js:26468
+performConcurrentWorkOnRoot @ react-dom.development.js:25772
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+hmr-debug.js:160 Warning: validateDOMNesting(...): <a> cannot appear as a descendant of <a>. Error Component Stack
+    at a (<anonymous>)
+    at eval (Anchor.js:30:7)
+    at eval (NavLink.js:24:11)
+    at a (<anonymous>)
+    at LinkComponent (link.js:134:19)
+    at div (<anonymous>)
+    at eval (Nav.js:36:11)
+    at eval (Nav.js:32:212)
+    at div (<anonymous>)
+    at Transition (Transition.js:134:30)
+    at eval (TransitionWrapper.js:20:11)
+    at eval (Collapse.js:54:11)
+    at eval (NavbarCollapse.js:20:11)
+    at div (<anonymous>)
+    at eval (Container.js:18:11)
+    at nav (<anonymous>)
+    at eval (Navbar.js:37:170)
+    at div (<anonymous>)
+    at SellerLayout (SellerLayout.jsx:8:25)
+    at SellerDashboard (dashboard.js:13:47)
+    at main (<anonymous>)
+    at Layout (Layout.jsx:12:3)
+    at WishlistProvider (WishlistContext.tsx:29:3)
+    at NotificationProvider (NotificationContext.jsx:24:40)
+    at AuthProvider (AuthProvider.jsx:18:32)
+    at SessionProvider (index.js:365:24)
+    at MyApp (_app.js:57:18)
+    at PathnameContextProviderAdapter (adapters.js:81:11)
+    at PagesDevOverlayErrorBoundary (pages-dev-overlay-error-boundary.js:32:9)
+    at PagesDevOverlay (pages-dev-overlay.js:18:11)
+    at Container (index.js:80:1)
+    at AppContainer (index.js:188:11)
+    at Root (index.js:417:11)
+overrideMethod @ hook.js:608
+nextJsHandleConsoleError @ client.js:82
+console.<computed> @ hmr-debug.js:160
+console.error @ _app.js:53
+MyApp.useEffect @ _app.js:84
+MyApp.useEffect @ _app.js:84
+printWarning @ react-dom.development.js:86
+error @ react-dom.development.js:60
+validateDOMNesting @ react-dom.development.js:10849
+createInstance @ react-dom.development.js:10930
+completeWork @ react-dom.development.js:22221
+completeUnitOfWork @ react-dom.development.js:26630
+performUnitOfWork @ react-dom.development.js:26602
+workLoopSync @ react-dom.development.js:26500
+renderRootSync @ react-dom.development.js:26468
+performConcurrentWorkOnRoot @ react-dom.development.js:25772
+workLoop @ scheduler.development.js:266
+flushWork @ scheduler.development.js:239
+performWorkUntilDeadline @ scheduler.development.js:533
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+chunk-mgcl-J7NER3OQ.js:16 @import rules are not allowed here. See https://github.com/WICG/construct-stylesheets/issues/119#issuecomment-588352418.
+(anonymous) @ chunk-mgcl-J7NER3OQ.js:16
+await in (anonymous)
+(anonymous) @ chunk-mgcl-J7NER3OQ.js:16
+(anonymous) @ chunk-mgcl-WQN5JPZJ.js:1
+(anonymous) @ chunk-mgcl-WQN5JPZJ.js:1
+vl @ chunk-mgcl-DT437CWL.js:8
+qn @ chunk-mgcl-DT437CWL.js:8
+ms @ chunk-mgcl-DT437CWL.js:8
+vn @ chunk-mgcl-DT437CWL.js:6
+Te @ chunk-mgcl-DT437CWL.js:8
+ad @ chunk-mgcl-DT437CWL.js:6
+next @ chunk-mgcl-WEORPZNG.js:1
+r.next @ chunk-mgcl-YQG6UI73.js:3
+e._next @ chunk-mgcl-YQG6UI73.js:3
+e.next @ chunk-mgcl-YQG6UI73.js:3
+(anonymous) @ chunk-mgcl-YQG6UI73.js:3
+p._next @ chunk-mgcl-YQG6UI73.js:3
+e.next @ chunk-mgcl-YQG6UI73.js:3
+(anonymous) @ chunk-mgcl-VZFBRIOU.js:1
+r.next @ chunk-mgcl-YQG6UI73.js:3
+e._next @ chunk-mgcl-YQG6UI73.js:3
+e.next @ chunk-mgcl-YQG6UI73.js:3
+(anonymous) @ chunk-mgcl-YQG6UI73.js:3
+K @ chunk-mgcl-YQG6UI73.js:3
+e.next @ chunk-mgcl-YQG6UI73.js:3
+We @ chunk-mgcl-VZFBRIOU.js:1
+(anonymous) @ chunk-mgcl-VZFBRIOU.js:1
+await in (anonymous)
+(anonymous) @ chunk-mgcl-VZFBRIOU.js:1
+r @ chunk-mgcl-VZFBRIOU.js:1
+hmr-debug.js:160 NavItems: utilisateur chargé {userLoggedIn: true, role: 'admin', sellerStatus: 'N/A'}
+hmr-debug.js:160 NavItems: utilisateur chargé {userLoggedIn: true, role: 'admin', sellerStatus: 'N/A'}
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 NavItems: utilisateur chargé {userLoggedIn: true, role: 'admin', sellerStatus: 'N/A'}
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+sayHelloToBackendManager @ proxy.js:1
+(anonymous) @ proxy.js:1
+setInterval
+(anonymous) @ proxy.js:1
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+sayHelloToBackendManager @ proxy.js:1
+(anonymous) @ proxy.js:1
+setInterval
+(anonymous) @ proxy.js:1
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+sayHelloToBackendManager @ proxy.js:1
+(anonymous) @ proxy.js:1
+setInterval
+(anonymous) @ proxy.js:1
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:526
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:526
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:526
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:113
+eval @ hmr-debug.js:526
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:113
+MyApp.useEffect @ _app.js:119
+eval @ hmr-debug.js:526
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:113
+MyApp.useEffect @ _app.js:119
+eval @ hmr-debug.js:526
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:135 🔄 EVENT HMR: 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:119
+MyApp.useEffect @ _app.js:119
+eval @ hmr-debug.js:526
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 📊 HMR-DEBUG: Dernier rechargement à 2025-05-08T13:36:44.788Z sur /seller/dashboard
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [warn]: ⚠️ HMR-DEBUG: Problèmes potentiels détectés: [object Object],[object Object]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:97
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [warn]: ⚠️ HMR-DEBUG: Problèmes potentiels détectés: [object Object],[object Object]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:97
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [warn]: ⚠️ HMR-DEBUG: Problèmes potentiels détectés: [object Object],[object Object]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:97
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 🔥 Message dev Next.js détecté [warn]: ⚠️ HMR-DEBUG: Problèmes potentiels détectés: [object Object],[object Object]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:97
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [warn]: ⚠️ HMR-DEBUG: Problèmes potentiels détectés: [object Object],[object Object]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:104
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 🔥 Message dev Next.js détecté [warn]: ⚠️ HMR-DEBUG: Problèmes potentiels détectés: [object Object],[object Object]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:97
+MyApp.useEffect @ _app.js:104
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:135 🔄 EVENT HMR: ⚠️ HMR-DEBUG: Problèmes potentiels détectés: [{"type":"failed-modules","description":"Modules webpack qui ont échoué à charger","count":3},{"type":"hot-update-errors","description":"Erreurs de ressources Hot Update","count":3}]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 ⚠️ HMR-DEBUG: Problèmes potentiels détectés: (2) [{…}, {…}]
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+eval @ hmr-debug.js:531
+setTimeout
+eval @ hmr-debug.js:520
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+sayHelloToBackendManager @ proxy.js:1
+(anonymous) @ proxy.js:1
+setInterval
+(anonymous) @ proxy.js:1
+hmr-debug.js:160 SalesChart - données reçues: (30) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+hmr-debug.js:160 SalesChart - données préparées: {labels: Array(7), salesData: Array(7), ordersData: Array(7)}
+hmr-debug.js:160 SalesChart - données reçues: (30) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+hmr-debug.js:160 SalesChart - données préparées: {labels: Array(7), salesData: Array(7), ordersData: Array(7)}
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+sayHelloToBackendManager @ proxy.js:1
+(anonymous) @ proxy.js:1
+setInterval
+(anonymous) @ proxy.js:1
+hmr-debug.js:160 SalesChart - données reçues: (30) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+hmr-debug.js:160 SalesChart - données préparées: {labels: Array(7), salesData: Array(7), ordersData: Array(7)}
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+sayHelloToBackendManager @ proxy.js:1
+(anonymous) @ proxy.js:1
+setInterval
+(anonymous) @ proxy.js:1
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+handleMessageFromDevtools @ proxy.js:1
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+handleMessageFromDevtools @ proxy.js:1
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+handleMessageFromDevtools @ proxy.js:1
+hmr-debug.js:160 React DevTools detected duplicate welcome "message" events from the content script.
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:104
+MyApp.useEffect @ _app.js:104
+welcome @ backendManager.js:1
+wrappedListener @ hmr-debug.js:511
+postMessage
+handleMessageFromDevtools @ proxy.js:1
+content-all.js:1 Uncaught (in promise) Error: Cannot find menu item with id save-page
+    at y (content-all.js:1:49083)
+y @ content-all.js:1
+content-all.js:1 Uncaught (in promise) Error: Cannot find menu item with id save-page
+    at y (content-all.js:1:49083)
+y @ content-all.js:1
+dashboard:1 Error handling response: TypeError: Cannot read properties of undefined (reading 'querySelector')
+    at chrome-extension://aihgkhchhecmambgbonicffgneidgclh/content-script.js:1:67487
+content-all.js:1 Uncaught (in promise) Error: Cannot find menu item with id translate-page
+    at y (content-all.js:1:49083)
+y @ content-all.js:1
