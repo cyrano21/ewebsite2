@@ -1,3 +1,4 @@
+
 // Fichier: next.config.js
 /** @type {import('next').NextConfig} */
 const path = require('path');
@@ -10,8 +11,9 @@ const nextConfig = {
       { protocol: 'https', hostname: '**' },
       { protocol: 'http', hostname: 'localhost' }
     ],
+  },
 
-  // Configuration HMR améliorée
+  // Configuration HMR améliorée (déplacée au niveau racine)
   webpackDevMiddleware: (config) => {
     config.watchOptions = {
       poll: 1000,
@@ -20,24 +22,18 @@ const nextConfig = {
     };
     return config;
   },
+  
   poweredByHeader: false,
+  
   // Améliorer la stabilité du HMR
   onDemandEntries: {
     maxInactiveAge: 60 * 60 * 1000, // 1 heure
     pagesBufferLength: 5,
   },
 
-  },
-
   sassOptions: {
     includePaths: ['./styles'],
   },
-
-  // Potentiellement à commenter si les problèmes persistent après d'autres étapes
-  // compiler: {
-  //   styledComponents: true,
-  //   emotion: true
-  // },
 
   webpack: (config) => {
     config.resolve.alias = {
@@ -52,12 +48,6 @@ const nextConfig = {
     };
     return config;
   },
-
-  // onDemandEntries commenté
-  // onDemandEntries: {
-  //   maxInactiveAge: 60 * 60 * 1000,
-  //   pagesBufferLength: 5,
-  // },
 
   env: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:4000',
