@@ -4,13 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Button, ProgressBar } from 'react-bootstrap';
 import Link from 'next/link';
 import PageHeader from '../../components/PageHeader';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
-import { Pie, Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { useNotifications, NOTIFICATION_TYPES } from '../../contexts/NotificationContext';
-
-// Enregistrer les composants ChartJS nécessaires
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
 const AdminDashboard = () => {
   const { addNotification } = useNotifications();
@@ -362,30 +357,33 @@ const AdminDashboard = () => {
         </Row>
 
         {/* Nouveau widget: Statistiques et graphiques */}
-        <Row className="mb-4 gx-3 gy-4">
-          {/* Graphique des ventes par catégorie */}
-          <Col lg={4} md={6} className="mb-4">
+        <Row className="mb-4">
+          <Col lg={6} className="mb-4">
             <Card className="h-100 shadow-sm">
-              <Card.Header className="bg-white">
-                <h5 className="mb-0">Ventes par catégorie</h5>
+              <Card.Header className="bg-white border-0 pt-4 pb-0">
+                <h6 className="mb-0">Catégories populaires</h6>
               </Card.Header>
               <Card.Body>
-                <div style={{ height: '250px', display: 'flex', justifyContent: 'center' }}>
-                  <Pie data={pieData} options={{ maintainAspectRatio: false }} />
+                <div style={{ height: '250px' }} className="d-flex justify-content-center align-items-center">
+                  <div className="text-center">
+                    <i className="bi bi-pie-chart-fill fs-2 text-muted mb-3"></i>
+                    <p>Graphique temporairement indisponible</p>
+                  </div>
                 </div>
               </Card.Body>
             </Card>
           </Col>
-
-          {/* Graphique des ventes mensuelles */}
-          <Col lg={8} md={6} className="mb-4">
+          <Col lg={6} className="mb-4">
             <Card className="h-100 shadow-sm">
-              <Card.Header className="bg-white">
-                <h5 className="mb-0">Tendance des ventes</h5>
+              <Card.Header className="bg-white border-0 pt-4 pb-0">
+                <h6 className="mb-0">Ventes mensuelles</h6>
               </Card.Header>
               <Card.Body>
-                <div style={{ height: '250px' }}>
-                  <Bar data={barData} options={barOptions} />
+                <div style={{ height: '250px' }} className="d-flex justify-content-center align-items-center">
+                  <div className="text-center">
+                    <i className="bi bi-bar-chart-fill fs-2 text-muted mb-3"></i>
+                    <p>Graphique temporairement indisponible</p>
+                  </div>
                 </div>
               </Card.Body>
             </Card>

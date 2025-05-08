@@ -1,14 +1,27 @@
 // pages/api/admin/pending-reviews.js
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]";
 import dbConnect from '../../../utils/dbConnect';
 import Product from '../../../models/Product';
-import { isAuthenticated, isAdmin } from '../../../middleware/auth';
 
 const handler = async (req, res) => {
+  // Vérification d'authentification avec next-auth
+  const session = await getServerSession(req, res, authOptions);
+  
   console.log(
     '[API pending-reviews] Méthode:', req.method,
-    'Authorization header:', req.headers.authorization,
-    'Cookies:', req.headers.cookie
+    'Session existe:', !!session,
+    'Role:', session?.user?.role
   );
+
+  // Vérifier que l'utilisateur est connecté et qu'il est administrateur
+  if (!session) {
+    return res.status(401).json({ success: false, message: 'Non authentifié' });
+  }
+
+  if (session.user.role !== 'admin') {
+    return res.status(403).json({ success: false, message: 'Accès non autorisé' });
+  }
 
   if (req.method !== 'GET') {
     console.log('[API pending-reviews] Méthode non autorisée');
@@ -65,5 +78,5 @@ const handler = async (req, res) => {
   }
 };
 
-// On applique d’abord isAuthenticated puis isAdmin
-export default isAuthenticated(isAdmin(handler));
+// Exporter directement le handler avec l'authentification intégrée
+export default handler;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Custom404() {
+const Custom404 = () => {
   return (
     <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
       <h1 style={{ fontSize: '5rem', marginBottom: '1rem', color: '#fa5252' }}>404</h1>
@@ -12,4 +12,6 @@ export default function Custom404() {
       </Link>
     </div>
   );
-}
+};
+
+export default Custom404;

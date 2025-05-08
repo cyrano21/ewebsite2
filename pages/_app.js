@@ -1,4 +1,5 @@
 import AuthProvider from '../contexts/AuthProvider';
+import 'chart.js/auto';
 import Layout from "../components/Layout";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
@@ -7,8 +8,10 @@ import { NotificationProvider } from "../contexts/NotificationContext";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 
-// Import du correctif spécifique pour le problème de rechargement constant
-import "../utils/fix-hmr-reload";
+// Import de l'outil de diagnostic des rechargements
+import '../utils/hmr-debug';
+
+// Le correctif pour le rechargement a été supprimé car il causait des rechargements en boucle
 
 // Styles importés de façon optimisée pour la production
 // Styles externes
@@ -38,23 +41,47 @@ function MyApp({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap.min.js");
   }, []);
 
-  // Utilisation de useEffect avec une gestion d'erreurs améliorée
+  // Ajout d'un log pour identifier les montages/rechargements du composant racine
   useEffect(() => {
-    try {
-      // Chargement asynchrone avec gestion d'erreur
-      const loadModule = async () => {
-        try {
-          await import('../utils/fix-hmr-reload');
-          console.log('Module HMR fix chargé avec succès');
-        } catch (error) {
-          console.warn('Impossible de charger le module HMR fix:', error.message);
-          // Continue l'exécution même en cas d'erreur de chargement
+    if (typeof window !== 'undefined') {
+      console.log('🔄 _app.js: Composant racine monté/rechargé à', new Date().toISOString());
+      
+      // Surveiller les erreurs non gérées qui pourraient causer des rechargements
+      const originalError = console.error;
+      console.error = function(...args) {
+        const errorMsg = args.join(' ');
+        if (errorMsg.includes('Hydration') || errorMsg.includes('Rendering') || 
+            errorMsg.includes('React state') || errorMsg.includes('chunk load')) {
+          console.warn('⚠️ Erreur potentiellement liée aux rechargements détectée:', errorMsg);
         }
+        return originalError.apply(console, args);
       };
 
-      loadModule();
-    } catch (e) {
-      console.warn('Erreur lors de l\'initialisation du fix HMR:', e);
+      // Surveiller les messages du client de développement Next.js
+      const devMessages = [];
+      const devOriginals = {
+        info: console.info,
+        log: console.log,
+        warn: console.warn
+      };
+
+      Object.keys(devOriginals).forEach(key => {
+        console[key] = function(...args) {
+          const msg = args.join(' ');
+          if (msg.includes('webpack') || msg.includes('HMR') || 
+              msg.includes('hot') || msg.includes('module replacement') ||
+              msg.includes('reload') || msg.includes('rebuild')) {
+            devMessages.push({ type: key, message: msg, time: new Date().toISOString() });
+            console.warn(`🔥 Message dev Next.js détecté [${key}]:`, msg);
+            
+            // Stockage local pour analyse post-rechargement
+            try {
+              localStorage.setItem('next-dev-messages', JSON.stringify(devMessages.slice(-20)));
+            } catch (e) {}
+          }
+          return devOriginals[key].apply(console, args);
+        };
+      });
     }
   }, []);
 

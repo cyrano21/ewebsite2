@@ -1,16 +1,36 @@
 /**
  * no-hmr.js
- * Lancement de l'application Next.js sans HMR et patch Mongoose pour les options de connexion
+ * Lancement de l'application Next.js sans HMR - VERSION AGGRESSIVE
  */
 
 const http     = require('http');
 const next     = require('next');
 const mongoose = require('mongoose');
 const { parse } = require('url');
+const fs = require('fs');
 
-// Passez NODE_ENV=production pour désactiver le mode dev et HMR
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+// Force les variables d'environnement pour empêcher tout rechargement
+process.env.DISABLE_WEBPACK_HMR = 'true';
+process.env.FAST_REFRESH = 'false';
+
+// Utiliser le mode dev mais avec HMR désactivé
+const dev = true;
+const app = next({ 
+  dev,
+  conf: {
+    reactStrictMode: false,
+    webpack: (config) => {
+      // Supprimer les plugins HMR
+      if (config.plugins) {
+        config.plugins = config.plugins.filter(plugin => 
+          !plugin.constructor.name.includes('HotModule') && 
+          !plugin.constructor.name.includes('ReactRefresh'));
+      }
+      return config;
+    }
+  }
+});
+
 const handle = app.getRequestHandler();
 
 // --- OPTIONS MONGOOSE MODERNES (plus de autoReconnect ni reconnectTries) ---
@@ -44,11 +64,25 @@ mongoose.connect = async function(uri, options = {}) {
 
 app.prepare().then(() => {
   http.createServer((req, res) => {
-    // Désactivation du HMR en production (si NODE_ENV=production)
+    // Bloc HMR: refuser toutes les requêtes liées au rechargement
     const parsedUrl = parse(req.url, true);
+    
+    // Bloquer toutes les requêtes liées au HMR ou rechargement
+    if (req.url.includes('hot-update') || 
+        req.url.includes('webpack-hmr') || 
+        req.url.includes('webpack-dev-server') ||
+        req.url.includes('on-demand-entries') ||
+        req.url.includes('react-refresh')) {
+      console.log(`🚫 Blocage requête HMR: ${req.url}`);
+      res.statusCode = 404;
+      res.end();
+      return;
+    }
+    
     handle(req, res, parsedUrl);
   }).listen(4000, (err) => {
     if (err) throw err;
-    console.log(`> Serveur démarré sur http://localhost:4000  (dev=${dev})`);
+    console.log('🔒 MODE STABLE: Rechargement automatique totalement désactivé');
+    console.log(`✅ Serveur démarré sur http://localhost:4000 (SANS rechargement)`);
   });
 });

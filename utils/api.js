@@ -11,25 +11,31 @@ const getApiBaseUrl = () => {
     return '/api';
   }
 
-  // En mode client, essayer d'utiliser la variable d'environnement ou l'URL courante
-  const envUrl = process.env.NEXT_PUBLIC_APP_URL;
-  if (envUrl) {
-    const normalizedUrl = envUrl.endsWith("/api") ? envUrl : `${envUrl}/api`;
-    console.log(`🔗 [API] URL configurée via env: ${normalizedUrl}`);
-    return normalizedUrl;
+  // En mode client, utiliser l'URL configurée dans l'env
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL;
+  // Si la variable d'env est définie, l'utiliser en priorité
+  if (apiUrl) {
+    console.log(`🔗 [API] URL configurée via env: ${apiUrl}`);
+    // S'assurer que l'URL est normalisée
+    if (apiUrl.endsWith('/api')) return apiUrl;
+    if (apiUrl.endsWith('/')) return `${apiUrl}api`;
+    return `${apiUrl}/api`;
   }
   
-  // Utiliser l'URL courante en fallback (plus fiable dans les environnements Replit)
-  if (typeof window !== 'undefined') {
-    const origin = window.location.origin;
-    console.log(`🔗 [API] URL détectée automatiquement: ${origin}/api`);
-    return `${origin}/api`;
-  }
-
-  // Si aucune URL n'est configurée, utiliser l'URL relative (fallback sécurisé)
-  console.log(`🔗 [API] Fallback vers URL relative: /api`);
-  return '/api';
+  // Utiliser l'URL locale en fallback - toujours http://localhost:4000
+  const fallbackUrl = 'http://localhost:4000/api';
+  console.log(`🔗 [API] Utilisation de l'URL de fallback: ${fallbackUrl}`);
+  return fallbackUrl;
 };
+
+// Forcer l'URL pour le debug
+console.log("🔄 [API] Forçage de l'URL API pour le debug");
+// Mettre à jour process.env côté client
+if (typeof window !== 'undefined') {
+  window.__NEXT_DATA__ = window.__NEXT_DATA__ || {};
+  window.__NEXT_DATA__.env = window.__NEXT_DATA__.env || {};
+  window.__NEXT_DATA__.env.NEXT_PUBLIC_API_URL = 'http://localhost:4000/api';
+}
 
 // Définir l'URL API en fonction du contexte
 const API_URL = getApiBaseUrl();

@@ -9,7 +9,7 @@ const adminActivityLogSchema = new mongoose.Schema({
 });
 
 export default mongoose.models.AdminActivityLog || mongoose.model('AdminActivityLog', adminActivityLogSchema);
-const mongoose = require('mongoose');
+
 
 // Schéma pour les logs d'activité administrative
 const AdminActivityLogSchema = new mongoose.Schema({

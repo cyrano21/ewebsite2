@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo SOLUTION RADICALE - NEXT.JS STABLE
+echo DÉMARRAGE SERVEUR NEXT.JS AVEC FAST REFRESH
 echo ========================================
 
 echo 1. Arrêt forcé des processus Node.js existants sur le port 4000
@@ -17,17 +17,17 @@ del /s /q .next\cache\* 2>nul
 echo 3. Vérification que toutes les connexions MongoDB sont bien fermées
 echo // Pas d'action directe nécessaire
 
-echo 4. Définition de variables d'environnement pour stabiliser Next.js
+echo 4. Définition de variables d'environnement pour optimiser Fast Refresh
 set "NODE_ENV=development"
-set "NEXT_DISABLE_HMR=1"
+set "NEXT_DISABLE_HMR=0"
+set "FAST_REFRESH=true"
 set "NEXT_TELEMETRY_DISABLED=1"
-set "CHOKIDAR_USEPOLLING=0"
+set "CHOKIDAR_USEPOLLING=1"
 
-echo 5. Démarrage du serveur Next.js en mode stable
+echo 5. Démarrage du serveur Next.js avec Fast Refresh
 echo ========================================
-echo Le serveur va démarrer en mode STABLE 
-echo Les modifications ne seront pas appliquées automatiquement
-echo Pour voir vos changements, rechargez la page manuellement
+echo Le serveur va démarrer avec Fast Refresh activé
+echo Les modifications seront appliquées automatiquement
 echo ========================================
 echo Utilisez Ctrl+C pour arrêter le serveur
 echo ========================================

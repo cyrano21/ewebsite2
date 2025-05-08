@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AuthContext } from "../contexts/AuthProvider";
 import { NavDropdown } from "react-bootstrap";
 import { clientAvatar } from "../utils/imageImports";
 import styles from "./NavItems.module.css";
+import { useRouter } from "next/router";
 
 // Composant Link wrapper qui gère correctement les enfants
 const CustomLink = ({ href, className, children, ...props }) => {
@@ -25,61 +26,40 @@ const NavItems = () => {
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
 
-  // Système pour éviter la duplication des NavItems
-  const [isMainInstance, setIsMainInstance] = useState(true);
-  const navInstanceId = React.useId(); // Identifiant unique pour cette instance
+    // Utiliser un useRef pour indiquer si nous sommes côté client
+  const isMounted = useRef(false);
+  const router = useRouter();
 
   // Gestion robuste du contexte d'authentification avec des valeurs par défaut
-  // Permet de gérer les cas où le contexte n'est pas encore initialisé
   const authContext = useContext(AuthContext);
   const user = authContext?.user;
   const logOut = authContext?.logOut || (() => {});
   const loading = authContext?.loading ?? true;
-
-  // Vérification pour éviter les duplications de NavItems
+  
+  // Important: Éviter toute manipulation de DOM/window pendant le rendu initial
+  // pour éviter les erreurs d'hydratation
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    // Créer une variable globale pour suivre les instances de NavItems
-    if (!window.__navItemsInstances) {
-      window.__navItemsInstances = [];
-    }
-
-    // Si cette instance est déjà enregistrée, ne rien faire
-    if (window.__navItemsInstances.includes(navInstanceId)) {
-      return;
-    }
-
-    // Si d'autres instances existent déjà, cette instance n'est pas la principale
-    if (window.__navItemsInstances.length > 0) {
-      setIsMainInstance(false);
-    }
-
-    // Enregistrer cette instance
-    window.__navItemsInstances.push(navInstanceId);
-
-    // Nettoyer lors du démontage
-    return () => {
-      window.__navItemsInstances = window.__navItemsInstances.filter(id => id !== navInstanceId);
-    };
-  }, [navInstanceId]);
-
-  useEffect(() => {
+    // Marquer que le composant est monté côté client
+    isMounted.current = true;
+    
+    // Gestion du défilement pour l'en-tête fixe
     const scrollHandler = () => {
       const scrollThreshold = 200;
       setHeaderFixed(window.scrollY > scrollThreshold);
     };
-
+    
+    // Ajouter les écouteurs d'événements uniquement côté client
     window.addEventListener("scroll", scrollHandler);
-    return () => window.removeEventListener("scroll", scrollHandler);
-  }, []);
-
-  // Charger le nombre d'articles dans le panier et la liste de souhaits
-  useEffect(() => {
+    scrollHandler(); // Appliquer immédiatement
+    
+    // Fonction pour charger les compteurs depuis localStorage
     const updateCounts = () => {
       try {
+        if (typeof window === 'undefined') return; // Sécurité supplémentaire
+        
         const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
         const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+        
         setCartCount(cartItems.length);
         setWishlistCount(wishlistItems.length);
       } catch (error) {
@@ -88,38 +68,39 @@ const NavItems = () => {
         setWishlistCount(0);
       }
     };
-
-    updateCounts();
+    
+    // Écouter les changements de stockage (pour les autres onglets)
     const storageHandler = (e) => {
       if (e.key === 'cart' || e.key === 'wishlist') {
         updateCounts();
       }
     };
-
+    
+    // Initialiser les compteurs
+    updateCounts();
+    
+    // Ajouter les écouteurs de stockage
     window.addEventListener('storage', storageHandler);
-    return () => window.removeEventListener('storage', storageHandler);
+    
+    // Nettoyer les écouteurs lors du démontage
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener('storage', storageHandler);
+    };
   }, []);
 
-  // Log de débogage pour l'utilisateur et le chargement
+  // Éviter de générer des logs pendant le rendu initial pour éviter les problèmes d'hydratation
   useEffect(() => {
-    const logUserState = () => {
-      console.log('NavItems: État complet', {
-        user: user && typeof user === 'object' ? {
-          name: user.name || 'N/A',
-          email: user.email || 'N/A',
-          photoURL: user.photoURL || null,
-          id: user.id || null,
-          role: user.role || 'N/A',
-          sellerStatus: user.sellerStatus || 'N/A'
-        } : null,
-        loading: loading,
-        authContextAvailable: !!authContext,
-        isAdmin: user?.role === 'admin'
+    // Log uniquement après que le composant soit monté côté client
+    if (isMounted.current) {
+      // Log réduit pour minimiser l'impact sur la performance
+      console.log('NavItems: utilisateur chargé', {
+        userLoggedIn: !!user,
+        role: user?.role || 'N/A',
+        sellerStatus: user?.sellerStatus || 'N/A',
       });
-    };
-
-    logUserState();
-  }, [user, loading, authContext]);
+    }
+  }, [user]);
 
   const handleLogout = () => {
     logOut()
@@ -131,16 +112,12 @@ const NavItems = () => {
       });
   };
 
-  // Si cette instance n'est pas l'instance principale, ne pas rendre le composant
-  if (!isMainInstance) {
-    return null;
-  }
+  // La vérification d'instance principale a été supprimée pour éviter les rechargements en boucle
 
   return (
     <header
       className={`header-section style-4 ${headerFixed ? "header-fixed fadeInUp" : ""}`}
       style={{ position: 'sticky', top: 0, zIndex: 1000 }}
-      data-nav-id={navInstanceId}
     >
       {/* ------ header top: first div ----- */}
       <div className={`header-top d-md-none ${socialToggle ? "open" : ""}`}>
@@ -183,6 +160,7 @@ const NavItems = () => {
                       width={150} 
                       height={60} 
                       priority 
+                      style={{ width: 'auto', height: '60px' }}
                     />
                   </span>
                 </CustomLink>

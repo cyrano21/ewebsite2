@@ -1,0 +1,7179 @@
+2025-05-08T01:40:52.255Z - Chargement de next.config.js
+{
+  "time": "2025-05-08T01:40:52.253Z"
+}
+
+2025-05-08T01:40:53.981Z - Chargement de next.config.js
+{
+  "time": "2025-05-08T01:40:53.977Z"
+}
+
+2025-05-08T01:40:56.303Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true
+}
+
+2025-05-08T01:40:56.305Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true
+}
+
+2025-05-08T01:40:56.306Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false
+}
+
+2025-05-08T01:40:56.797Z - Compilation terminée
+{
+  "time": "279ms",
+  "errors": false
+}
+
+2025-05-08T01:40:56.817Z - Compilation terminée
+{
+  "time": "14ms",
+  "errors": false
+}
+
+2025-05-08T01:40:56.838Z - Compilation terminée
+{
+  "time": "19ms",
+  "errors": false
+}
+
+2025-05-08T01:40:57.222Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668457221"
+}
+
+2025-05-08T01:40:57.223Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668457223"
+}
+
+2025-05-08T01:40:57.225Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668457224"
+}
+
+2025-05-08T01:40:57.435Z - Compilation terminée
+{
+  "time": "193ms",
+  "errors": false
+}
+
+2025-05-08T01:40:57.459Z - Compilation terminée
+{
+  "time": "22ms",
+  "errors": false
+}
+
+2025-05-08T01:40:57.510Z - Compilation terminée
+{
+  "time": "46ms",
+  "errors": false
+}
+
+2025-05-08T01:41:09.003Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668469003"
+}
+
+2025-05-08T01:41:10.269Z - Compilation terminée
+{
+  "time": "1260ms",
+  "errors": false
+}
+
+2025-05-08T01:41:10.495Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668470495"
+}
+
+2025-05-08T01:41:10.498Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668470498"
+}
+
+2025-05-08T01:41:18.342Z - Compilation terminée
+{
+  "time": "7842ms",
+  "errors": false
+}
+
+2025-05-08T01:41:20.234Z - Compilation terminée
+{
+  "time": "1864ms",
+  "errors": false
+}
+
+2025-05-08T01:41:24.027Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668484027"
+}
+
+2025-05-08T01:41:24.029Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668484029"
+}
+
+2025-05-08T01:41:34.560Z - Compilation terminée
+{
+  "time": "10521ms",
+  "errors": false
+}
+
+2025-05-08T01:41:36.955Z - Compilation terminée
+{
+  "time": "2377ms",
+  "errors": false
+}
+
+2025-05-08T01:41:37.000Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668497000"
+}
+
+2025-05-08T01:41:37.271Z - Compilation terminée
+{
+  "time": "234ms",
+  "errors": false
+}
+
+2025-05-08T01:41:41.241Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668501240"
+}
+
+2025-05-08T01:41:41.420Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668501419"
+}
+
+2025-05-08T01:41:41.674Z - Compilation terminée
+{
+  "time": "380ms",
+  "errors": false
+}
+
+2025-05-08T01:41:41.705Z - Déclenchement HMR détecté
+{
+  "fileName": null,
+  "changeTime": "1746668501705"
+}
+
+2025-05-08T01:41:41.954Z - Compilation terminée
+{
+  "time": "243ms",
+  "errors": false
+}
+
+2025-05-08T01:41:42.279Z - Compilation terminée
+{
+  "time": "322ms",
+  "errors": false
+}
+
+2025-05-08T01:42:10.076Z - Chargement de next.config.js
+{
+  "time": "2025-05-08T01:42:10.074Z"
+}
+
+2025-05-08T01:46:01.933Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T01:46:01.931Z"
+}
+
+2025-05-08T01:46:01.935Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T01:46:01.936Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T01:46:03.002Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T01:46:03.000Z"
+}
+
+2025-05-08T01:46:03.005Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T01:46:03.006Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T01:46:04.997Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": false
+}
+
+2025-05-08T01:46:05.046Z - HotModuleReplacementPlugin ajouté manuellement
+{}
+
+2025-05-08T01:46:05.076Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": true
+}
+
+2025-05-08T01:46:05.127Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T01:46:06.745Z - 🔄 Compilation terminée
+{
+  "time": "808ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T01:46:07.209Z - 🔄 Compilation terminée
+{
+  "time": "308ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T01:46:07.970Z - 🔄 Compilation terminée
+{
+  "time": "717ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T01:46:08.567Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668768566"
+}
+
+2025-05-08T01:46:08.582Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668768580"
+}
+
+2025-05-08T01:46:08.584Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668768584"
+}
+
+2025-05-08T01:46:08.934Z - 🔄 Compilation terminée
+{
+  "time": "329ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T01:46:09.189Z - 🔄 Compilation terminée
+{
+  "time": "91ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T01:46:09.244Z - 🔄 Compilation terminée
+{
+  "time": "49ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T01:46:09.263Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668769263"
+}
+
+2025-05-08T01:46:10.809Z - 🔄 Compilation terminée
+{
+  "time": "1543ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "991dcb9c653a30a7"
+}
+
+2025-05-08T01:46:11.046Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668771045"
+}
+
+2025-05-08T01:46:11.047Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668771047"
+}
+
+2025-05-08T01:46:17.159Z - 🔄 Compilation terminée
+{
+  "time": "6109ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "879c0de1565b149f"
+}
+
+2025-05-08T01:46:19.685Z - 🔄 Compilation terminée
+{
+  "time": "2496ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "71d8e76c6fec8f78"
+}
+
+2025-05-08T01:46:25.948Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668785948"
+}
+
+2025-05-08T01:46:31.957Z - 🔄 Compilation terminée
+{
+  "time": "6007ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9e317341c8134190"
+}
+
+2025-05-08T01:46:31.972Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668791972"
+}
+
+2025-05-08T01:46:32.283Z - 🔄 Compilation terminée
+{
+  "time": "304ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "dce33a5d74d77b31"
+}
+
+2025-05-08T01:47:54.194Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\utils\\api.js",
+  "changeTime": "1746668874190"
+}
+
+2025-05-08T01:47:54.200Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\utils\\api.js",
+  "changeTime": "1746668874190"
+}
+
+2025-05-08T01:47:55.205Z - 🔄 Compilation terminée
+{
+  "time": "702ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "18ac8baedf0df9d1"
+}
+
+2025-05-08T01:47:56.992Z - 🔄 Compilation terminée
+{
+  "time": "1693ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "63fa4b28e6ab1763"
+}
+
+2025-05-08T01:48:13.021Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\utils\\api.js",
+  "changeTime": "1746668893017"
+}
+
+2025-05-08T01:48:13.023Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\utils\\api.js",
+  "changeTime": "1746668893017"
+}
+
+2025-05-08T01:48:13.877Z - 🔄 Compilation terminée
+{
+  "time": "543ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "45d0183a1ac5fde9"
+}
+
+2025-05-08T01:48:14.988Z - 🔄 Compilation terminée
+{
+  "time": "1095ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "584ca7e3790fb73f"
+}
+
+2025-05-08T01:48:15.033Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668895033"
+}
+
+2025-05-08T01:48:15.457Z - 🔄 Compilation terminée
+{
+  "time": "422ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ed858d3ce74c9dd5"
+}
+
+2025-05-08T01:48:43.984Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668923984"
+}
+
+2025-05-08T01:48:46.450Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\utils\\api.js",
+  "changeTime": "1746668926358"
+}
+
+2025-05-08T01:48:46.702Z - 🔄 Compilation terminée
+{
+  "time": "2714ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "edddf034edb6fc59"
+}
+
+2025-05-08T01:48:46.708Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668926708"
+}
+
+2025-05-08T01:48:46.725Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\utils\\api.js",
+  "changeTime": "1746668926445"
+}
+
+2025-05-08T01:48:47.253Z - 🔄 Compilation terminée
+{
+  "time": "542ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4fcd2139134f3f52"
+}
+
+2025-05-08T01:48:47.555Z - 🔄 Compilation terminée
+{
+  "time": "299ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ab50e789310c6da5"
+}
+
+2025-05-08T01:48:48.492Z - 🔄 Compilation terminée
+{
+  "time": "859ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4fcd2139134f3f52"
+}
+
+2025-05-08T01:48:48.495Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746668928494"
+}
+
+2025-05-08T01:48:48.694Z - 🔄 Compilation terminée
+{
+  "time": "180ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4fcd2139134f3f52"
+}
+
+2025-05-08T01:55:15.694Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669315693"
+}
+
+2025-05-08T01:55:15.697Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669315697"
+}
+
+2025-05-08T01:55:25.196Z - 🔄 Compilation terminée
+{
+  "time": "9488ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f836814ab6ccdc4a"
+}
+
+2025-05-08T01:55:43.560Z - 🔄 Compilation terminée
+{
+  "time": "18283ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9b9cf3da90906534"
+}
+
+2025-05-08T01:55:53.455Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669353455"
+}
+
+2025-05-08T01:55:55.420Z - 🔄 Compilation terminée
+{
+  "time": "1952ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7cede08b76e359cc"
+}
+
+2025-05-08T01:55:55.427Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669355426"
+}
+
+2025-05-08T01:55:56.585Z - 🔄 Compilation terminée
+{
+  "time": "1129ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1627c05f5b6b5d8b"
+}
+
+2025-05-08T01:56:04.507Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669364507"
+}
+
+2025-05-08T01:56:04.510Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669364509"
+}
+
+2025-05-08T01:56:07.976Z - 🔄 Compilation terminée
+{
+  "time": "3464ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "62773207c1b90bd6"
+}
+
+2025-05-08T01:56:09.176Z - 🔄 Compilation terminée
+{
+  "time": "1194ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d62b673934fb0161"
+}
+
+2025-05-08T01:57:58.663Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\_app.js",
+  "changeTime": "1746669478660"
+}
+
+2025-05-08T01:57:58.666Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\_app.js",
+  "changeTime": "1746669478660"
+}
+
+2025-05-08T01:58:01.463Z - 🔄 Compilation terminée
+{
+  "time": "2387ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "90e72dfd0e189a3c"
+}
+
+2025-05-08T01:58:04.530Z - 🔄 Compilation terminée
+{
+  "time": "3008ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b5d0d0a76f946a16"
+}
+
+2025-05-08T01:58:05.311Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669485311"
+}
+
+2025-05-08T01:58:05.323Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669485313"
+}
+
+2025-05-08T01:58:05.694Z - 🔄 Compilation terminée
+{
+  "time": "367ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "df89b5c80ebf69b1"
+}
+
+2025-05-08T01:58:06.007Z - 🔄 Compilation terminée
+{
+  "time": "299ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c8aa7f57a4276f76"
+}
+
+2025-05-08T01:58:06.625Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T01:58:09.332Z - 🔄 Compilation terminée
+{
+  "time": "2646ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "79d8a40c7dd78ce8"
+}
+
+2025-05-08T01:58:45.653Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T01:58:45.651Z"
+}
+
+2025-05-08T01:58:45.661Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T01:58:45.662Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:04:37.102Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:04:37.101Z"
+}
+
+2025-05-08T02:04:37.104Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:04:37.105Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:04:39.026Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:04:39.024Z"
+}
+
+2025-05-08T02:04:39.041Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:04:39.054Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:04:41.011Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": false
+}
+
+2025-05-08T02:04:41.012Z - HotModuleReplacementPlugin ajouté manuellement
+{}
+
+2025-05-08T02:04:41.014Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:04:41.018Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:04:42.190Z - 🔄 Compilation terminée
+{
+  "time": "963ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:04:42.264Z - 🔄 Compilation terminée
+{
+  "time": "23ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:04:42.340Z - 🔄 Compilation terminée
+{
+  "time": "70ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:04:42.980Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669882979"
+}
+
+2025-05-08T02:04:42.981Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669882980"
+}
+
+2025-05-08T02:04:42.981Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669882981"
+}
+
+2025-05-08T02:04:43.243Z - 🔄 Compilation terminée
+{
+  "time": "245ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:04:43.272Z - 🔄 Compilation terminée
+{
+  "time": "17ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:04:43.354Z - 🔄 Compilation terminée
+{
+  "time": "80ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:04:43.427Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669883427"
+}
+
+2025-05-08T02:04:43.428Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669883428"
+}
+
+2025-05-08T02:04:44.846Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669884845"
+}
+
+2025-05-08T02:04:48.002Z - 🔄 Compilation terminée
+{
+  "time": "4568ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "10bf77985072b82c"
+}
+
+2025-05-08T02:04:52.695Z - 🔄 Compilation terminée
+{
+  "time": "4672ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e3b00ae978427058"
+}
+
+2025-05-08T02:04:54.581Z - 🔄 Compilation terminée
+{
+  "time": "1883ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "991dcb9c653a30a7"
+}
+
+2025-05-08T02:04:55.498Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669895498"
+}
+
+2025-05-08T02:04:55.501Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669895501"
+}
+
+2025-05-08T02:05:09.239Z - 🔄 Compilation terminée
+{
+  "time": "13733ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3ac1cd575e476ba2"
+}
+
+2025-05-08T02:05:09.345Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669909345"
+}
+
+2025-05-08T02:05:17.338Z - 🔄 Compilation terminée
+{
+  "time": "8094ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4e866e1e26d37334"
+}
+
+2025-05-08T02:05:17.341Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669917341"
+}
+
+2025-05-08T02:05:17.582Z - 🔄 Compilation terminée
+{
+  "time": "237ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3ac1cd575e476ba2"
+}
+
+2025-05-08T02:05:17.736Z - 🔄 Compilation terminée
+{
+  "time": "148ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4e866e1e26d37334"
+}
+
+2025-05-08T02:05:20.449Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669920449"
+}
+
+2025-05-08T02:05:20.456Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669920456"
+}
+
+2025-05-08T02:05:21.488Z - 🔄 Compilation terminée
+{
+  "time": "1021ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f7206c10b704343f"
+}
+
+2025-05-08T02:05:21.813Z - 🔄 Compilation terminée
+{
+  "time": "311ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8fefb76bf532382a"
+}
+
+2025-05-08T02:05:47.215Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669947215"
+}
+
+2025-05-08T02:05:47.216Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669947216"
+}
+
+2025-05-08T02:05:48.784Z - 🔄 Compilation terminée
+{
+  "time": "1549ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5d52df0b9eabd8d2"
+}
+
+2025-05-08T02:05:49.400Z - 🔄 Compilation terminée
+{
+  "time": "594ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5ce053c78c9c354b"
+}
+
+2025-05-08T02:05:52.040Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669952040"
+}
+
+2025-05-08T02:05:52.739Z - 🔄 Compilation terminée
+{
+  "time": "688ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f24a9b897876911a"
+}
+
+2025-05-08T02:05:52.791Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746669952790"
+}
+
+2025-05-08T02:05:53.449Z - 🔄 Compilation terminée
+{
+  "time": "650ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c9ae119d7b7b4511"
+}
+
+2025-05-08T02:08:05.463Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:08:05.462Z"
+}
+
+2025-05-08T02:08:05.469Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:08:05.471Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:08:09.180Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:08:09.156Z"
+}
+
+2025-05-08T02:08:09.208Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:08:09.214Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:08:15.380Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": false
+}
+
+2025-05-08T02:08:15.850Z - HotModuleReplacementPlugin ajouté manuellement
+{}
+
+2025-05-08T02:08:16.145Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:08:16.322Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:08:20.395Z - 🔄 Compilation terminée
+{
+  "time": "2382ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:08:20.440Z - 🔄 Compilation terminée
+{
+  "time": "26ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:08:21.300Z - 🔄 Compilation terminée
+{
+  "time": "766ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:08:22.616Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670102615"
+}
+
+2025-05-08T02:08:22.631Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670102630"
+}
+
+2025-05-08T02:08:22.632Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670102632"
+}
+
+2025-05-08T02:08:23.101Z - 🔄 Compilation terminée
+{
+  "time": "460ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:08:23.580Z - 🔄 Compilation terminée
+{
+  "time": "474ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:08:23.822Z - 🔄 Compilation terminée
+{
+  "time": "239ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:08:23.851Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670103851"
+}
+
+2025-05-08T02:08:24.383Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670104383"
+}
+
+2025-05-08T02:08:24.403Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670104403"
+}
+
+2025-05-08T02:08:25.705Z - 🔄 Compilation terminée
+{
+  "time": "1664ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "991dcb9c653a30a7"
+}
+
+2025-05-08T02:08:28.317Z - 🔄 Compilation terminée
+{
+  "time": "2605ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "10bf77985072b82c"
+}
+
+2025-05-08T02:08:33.438Z - 🔄 Compilation terminée
+{
+  "time": "5106ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e3b00ae978427058"
+}
+
+2025-05-08T02:08:35.988Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670115988"
+}
+
+2025-05-08T02:08:36.017Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670116017"
+}
+
+2025-05-08T02:08:39.527Z - 🔄 Compilation terminée
+{
+  "time": "3473ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b4f37b137d748495"
+}
+
+2025-05-08T02:08:39.656Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670119655"
+}
+
+2025-05-08T02:08:49.447Z - 🔄 Compilation terminée
+{
+  "time": "9894ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "382936dfbbad140d"
+}
+
+2025-05-08T02:08:49.464Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670129464"
+}
+
+2025-05-08T02:08:49.965Z - 🔄 Compilation terminée
+{
+  "time": "490ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b4f37b137d748495"
+}
+
+2025-05-08T02:08:50.286Z - 🔄 Compilation terminée
+{
+  "time": "304ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "382936dfbbad140d"
+}
+
+2025-05-08T02:08:54.215Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670134214"
+}
+
+2025-05-08T02:08:54.228Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670134228"
+}
+
+2025-05-08T02:08:55.500Z - 🔄 Compilation terminée
+{
+  "time": "1264ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0a8aa18262fae76a"
+}
+
+2025-05-08T02:08:56.095Z - 🔄 Compilation terminée
+{
+  "time": "592ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fef44685fda5fbd4"
+}
+
+2025-05-08T02:10:16.381Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\Dashboard.jsx",
+  "changeTime": "1746670216374"
+}
+
+2025-05-08T02:10:16.392Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\Dashboard.jsx",
+  "changeTime": "1746670216374"
+}
+
+2025-05-08T02:10:19.960Z - 🔄 Compilation terminée
+{
+  "time": "3222ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "50cd5b1934c99931"
+}
+
+2025-05-08T02:10:21.289Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670221289"
+}
+
+2025-05-08T02:10:21.760Z - 🔄 Compilation terminée
+{
+  "time": "1792ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "635934c93ff10548"
+}
+
+2025-05-08T02:10:21.855Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670221855"
+}
+
+2025-05-08T02:10:22.870Z - 🔄 Compilation terminée
+{
+  "time": "785ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "50cd5b1934c99931"
+}
+
+2025-05-08T02:10:23.093Z - 🔄 Compilation terminée
+{
+  "time": "218ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "635934c93ff10548"
+}
+
+2025-05-08T02:10:26.182Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670226182"
+}
+
+2025-05-08T02:10:26.184Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670226184"
+}
+
+2025-05-08T02:10:27.155Z - 🔄 Compilation terminée
+{
+  "time": "969ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fea8d58d2bd2cce7"
+}
+
+2025-05-08T02:10:27.543Z - 🔄 Compilation terminée
+{
+  "time": "383ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "85e3f2ec0d720da5"
+}
+
+2025-05-08T02:11:29.058Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670289057"
+}
+
+2025-05-08T02:11:29.121Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746670289120"
+}
+
+2025-05-08T02:11:32.232Z - 🔄 Compilation terminée
+{
+  "time": "3075ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6a3ac0452d55e75f"
+}
+
+2025-05-08T02:11:33.266Z - 🔄 Compilation terminée
+{
+  "time": "1005ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4735bf591a7e7dc7"
+}
+
+2025-05-08T02:23:57.997Z - Chargement de next.config.js
+{
+  "env": "production",
+  "time": "2025-05-08T02:23:57.995Z"
+}
+
+2025-05-08T02:23:58.018Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:23:58.032Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"https://ewebsite2-94ut8othf-louis-oliviers-projects.vercel.app\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"https://ewebsite2-94ut8othf-louis-oliviers-projects.vercel.app\",\"NEXT_PUBLIC_API_URL\":..."
+}
+
+2025-05-08T02:24:30.821Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\Dashboard.jsx",
+  "changeTime": "1746671070820"
+}
+
+2025-05-08T02:24:30.870Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\Dashboard.jsx",
+  "changeTime": "1746671070820"
+}
+
+2025-05-08T02:24:32.808Z - 🔄 Compilation terminée
+{
+  "time": "1571ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e7832ca46d734410"
+}
+
+2025-05-08T02:24:34.875Z - 🔄 Compilation terminée
+{
+  "time": "2049ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a92915f25e6a7ddb"
+}
+
+2025-05-08T02:24:53.499Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671093497"
+}
+
+2025-05-08T02:24:53.653Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671093652"
+}
+
+2025-05-08T02:24:55.303Z - 🔄 Compilation terminée
+{
+  "time": "1492ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "854c911a6a784723"
+}
+
+2025-05-08T02:24:56.416Z - 🔄 Compilation terminée
+{
+  "time": "1058ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ebbdaf7cf4318766"
+}
+
+2025-05-08T02:24:56.992Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:25:00.533Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\Dashboard.jsx",
+  "changeTime": "1746671100432"
+}
+
+2025-05-08T02:25:00.571Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\Dashboard.jsx",
+  "changeTime": "1746671100432"
+}
+
+2025-05-08T02:25:04.176Z - 🔄 Compilation terminée
+{
+  "time": "3139ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "606cb7e54e4838bb"
+}
+
+2025-05-08T02:25:05.508Z - 🔄 Compilation terminée
+{
+  "time": "1274ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7fcd4ca93398e5cf"
+}
+
+2025-05-08T02:25:14.373Z - 🔄 Compilation terminée
+{
+  "time": "17084ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "31331f40d813ece6"
+}
+
+2025-05-08T02:26:07.140Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:26:07.139Z"
+}
+
+2025-05-08T02:26:07.193Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:26:07.196Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:26:10.399Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:26:10.395Z"
+}
+
+2025-05-08T02:26:10.402Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:26:10.403Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:26:26.900Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:26:26.897Z"
+}
+
+2025-05-08T02:26:26.903Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:26:26.903Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:28:32.661Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:28:32.660Z"
+}
+
+2025-05-08T02:28:32.664Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:28:32.667Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:28:35.060Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T02:28:35.059Z"
+}
+
+2025-05-08T02:28:35.091Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T02:28:35.098Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost:4000/api\"}}..."
+}
+
+2025-05-08T02:28:37.904Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": false
+}
+
+2025-05-08T02:28:37.975Z - HotModuleReplacementPlugin ajouté manuellement
+{}
+
+2025-05-08T02:28:37.979Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:28:37.984Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:28:38.894Z - 🔄 Compilation terminée
+{
+  "time": "636ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:28:39.017Z - 🔄 Compilation terminée
+{
+  "time": "43ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:28:39.088Z - 🔄 Compilation terminée
+{
+  "time": "65ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:28:39.673Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671319673"
+}
+
+2025-05-08T02:28:39.797Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671319797"
+}
+
+2025-05-08T02:28:39.812Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671319812"
+}
+
+2025-05-08T02:28:40.337Z - 🔄 Compilation terminée
+{
+  "time": "474ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:28:40.876Z - 🔄 Compilation terminée
+{
+  "time": "506ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:28:41.241Z - 🔄 Compilation terminée
+{
+  "time": "344ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T02:28:46.908Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671326908"
+}
+
+2025-05-08T02:28:47.708Z - 🔄 Compilation terminée
+{
+  "time": "798ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "991dcb9c653a30a7"
+}
+
+2025-05-08T02:28:48.127Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671328126"
+}
+
+2025-05-08T02:28:48.130Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671328129"
+}
+
+2025-05-08T02:28:52.279Z - 🔄 Compilation terminée
+{
+  "time": "4120ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1c6f1aa1686fe59d"
+}
+
+2025-05-08T02:28:52.498Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671332498"
+}
+
+2025-05-08T02:29:00.224Z - 🔄 Compilation terminée
+{
+  "time": "7910ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "171a01a5fee06446"
+}
+
+2025-05-08T02:29:00.269Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671340269"
+}
+
+2025-05-08T02:29:01.543Z - 🔄 Compilation terminée
+{
+  "time": "1264ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "26bcaa0b4ed40bf9"
+}
+
+2025-05-08T02:29:02.201Z - 🔄 Compilation terminée
+{
+  "time": "556ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "729237f9c1f7af3a"
+}
+
+2025-05-08T02:29:08.985Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671348985"
+}
+
+2025-05-08T02:29:15.947Z - 🔄 Compilation terminée
+{
+  "time": "6958ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d87ddf5f4b1b3cd7"
+}
+
+2025-05-08T02:29:20.253Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671360253"
+}
+
+2025-05-08T02:29:24.286Z - 🔄 Compilation terminée
+{
+  "time": "4024ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7768948460129ddd"
+}
+
+2025-05-08T02:29:24.320Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671364320"
+}
+
+2025-05-08T02:29:26.553Z - 🔄 Compilation terminée
+{
+  "time": "2173ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "bcefa8935c656f6b"
+}
+
+2025-05-08T02:29:51.881Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671391880"
+}
+
+2025-05-08T02:29:51.899Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671391899"
+}
+
+2025-05-08T02:29:54.854Z - 🔄 Compilation terminée
+{
+  "time": "2952ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1bd0d26b8fc2fca1"
+}
+
+2025-05-08T02:29:58.251Z - 🔄 Compilation terminée
+{
+  "time": "3384ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cec04ae7258d20eb"
+}
+
+2025-05-08T02:30:00.647Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671400647"
+}
+
+2025-05-08T02:30:00.771Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671400771"
+}
+
+2025-05-08T02:30:01.255Z - 🔄 Compilation terminée
+{
+  "time": "472ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6d1b9aed1f80ff56"
+}
+
+2025-05-08T02:30:02.011Z - 🔄 Compilation terminée
+{
+  "time": "744ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7f23ac201638d317"
+}
+
+2025-05-08T02:30:58.023Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671458022"
+}
+
+2025-05-08T02:30:58.102Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671458022"
+}
+
+2025-05-08T02:31:10.089Z - 🔄 Compilation terminée
+{
+  "time": "11558ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2f0b282c5c4c4bd1"
+}
+
+2025-05-08T02:31:16.288Z - 🔄 Compilation terminée
+{
+  "time": "6191ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9060eafc149920ad"
+}
+
+2025-05-08T02:31:18.316Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671478315"
+}
+
+2025-05-08T02:31:18.319Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671478319"
+}
+
+2025-05-08T02:31:19.655Z - 🔄 Compilation terminée
+{
+  "time": "1334ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2f0b282c5c4c4bd1"
+}
+
+2025-05-08T02:31:20.535Z - 🔄 Compilation terminée
+{
+  "time": "816ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4d095269c56c4f1f"
+}
+
+2025-05-08T02:31:21.304Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T02:31:24.441Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671484441"
+}
+
+2025-05-08T02:31:25.705Z - 🔄 Compilation terminée
+{
+  "time": "1257ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "15ff659e602d03c1"
+}
+
+2025-05-08T02:31:32.863Z - 🔄 Compilation terminée
+{
+  "time": "11502ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "31331f40d813ece6"
+}
+
+2025-05-08T02:32:59.167Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671579159"
+}
+
+2025-05-08T02:32:59.170Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671579159"
+}
+
+2025-05-08T02:33:02.192Z - 🔄 Compilation terminée
+{
+  "time": "2631ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c1f8cb840266290e"
+}
+
+2025-05-08T02:33:03.133Z - 🔄 Compilation terminée
+{
+  "time": "931ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "74f83b36a20a0cf8"
+}
+
+2025-05-08T02:33:27.770Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671607756"
+}
+
+2025-05-08T02:33:27.785Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671607756"
+}
+
+2025-05-08T02:33:28.602Z - 🔄 Compilation terminée
+{
+  "time": "447ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "2fd1b54bd559c65d"
+}
+
+2025-05-08T02:33:30.007Z - 🔄 Compilation terminée
+{
+  "time": "1375ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "86c2047ecd63037a"
+}
+
+2025-05-08T02:33:40.547Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671620518"
+}
+
+2025-05-08T02:33:40.551Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671620518"
+}
+
+2025-05-08T02:33:42.245Z - 🔄 Compilation terminée
+{
+  "time": "1380ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7e69d918cd5f0101"
+}
+
+2025-05-08T02:33:43.272Z - 🔄 Compilation terminée
+{
+  "time": "985ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d02513082f9e6e59"
+}
+
+2025-05-08T02:34:00.908Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671640874"
+}
+
+2025-05-08T02:34:00.971Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671640874"
+}
+
+2025-05-08T02:34:03.047Z - 🔄 Compilation terminée
+{
+  "time": "1334ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "371e55a97b540278"
+}
+
+2025-05-08T02:34:05.340Z - 🔄 Compilation terminée
+{
+  "time": "2193ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cc49abb43a5da700"
+}
+
+2025-05-08T02:34:19.861Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671659859"
+}
+
+2025-05-08T02:34:19.875Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671659859"
+}
+
+2025-05-08T02:34:26.632Z - 🔄 Compilation terminée
+{
+  "time": "6451ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "901d660b92befa9c"
+}
+
+2025-05-08T02:34:28.025Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671668025"
+}
+
+2025-05-08T02:34:33.545Z - 🔄 Compilation terminée
+{
+  "time": "6736ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d7cebac1c2e6432f"
+}
+
+2025-05-08T02:34:33.579Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671673579"
+}
+
+2025-05-08T02:34:35.839Z - 🔄 Compilation terminée
+{
+  "time": "2085ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "901d660b92befa9c"
+}
+
+2025-05-08T02:34:36.642Z - 🔄 Compilation terminée
+{
+  "time": "767ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d7cebac1c2e6432f"
+}
+
+2025-05-08T02:34:40.680Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671678120"
+}
+
+2025-05-08T02:34:40.727Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671678120"
+}
+
+2025-05-08T02:34:43.271Z - 🔄 Compilation terminée
+{
+  "time": "2135ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8fefa278035e0a45"
+}
+
+2025-05-08T02:34:47.277Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671687277"
+}
+
+2025-05-08T02:34:47.746Z - 🔄 Compilation terminée
+{
+  "time": "4431ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5025c2d5b42932c5"
+}
+
+2025-05-08T02:34:47.874Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671687873"
+}
+
+2025-05-08T02:34:48.849Z - 🔄 Compilation terminée
+{
+  "time": "899ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5025c2d5b42932c5"
+}
+
+2025-05-08T02:34:49.299Z - 🔄 Compilation terminée
+{
+  "time": "435ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8fefa278035e0a45"
+}
+
+2025-05-08T02:37:02.929Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671822928"
+}
+
+2025-05-08T02:37:02.934Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671822932"
+}
+
+2025-05-08T02:37:08.844Z - 🔄 Compilation terminée
+{
+  "time": "5660ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1be11e5b2664ceed"
+}
+
+2025-05-08T02:37:13.054Z - 🔄 Compilation terminée
+{
+  "time": "4015ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7e02b7f085174147"
+}
+
+2025-05-08T02:37:20.088Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671840088"
+}
+
+2025-05-08T02:37:20.946Z - 🔄 Compilation terminée
+{
+  "time": "846ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "179aab445318675e"
+}
+
+2025-05-08T02:37:21.601Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746671841601"
+}
+
+2025-05-08T02:37:22.116Z - 🔄 Compilation terminée
+{
+  "time": "505ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "98f83c099cac1e79"
+}
+
+2025-05-08T02:37:35.954Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671855951"
+}
+
+2025-05-08T02:37:35.961Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671855951"
+}
+
+2025-05-08T02:37:36.713Z - 🔄 Compilation terminée
+{
+  "time": "391ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "b18a565a76f1e746"
+}
+
+2025-05-08T02:37:37.031Z - 🔄 Compilation terminée
+{
+  "time": "296ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "d10fbb74a9028ed5"
+}
+
+2025-05-08T02:37:48.364Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671868363"
+}
+
+2025-05-08T02:37:48.367Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671868363"
+}
+
+2025-05-08T02:37:48.918Z - 🔄 Compilation terminée
+{
+  "time": "238ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "f79092421c3ba34f"
+}
+
+2025-05-08T02:37:49.737Z - 🔄 Compilation terminée
+{
+  "time": "809ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "0a8648e8411a3df8"
+}
+
+2025-05-08T02:38:38.034Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671918025"
+}
+
+2025-05-08T02:38:38.044Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671918025"
+}
+
+2025-05-08T02:38:39.690Z - 🔄 Compilation terminée
+{
+  "time": "1216ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "d506bfcc1065dfcd"
+}
+
+2025-05-08T02:38:41.861Z - 🔄 Compilation terminée
+{
+  "time": "2154ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "ee9733310cbfc908"
+}
+
+2025-05-08T02:39:01.884Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671941880"
+}
+
+2025-05-08T02:39:01.941Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671941880"
+}
+
+2025-05-08T02:39:02.444Z - 🔄 Compilation terminée
+{
+  "time": "192ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "9c4e4cf432135986"
+}
+
+2025-05-08T02:39:02.673Z - 🔄 Compilation terminée
+{
+  "time": "219ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "3f1e7cd558a786b6"
+}
+
+2025-05-08T02:39:10.595Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671950591"
+}
+
+2025-05-08T02:39:10.599Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671950591"
+}
+
+2025-05-08T02:39:11.308Z - 🔄 Compilation terminée
+{
+  "time": "261ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "ff814c7fae0a241c"
+}
+
+2025-05-08T02:39:11.518Z - 🔄 Compilation terminée
+{
+  "time": "204ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "d233677c18306f3e"
+}
+
+2025-05-08T02:39:30.225Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671970224"
+}
+
+2025-05-08T02:39:30.230Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746671970224"
+}
+
+2025-05-08T02:39:30.736Z - 🔄 Compilation terminée
+{
+  "time": "171ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "ff814c7fae0a241c"
+}
+
+2025-05-08T02:39:31.942Z - 🔄 Compilation terminée
+{
+  "time": "1200ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "d233677c18306f3e"
+}
+
+2025-05-08T02:40:19.501Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672019501"
+}
+
+2025-05-08T02:40:20.850Z - 🔄 Compilation terminée
+{
+  "time": "1340ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "c4ad5d3d86034c71"
+}
+
+2025-05-08T02:41:17.851Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746672077847"
+}
+
+2025-05-08T02:41:17.858Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746672077847"
+}
+
+2025-05-08T02:41:23.520Z - 🔄 Compilation terminée
+{
+  "time": "5342ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a8d489e89a1b7f13"
+}
+
+2025-05-08T02:41:27.711Z - 🔄 Compilation terminée
+{
+  "time": "4166ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6c5508433d76603c"
+}
+
+2025-05-08T02:45:24.084Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672324082"
+}
+
+2025-05-08T02:45:24.086Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672324082"
+}
+
+2025-05-08T02:45:25.552Z - 🔄 Compilation terminée
+{
+  "time": "1096ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "da8c6a47118c42db"
+}
+
+2025-05-08T02:45:26.655Z - 🔄 Compilation terminée
+{
+  "time": "998ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "3201604a83f276ea"
+}
+
+2025-05-08T02:46:00.381Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672360370"
+}
+
+2025-05-08T02:46:00.657Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672360370"
+}
+
+2025-05-08T02:46:03.399Z - 🔄 Compilation terminée
+{
+  "time": "2434ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "8c53d43d3552e1c5"
+}
+
+2025-05-08T02:46:06.031Z - 🔄 Compilation terminée
+{
+  "time": "2527ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "4f94c43ca14d81b6"
+}
+
+2025-05-08T02:46:09.435Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672369435"
+}
+
+2025-05-08T02:46:09.955Z - 🔄 Compilation terminée
+{
+  "time": "483ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "9289572f257c4d7f"
+}
+
+2025-05-08T02:46:11.321Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672371321"
+}
+
+2025-05-08T02:46:11.327Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672371325"
+}
+
+2025-05-08T02:46:12.368Z - 🔄 Compilation terminée
+{
+  "time": "1034ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "daf138f6ffe42b9a"
+}
+
+2025-05-08T02:46:15.601Z - 🔄 Compilation terminée
+{
+  "time": "3086ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "dd3c74ab702794f8"
+}
+
+2025-05-08T02:46:16.156Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672376156"
+}
+
+2025-05-08T02:46:16.158Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672376158"
+}
+
+2025-05-08T02:46:22.770Z - 🔄 Compilation terminée
+{
+  "time": "6602ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "9fe464c5beb73f15"
+}
+
+2025-05-08T02:46:22.875Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672382875"
+}
+
+2025-05-08T02:46:27.025Z - 🔄 Compilation terminée
+{
+  "time": "4057ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "bed98909d542922c"
+}
+
+2025-05-08T02:46:27.064Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672387046"
+}
+
+2025-05-08T02:46:27.432Z - 🔄 Compilation terminée
+{
+  "time": "246ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "cc0f70a967f0caaa"
+}
+
+2025-05-08T02:46:28.182Z - 🔄 Compilation terminée
+{
+  "time": "745ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "bed98909d542922c"
+}
+
+2025-05-08T02:46:30.221Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672390221"
+}
+
+2025-05-08T02:46:32.940Z - 🔄 Compilation terminée
+{
+  "time": "2591ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "7d4611f4bbb75130"
+}
+
+2025-05-08T02:46:32.948Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672392947"
+}
+
+2025-05-08T02:46:34.218Z - 🔄 Compilation terminée
+{
+  "time": "1230ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "fa4196a90cc7e727"
+}
+
+2025-05-08T02:47:22.472Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672442470"
+}
+
+2025-05-08T02:47:22.480Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672442470"
+}
+
+2025-05-08T02:47:23.404Z - 🔄 Compilation terminée
+{
+  "time": "617ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "9352f0621b3a57f3"
+}
+
+2025-05-08T02:47:24.441Z - 🔄 Compilation terminée
+{
+  "time": "1022ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "a8fcb1468bb0dbf7"
+}
+
+2025-05-08T02:50:09.396Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672609393"
+}
+
+2025-05-08T02:50:09.403Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672609393"
+}
+
+2025-05-08T02:50:14.733Z - 🔄 Compilation terminée
+{
+  "time": "4990ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "7333886ec93737e2"
+}
+
+2025-05-08T02:50:19.294Z - 🔄 Compilation terminée
+{
+  "time": "4514ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "a88c0d4f5cf73df9"
+}
+
+2025-05-08T02:50:31.112Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672631110"
+}
+
+2025-05-08T02:50:31.143Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672631110"
+}
+
+2025-05-08T02:50:31.816Z - 🔄 Compilation terminée
+{
+  "time": "365ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "7333886ec93737e2"
+}
+
+2025-05-08T02:50:32.404Z - 🔄 Compilation terminée
+{
+  "time": "561ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "a88c0d4f5cf73df9"
+}
+
+2025-05-08T02:50:56.946Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672656937"
+}
+
+2025-05-08T02:50:57.050Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672656937"
+}
+
+2025-05-08T02:50:59.589Z - 🔄 Compilation terminée
+{
+  "time": "2211ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "1e786109f527fb6e"
+}
+
+2025-05-08T02:51:01.041Z - 🔄 Compilation terminée
+{
+  "time": "1174ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "0881b4cf5f8526ff"
+}
+
+2025-05-08T02:51:40.529Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672700496"
+}
+
+2025-05-08T02:51:40.534Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\admin\\DropshippingManagement.jsx",
+  "changeTime": "1746672700496"
+}
+
+2025-05-08T02:51:45.894Z - 🔄 Compilation terminée
+{
+  "time": "5047ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ea2481add6b76ea6"
+}
+
+2025-05-08T02:51:47.428Z - 🔄 Compilation terminée
+{
+  "time": "1526ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8772579253e24003"
+}
+
+2025-05-08T02:52:52.555Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672772555"
+}
+
+2025-05-08T02:52:59.007Z - 🔄 Compilation terminée
+{
+  "time": "6386ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a9bd96c6e930aaff"
+}
+
+2025-05-08T02:52:59.014Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672779014"
+}
+
+2025-05-08T02:53:00.979Z - 🔄 Compilation terminée
+{
+  "time": "1943ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a3aad01d5488a23d"
+}
+
+2025-05-08T02:54:22.951Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672862951"
+}
+
+2025-05-08T02:54:22.954Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672862954"
+}
+
+2025-05-08T02:54:26.186Z - 🔄 Compilation terminée
+{
+  "time": "3228ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "10e0dc59ec8867ee"
+}
+
+2025-05-08T02:54:28.024Z - 🔄 Compilation terminée
+{
+  "time": "1831ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c170e1dc14629bf1"
+}
+
+2025-05-08T02:54:32.884Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672872884"
+}
+
+2025-05-08T02:54:33.583Z - 🔄 Compilation terminée
+{
+  "time": "692ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "90b675022fe9d27e"
+}
+
+2025-05-08T02:54:34.654Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672874654"
+}
+
+2025-05-08T02:54:35.708Z - 🔄 Compilation terminée
+{
+  "time": "1050ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1d8940f0566f0c01"
+}
+
+2025-05-08T02:54:35.721Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672875721"
+}
+
+2025-05-08T02:54:36.797Z - 🔄 Compilation terminée
+{
+  "time": "1057ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0f6a37351c5fd755"
+}
+
+2025-05-08T02:55:22.627Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672922627"
+}
+
+2025-05-08T02:55:22.643Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672922643"
+}
+
+2025-05-08T02:55:25.275Z - 🔄 Compilation terminée
+{
+  "time": "2628ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f45e4c7cc5d823ff"
+}
+
+2025-05-08T02:55:25.902Z - 🔄 Compilation terminée
+{
+  "time": "607ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0f6a37351c5fd755"
+}
+
+2025-05-08T02:55:33.940Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672933939"
+}
+
+2025-05-08T02:55:34.611Z - 🔄 Compilation terminée
+{
+  "time": "636ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "8fad3d91c3017ec5"
+}
+
+2025-05-08T02:55:34.617Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672934617"
+}
+
+2025-05-08T02:55:35.484Z - 🔄 Compilation terminée
+{
+  "time": "855ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "3cfc015151563654"
+}
+
+2025-05-08T02:55:35.845Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672935845"
+}
+
+2025-05-08T02:55:35.861Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746672935861"
+}
+
+2025-05-08T02:55:36.779Z - 🔄 Compilation terminée
+{
+  "time": "805ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "aa7b454e4773a1f4"
+}
+
+2025-05-08T02:55:37.067Z - 🔄 Compilation terminée
+{
+  "time": "272ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "07c9a8ce9b527372"
+}
+
+2025-05-08T02:57:17.244Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\models\\AdminActivityLog.js",
+  "changeTime": "1746673037243"
+}
+
+2025-05-08T02:57:18.926Z - 🔄 Compilation terminée
+{
+  "time": "1373ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ba7c06362649e429"
+}
+
+2025-05-08T02:57:20.527Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673040526"
+}
+
+2025-05-08T02:57:20.533Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673040533"
+}
+
+2025-05-08T02:57:21.077Z - 🔄 Compilation terminée
+{
+  "time": "496ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "05dc8c04131a54fd"
+}
+
+2025-05-08T02:57:21.965Z - 🔄 Compilation terminée
+{
+  "time": "854ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "600d08383c32f4f8"
+}
+
+2025-05-08T02:57:24.398Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673044398"
+}
+
+2025-05-08T02:57:24.672Z - 🔄 Compilation terminée
+{
+  "time": "272ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "004487adbbb0073d"
+}
+
+2025-05-08T02:57:29.290Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673049290"
+}
+
+2025-05-08T02:57:30.606Z - 🔄 Compilation terminée
+{
+  "time": "1312ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "bc5286265d55db95"
+}
+
+2025-05-08T02:57:30.611Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673050611"
+}
+
+2025-05-08T02:57:33.112Z - 🔄 Compilation terminée
+{
+  "time": "2485ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "079d2d4d365cf630"
+}
+
+2025-05-08T03:02:45.423Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746673365422"
+}
+
+2025-05-08T03:02:45.443Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746673365422"
+}
+
+2025-05-08T03:02:48.051Z - 🔄 Compilation terminée
+{
+  "time": "2241ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "10ce31d9a7c4a1b5"
+}
+
+2025-05-08T03:02:53.707Z - 🔄 Compilation terminée
+{
+  "time": "5512ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7631cd1543768169"
+}
+
+2025-05-08T03:02:53.723Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673373723"
+}
+
+2025-05-08T03:02:54.450Z - 🔄 Compilation terminée
+{
+  "time": "640ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7631cd1543768169"
+}
+
+2025-05-08T03:06:07.439Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746673567435"
+}
+
+2025-05-08T03:06:07.444Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\activity-monitor.js",
+  "changeTime": "1746673567435"
+}
+
+2025-05-08T03:06:08.466Z - 🔄 Compilation terminée
+{
+  "time": "722ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "67de051ef7c63dc2"
+}
+
+2025-05-08T03:06:12.979Z - 🔄 Compilation terminée
+{
+  "time": "4428ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e135c95a61086015"
+}
+
+2025-05-08T03:06:13.002Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673573001"
+}
+
+2025-05-08T03:06:14.551Z - 🔄 Compilation terminée
+{
+  "time": "1547ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "95ed2752651dc792"
+}
+
+2025-05-08T03:06:14.568Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673574568"
+}
+
+2025-05-08T03:06:16.197Z - 🔄 Compilation terminée
+{
+  "time": "1619ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "803ccbd1c977e4a5"
+}
+
+2025-05-08T03:06:16.866Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673576866"
+}
+
+2025-05-08T03:06:16.875Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673576875"
+}
+
+2025-05-08T03:06:17.847Z - 🔄 Compilation terminée
+{
+  "time": "895ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "baac61de9d680dcf"
+}
+
+2025-05-08T03:06:18.613Z - 🔄 Compilation terminée
+{
+  "time": "748ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "eb49e25c6b00dcbe"
+}
+
+2025-05-08T03:07:37.026Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673657026"
+}
+
+2025-05-08T03:07:37.030Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673657027"
+}
+
+2025-05-08T03:07:40.721Z - 🔄 Compilation terminée
+{
+  "time": "3685ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e425f4893f1fb4bc"
+}
+
+2025-05-08T03:07:42.786Z - 🔄 Compilation terminée
+{
+  "time": "2039ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ff72ee4c94eea5d6"
+}
+
+2025-05-08T03:07:46.783Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673666783"
+}
+
+2025-05-08T03:07:47.516Z - 🔄 Compilation terminée
+{
+  "time": "730ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "99b85058947a7b0e"
+}
+
+2025-05-08T03:07:48.399Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673668399"
+}
+
+2025-05-08T03:07:49.298Z - 🔄 Compilation terminée
+{
+  "time": "896ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6ee00c7eb26e360b"
+}
+
+2025-05-08T03:08:38.262Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673718262"
+}
+
+2025-05-08T03:08:38.264Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673718264"
+}
+
+2025-05-08T03:08:38.800Z - 🔄 Compilation terminée
+{
+  "time": "532ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "34d5ab8fd8324197"
+}
+
+2025-05-08T03:08:40.353Z - 🔄 Compilation terminée
+{
+  "time": "1543ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "30a1daa789e43864"
+}
+
+2025-05-08T03:08:42.888Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673722888"
+}
+
+2025-05-08T03:08:44.664Z - 🔄 Compilation terminée
+{
+  "time": "1775ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "984556e4e02796fa"
+}
+
+2025-05-08T03:08:44.668Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673724668"
+}
+
+2025-05-08T03:08:45.258Z - 🔄 Compilation terminée
+{
+  "time": "570ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "535cbabbfd62ada6"
+}
+
+2025-05-08T03:08:45.709Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673725709"
+}
+
+2025-05-08T03:08:47.032Z - 🔄 Compilation terminée
+{
+  "time": "1319ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9667d45625789e93"
+}
+
+2025-05-08T03:09:13.326Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673753325"
+}
+
+2025-05-08T03:09:13.333Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673753326"
+}
+
+2025-05-08T03:09:14.427Z - 🔄 Compilation terminée
+{
+  "time": "1087ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "05c5431086b0b487"
+}
+
+2025-05-08T03:09:15.018Z - 🔄 Compilation terminée
+{
+  "time": "558ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7a952f80af33a75d"
+}
+
+2025-05-08T03:09:16.310Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673756309"
+}
+
+2025-05-08T03:09:16.776Z - 🔄 Compilation terminée
+{
+  "time": "459ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "af801a8b04643300"
+}
+
+2025-05-08T03:09:32.434Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673772434"
+}
+
+2025-05-08T03:09:32.437Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673772437"
+}
+
+2025-05-08T03:09:32.778Z - 🔄 Compilation terminée
+{
+  "time": "338ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "337ed5d60e45f848"
+}
+
+2025-05-08T03:09:34.004Z - 🔄 Compilation terminée
+{
+  "time": "1120ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7e0f7db4ea2412e3"
+}
+
+2025-05-08T03:09:35.516Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673775516"
+}
+
+2025-05-08T03:09:36.519Z - 🔄 Compilation terminée
+{
+  "time": "1000ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "40b4e154f4e4d110"
+}
+
+2025-05-08T03:09:49.542Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673789542"
+}
+
+2025-05-08T03:09:49.543Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673789543"
+}
+
+2025-05-08T03:09:49.814Z - 🔄 Compilation terminée
+{
+  "time": "256ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e9440ceb18571d22"
+}
+
+2025-05-08T03:09:50.332Z - 🔄 Compilation terminée
+{
+  "time": "511ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b003abcbe0a1bf23"
+}
+
+2025-05-08T03:09:52.357Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673792356"
+}
+
+2025-05-08T03:09:52.575Z - 🔄 Compilation terminée
+{
+  "time": "216ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2bc635465857b59d"
+}
+
+2025-05-08T03:09:52.583Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673792583"
+}
+
+2025-05-08T03:09:52.954Z - 🔄 Compilation terminée
+{
+  "time": "365ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "056ab0aa714a57c4"
+}
+
+2025-05-08T03:10:01.566Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673801566"
+}
+
+2025-05-08T03:10:01.568Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673801567"
+}
+
+2025-05-08T03:10:01.940Z - 🔄 Compilation terminée
+{
+  "time": "370ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "861fb3c2e9e62e4a"
+}
+
+2025-05-08T03:10:03.799Z - 🔄 Compilation terminée
+{
+  "time": "1849ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fb008dc8cd994def"
+}
+
+2025-05-08T03:10:06.105Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673806105"
+}
+
+2025-05-08T03:10:07.007Z - 🔄 Compilation terminée
+{
+  "time": "899ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "63ea9f86ccd701d7"
+}
+
+2025-05-08T03:10:07.012Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673807012"
+}
+
+2025-05-08T03:10:08.742Z - 🔄 Compilation terminée
+{
+  "time": "1699ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4f249fde4899f92a"
+}
+
+2025-05-08T03:10:09.041Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673809040"
+}
+
+2025-05-08T03:10:09.049Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746673809048"
+}
+
+2025-05-08T03:10:10.705Z - 🔄 Compilation terminée
+{
+  "time": "1647ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "34fd36bb7b45b1df"
+}
+
+2025-05-08T03:10:11.363Z - 🔄 Compilation terminée
+{
+  "time": "652ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a23ba241fd541287"
+}
+
+2025-05-08T03:12:43.499Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\api\\admin\\pending-reviews.js",
+  "changeTime": "1746673963474"
+}
+
+2025-05-08T03:12:47.268Z - 🔄 Compilation terminée
+{
+  "time": "3454ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "70df514a16caf1e2"
+}
+
+2025-05-08T03:17:20.864Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674240864"
+}
+
+2025-05-08T03:17:21.978Z - 🔄 Compilation terminée
+{
+  "time": "1109ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3e01515fff058df2"
+}
+
+2025-05-08T03:25:05.744Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674705744"
+}
+
+2025-05-08T03:25:07.718Z - 🔄 Compilation terminée
+{
+  "time": "1966ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "51cb48d2ee448c86"
+}
+
+2025-05-08T03:25:07.722Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674707721"
+}
+
+2025-05-08T03:25:09.256Z - 🔄 Compilation terminée
+{
+  "time": "1505ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "503e687a00463545"
+}
+
+2025-05-08T03:25:10.413Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674710413"
+}
+
+2025-05-08T03:25:10.421Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674710421"
+}
+
+2025-05-08T03:25:11.966Z - 🔄 Compilation terminée
+{
+  "time": "1532ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "33b60abf87059ec9"
+}
+
+2025-05-08T03:25:13.132Z - 🔄 Compilation terminée
+{
+  "time": "1127ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "21c45101f4c87dff"
+}
+
+2025-05-08T03:26:04.130Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674764130"
+}
+
+2025-05-08T03:26:04.135Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674764135"
+}
+
+2025-05-08T03:26:07.804Z - 🔄 Compilation terminée
+{
+  "time": "3650ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "80077034d7801dec"
+}
+
+2025-05-08T03:26:11.329Z - 🔄 Compilation terminée
+{
+  "time": "3499ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3115a907153c6b6d"
+}
+
+2025-05-08T03:26:15.326Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674775326"
+}
+
+2025-05-08T03:26:15.376Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674775376"
+}
+
+2025-05-08T03:26:18.922Z - 🔄 Compilation terminée
+{
+  "time": "3528ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6f65fce87b481315"
+}
+
+2025-05-08T03:26:20.509Z - 🔄 Compilation terminée
+{
+  "time": "1579ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b03d1e83cdb2d9e8"
+}
+
+2025-05-08T03:26:21.675Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674781675"
+}
+
+2025-05-08T03:26:21.676Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674781676"
+}
+
+2025-05-08T03:26:22.523Z - 🔄 Compilation terminée
+{
+  "time": "842ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "70369ea55c5573a4"
+}
+
+2025-05-08T03:26:23.541Z - 🔄 Compilation terminée
+{
+  "time": "1008ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4f93883f04c7189a"
+}
+
+2025-05-08T03:27:34.055Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674853990"
+}
+
+2025-05-08T03:27:34.075Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674853990"
+}
+
+2025-05-08T03:27:48.083Z - 🔄 Compilation terminée
+{
+  "time": "13638ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1febe5ca53c5d596"
+}
+
+2025-05-08T03:27:48.172Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\ChartInit.jsx",
+  "changeTime": "1746674862490"
+}
+
+2025-05-08T03:27:51.548Z - 🔄 Compilation terminée
+{
+  "time": "3424ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9860801b0e429142"
+}
+
+2025-05-08T03:27:51.648Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674870477"
+}
+
+2025-05-08T03:27:52.118Z - 🔄 Compilation terminée
+{
+  "time": "488ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7b610d76c1d15caf"
+}
+
+2025-05-08T03:27:52.864Z - 🔄 Compilation terminée
+{
+  "time": "729ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9d56a486497595e4"
+}
+
+2025-05-08T03:27:59.530Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674879518"
+}
+
+2025-05-08T03:27:59.554Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674879518"
+}
+
+2025-05-08T03:28:01.212Z - 🔄 Compilation terminée
+{
+  "time": "1323ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5868ca24514669fd"
+}
+
+2025-05-08T03:28:02.178Z - 🔄 Compilation terminée
+{
+  "time": "751ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3542246268c7ae2b"
+}
+
+2025-05-08T03:28:07.894Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674887793"
+}
+
+2025-05-08T03:28:07.897Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674887793"
+}
+
+2025-05-08T03:28:09.132Z - 🔄 Compilation terminée
+{
+  "time": "884ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c31d6826b2615d2e"
+}
+
+2025-05-08T03:28:09.834Z - 🔄 Compilation terminée
+{
+  "time": "682ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d91561044621c464"
+}
+
+2025-05-08T03:28:40.547Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674920542"
+}
+
+2025-05-08T03:28:40.553Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746674920542"
+}
+
+2025-05-08T03:28:46.711Z - 🔄 Compilation terminée
+{
+  "time": "5675ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3a2399bcc318004a"
+}
+
+2025-05-08T03:28:47.865Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674927865"
+}
+
+2025-05-08T03:28:51.140Z - 🔄 Compilation terminée
+{
+  "time": "4421ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6d63c956729d099e"
+}
+
+2025-05-08T03:28:51.208Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674931207"
+}
+
+2025-05-08T03:28:51.993Z - 🔄 Compilation terminée
+{
+  "time": "766ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3a2399bcc318004a"
+}
+
+2025-05-08T03:28:53.069Z - 🔄 Compilation terminée
+{
+  "time": "799ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6d63c956729d099e"
+}
+
+2025-05-08T03:29:11.450Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674951450"
+}
+
+2025-05-08T03:29:16.570Z - 🔄 Compilation terminée
+{
+  "time": "5073ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6661b8073df5393e"
+}
+
+2025-05-08T03:29:17.794Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674957793"
+}
+
+2025-05-08T03:29:17.818Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674957818"
+}
+
+2025-05-08T03:29:24.216Z - 🔄 Compilation terminée
+{
+  "time": "6320ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "388a6e3007eadbb9"
+}
+
+2025-05-08T03:29:29.868Z - 🔄 Compilation terminée
+{
+  "time": "5631ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5c7acbc5ebc8b45a"
+}
+
+2025-05-08T03:29:30.744Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674970744"
+}
+
+2025-05-08T03:29:30.761Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746674970761"
+}
+
+2025-05-08T03:29:31.987Z - 🔄 Compilation terminée
+{
+  "time": "1210ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2594a5b1dada1855"
+}
+
+2025-05-08T03:29:34.078Z - 🔄 Compilation terminée
+{
+  "time": "2083ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "02397ce90ab7f61e"
+}
+
+2025-05-08T03:30:17.901Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SellerLayout.jsx",
+  "changeTime": "1746675017900"
+}
+
+2025-05-08T03:30:17.905Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SellerLayout.jsx",
+  "changeTime": "1746675017900"
+}
+
+2025-05-08T03:30:19.451Z - 🔄 Compilation terminée
+{
+  "time": "1183ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ad257208c902a9dd"
+}
+
+2025-05-08T03:30:20.998Z - 🔄 Compilation terminée
+{
+  "time": "1532ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9b213113622da3dd"
+}
+
+2025-05-08T03:30:55.285Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675055285"
+}
+
+2025-05-08T03:30:55.287Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675055286"
+}
+
+2025-05-08T03:30:56.204Z - 🔄 Compilation terminée
+{
+  "time": "914ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1d67c69812d7695a"
+}
+
+2025-05-08T03:30:57.123Z - 🔄 Compilation terminée
+{
+  "time": "887ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c6f957f0c00c0b3a"
+}
+
+2025-05-08T03:31:02.255Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675062254"
+}
+
+2025-05-08T03:31:04.772Z - 🔄 Compilation terminée
+{
+  "time": "2219ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a1518e5e54f76218"
+}
+
+2025-05-08T03:31:09.703Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675069703"
+}
+
+2025-05-08T03:31:09.724Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675069721"
+}
+
+2025-05-08T03:31:10.783Z - 🔄 Compilation terminée
+{
+  "time": "1040ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2e39dcb3278bd073"
+}
+
+2025-05-08T03:31:12.096Z - 🔄 Compilation terminée
+{
+  "time": "1303ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "673f3aca05618f0c"
+}
+
+2025-05-08T03:32:20.268Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T03:32:20.265Z"
+}
+
+2025-05-08T03:32:20.301Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T03:32:20.303Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"onDemandEntries\":{\"maxInactiveAge\":25000,\"pagesBufferLength\":2},\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost..."
+}
+
+2025-05-08T03:32:42.474Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": false
+}
+
+2025-05-08T03:32:42.533Z - HotModuleReplacementPlugin ajouté manuellement
+{}
+
+2025-05-08T03:32:42.558Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": true
+}
+
+2025-05-08T03:32:42.693Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T03:32:50.600Z - 🔄 Compilation terminée
+{
+  "time": "6528ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T03:32:51.497Z - 🔄 Compilation terminée
+{
+  "time": "814ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T03:32:51.885Z - 🔄 Compilation terminée
+{
+  "time": "315ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T03:32:54.611Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675174594"
+}
+
+2025-05-08T03:32:54.630Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675174626"
+}
+
+2025-05-08T03:32:54.717Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675174714"
+}
+
+2025-05-08T03:32:56.252Z - 🔄 Compilation terminée
+{
+  "time": "1442ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T03:32:58.749Z - 🔄 Compilation terminée
+{
+  "time": "2483ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T03:32:59.399Z - 🔄 Compilation terminée
+{
+  "time": "582ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T03:33:01.038Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675181038"
+}
+
+2025-05-08T03:33:01.054Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675181054"
+}
+
+2025-05-08T03:34:40.615Z - 🔄 Compilation terminée
+{
+  "time": "99527ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5b93b2ae6d6bb98f"
+}
+
+2025-05-08T03:34:51.629Z - 🔄 Compilation terminée
+{
+  "time": "10998ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "42e4b9d0b311a5ab"
+}
+
+2025-05-08T03:35:00.516Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675300515"
+}
+
+2025-05-08T03:35:22.786Z - 🔄 Compilation terminée
+{
+  "time": "22171ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "991dcb9c653a30a7"
+}
+
+2025-05-08T03:35:24.318Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675324318"
+}
+
+2025-05-08T03:35:24.367Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675324332"
+}
+
+2025-05-08T03:35:32.898Z - 🔄 Compilation terminée
+{
+  "time": "8503ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b2a5d5c1d53093d3"
+}
+
+2025-05-08T03:35:33.051Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675333051"
+}
+
+2025-05-08T03:35:35.490Z - 🔄 Compilation terminée
+{
+  "time": "2577ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "329ddd7d3a26bade"
+}
+
+2025-05-08T03:35:35.553Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675335552"
+}
+
+2025-05-08T03:35:36.868Z - 🔄 Compilation terminée
+{
+  "time": "1299ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8e5444c598bff0c7"
+}
+
+2025-05-08T03:35:38.592Z - 🔄 Compilation terminée
+{
+  "time": "1334ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d40e5ebada0a8497"
+}
+
+2025-05-08T03:35:41.742Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675341741"
+}
+
+2025-05-08T03:35:43.511Z - 🔄 Compilation terminée
+{
+  "time": "1764ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f40b241f1488d0d4"
+}
+
+2025-05-08T03:37:20.578Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675440577"
+}
+
+2025-05-08T03:37:20.615Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675440605"
+}
+
+2025-05-08T03:37:53.420Z - 🔄 Compilation terminée
+{
+  "time": "32778ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fe29a76959313690"
+}
+
+2025-05-08T03:38:14.947Z - 🔄 Compilation terminée
+{
+  "time": "21515ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "701d6740dc32597b"
+}
+
+2025-05-08T03:38:15.039Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675495039"
+}
+
+2025-05-08T03:38:15.822Z - 🔄 Compilation terminée
+{
+  "time": "750ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "49ac056b4405e65e"
+}
+
+2025-05-08T03:38:23.590Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675503590"
+}
+
+2025-05-08T03:38:24.696Z - 🔄 Compilation terminée
+{
+  "time": "1082ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "07ca729edcd512cd"
+}
+
+2025-05-08T03:38:24.773Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675504772"
+}
+
+2025-05-08T03:38:26.530Z - 🔄 Compilation terminée
+{
+  "time": "1719ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2c7db0c19f39e3b5"
+}
+
+2025-05-08T03:38:43.167Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675523167"
+}
+
+2025-05-08T03:38:43.169Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675523169"
+}
+
+2025-05-08T03:38:45.030Z - 🔄 Compilation terminée
+{
+  "time": "1856ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5b4af63bf4082fde"
+}
+
+2025-05-08T03:38:47.147Z - 🔄 Compilation terminée
+{
+  "time": "2093ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e255e8b248a5fc0a"
+}
+
+2025-05-08T03:38:50.630Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675530630"
+}
+
+2025-05-08T03:38:51.729Z - 🔄 Compilation terminée
+{
+  "time": "1096ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "682743f37bc2baa2"
+}
+
+2025-05-08T03:38:51.748Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675531747"
+}
+
+2025-05-08T03:38:53.108Z - 🔄 Compilation terminée
+{
+  "time": "1332ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c078eee15c62f7a4"
+}
+
+2025-05-08T03:38:53.749Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675533748"
+}
+
+2025-05-08T03:38:54.636Z - 🔄 Compilation terminée
+{
+  "time": "872ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "05e8d42118ffae40"
+}
+
+2025-05-08T03:39:03.089Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675543089"
+}
+
+2025-05-08T03:39:03.092Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675543092"
+}
+
+2025-05-08T03:39:04.619Z - 🔄 Compilation terminée
+{
+  "time": "1510ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7d19af70dead5e49"
+}
+
+2025-05-08T03:39:05.484Z - 🔄 Compilation terminée
+{
+  "time": "847ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cab7edf62fd45438"
+}
+
+2025-05-08T03:39:38.007Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675578003"
+}
+
+2025-05-08T03:39:39.320Z - 🔄 Compilation terminée
+{
+  "time": "1296ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "94de60d4d7065b8f"
+}
+
+2025-05-08T03:39:39.360Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675579360"
+}
+
+2025-05-08T03:39:40.311Z - 🔄 Compilation terminée
+{
+  "time": "919ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ac09d55e87732b21"
+}
+
+2025-05-08T03:39:44.239Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675584239"
+}
+
+2025-05-08T03:39:44.241Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675584241"
+}
+
+2025-05-08T03:39:45.819Z - 🔄 Compilation terminée
+{
+  "time": "1523ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3dadf49cafe2f535"
+}
+
+2025-05-08T03:39:47.409Z - 🔄 Compilation terminée
+{
+  "time": "1485ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1c1f8ae2f4e5b0ec"
+}
+
+2025-05-08T03:39:48.528Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675588528"
+}
+
+2025-05-08T03:39:48.557Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675588557"
+}
+
+2025-05-08T03:39:51.757Z - 🔄 Compilation terminée
+{
+  "time": "3179ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cc3bc61ca7d2e295"
+}
+
+2025-05-08T03:39:53.735Z - 🔄 Compilation terminée
+{
+  "time": "1942ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6d0a96afd8c0f7f1"
+}
+
+2025-05-08T03:39:55.285Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675595285"
+}
+
+2025-05-08T03:39:55.290Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675595290"
+}
+
+2025-05-08T03:39:56.287Z - 🔄 Compilation terminée
+{
+  "time": "977ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8d177cf18fcaee2d"
+}
+
+2025-05-08T03:39:57.336Z - 🔄 Compilation terminée
+{
+  "time": "994ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0afd68e6cbf7e8a3"
+}
+
+2025-05-08T03:41:03.390Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\NavItems.jsx",
+  "changeTime": "1746675660876"
+}
+
+2025-05-08T03:41:03.415Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\NavItems.jsx",
+  "changeTime": "1746675660876"
+}
+
+2025-05-08T03:41:28.581Z - 🔄 Compilation terminée
+{
+  "time": "24858ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7dcfd3edd9050159"
+}
+
+2025-05-08T03:41:28.612Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675688611"
+}
+
+2025-05-08T03:41:30.438Z - 🔄 Compilation terminée
+{
+  "time": "1810ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fd20a17f67f56419"
+}
+
+2025-05-08T03:41:31.797Z - 🔄 Compilation terminée
+{
+  "time": "1122ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d548a38046325b4b"
+}
+
+2025-05-08T03:41:32.981Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675692981"
+}
+
+2025-05-08T03:41:32.993Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675692993"
+}
+
+2025-05-08T03:41:34.097Z - 🔄 Compilation terminée
+{
+  "time": "1086ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2dfbb01a3e8a2741"
+}
+
+2025-05-08T03:41:34.244Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675694240"
+}
+
+2025-05-08T03:41:35.339Z - 🔄 Compilation terminée
+{
+  "time": "959ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f9af5f142456f438"
+}
+
+2025-05-08T03:41:35.345Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675695345"
+}
+
+2025-05-08T03:41:35.859Z - 🔄 Compilation terminée
+{
+  "time": "452ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2dfbb01a3e8a2741"
+}
+
+2025-05-08T03:41:36.431Z - 🔄 Compilation terminée
+{
+  "time": "542ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f9af5f142456f438"
+}
+
+2025-05-08T03:41:43.665Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675703663"
+}
+
+2025-05-08T03:41:44.537Z - 🔄 Compilation terminée
+{
+  "time": "857ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "816ad602e4985514"
+}
+
+2025-05-08T03:43:04.419Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\index.js",
+  "changeTime": "1746675784410"
+}
+
+2025-05-08T03:43:04.423Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\admin\\index.js",
+  "changeTime": "1746675784410"
+}
+
+2025-05-08T03:43:05.903Z - 🔄 Compilation terminée
+{
+  "time": "1171ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "baba5c8a97ff3f13"
+}
+
+2025-05-08T03:43:09.520Z - 🔄 Compilation terminée
+{
+  "time": "3562ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0a440e6a2d9dcad1"
+}
+
+2025-05-08T03:43:23.169Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675803168"
+}
+
+2025-05-08T03:43:23.173Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675803171"
+}
+
+2025-05-08T03:43:25.765Z - 🔄 Compilation terminée
+{
+  "time": "2589ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a2d6f2c2645a0858"
+}
+
+2025-05-08T03:43:27.615Z - 🔄 Compilation terminée
+{
+  "time": "1841ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2254af1206a4d8fe"
+}
+
+2025-05-08T03:43:30.950Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675810950"
+}
+
+2025-05-08T03:43:31.084Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675811084"
+}
+
+2025-05-08T03:43:32.379Z - 🔄 Compilation terminée
+{
+  "time": "1424ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cbb6590f78714f26"
+}
+
+2025-05-08T03:43:32.404Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675812404"
+}
+
+2025-05-08T03:43:33.021Z - 🔄 Compilation terminée
+{
+  "time": "610ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a2d6f2c2645a0858"
+}
+
+2025-05-08T03:43:33.442Z - 🔄 Compilation terminée
+{
+  "time": "412ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cbb6590f78714f26"
+}
+
+2025-05-08T03:43:40.484Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675820480"
+}
+
+2025-05-08T03:43:43.559Z - 🔄 Compilation terminée
+{
+  "time": "3042ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0aab1c2bbe5d9873"
+}
+
+2025-05-08T03:43:43.583Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675823582"
+}
+
+2025-05-08T03:43:44.650Z - 🔄 Compilation terminée
+{
+  "time": "1030ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f65b3935f30e0f6a"
+}
+
+2025-05-08T03:44:05.401Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675845401"
+}
+
+2025-05-08T03:44:05.404Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675845403"
+}
+
+2025-05-08T03:44:10.198Z - 🔄 Compilation terminée
+{
+  "time": "4758ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cab67335fe2c9afc"
+}
+
+2025-05-08T03:44:12.026Z - 🔄 Compilation terminée
+{
+  "time": "1825ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0fa9252cfd536a4a"
+}
+
+2025-05-08T03:44:13.821Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675853821"
+}
+
+2025-05-08T03:44:13.856Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675853856"
+}
+
+2025-05-08T03:44:16.368Z - 🔄 Compilation terminée
+{
+  "time": "2466ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "96c80d480dd076ec"
+}
+
+2025-05-08T03:44:18.186Z - 🔄 Compilation terminée
+{
+  "time": "1793ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f2ee031c3c35d8a2"
+}
+
+2025-05-08T03:44:20.019Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675860019"
+}
+
+2025-05-08T03:44:20.035Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746675860034"
+}
+
+2025-05-08T03:44:21.063Z - 🔄 Compilation terminée
+{
+  "time": "1007ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c8a45f1a0a70c409"
+}
+
+2025-05-08T03:44:23.166Z - 🔄 Compilation terminée
+{
+  "time": "2052ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a3aa5cca8bade70c"
+}
+
+2025-05-08T03:45:59.846Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\index.js",
+  "changeTime": "1746675959705"
+}
+
+2025-05-08T03:45:59.850Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\index.js",
+  "changeTime": "1746675959705"
+}
+
+2025-05-08T03:46:01.283Z - 🔄 Compilation terminée
+{
+  "time": "981ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0d3c106ae76240a5"
+}
+
+2025-05-08T03:46:02.739Z - 🔄 Compilation terminée
+{
+  "time": "1440ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "16790fd182557bee"
+}
+
+2025-05-08T03:46:53.289Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676013288"
+}
+
+2025-05-08T03:46:53.291Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676013291"
+}
+
+2025-05-08T03:46:54.693Z - 🔄 Compilation terminée
+{
+  "time": "1393ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5aab15ca75977594"
+}
+
+2025-05-08T03:46:55.434Z - 🔄 Compilation terminée
+{
+  "time": "719ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ef0a068cd5ac249f"
+}
+
+2025-05-08T03:47:02.770Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676022769"
+}
+
+2025-05-08T03:47:05.891Z - 🔄 Compilation terminée
+{
+  "time": "3118ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9a4d39a1bbeddbbf"
+}
+
+2025-05-08T03:47:07.305Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676027303"
+}
+
+2025-05-08T03:47:09.789Z - 🔄 Compilation terminée
+{
+  "time": "2471ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "74d30b16779b59be"
+}
+
+2025-05-08T03:47:09.795Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676029795"
+}
+
+2025-05-08T03:47:10.802Z - 🔄 Compilation terminée
+{
+  "time": "1002ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "36dd6aadd2ed5aa4"
+}
+
+2025-05-08T03:48:25.043Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676105043"
+}
+
+2025-05-08T03:48:25.047Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676105047"
+}
+
+2025-05-08T03:48:27.237Z - 🔄 Compilation terminée
+{
+  "time": "2174ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8fb64edc3821df1c"
+}
+
+2025-05-08T03:48:29.956Z - 🔄 Compilation terminée
+{
+  "time": "2613ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "716c51220c8e1899"
+}
+
+2025-05-08T03:48:55.839Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676135839"
+}
+
+2025-05-08T03:48:55.859Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676135859"
+}
+
+2025-05-08T03:48:56.506Z - 🔄 Compilation terminée
+{
+  "time": "645ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "530f19b2574745c0"
+}
+
+2025-05-08T03:48:57.930Z - 🔄 Compilation terminée
+{
+  "time": "1376ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "746c1fba24e41d3f"
+}
+
+2025-05-08T03:48:59.905Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676139905"
+}
+
+2025-05-08T03:48:59.913Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676139910"
+}
+
+2025-05-08T03:49:00.825Z - 🔄 Compilation terminée
+{
+  "time": "897ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9408bb173cfb3c9f"
+}
+
+2025-05-08T03:49:02.115Z - 🔄 Compilation terminée
+{
+  "time": "1168ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "bf484e3ba7f47886"
+}
+
+2025-05-08T03:50:06.360Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746676205628"
+}
+
+2025-05-08T03:50:06.597Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746676205628"
+}
+
+2025-05-08T03:50:10.141Z - 🔄 Compilation terminée
+{
+  "time": "2956ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a57c11f80c2fa610"
+}
+
+2025-05-08T03:50:13.384Z - 🔄 Compilation terminée
+{
+  "time": "1847ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a57c11356037a773"
+}
+
+2025-05-08T03:50:29.218Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676229217"
+}
+
+2025-05-08T03:50:29.231Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676229231"
+}
+
+2025-05-08T03:50:30.886Z - 🔄 Compilation terminée
+{
+  "time": "1652ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a636a6ad8d0b1012"
+}
+
+2025-05-08T03:50:31.623Z - 🔄 Compilation terminée
+{
+  "time": "690ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "65720d61bfdb8837"
+}
+
+2025-05-08T03:50:41.492Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676241484"
+}
+
+2025-05-08T03:50:45.708Z - 🔄 Compilation terminée
+{
+  "time": "4158ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "dcc5b600a686c6b4"
+}
+
+2025-05-08T03:50:46.987Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676246986"
+}
+
+2025-05-08T03:50:49.476Z - 🔄 Compilation terminée
+{
+  "time": "2444ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fd7c26976d63fb28"
+}
+
+2025-05-08T03:50:49.484Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676249483"
+}
+
+2025-05-08T03:50:50.672Z - 🔄 Compilation terminée
+{
+  "time": "1154ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "509a2b819ce390f3"
+}
+
+2025-05-08T03:50:52.182Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676252182"
+}
+
+2025-05-08T03:50:52.199Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676252198"
+}
+
+2025-05-08T03:50:53.685Z - 🔄 Compilation terminée
+{
+  "time": "1464ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ced38158dabb04b1"
+}
+
+2025-05-08T03:50:57.241Z - 🔄 Compilation terminée
+{
+  "time": "3233ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fa4184a0cccc7ffb"
+}
+
+2025-05-08T03:52:39.765Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676359765"
+}
+
+2025-05-08T03:52:39.784Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676359783"
+}
+
+2025-05-08T03:52:43.897Z - 🔄 Compilation terminée
+{
+  "time": "4094ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "7a538e31707abe21"
+}
+
+2025-05-08T03:52:48.507Z - 🔄 Compilation terminée
+{
+  "time": "4550ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "28e79bebe9d373f8"
+}
+
+2025-05-08T03:52:49.997Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676369997"
+}
+
+2025-05-08T03:52:52.246Z - 🔄 Compilation terminée
+{
+  "time": "2242ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "865c43e2e619704c"
+}
+
+2025-05-08T03:52:52.840Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676372840"
+}
+
+2025-05-08T03:52:53.224Z - 🔄 Compilation terminée
+{
+  "time": "374ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "efe1d0fc93a6a72c"
+}
+
+2025-05-08T03:53:53.299Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746676433194"
+}
+
+2025-05-08T03:53:53.503Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746676433194"
+}
+
+2025-05-08T03:54:05.369Z - 🔄 Compilation terminée
+{
+  "time": "7330ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "da55f53cccb96757"
+}
+
+2025-05-08T03:54:09.983Z - 🔄 Compilation terminée
+{
+  "time": "4022ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b705514c31e90099"
+}
+
+2025-05-08T03:54:10.007Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676450007"
+}
+
+2025-05-08T03:54:11.391Z - 🔄 Compilation terminée
+{
+  "time": "1356ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "23b12662f99b865a"
+}
+
+2025-05-08T03:54:14.017Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676454017"
+}
+
+2025-05-08T03:54:15.691Z - 🔄 Compilation terminée
+{
+  "time": "1642ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9534872067f209b5"
+}
+
+2025-05-08T03:55:00.704Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\api\\seller\\stats.js",
+  "changeTime": "1746676500692"
+}
+
+2025-05-08T03:55:02.470Z - 🔄 Compilation terminée
+{
+  "time": "1414ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c205336a38afdc66"
+}
+
+2025-05-08T03:55:35.612Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676535612"
+}
+
+2025-05-08T03:55:36.738Z - 🔄 Compilation terminée
+{
+  "time": "1091ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1d3bc1cc8af3cd77"
+}
+
+2025-05-08T03:55:39.328Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676539328"
+}
+
+2025-05-08T03:55:41.746Z - 🔄 Compilation terminée
+{
+  "time": "2394ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0150f591b348f5e8"
+}
+
+2025-05-08T03:55:53.747Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T03:55:53.739Z"
+}
+
+2025-05-08T03:55:53.786Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T03:55:53.801Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"onDemandEntries\":{\"maxInactiveAge\":25000,\"pagesBufferLength\":2},\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost..."
+}
+
+2025-05-08T03:56:09.861Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T03:56:09.860Z"
+}
+
+2025-05-08T03:56:09.891Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T03:56:09.892Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"onDemandEntries\":{\"maxInactiveAge\":25000,\"pagesBufferLength\":2},\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost..."
+}
+
+2025-05-08T03:56:15.422Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676575353"
+}
+
+2025-05-08T03:56:15.459Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676575353"
+}
+
+2025-05-08T03:56:22.727Z - 🔄 Compilation terminée
+{
+  "time": "6936ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d1890c9b9dd822b9"
+}
+
+2025-05-08T03:56:26.159Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676586093"
+}
+
+2025-05-08T03:56:26.707Z - 🔄 Compilation terminée
+{
+  "time": "3943ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8c640454292639fb"
+}
+
+2025-05-08T03:56:26.741Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676586227"
+}
+
+2025-05-08T03:56:27.280Z - 🔄 Compilation terminée
+{
+  "time": "549ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "5c9814636167cce8"
+}
+
+2025-05-08T03:56:27.821Z - 🔄 Compilation terminée
+{
+  "time": "484ms",
+  "errors": 1,
+  "warnings": 0,
+  "hash": "c60f5c3d9f87f544"
+}
+
+2025-05-08T03:57:12.430Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676632429"
+}
+
+2025-05-08T03:57:12.440Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676632429"
+}
+
+2025-05-08T03:57:13.243Z - 🔄 Compilation terminée
+{
+  "time": "412ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d3e07e6b86589a0d"
+}
+
+2025-05-08T03:57:14.131Z - 🔄 Compilation terminée
+{
+  "time": "796ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "90b0522f97c16047"
+}
+
+2025-05-08T03:57:34.683Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676654683"
+}
+
+2025-05-08T03:57:34.760Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676654760"
+}
+
+2025-05-08T03:57:36.324Z - 🔄 Compilation terminée
+{
+  "time": "1511ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "60a2bb56ce5c2826"
+}
+
+2025-05-08T03:57:37.018Z - 🔄 Compilation terminée
+{
+  "time": "691ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "54b17bf70efaf725"
+}
+
+2025-05-08T03:57:37.895Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T03:57:45.680Z - 🔄 Compilation terminée
+{
+  "time": "7731ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2879d19e0d468efb"
+}
+
+2025-05-08T03:57:49.401Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676669367"
+}
+
+2025-05-08T03:57:49.420Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676669367"
+}
+
+2025-05-08T03:57:49.893Z - 🔄 Compilation terminée
+{
+  "time": "180ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "60a2bb56ce5c2826"
+}
+
+2025-05-08T03:57:49.982Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676669981"
+}
+
+2025-05-08T03:57:50.150Z - 🔄 Compilation terminée
+{
+  "time": "253ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "54b17bf70efaf725"
+}
+
+2025-05-08T03:57:50.155Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676670155"
+}
+
+2025-05-08T03:57:53.575Z - 🔄 Compilation terminée
+{
+  "time": "3418ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "637bd58f70d00d38"
+}
+
+2025-05-08T03:57:54.179Z - 🔄 Compilation terminée
+{
+  "time": "593ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "aba6d40412c78640"
+}
+
+2025-05-08T03:57:57.916Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676677915"
+}
+
+2025-05-08T03:58:00.730Z - 🔄 Compilation terminée
+{
+  "time": "2801ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "05c7a2486e4edcab"
+}
+
+2025-05-08T03:58:01.865Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676681865"
+}
+
+2025-05-08T03:58:05.494Z - 🔄 Compilation terminée
+{
+  "time": "3626ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3648d8e8bfd6511f"
+}
+
+2025-05-08T03:58:11.641Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676691626"
+}
+
+2025-05-08T03:58:12.131Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676691626"
+}
+
+2025-05-08T03:58:12.686Z - 🔄 Compilation terminée
+{
+  "time": "287ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "637bd58f70d00d38"
+}
+
+2025-05-08T03:58:12.942Z - 🔄 Compilation terminée
+{
+  "time": "248ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3648d8e8bfd6511f"
+}
+
+2025-05-08T03:58:57.417Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676737417"
+}
+
+2025-05-08T03:58:57.451Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746676737417"
+}
+
+2025-05-08T03:59:01.783Z - 🔄 Compilation terminée
+{
+  "time": "3981ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ee14875e6f42a18d"
+}
+
+2025-05-08T03:59:03.190Z - 🔄 Compilation terminée
+{
+  "time": "1389ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "148b7bb3f0e4eddd"
+}
+
+2025-05-08T03:59:39.267Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676779267"
+}
+
+2025-05-08T03:59:39.306Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676779282"
+}
+
+2025-05-08T03:59:39.632Z - 🔄 Compilation terminée
+{
+  "time": "307ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "29c67da4084ff9b6"
+}
+
+2025-05-08T03:59:39.896Z - 🔄 Compilation terminée
+{
+  "time": "256ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ab7129447ff68d11"
+}
+
+2025-05-08T04:00:29.041Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\_error.js",
+  "changeTime": "1746676829040"
+}
+
+2025-05-08T04:00:29.045Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\_error.js",
+  "changeTime": "1746676829040"
+}
+
+2025-05-08T04:00:30.614Z - 🔄 Compilation terminée
+{
+  "time": "1003ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ef34ddf747459799"
+}
+
+2025-05-08T04:00:30.635Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\_error.js",
+  "changeTime": "1746676829615"
+}
+
+2025-05-08T04:00:31.134Z - 🔄 Compilation terminée
+{
+  "time": "509ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "66290b8321f9eaa6"
+}
+
+2025-05-08T04:00:31.683Z - 🔄 Compilation terminée
+{
+  "time": "320ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ef34ddf747459799"
+}
+
+2025-05-08T04:00:33.456Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676833455"
+}
+
+2025-05-08T04:00:33.458Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676833458"
+}
+
+2025-05-08T04:00:33.611Z - 🔄 Compilation terminée
+{
+  "time": "146ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "286460a08579f437"
+}
+
+2025-05-08T04:00:33.704Z - 🔄 Compilation terminée
+{
+  "time": "85ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c8bdee3727ea2617"
+}
+
+2025-05-08T04:00:35.360Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676835359"
+}
+
+2025-05-08T04:00:35.408Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676835408"
+}
+
+2025-05-08T04:00:36.348Z - 🔄 Compilation terminée
+{
+  "time": "894ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e4a4e28d02e5173a"
+}
+
+2025-05-08T04:00:37.207Z - 🔄 Compilation terminée
+{
+  "time": "778ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f74565e9646ce65c"
+}
+
+2025-05-08T04:00:52.376Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\404.js",
+  "changeTime": "1746676852372"
+}
+
+2025-05-08T04:00:52.392Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\404.js",
+  "changeTime": "1746676852372"
+}
+
+2025-05-08T04:00:52.889Z - 🔄 Compilation terminée
+{
+  "time": "187ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "78da1eb276972daa"
+}
+
+2025-05-08T04:00:53.045Z - 🔄 Compilation terminée
+{
+  "time": "151ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "eb7f3ccbe28a7e44"
+}
+
+2025-05-08T04:00:55.565Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676855565"
+}
+
+2025-05-08T04:00:55.884Z - 🔄 Compilation terminée
+{
+  "time": "296ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5ebb2cc70eee324d"
+}
+
+2025-05-08T04:00:57.578Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676857578"
+}
+
+2025-05-08T04:00:58.082Z - 🔄 Compilation terminée
+{
+  "time": "495ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4223204b516c46ea"
+}
+
+2025-05-08T04:01:06.733Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T04:01:06.732Z"
+}
+
+2025-05-08T04:01:06.965Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T04:01:07.003Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"onDemandEntries\":{\"maxInactiveAge\":25000,\"pagesBufferLength\":2},\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost..."
+}
+
+2025-05-08T04:01:10.293Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T04:01:10.291Z"
+}
+
+2025-05-08T04:01:10.296Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T04:01:10.297Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"onDemandEntries\":{\"maxInactiveAge\":25000,\"pagesBufferLength\":2},\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"experimental\":{\"pageDataCollectionTimeout\":120},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://localhost:4000\",\"NEXT_PUBLIC_API_URL\":\"http://localhost..."
+}
+
+2025-05-08T04:02:01.737Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676921737"
+}
+
+2025-05-08T04:02:01.742Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746676921742"
+}
+
+2025-05-08T04:02:05.206Z - 🔄 Compilation terminée
+{
+  "time": "3446ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "435aebcbe1531a67"
+}
+
+2025-05-08T04:02:05.235Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746676925009"
+}
+
+2025-05-08T04:02:09.007Z - 🔄 Compilation terminée
+{
+  "time": "3783ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6bc98a9fed37319b"
+}
+
+2025-05-08T04:02:09.391Z - 🔄 Compilation terminée
+{
+  "time": "295ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "cbe7982f9d300dc0"
+}
+
+2025-05-08T07:47:21.503Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746690441500"
+}
+
+2025-05-08T07:47:21.516Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746690441500"
+}
+
+2025-05-08T07:47:22.194Z - 🔄 Compilation terminée
+{
+  "time": "355ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0a5cc0c8eee7b60c"
+}
+
+2025-05-08T07:47:22.731Z - 🔄 Compilation terminée
+{
+  "time": "505ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c313d4b16fe70e94"
+}
+
+2025-05-08T07:48:39.870Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690519868"
+}
+
+2025-05-08T07:48:40.446Z - 🔄 Compilation terminée
+{
+  "time": "545ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "787e20fec68cb5bb"
+}
+
+2025-05-08T07:48:40.452Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690520452"
+}
+
+2025-05-08T07:48:43.438Z - 🔄 Compilation terminée
+{
+  "time": "2973ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "86e052fdfda0ff33"
+}
+
+2025-05-08T07:48:44.933Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690524933"
+}
+
+2025-05-08T07:48:44.938Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690524937"
+}
+
+2025-05-08T07:48:45.482Z - 🔄 Compilation terminée
+{
+  "time": "543ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8c81b6546608a8b6"
+}
+
+2025-05-08T07:48:45.888Z - 🔄 Compilation terminée
+{
+  "time": "398ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ee70dd18eb47f722"
+}
+
+2025-05-08T07:48:48.273Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690528273"
+}
+
+2025-05-08T07:48:50.330Z - 🔄 Compilation terminée
+{
+  "time": "2051ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a14989c624eea311"
+}
+
+2025-05-08T07:51:03.957Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746690663891"
+}
+
+2025-05-08T07:51:03.961Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746690663891"
+}
+
+2025-05-08T07:51:05.138Z - 🔄 Compilation terminée
+{
+  "time": "874ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "39ecc38f941226dd"
+}
+
+2025-05-08T07:51:05.143Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690665143"
+}
+
+2025-05-08T07:51:07.086Z - 🔄 Compilation terminée
+{
+  "time": "1890ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "232a311bd7536d27"
+}
+
+2025-05-08T07:51:07.520Z - 🔄 Compilation terminée
+{
+  "time": "384ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "56d86a5ea6ca7f50"
+}
+
+2025-05-08T07:51:25.175Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\ChartInit.jsx",
+  "changeTime": "1746690685170"
+}
+
+2025-05-08T07:51:25.179Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\ChartInit.jsx",
+  "changeTime": "1746690685170"
+}
+
+2025-05-08T07:51:25.861Z - 🔄 Compilation terminée
+{
+  "time": "378ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "57800e82b0668c90"
+}
+
+2025-05-08T07:51:30.524Z - 🔄 Compilation terminée
+{
+  "time": "4603ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5947144d6f18c1ad"
+}
+
+2025-05-08T07:52:38.868Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746690758867"
+}
+
+2025-05-08T07:52:38.881Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746690758867"
+}
+
+2025-05-08T07:52:41.138Z - 🔄 Compilation terminée
+{
+  "time": "1944ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "30225977b5ab38a8"
+}
+
+2025-05-08T07:52:44.325Z - 🔄 Compilation terminée
+{
+  "time": "3135ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "749f9735ccabec80"
+}
+
+2025-05-08T07:52:54.098Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746690774096"
+}
+
+2025-05-08T07:52:54.099Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746690774096"
+}
+
+2025-05-08T07:52:54.639Z - 🔄 Compilation terminée
+{
+  "time": "228ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ec89ac8a24cb1306"
+}
+
+2025-05-08T07:52:55.208Z - 🔄 Compilation terminée
+{
+  "time": "565ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "309e4b2fab798481"
+}
+
+2025-05-08T07:53:18.467Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690798466"
+}
+
+2025-05-08T07:53:18.471Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690798470"
+}
+
+2025-05-08T07:53:18.960Z - 🔄 Compilation terminée
+{
+  "time": "480ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5b576a51b4287e52"
+}
+
+2025-05-08T07:53:20.399Z - 🔄 Compilation terminée
+{
+  "time": "1365ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1c7efd07320e1569"
+}
+
+2025-05-08T07:53:29.598Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690809598"
+}
+
+2025-05-08T07:53:30.635Z - 🔄 Compilation terminée
+{
+  "time": "1025ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "fa9195e84d0a4edd"
+}
+
+2025-05-08T07:53:31.196Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690811196"
+}
+
+2025-05-08T07:53:31.893Z - 🔄 Compilation terminée
+{
+  "time": "695ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3f9bffcecc77eb26"
+}
+
+2025-05-08T07:54:04.095Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746690844093"
+}
+
+2025-05-08T07:54:04.098Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\dashboard.js",
+  "changeTime": "1746690844093"
+}
+
+2025-05-08T07:54:05.592Z - 🔄 Compilation terminée
+{
+  "time": "1124ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8e22c4fef43f1dd1"
+}
+
+2025-05-08T07:54:06.686Z - 🔄 Compilation terminée
+{
+  "time": "1089ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f356826aeaa37195"
+}
+
+2025-05-08T07:54:34.137Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746690874131"
+}
+
+2025-05-08T07:54:34.155Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\components\\seller\\SalesChart.jsx",
+  "changeTime": "1746690874131"
+}
+
+2025-05-08T07:54:34.853Z - 🔄 Compilation terminée
+{
+  "time": "382ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "68cfbf3a6ba27c1c"
+}
+
+2025-05-08T07:54:35.210Z - 🔄 Compilation terminée
+{
+  "time": "233ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "9058d1edaccb864d"
+}
+
+2025-05-08T07:54:54.358Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690894357"
+}
+
+2025-05-08T07:54:54.361Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690894359"
+}
+
+2025-05-08T07:54:56.666Z - 🔄 Compilation terminée
+{
+  "time": "2297ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "dd83581d237e0133"
+}
+
+2025-05-08T07:54:56.984Z - 🔄 Compilation terminée
+{
+  "time": "310ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3b628b232854a106"
+}
+
+2025-05-08T07:54:58.996Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690898996"
+}
+
+2025-05-08T07:54:59.543Z - 🔄 Compilation terminée
+{
+  "time": "543ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3c535b728dca6712"
+}
+
+2025-05-08T07:55:20.350Z - Chargement de next.config.js
+{
+  "env": "development",
+  "time": "2025-05-08T07:55:20.348Z"
+}
+
+2025-05-08T07:55:20.352Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T07:55:20.353Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"onDemandEntries\":{\"maxInactiveAge\":25000,\"pagesBufferLength\":2},\"experimental\":{\"pageDataCollectionTimeout\":120},\"compiler\":{\"styledComponents\":true,\"emotion\":true},\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"env\":{\"NEXTAUTH_URL\":\"http://localhost:4000\",\"DEBUG\":\"true\",\"NEXT_PUBLIC_APP_URL\":\"http://loc..."
+}
+
+2025-05-08T07:55:32.580Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": false
+}
+
+2025-05-08T07:55:32.598Z - HotModuleReplacementPlugin ajouté manuellement
+{}
+
+2025-05-08T07:55:32.611Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": true,
+  "hmrEnabled": true
+}
+
+2025-05-08T07:55:32.616Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T07:55:33.266Z - 🔄 Compilation terminée
+{
+  "time": "296ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T07:55:33.372Z - 🔄 Compilation terminée
+{
+  "time": "49ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T07:55:33.487Z - 🔄 Compilation terminée
+{
+  "time": "21ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T07:55:34.162Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690934162"
+}
+
+2025-05-08T07:55:34.278Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690934277"
+}
+
+2025-05-08T07:55:34.354Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690934354"
+}
+
+2025-05-08T07:55:36.881Z - 🔄 Compilation terminée
+{
+  "time": "2445ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T07:55:37.038Z - 🔄 Compilation terminée
+{
+  "time": "67ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T07:55:37.168Z - 🔄 Compilation terminée
+{
+  "time": "119ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "633457081244afec"
+}
+
+2025-05-08T07:55:37.250Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690937250"
+}
+
+2025-05-08T07:55:37.270Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690937269"
+}
+
+2025-05-08T07:56:01.773Z - 🔄 Compilation terminée
+{
+  "time": "24443ms",
+  "errors": 12,
+  "warnings": 0,
+  "hash": "c547b8ce5ddacd57"
+}
+
+2025-05-08T07:56:01.982Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690961982"
+}
+
+2025-05-08T07:56:03.777Z - 🔄 Compilation terminée
+{
+  "time": "1990ms",
+  "errors": 13,
+  "warnings": 0,
+  "hash": "84239ecbb6fcd24f"
+}
+
+2025-05-08T07:56:07.670Z - 🔄 Compilation terminée
+{
+  "time": "3888ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "991dcb9c653a30a7"
+}
+
+2025-05-08T07:56:07.895Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T07:56:08.302Z - Configuration webpack
+{
+  "dev": true,
+  "isServer": false,
+  "hmrEnabled": true
+}
+
+2025-05-08T07:56:17.129Z - 🔄 Compilation terminée
+{
+  "time": "9227ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2879d19e0d468efb"
+}
+
+2025-05-08T07:56:17.181Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690977180"
+}
+
+2025-05-08T07:56:17.187Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746690977187"
+}
+
+2025-05-08T07:56:19.180Z - 🔄 Compilation terminée
+{
+  "time": "10872ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2879d19e0d468efb"
+}
+
+2025-05-08T07:56:34.080Z - 🔄 Compilation terminée
+{
+  "time": "16729ms",
+  "errors": 12,
+  "warnings": 0,
+  "hash": "c7cf35fb57786589"
+}
+
+2025-05-08T07:56:34.524Z - 🔄 Compilation terminée
+{
+  "time": "398ms",
+  "errors": 13,
+  "warnings": 0,
+  "hash": "0b261f182334f29a"
+}
+
+2025-05-08T07:57:12.952Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691032952"
+}
+
+2025-05-08T07:57:12.954Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691032954"
+}
+
+2025-05-08T07:57:16.504Z - 🔄 Compilation terminée
+{
+  "time": "3546ms",
+  "errors": 13,
+  "warnings": 0,
+  "hash": "24f5be4e6ad9552e"
+}
+
+2025-05-08T07:57:18.301Z - 🔄 Compilation terminée
+{
+  "time": "1662ms",
+  "errors": 14,
+  "warnings": 0,
+  "hash": "b0e552468c98a334"
+}
+
+2025-05-08T08:00:38.300Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\package.json",
+  "changeTime": "1746691238297"
+}
+
+2025-05-08T08:00:38.307Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\package.json",
+  "changeTime": "1746691238297"
+}
+
+2025-05-08T08:00:38.356Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\package.json",
+  "changeTime": "1746691238297"
+}
+
+2025-05-08T08:00:38.384Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\package.json",
+  "changeTime": "1746691238297"
+}
+
+2025-05-08T08:00:39.614Z - 🔄 Compilation terminée
+{
+  "time": "866ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2879d19e0d468efb"
+}
+
+2025-05-08T08:00:39.645Z - 🔄 Compilation terminée
+{
+  "time": "888ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2879d19e0d468efb"
+}
+
+2025-05-08T08:00:42.572Z - 🔄 Compilation terminée
+{
+  "time": "3940ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5947ad11a44f23d1"
+}
+
+2025-05-08T08:00:43.833Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691243833"
+}
+
+2025-05-08T08:00:45.121Z - 🔄 Compilation terminée
+{
+  "time": "2540ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0b4d4841bf58b6ba"
+}
+
+2025-05-08T08:00:45.266Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691245265"
+}
+
+2025-05-08T08:00:46.316Z - 🔄 Compilation terminée
+{
+  "time": "997ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4331eb51dbc589f1"
+}
+
+2025-05-08T08:00:46.392Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691246363"
+}
+
+2025-05-08T08:00:47.280Z - 🔄 Compilation terminée
+{
+  "time": "820ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "89ebf2264261be9a"
+}
+
+2025-05-08T08:00:47.401Z - 🔄 Compilation terminée
+{
+  "time": "100ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "4331eb51dbc589f1"
+}
+
+2025-05-08T08:01:05.373Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691265370"
+}
+
+2025-05-08T08:01:05.375Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691265370"
+}
+
+2025-05-08T08:01:06.882Z - 🔄 Compilation terminée
+{
+  "time": "1198ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "79e2ed8bf359a8e1"
+}
+
+2025-05-08T08:01:07.284Z - 🔄 Compilation terminée
+{
+  "time": "394ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "df14372dc1538ac0"
+}
+
+2025-05-08T08:04:57.270Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\_error.js",
+  "changeTime": "1746691497269"
+}
+
+2025-05-08T08:04:57.276Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\_error.js",
+  "changeTime": "1746691497269"
+}
+
+2025-05-08T08:05:00.410Z - 🔄 Compilation terminée
+{
+  "time": "2821ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2b2fb16032c89ef0"
+}
+
+2025-05-08T08:05:01.503Z - 🔄 Compilation terminée
+{
+  "time": "894ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "26a09a9a8cad8c01"
+}
+
+2025-05-08T08:05:01.687Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691501687"
+}
+
+2025-05-08T08:05:01.692Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691501692"
+}
+
+2025-05-08T08:05:01.915Z - 🔄 Compilation terminée
+{
+  "time": "215ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e9833c7c1e0af534"
+}
+
+2025-05-08T08:05:01.919Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691501918"
+}
+
+2025-05-08T08:05:02.334Z - 🔄 Compilation terminée
+{
+  "time": "407ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d0e253ea1f29634d"
+}
+
+2025-05-08T08:05:02.400Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691502400"
+}
+
+2025-05-08T08:05:02.687Z - 🔄 Compilation terminée
+{
+  "time": "251ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "1703a5aa2aadfe09"
+}
+
+2025-05-08T08:05:02.935Z - 🔄 Compilation terminée
+{
+  "time": "225ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d0e253ea1f29634d"
+}
+
+2025-05-08T08:05:57.268Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691557266"
+}
+
+2025-05-08T08:05:57.272Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691557266"
+}
+
+2025-05-08T08:05:57.854Z - 🔄 Compilation terminée
+{
+  "time": "266ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f33bb2b3fb78eb49"
+}
+
+2025-05-08T08:05:58.475Z - 🔄 Compilation terminée
+{
+  "time": "613ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b7acd3f4ddbf134d"
+}
+
+2025-05-08T08:05:59.385Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691559380"
+}
+
+2025-05-08T08:05:59.513Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691559513"
+}
+
+2025-05-08T08:06:00.840Z - 🔄 Compilation terminée
+{
+  "time": "1119ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "88c6b0c2bef9b8f9"
+}
+
+2025-05-08T08:06:01.178Z - 🔄 Compilation terminée
+{
+  "time": "330ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ee6cda86997c878a"
+}
+
+2025-05-08T08:06:20.148Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691580146"
+}
+
+2025-05-08T08:06:20.152Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691580146"
+}
+
+2025-05-08T08:06:20.771Z - 🔄 Compilation terminée
+{
+  "time": "304ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "d2da87bda5e429c8"
+}
+
+2025-05-08T08:06:21.098Z - 🔄 Compilation terminée
+{
+  "time": "302ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6e73ef1d525e728a"
+}
+
+2025-05-08T08:07:26.733Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691646717"
+}
+
+2025-05-08T08:07:26.759Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691646717"
+}
+
+2025-05-08T08:07:27.274Z - 🔄 Compilation terminée
+{
+  "time": "209ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "050338c95a0939f7"
+}
+
+2025-05-08T08:07:27.682Z - 🔄 Compilation terminée
+{
+  "time": "374ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "22485a3dcfc5125c"
+}
+
+2025-05-08T08:07:27.738Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691647738"
+}
+
+2025-05-08T08:07:27.745Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691647742"
+}
+
+2025-05-08T08:07:27.979Z - 🔄 Compilation terminée
+{
+  "time": "229ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "392a84463a561531"
+}
+
+2025-05-08T08:07:28.266Z - 🔄 Compilation terminée
+{
+  "time": "284ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5e4ec8f12486e4f3"
+}
+
+2025-05-08T08:10:23.947Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691823944"
+}
+
+2025-05-08T08:10:23.951Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691823944"
+}
+
+2025-05-08T08:10:24.910Z - 🔄 Compilation terminée
+{
+  "time": "653ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3c8d9ff2385a3591"
+}
+
+2025-05-08T08:10:27.150Z - 🔄 Compilation terminée
+{
+  "time": "2223ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0fcb89f92d937db5"
+}
+
+2025-05-08T08:10:29.839Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691829839"
+}
+
+2025-05-08T08:10:29.861Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691829861"
+}
+
+2025-05-08T08:10:30.664Z - 🔄 Compilation terminée
+{
+  "time": "796ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "b04008790dfd6362"
+}
+
+2025-05-08T08:10:31.122Z - 🔄 Compilation terminée
+{
+  "time": "405ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a6387af7688f5361"
+}
+
+2025-05-08T08:11:24.785Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691884780"
+}
+
+2025-05-08T08:11:24.787Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers.js",
+  "changeTime": "1746691884780"
+}
+
+2025-05-08T08:11:25.287Z - 🔄 Compilation terminée
+{
+  "time": "189ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ad378989c69865d9"
+}
+
+2025-05-08T08:11:25.350Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691885350"
+}
+
+2025-05-08T08:11:25.490Z - 🔄 Compilation terminée
+{
+  "time": "188ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "3bb4ed0ca3fa71df"
+}
+
+2025-05-08T08:11:25.500Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691885500"
+}
+
+2025-05-08T08:11:25.856Z - 🔄 Compilation terminée
+{
+  "time": "352ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "676f414b42cd65d5"
+}
+
+2025-05-08T08:11:26.338Z - 🔄 Compilation terminée
+{
+  "time": "479ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "bcde7e4b7936aefd"
+}
+
+2025-05-08T08:12:20.442Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691940441"
+}
+
+2025-05-08T08:12:20.497Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746691940496"
+}
+
+2025-05-08T08:12:21.080Z - 🔄 Compilation terminée
+{
+  "time": "535ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "f5011cef3381fa4b"
+}
+
+2025-05-08T08:12:21.611Z - 🔄 Compilation terminée
+{
+  "time": "502ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "0eae117da21e9305"
+}
+
+2025-05-08T08:17:30.782Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692250781"
+}
+
+2025-05-08T08:17:31.485Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692251485"
+}
+
+2025-05-08T08:17:31.716Z - 🔄 Compilation terminée
+{
+  "time": "854ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "8630c658a9bcbce1"
+}
+
+2025-05-08T08:17:31.982Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692251981"
+}
+
+2025-05-08T08:17:32.881Z - 🔄 Compilation terminée
+{
+  "time": "762ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "05b2829edfb34229"
+}
+
+2025-05-08T08:17:33.682Z - 🔄 Compilation terminée
+{
+  "time": "762ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6d6039997673170b"
+}
+
+2025-05-08T08:17:36.701Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692256701"
+}
+
+2025-05-08T08:17:36.706Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692256706"
+}
+
+2025-05-08T08:17:37.042Z - 🔄 Compilation terminée
+{
+  "time": "307ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "a1a72bb3f373879e"
+}
+
+2025-05-08T08:17:37.718Z - 🔄 Compilation terminée
+{
+  "time": "557ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e6cd279f3817c964"
+}
+
+2025-05-08T08:17:41.039Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692261038"
+}
+
+2025-05-08T08:17:41.046Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692261046"
+}
+
+2025-05-08T08:17:41.456Z - 🔄 Compilation terminée
+{
+  "time": "396ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6d6f43423be99eec"
+}
+
+2025-05-08T08:17:43.509Z - 🔄 Compilation terminée
+{
+  "time": "2036ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2af0ca356da7b38d"
+}
+
+2025-05-08T08:20:26.027Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692426027"
+}
+
+2025-05-08T08:20:27.273Z - 🔄 Compilation terminée
+{
+  "time": "1193ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "093243e62b9e5d54"
+}
+
+2025-05-08T08:20:27.355Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692427354"
+}
+
+2025-05-08T08:20:29.566Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692429565"
+}
+
+2025-05-08T08:20:29.876Z - 🔄 Compilation terminée
+{
+  "time": "2455ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "50ef8325fcc0c0a6"
+}
+
+2025-05-08T08:20:29.893Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692429892"
+}
+
+2025-05-08T08:20:31.035Z - 🔄 Compilation terminée
+{
+  "time": "1136ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "6f20c773fcd15e4f"
+}
+
+2025-05-08T08:20:32.150Z - 🔄 Compilation terminée
+{
+  "time": "1106ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "ef2ec64edb900b1c"
+}
+
+2025-05-08T08:20:32.449Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692432449"
+}
+
+2025-05-08T08:20:32.451Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692432451"
+}
+
+2025-05-08T08:20:32.680Z - 🔄 Compilation terminée
+{
+  "time": "208ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "43aaa4bd2e4bca96"
+}
+
+2025-05-08T08:20:32.688Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692432688"
+}
+
+2025-05-08T08:20:32.892Z - 🔄 Compilation terminée
+{
+  "time": "201ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c74b784c0c4b3d8e"
+}
+
+2025-05-08T08:20:32.894Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692432894"
+}
+
+2025-05-08T08:20:33.027Z - 🔄 Compilation terminée
+{
+  "time": "126ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "43aaa4bd2e4bca96"
+}
+
+2025-05-08T08:20:33.186Z - 🔄 Compilation terminée
+{
+  "time": "146ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "c74b784c0c4b3d8e"
+}
+
+2025-05-08T08:20:33.697Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692433696"
+}
+
+2025-05-08T08:20:33.749Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": null,
+  "changeTime": "1746692433748"
+}
+
+2025-05-08T08:20:34.110Z - 🔄 Compilation terminée
+{
+  "time": "355ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "e25fe165f353bdd3"
+}
+
+2025-05-08T08:20:34.438Z - 🔄 Compilation terminée
+{
+  "time": "279ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "5b047542371fe373"
+}
+
+2025-05-08T08:21:32.819Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers\\index.js",
+  "changeTime": "1746692492780"
+}
+
+2025-05-08T08:21:32.872Z - ⚡ HMR Invalidation détectée
+{
+  "fileName": "C:\\Users\\Louis Olivier\\Downloads\\ewebsite2\\pages\\seller\\customers\\index.js",
+  "changeTime": "1746692492780"
+}
+
+2025-05-08T08:21:33.298Z - 🔄 Compilation terminée
+{
+  "time": "120ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "aa4a9afe0f33bd8a"
+}
+
+2025-05-08T08:21:33.537Z - 🔄 Compilation terminée
+{
+  "time": "156ms",
+  "errors": 0,
+  "warnings": 0,
+  "hash": "2f29f2e7f86c6b54"
+}
+
+2025-05-08T08:22:14.727Z - Chargement de next.config.js
+{
+  "env": "production",
+  "time": "2025-05-08T08:22:14.724Z"
+}
+
+2025-05-08T08:22:14.754Z - Configuration webpack personnalisée chargée
+{
+  "success": true
+}
+
+2025-05-08T08:22:14.756Z - Configuration Next.js finalisée
+{
+  "config": "{\"reactStrictMode\":false,\"onDemandEntries\":{\"maxInactiveAge\":25000,\"pagesBufferLength\":2},\"experimental\":{\"pageDataCollectionTimeout\":120},\"compiler\":{\"styledComponents\":true,\"emotion\":true},\"images\":{\"remotePatterns\":[{\"protocol\":\"https\",\"hostname\":\"**\"},{\"protocol\":\"http\",\"hostname\":\"localhost\"}]},\"sassOptions\":{\"includePaths\":[\"./styles\"]},\"devIndicators\":{\"buildActivity\":true,\"autoPrerender\":false},\"env\":{\"NEXTAUTH_URL\":\"https://ewebsite2-94ut8othf-louis-oliviers-projects.vercel.app\",\"DEBUG\"..."
+}
+

@@ -1,19 +1,33 @@
 
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import dbConnect from '../../../utils/dbConnect';
 import AdminActivityLog from '../../../models/AdminActivityLog';
 
 export default async function handler(req, res) {
-  const session = await getServerSession(req, res, authOptions);
+  try {
+    // Vérification d'authentification
+    const session = await getServerSession(req, res, authOptions);
+    
+    console.log('[API traffic-analytics] Session:', session ? 'Existe' : 'N\'existe pas');
+    console.log('[API traffic-analytics] Role utilisateur:', session?.user?.role || 'Non défini');
 
-  // Vérification que l'utilisateur est un administrateur
-  if (!session || session.user.role !== 'admin') {
-    return res.status(403).json({ success: false, message: 'Accès non autorisé' });
-  }
+    // Vérification que l'utilisateur est connecté
+    if (!session) {
+      return res.status(401).json({ success: false, message: 'Non authentifié' });
+    }
 
-  if (req.method !== 'GET') {
-    return res.status(405).json({ success: false, message: `Méthode ${req.method} non autorisée` });
+    // Vérification que l'utilisateur est un administrateur
+    if (session.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Accès non autorisé' });
+    }
+
+    if (req.method !== 'GET') {
+      return res.status(405).json({ success: false, message: `Méthode ${req.method} non autorisée` });
+    }
+  } catch (error) {
+    console.error('[API traffic-analytics] Erreur d\'authentification:', error);
+    return res.status(500).json({ success: false, message: 'Erreur lors de la vérification de l\'authentification' });
   }
 
   try {

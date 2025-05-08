@@ -30,6 +30,17 @@ const NAV_GROUPS = [
     href: '/admin'
   },
   {
+    id: 'seller-access',
+    icon: 'icofont-shop',
+    label: 'Espace Vendeur',
+    children: [
+      { href: '/seller', icon: 'icofont-dashboard', label: 'Dashboard Vendeur' },
+      { href: '/seller/products', icon: 'icofont-box', label: 'Produits Vendeur' },
+      { href: '/seller/orders', icon: 'icofont-cart', label: 'Commandes Vendeur' },
+      { href: '/seller/analytics', icon: 'icofont-chart-bar-graph', label: 'Analytiques Vendeur' }
+    ]
+  },
+  {
     id: 'products',
     icon: 'icofont-box',
     label: 'Produits',

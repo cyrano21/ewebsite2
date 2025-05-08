@@ -264,7 +264,7 @@ const BecomeSeller = () => {
             </Col>
             <Col lg={6} className="text-center">
               <img
-                src="/assets/images/seller-hero.png"
+                src="/assets/images/shop/01.jpg"
                 alt="Devenir vendeur"
                 className="img-fluid rounded shadow"
                 style={{ maxHeight: "350px" }}

@@ -23,44 +23,57 @@ const SellerDashboard = () => {
       return;
     }
 
-    // Vérifier si l'utilisateur est vendeur
-    if (session && session.user && session.user.sellerStatus !== 'approved') {
-      // Si l'utilisateur a une demande en attente ou rejetée
-      if (session.user.sellerStatus === 'pending') {
-        setError('Votre demande de compte vendeur est en cours d\'examen. Veuillez patienter.');
-      } else if (session.user.sellerStatus === 'rejected') {
-        setError('Votre demande de compte vendeur a été rejetée. Consultez votre email pour plus d\'informations.');
-      } else if (session.user.sellerStatus === 'suspended') {
-        setError('Votre compte vendeur a été suspendu. Contactez l\'administration pour plus d\'informations.');
+    // Vérifier si l'utilisateur est vendeur ou admin
+    if (session && session.user) {
+      // Si c'est un admin, permettre l'accès complet et réinitialiser toute erreur
+      if (session.user.role === 'admin') {
+        // Les administrateurs ont accès complet
+        console.log('Accès administrateur au tableau de bord vendeur');
+        setError(null); // Réinitialiser explicitement toute erreur pour les admins
+      }
+      // Sinon, vérifier le statut vendeur
+      else if (session.user.sellerStatus !== 'approved') {
+        // Si l'utilisateur a une demande en attente ou rejetée
+        if (session.user.sellerStatus === 'pending') {
+          setError('Votre demande de compte vendeur est en cours d\'examen. Veuillez patienter.');
+        } else if (session.user.sellerStatus === 'rejected') {
+          setError('Votre demande de compte vendeur a été rejetée. Consultez votre email pour plus d\'informations.');
+        } else if (session.user.sellerStatus === 'suspended') {
+          setError('Votre compte vendeur a été suspendu. Contactez l\'administration pour plus d\'informations.');
+        } else {
+          router.push('/become-seller');
+          return;
+        }
       } else {
-        router.push('/become-seller');
+        // Réinitialiser l'erreur si l'utilisateur est un vendeur approuvé
+        setError(null);
       }
     }
+
+    const fetchSellerStats = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/seller/stats');
+        const data = await response.json();
+        
+        if (data.success) {
+          setStats(data.data);
+        } else {
+          setError(data.message || 'Erreur lors du chargement des statistiques vendeur');
+        }
+      } catch (err) {
+        console.error('Erreur lors du chargement des statistiques:', err);
+        setError('Erreur de connexion au serveur');
+      } finally {
+        setLoading(false);
+      }
+    };
 
     // Charger les statistiques du vendeur
-    if (session && session.user && session.user.sellerStatus === 'approved') {
+    if (session && session.user && (session.user.sellerStatus === 'approved' || session.user.role === 'admin')) {
       fetchSellerStats();
     }
-  }, [session, status]);
-
-  const fetchSellerStats = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('/api/seller/stats');
-      const data = await response.json();
-      
-      if (data.success) {
-        setStats(data.data);
-      } else {
-        setError(data.message || 'Erreur lors du chargement des statistiques vendeur');
-      }
-    } catch (err) {
-      console.error('Erreur lors du chargement des statistiques:', err);
-      setError('Erreur de connexion au serveur');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [session, status, router]);
 
   // État de chargement pendant la vérification de la session
   if (status === 'loading') {

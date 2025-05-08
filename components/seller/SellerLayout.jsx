@@ -48,15 +48,16 @@ const SellerLayout = ({ children, title = "Espace Vendeur" }) => {
           <Navbar.Collapse id="seller-navbar">
             <Nav className="me-auto">
               {navItems.map((item, index) => (
-                <Link key={index} href={item.path} passHref>
-                  <Nav.Link 
-                    active={router.pathname === item.path}
-                    onClick={() => setExpanded(false)}
-                    className="d-flex align-items-center"
-                  >
-                    <i className={`${item.icon} me-1`}></i> {item.label}
-                  </Nav.Link>
-                </Link>
+                <Nav.Link 
+                  key={index}
+                  as={Link}
+                  href={item.path}
+                  active={router.pathname === item.path}
+                  onClick={() => setExpanded(false)}
+                  className="d-flex align-items-center"
+                >
+                  <i className={`${item.icon} me-1`}></i> {item.label}
+                </Nav.Link>
               ))}
             </Nav>
 

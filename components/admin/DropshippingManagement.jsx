@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, Button, Table, Form, Modal, Badge, Alert } f
 import axios from 'axios';
 import PageHeader from '../PageHeader';
 
-const DropshippingManagement = () => {
+function DropshippingManagement() {
   const [suppliers, setSuppliers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -152,14 +152,18 @@ const DropshippingManagement = () => {
 
   // Fonction pour afficher le badge de statut
   const getStatusBadge = (status) => {
-    const statusMap = {
-      'active': <Badge bg="success">Actif</Badge>,
-      'inactive': <Badge bg="secondary">Inactif</Badge>,
-      'pending': <Badge bg="warning">En attente</Badge>,
-      'suspended': <Badge bg="danger">Suspendu</Badge>
-    };
-    
-    return statusMap[status] || <Badge bg="info">{status}</Badge>;
+    switch (status) {
+      case 'active':
+        return <Badge bg="success">Actif</Badge>;
+      case 'pending':
+        return <Badge bg="warning" text="dark">En attente</Badge>;
+      case 'inactive':
+        return <Badge bg="secondary">Inactif</Badge>;
+      case 'suspended':
+        return <Badge bg="danger">Suspendu</Badge>;
+      default:
+        return <Badge bg="light" text="dark">{status}</Badge>;
+    }
   };
 
   return (
@@ -243,105 +247,117 @@ const DropshippingManagement = () => {
           </Card.Body>
         </Card>
       </Container>
-      
+
       {/* Modal pour ajouter/éditer un fournisseur */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {currentSupplier ? 'Modifier le fournisseur' : 'Ajouter un fournisseur'}
-          </Modal.Title>
-        </Modal.Header>
+      <Modal 
+        show={showModal} 
+        onHide={() => setShowModal(false)}
+        centered
+        size="lg"
+        backdrop="static"
+        className="supplier-modal"
+      >
         <Form onSubmit={handleSubmit}>
-          <Modal.Body>
-            <Row>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Nom du contact*</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Entreprise*</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
+          <Modal.Header closeButton className="border-0 pb-0">
+            <Modal.Title className="text-primary fw-bold">
+              {currentSupplier ? 'Modifier un fournisseur' : 'Ajouter un fournisseur'}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="pt-2 px-4">
+          {error && <Alert variant="danger" className="mb-4 border-0 shadow-sm">{error}</Alert>}
+          
+          <Row className="mb-4">
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label className="text-muted small fw-medium">Nom du contact*</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="border-0 bg-light py-2 shadow-sm rounded-3"
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label className="text-muted small fw-medium">Entreprise*</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  required
+                  className="border-0 bg-light py-2 shadow-sm rounded-3"
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          
+          <Row className="mb-4">
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label className="text-muted small fw-medium">Email*</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="border-0 bg-light py-2 shadow-sm rounded-3"
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label className="text-muted small fw-medium">Téléphone*</Form.Label>
+                <Form.Control
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="border-0 bg-light py-2 shadow-sm rounded-3"
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          
+          <div className="mb-4">
+            <h6 className="text-muted small fw-medium mb-3">Adresse</h6>
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="text"
+                name="address.street"
+                value={formData.address.street}
+                onChange={handleChange}
+                placeholder="Rue"
+                className="border-0 bg-light py-2 shadow-sm rounded-3"
+              />
+            </Form.Group>
             
-            <Row>
+            <Row className="mb-3">
               <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Email*</Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Téléphone*</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            
-            <Row>
-              <Col md={12}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Adresse</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="address.street"
-                    value={formData.address.street}
-                    onChange={handleChange}
-                    placeholder="Rue"
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            
-            <Row>
-              <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group>
                   <Form.Control
                     type="text"
                     name="address.city"
                     value={formData.address.city}
                     onChange={handleChange}
                     placeholder="Ville"
+                    className="border-0 bg-light py-2 shadow-sm rounded-3"
                   />
                 </Form.Group>
               </Col>
               <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group>
                   <Form.Control
                     type="text"
                     name="address.state"
                     value={formData.address.state}
                     onChange={handleChange}
                     placeholder="État/Province"
+                    className="border-0 bg-light py-2 shadow-sm rounded-3"
                   />
                 </Form.Group>
               </Col>
@@ -349,93 +365,108 @@ const DropshippingManagement = () => {
             
             <Row>
               <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group>
                   <Form.Control
                     type="text"
                     name="address.postalCode"
                     value={formData.address.postalCode}
                     onChange={handleChange}
                     placeholder="Code postal"
+                    className="border-0 bg-light py-2 shadow-sm rounded-3"
                   />
                 </Form.Group>
               </Col>
               <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group>
                   <Form.Control
                     type="text"
                     name="address.country"
                     value={formData.address.country}
                     onChange={handleChange}
                     placeholder="Pays"
+                    className="border-0 bg-light py-2 shadow-sm rounded-3"
                   />
                 </Form.Group>
               </Col>
             </Row>
-            
-            <Row>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Site Web</Form.Label>
-                  <Form.Control
-                    type="url"
-                    name="website"
-                    value={formData.website}
-                    onChange={handleChange}
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Taux de commission (%)</Form.Label>
-                  <Form.Control
-                    type="number"
-                    name="commissionRate"
-                    value={formData.commissionRate}
-                    onChange={handleChange}
-                    min="0"
-                    max="100"
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            
-            <Form.Group className="mb-3">
-              <Form.Label>Statut</Form.Label>
-              <Form.Select
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-              >
-                <option value="pending">En attente</option>
-                <option value="active">Actif</option>
-                <option value="inactive">Inactif</option>
-                <option value="suspended">Suspendu</option>
-              </Form.Select>
-            </Form.Group>
-            
-            <Form.Group className="mb-3">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                rows={3}
-              />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-              Annuler
-            </Button>
-            <Button variant="primary" type="submit">
-              {currentSupplier ? 'Mettre à jour' : 'Ajouter'}
-            </Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
-    </div>
-  );
-};
+          </div>
+          
+          <Row className="mb-4">
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label className="text-muted small fw-medium">Site Web</Form.Label>
+                <Form.Control
+                  type="url"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  className="border-0 bg-light py-2 shadow-sm rounded-3"
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label className="text-muted small fw-medium">Taux de commission (%)</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="commissionRate"
+                  value={formData.commissionRate}
+                  onChange={handleChange}
+                  min="0"
+                  max="100"
+                  className="border-0 bg-light py-2 shadow-sm rounded-3"
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          
+          <Form.Group className="mb-4">
+            <Form.Label className="text-muted small fw-medium">Statut</Form.Label>
+            <Form.Select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="border-0 bg-light py-2 shadow-sm rounded-3"
+            >
+              <option value="pending">En attente</option>
+              <option value="active">Actif</option>
+              <option value="inactive">Inactif</option>
+              <option value="suspended">Suspendu</option>
+            </Form.Select>
+          </Form.Group>
+          
+          <Form.Group className="mb-4">
+            <Form.Label className="text-muted small fw-medium">Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              rows={3}
+              className="border-0 bg-light py-2 shadow-sm rounded-3"
+            />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer className="border-0 pt-0 pb-4 px-4">
+          <Button 
+            variant="light" 
+            onClick={() => setShowModal(false)}
+            className="px-4 py-2 text-secondary rounded-3 fw-medium"
+          >
+            Annuler
+          </Button>
+          <Button 
+            variant="primary" 
+            type="submit"
+            className="px-4 py-2 rounded-3 fw-medium ms-2"
+          >
+            {currentSupplier ? 'Mettre à jour' : 'Ajouter'}
+          </Button>
+        </Modal.Footer>
+      </Form>
+    </Modal>
+  </div>
+);
+}
 
-export default DropshippingManagement;
+module.exports = DropshippingManagement;

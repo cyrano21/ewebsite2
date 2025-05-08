@@ -1,5 +1,6 @@
 
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../auth/[...nextauth]';
 import connectDB from '../../../config/db';
 import AdminActivityLog from '../../../models/AdminActivityLog';
 import User from '../../../models/User';
@@ -7,26 +8,31 @@ import Order from '../../../models/Order';
 import Product from '../../../models/Product';
 import Seller from '../../../models/Seller';
 
-// Middleware pour vérifier que l'utilisateur est un administrateur
-async function adminCheck(req, res) {
-  const session = await getSession({ req });
-  
-  if (!session || session.user.role !== 'admin') {
-    return res.status(403).json({ success: false, message: 'Accès non autorisé' });
-  }
-  
-  return true;
-}
-
 export default async function handler(req, res) {
-  // Vérification d'autorisation
-  const isAdmin = await adminCheck(req, res);
-  if (isAdmin !== true) return;
-
-  // Connexion à la base de données
-  await connectDB();
-
   try {
+    // Vérification d'authentification avec next-auth
+    const session = await getServerSession(req, res, authOptions);
+    
+    console.log('[API activity] Session:', session ? 'Existe' : 'N\'existe pas');
+    console.log('[API activity] Role utilisateur:', session?.user?.role || 'Non défini');
+    
+    // Vérification que l'utilisateur est connecté
+    if (!session) {
+      return res.status(401).json({ success: false, message: 'Non authentifié' });
+    }
+    
+    // Vérification que l'utilisateur est un administrateur
+    if (session.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Accès non autorisé' });
+    }
+    
+    // Vérification de la méthode HTTP
+    if (req.method !== 'GET') {
+      return res.status(405).json({ success: false, message: `Méthode ${req.method} non autorisée` });
+    }
+
+    // Connexion à la base de données
+    await connectDB();
     // Récupérer les paramètres de filtrage
     const { 
       startDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), 

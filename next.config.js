@@ -1,51 +1,52 @@
+// Fichier: next.config.js
 /** @type {import('next').NextConfig} */
 const path = require('path');
 
 const nextConfig = {
-  // reactStrictMode: false, // Vous aviez mis false. true est recommandé pour détecter les problèmes potentiels.
-  reactStrictMode: true, // Recommandé, mais laissez false si cela cause d'autres soucis pour le moment.
+  reactStrictMode: true, // Mettez-le à true pour le développement
 
-  // Gardez ces lignes si vous avez besoin d'ignorer les erreurs ESLint/TypeScript
-  // pendant la build, mais l'idéal est de corriger ces erreurs.
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
-  // Votre configuration pour les images
   images: {
-    domains: ['localhost', 'res.cloudinary.com'],
-    remotePatterns: [{ protocol: 'https', hostname: '**' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+      { protocol: 'http', hostname: 'localhost' }
+    ],
   },
 
-  // Votre configuration pour SASS
   sassOptions: {
-    includePaths: ['./styles'], // Assurez-vous que ce chemin est correct
+    includePaths: ['./styles'],
   },
 
-  // Votre configuration pour assetPrefix (pour déploiement)
-  assetPrefix:
-    process.env.NODE_ENV === 'production'
-      ? process.env.NEXT_PUBLIC_SITE_URL || '' // Ajoutez un fallback vide au cas où
-      : '',
+  // Potentiellement à commenter si les problèmes persistent après d'autres étapes
+  // compiler: {
+  //   styledComponents: true,
+  //   emotion: true
+  // },
 
-  // --- SECTION WEBPACK SUPPRIMÉE ---
-  // La section 'webpack' qui supprimait les plugins HMR et ReactRefresh a été enlevée
-  // pour permettre à Fast Refresh de fonctionner.
-
-  // Votre configuration pour onDemandEntries (peut être gardée si utile)
-  onDemandEntries: {
-    maxInactiveAge: 60 * 60 * 1000, // 1 heure
-    pagesBufferLength: 5,
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@components': path.join(__dirname, 'components'),
+      '@styles': path.join(__dirname, 'styles'),
+      '@utils': path.join(__dirname, 'utils'),
+      '@lib': path.join(__dirname, 'lib'),
+      '@hooks': path.join(__dirname, 'hooks'),
+      '@context': path.join(__dirname, 'context'),
+      '@public': path.join(__dirname, 'public'),
+    };
+    return config;
   },
-};
 
-// Ajout de configuration pour éviter les erreurs d'authentification
-nextConfig.env = {
-  ...nextConfig.env,
-  NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'https://' + process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co',
+  // onDemandEntries commenté
+  // onDemandEntries: {
+  //   maxInactiveAge: 60 * 60 * 1000,
+  //   pagesBufferLength: 5,
+  // },
+
+  env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:4000',
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:4000',
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api'
+  }
 };
 
 module.exports = nextConfig;

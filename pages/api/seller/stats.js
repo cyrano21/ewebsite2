@@ -2,18 +2,19 @@
 import dbConnect from '../../../utils/dbConnect';
 import Order from '../../../models/Order';
 import Product from '../../../models/Product';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../auth/[...nextauth]';
 
 export default async function handler(req, res) {
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
   
   // Vérifier l'authentification et les permissions
   if (!session) {
     return res.status(401).json({ success: false, message: 'Non authentifié' });
   }
 
-  // Vérifier que l'utilisateur est un vendeur approuvé
-  if (session.user.sellerStatus !== 'approved') {
+  // Vérifier que l'utilisateur est un vendeur approuvé OU un administrateur
+  if (session.user.sellerStatus !== 'approved' && session.user.role !== 'admin') {
     return res.status(403).json({ success: false, message: 'Accès non autorisé. Votre compte vendeur n\'est pas approuvé.' });
   }
 
