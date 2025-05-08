@@ -17,9 +17,6 @@ import setupHMRDebug from '../utils/hmr-debug';
 
 // Styles importés de façon optimisée pour la production
 // Styles externes
-// Import Bootstrap JS d'abord
-import { useEffect } from 'react';
-
 // Import CSS avec une approche qui évite les problèmes de data URLs
 import '../styles/bootstrap-custom.css';
 import 'slick-carousel/slick/slick.css';
