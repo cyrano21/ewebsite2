@@ -1,127 +1,89 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./Rating.module.css";
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './Rating.module.css';
 
-const Rating = ({ 
-  ratings = 0, 
-  value, // Ajout de la prop 'value' pour compatibilité
-  maxRating = 5, 
-  interactive = false, 
-  size = "md", 
-  color = "warning",
-  showCount = false,
-  count = 0,
-  onRatingChange = null
-}) => {
-  // Utiliser 'value' si fourni, sinon utiliser 'ratings'
-  const actualRating = value !== undefined ? value : ratings;
-  
+const Rating = ({ initialRating = 0, size = 'medium', readOnly = false, onChange, totalStars = 5, showValue = true, id = 'rating' }) => {
+  const [rating, setRating] = useState(initialRating);
   const [hoverRating, setHoverRating] = useState(0);
-  const [selectedRating, setSelectedRating] = useState(actualRating);
+  const ratingRef = useRef(null);
+  const ratingContainerRef = useRef(null);
 
-  // Déterminer la classe de taille
-  const getSizeClass = () => {
+  useEffect(() => {
+    setRating(initialRating);
+  }, [initialRating]);
+
+  // Fonction pour déterminer la taille des étoiles
+  const getStarSize = () => {
     switch (size) {
-      case "sm":
-        return styles.small;
-      case "lg":
-        return styles.large;
-      case "xl":
-        return styles.extraLarge;
+      case 'small':
+        return '14px';
+      case 'large':
+        return '24px';
       default:
-        return styles.medium;
+        return '18px';
     }
   };
 
-  // Déterminer la classe de couleur
-  const getColorClass = () => {
-    switch (color) {
-      case "primary":
-        return "text-primary";
-      case "danger":
-        return "text-danger";
-      case "success":
-        return "text-success";
-      case "info":
-        return "text-info";
-      default:
-        return "text-warning";
+  // Fonction pour gérer le clic sur une étoile
+  const handleStarClick = (selectedRating) => {
+    if (readOnly) return;
+
+    setRating(selectedRating);
+    if (onChange) {
+      onChange(selectedRating);
     }
   };
 
-  // Gestion du survol (pour les étoiles interactives)
-  const handleMouseEnter = (star) => {
-    if (interactive) {
-      setHoverRating(star);
-    }
+  // Fonction pour gérer le survol d'une étoile
+  const handleStarHover = (hoveredRating) => {
+    if (readOnly) return;
+    setHoverRating(hoveredRating);
   };
 
+  // Fonction pour réinitialiser le survol
   const handleMouseLeave = () => {
-    if (interactive) {
-      setHoverRating(0);
-    }
+    setHoverRating(0);
   };
 
-  // Gestion du clic (pour les étoiles interactives)
-  const handleClick = (star) => {
-    if (interactive) {
-      setSelectedRating(star);
-      if (onRatingChange) {
-        onRatingChange(star);
-      }
-    }
-  };
+  // Fonction pour générer les étoiles
+  const renderStars = () => {
+    const stars = [];
+    const displayRating = hoverRating || rating;
+    const starSize = getStarSize();
 
-  // Déterminer si une étoile est active
-  const isStarActive = (star) => {
-    if (hoverRating >= star) {
-      return true;
+    for (let i = 1; i <= totalStars; i++) {
+      const filled = i <= displayRating;
+      stars.push(
+        <span
+          key={`star-${i}`}
+          className={`${styles.star} ${filled ? styles.filled : ''} icofont-ui-rating ${filled ? 'rated' : ''}`}
+          onClick={() => handleStarClick(i)}
+          onMouseEnter={() => handleStarHover(i)}
+          style={{ fontSize: starSize, cursor: readOnly ? 'default' : 'pointer' }}
+          role={readOnly ? 'presentation' : 'button'}
+          aria-label={`${i} star${i === 1 ? '' : 's'}`}
+        />
+      );
     }
-    if (hoverRating === 0 && (interactive ? selectedRating : actualRating) >= star) {
-      return true;
-    }
-    return false;
+    return stars;
   };
-
-  // Générer le tableau d'étoiles
-  const stars = Array.from({ length: maxRating }, (_, index) => index + 1);
 
   return (
-    <div className={styles.ratingContainer}>
-      <span 
-        className={`${styles.rating} ${getSizeClass()}`}
-        onMouseLeave={handleMouseLeave}
-      >
-        {stars.map((star) => (
-          <i
-            key={star}
-            className={`icofont-ui-rating ${isStarActive(star) ? getColorClass() : ''} ${interactive ? styles.interactive : ''}`}
-            onMouseEnter={() => handleMouseEnter(star)}
-            onClick={() => handleClick(star)}
-            style={{ cursor: interactive ? "pointer" : "default" }}
-          ></i>
-        ))}
-      </span>
-      
-      {showCount && (
-        <span className={styles.count}>
-          ({count})
+    <div 
+      className={styles.ratingContainer} 
+      ref={ratingContainerRef}
+      onMouseLeave={handleMouseLeave}
+      id={`${id}-container`}
+    >
+      <div className={styles.starContainer} ref={ratingRef}>
+        {renderStars()}
+      </div>
+      {showValue && (
+        <span className={styles.ratingValue}>
+          {rating.toFixed(1)}
         </span>
       )}
     </div>
   );
-};
-
-Rating.propTypes = {
-  ratings: PropTypes.number,
-  value: PropTypes.number, // Ajout de la prop 'value' aux PropTypes
-  maxRating: PropTypes.number,
-  interactive: PropTypes.bool,
-  size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
-  color: PropTypes.oneOf(["warning", "primary", "danger", "success", "info"]),
-  showCount: PropTypes.bool,
-  count: PropTypes.number,
-  onRatingChange: PropTypes.func
 };
 
 export default Rating;

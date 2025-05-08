@@ -2,65 +2,44 @@
 .ratingContainer {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
-.rating {
-  display: inline-flex;
+.starContainer {
+  display: flex;
 }
 
-.small i {
-  font-size: 0.75rem;
+.star {
+  color: #ddd;
+  transition: color 0.2s ease;
+  margin-right: 2px;
 }
 
-.medium i {
-  font-size: 1rem;
+.star.filled {
+  color: #ffc107;
 }
 
-.large i {
-  font-size: 1.25rem;
+.ratingValue {
+  font-size: 14px;
+  margin-left: 4px;
+  color: #666;
+  font-weight: 500;
 }
 
-.extraLarge i {
-  font-size: 1.5rem;
-}
+/* Styles responsifs */
+@media (max-width: 768px) {
+  .ratingContainer {
+    flex-direction: row;
+    gap: 4px;
+  }
 
-.interactive {
-  transition: transform 0.2s;
-}
-
-.interactive:hover {
-  transform: scale(1.2);
+  .star {
+    font-size: 16px !important;
+  }
 }
 
 .count {
   margin-left: 0.5rem;
   color: #6c757d;
   font-size: 0.875rem;
-}
-
-/* Style des étoiles par défaut (vides) */
-.rating i {
-  color: #e4e5e9;
-  margin-right: 2px;
-}
-
-/* Style des étoiles actives */
-.rating i.text-warning {
-  color: #ffc107 !important;
-}
-
-.rating i.text-primary {
-  color: #0d6efd !important;
-}
-
-.rating i.text-danger {
-  color: #dc3545 !important;
-}
-
-.rating i.text-success {
-  color: #198754 !important;
-}
-
-.rating i.text-info {
-  color: #0dcaf0 !important;
 }
