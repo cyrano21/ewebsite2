@@ -1,8 +1,8 @@
 /* Import global CSS files */
 @import "../public/assets/css/bootstrap-fixes.css";
-@import "/assets/css/icofont.min.css";
-@import "/assets/css/animate.css";
-@import "/assets/css/style.min.css";
+@import "../public/assets/css/icofont.min.css";
+@import "../public/assets/css/animate.css";
+@import "../public/assets/css/style.min.css";
 @import "/assets/css/admin.css";
 @import "/assets/css/all.min.css";
 @import "/styles/theme.css";
