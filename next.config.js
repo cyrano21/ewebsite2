@@ -10,6 +10,23 @@ const nextConfig = {
       { protocol: 'https', hostname: '**' },
       { protocol: 'http', hostname: 'localhost' }
     ],
+
+  // Configuration HMR améliorée
+  webpackDevMiddleware: (config) => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+      ignored: /node_modules/,
+    };
+    return config;
+  },
+  poweredByHeader: false,
+  // Améliorer la stabilité du HMR
+  onDemandEntries: {
+    maxInactiveAge: 60 * 60 * 1000, // 1 heure
+    pagesBufferLength: 5,
+  },
+
   },
 
   sassOptions: {

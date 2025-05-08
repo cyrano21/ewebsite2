@@ -13,6 +13,10 @@ import '../utils/hmr-debug';
 
 // Le correctif pour le rechargement a été supprimé car il causait des rechargements en boucle
 
+
+// Importer l'outil de débogage HMR
+import setupHMRDebug from '../utils/hmr-debug';
+
 // Styles importés de façon optimisée pour la production
 // Styles externes
 import "bootstrap/dist/css/bootstrap.min.css";

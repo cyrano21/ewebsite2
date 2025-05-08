@@ -16,8 +16,43 @@ if (typeof window !== 'undefined') {
       lastWarnings: [],
       networkRequests: [],
       domMutationCount: 0,
-      eventSource: null
+      eventSource: null,
+      webpackHotUpdates: [],
+      failedModules: []
     };
+  }
+
+  // Test spécifique de connexion WebSocket pour Next.js
+  try {
+    const originalWebSocket = window.WebSocket;
+    window.WebSocket = function(url, protocols) {
+      const socket = new originalWebSocket(url, protocols);
+      
+      if (url.includes('webpack-hmr') || url.includes('_next/webpack-hmr')) {
+        console.log(`🔌 HMR-DEBUG: WebSocket connexion établie à ${url}`);
+        
+        socket.addEventListener('open', () => {
+          console.log('🔌 HMR-DEBUG: WebSocket connexion ouverte');
+        });
+        
+        socket.addEventListener('error', (error) => {
+          console.error('🔌 HMR-DEBUG: Erreur WebSocket', error);
+          window.__hmrDebug.lastErrors.push({
+            time: new Date().toISOString(),
+            type: 'websocket-error',
+            message: 'Erreur de WebSocket HMR'
+          });
+        });
+        
+        socket.addEventListener('close', (event) => {
+          console.log(`🔌 HMR-DEBUG: WebSocket fermée (code: ${event.code}, reason: ${event.reason})`);
+        });
+      }
+      
+      return socket;
+    };
+  } catch (e) {
+    console.warn('⚠️ HMR-DEBUG: Impossible de surveiller les WebSockets', e);
   }
 
   // =========== CAPTURE DES ERREURS CONSOLE ==========
@@ -46,19 +81,36 @@ if (typeof window !== 'undefined') {
           window.__hmrDebug.lastErrors.shift();
         }
         
-        // Analyser les erreurs spécifiques
+        // Analyser les erreurs Next.js et React spécifiques
         if (
           text.includes('Hydration') || 
           text.includes('Expected server HTML') ||
           text.includes('<Link>') ||
           text.includes('Minified React error') ||
-          text.includes('call')
+          text.includes('call') ||
+          text.includes('ChunkLoadError') ||
+          text.includes('webpack-hmr') ||
+          text.includes('webpack.hot') ||
+          text.includes('Failed to fetch')
         ) {
           originalConsole.warn('⚠️ ERREUR CRITIQUE DÉTECTÉE:', text);
           
           // Sauvegarder cette erreur comme cause potentielle du rechargement
           try {
             localStorage.setItem('hmr-debug-last-error', text.slice(0, 1000));
+          } catch (e) {}
+        }
+        
+        // Capturer spécifiquement les erreurs de chargement webpack
+        if (text.includes('ChunkLoadError') || text.includes('webpack') || text.includes('hot-update.json')) {
+          window.__hmrDebug.failedModules.push({
+            time: new Date().toISOString(),
+            message: text
+          });
+          
+          // Stocker dans LocalStorage pour vérification après rechargement
+          try {
+            localStorage.setItem('hmr-debug-failed-modules', JSON.stringify(window.__hmrDebug.failedModules.slice(-5)));
           } catch (e) {}
         }
       } else if (method === 'warn') {
@@ -71,15 +123,31 @@ if (typeof window !== 'undefined') {
         }
       }
       
-      // Log des messages liés au HMR
+      // Log des messages liés au HMR avec analyse améliorée
       if (
         text.includes('Fast Refresh') || 
         text.includes('HMR') || 
         text.includes('webpack') || 
-        text.includes('refresh')
+        text.includes('refresh') ||
+        text.includes('hot-update') ||
+        text.includes('had to perform a full reload')
       ) {
         originalConsole.warn('🔄 EVENT HMR:', text);
-        // Sauvegarder le message HMR
+        
+        // Stocker les webpack hot updates spécifiquement
+        if (text.includes('hot-update') || text.includes('webpack.hot')) {
+          window.__hmrDebug.webpackHotUpdates.push({
+            time: new Date().toISOString(),
+            message: text.slice(0, 500)
+          });
+          
+          // Limiter la liste à 30 entrées
+          if (window.__hmrDebug.webpackHotUpdates.length > 30) {
+            window.__hmrDebug.webpackHotUpdates.shift();
+          }
+        }
+        
+        // Sauvegarder le message HMR avec timestamp
         try {
           const hmrMsgs = JSON.parse(localStorage.getItem('hmr-debug-hmr-messages') || '[]');
           hmrMsgs.push({ time: new Date().toISOString(), message: text.slice(0, 500) });
@@ -104,6 +172,28 @@ if (typeof window !== 'undefined') {
     const path = window.location.pathname;
     const stack = new Error().stack || '';
     
+    // Vérifier l'état des ressources webpack
+    const hotUpdateErrors = [];
+    try {
+      const networkEntries = window.performance.getEntriesByType('resource');
+      for (const entry of networkEntries) {
+        if (entry.name && (
+            entry.name.includes('.hot-update.') || 
+            entry.name.includes('webpack-hmr') ||
+            entry.name.includes('webpack.hot') ||
+            entry.name.includes('_next/webpack-hmr')
+          )) {
+          hotUpdateErrors.push({
+            resource: entry.name,
+            duration: entry.duration,
+            status: entry.responseStatus
+          });
+        }
+      }
+    } catch (e) {
+      originalConsole.warn('⚠️ Impossible d\'analyser les ressources réseau:', e);
+    }
+    
     // Collecter des infos sur l'état actuel
     const diagnosticInfo = {
       url: window.location.href,
@@ -118,7 +208,10 @@ if (typeof window !== 'undefined') {
         id: document.activeElement.id,
         className: document.activeElement.className
       } : null,
-      visibleRoute: window.location.pathname
+      visibleRoute: window.location.pathname,
+      webpackHotUpdates: window.__hmrDebug.webpackHotUpdates.slice(-5),
+      failedModules: window.__hmrDebug.failedModules.slice(-3),
+      hotUpdateResources: hotUpdateErrors
     };
     
     // Détecter les boucles de rechargement
@@ -139,7 +232,10 @@ if (typeof window !== 'undefined') {
               null,
             routeInLoop: path,
             latestErrors: window.__hmrDebug.lastErrors.slice(-5),
+            webpackHotUpdates: window.__hmrDebug.webpackHotUpdates.slice(-5),
+            failedModules: window.__hmrDebug.failedModules.slice(-3),
             lastComponentRendered: document.querySelector('[data-last-rendered]')?.getAttribute('data-component') || 'unknown',
+            hotUpdateResources: hotUpdateErrors
           };
           
           originalConsole.error(`⚠️ BOUCLE DE RECHARGEMENT DÉTECTÉE: ${window.__hmrDebug.reloadCount} rechargements en moins de 3 secondes.`);
@@ -148,6 +244,29 @@ if (typeof window !== 'undefined') {
           // Sauvegarder pour après le rechargement
           try {
             localStorage.setItem('hmr-debug-loop-info', JSON.stringify(reloadLoopInfo));
+          } catch (e) {}
+          
+          // Enregistrer les problèmes détectés
+          const potentialIssues = [];
+          
+          if (window.__hmrDebug.failedModules.length > 0) {
+            potentialIssues.push({
+              type: 'failed-modules',
+              description: 'Modules webpack qui ont échoué à charger',
+              count: window.__hmrDebug.failedModules.length
+            });
+          }
+          
+          if (hotUpdateErrors.length > 0) {
+            potentialIssues.push({
+              type: 'hot-update-errors',
+              description: 'Erreurs de ressources Hot Update',
+              count: hotUpdateErrors.length
+            });
+          }
+          
+          try {
+            localStorage.setItem('hmr-debug-potential-issues', JSON.stringify(potentialIssues));
           } catch (e) {}
         }
       } else {
@@ -174,14 +293,16 @@ if (typeof window !== 'undefined') {
     // Mettre à jour timestamp
     window.__hmrDebug.lastReload = now;
 
-    // Log le rechargement
+    // Log le rechargement avec plus d'informations
     originalConsole.log(`🔄 RECHARGEMENT à ${now.toISOString()} sur ${path}`);
+    originalConsole.info(`📊 Infos de rechargement: ${hotUpdateErrors.length} ressources HMR, ${window.__hmrDebug.failedModules.length} modules en échec`);
     
     // Sauvegarder état pour après rechargement
     try {
       localStorage.setItem('hmr-debug-data', JSON.stringify(window.__hmrDebug));
       localStorage.setItem('hmr-debug-last-reload-time', now.toISOString());
       localStorage.setItem('hmr-debug-last-reload-path', path);
+      localStorage.setItem('hmr-debug-reload-diagnostic', JSON.stringify(diagnosticInfo));
     } catch (e) {}
 
     // Appeler la fonction originale
@@ -189,12 +310,26 @@ if (typeof window !== 'undefined') {
   };
   
   // Observer les rechargements via la méthode addEventListener
-  if (typeof window.performance !== 'undefined' && window.performance.navigation) {
+  if (typeof window.performance !== 'undefined') {
     window.addEventListener('beforeunload', () => {
-      if (window.performance.navigation.type === 1) {
-        reloadInterceptor();
-      }
+      // Pour Next.js, on voudrait être plus proactif dans la détection des rechargements
+      reloadInterceptor();
     });
+  }
+  
+  // Patch history API pour détecter les changements de route qui peuvent déclencher des rechargements
+  try {
+    const originalPushState = window.history.pushState;
+    window.history.pushState = function() {
+      const result = originalPushState.apply(this, arguments);
+      
+      // Enregistrer le changement de route qui pourrait déclencher des rechargements
+      console.log(`🔍 HMR-DEBUG: Navigation détectée vers ${arguments[2]}`);
+      
+      return result;
+    };
+  } catch (e) {
+    console.warn('⚠️ HMR-DEBUG: Impossible de surveiller history API', e);
   }
   // Stockage de l'original fetch
   const originalFetch = window.fetch;
@@ -202,28 +337,109 @@ if (typeof window !== 'undefined') {
   // Patch sans assigner directement à window.fetch
   const fetchInterceptor = function(url, options) {
     // Si c'est une requête liée au HMR
-    if (typeof url === 'string' && (url.includes('webpack-hmr') || url.includes('.hot-update.'))) {
-      console.log(`🌐 HMR-DEBUG: Requête fetch interceptée: ${url}`);
+    if (typeof url === 'string') {
+      // Surveiller toutes les requêtes HMR et webpack
+      if (url.includes('webpack-hmr') || 
+          url.includes('.hot-update.') || 
+          url.includes('_next/webpack-hmr') ||
+          url.includes('webpack.hot') ||
+          url.includes('__webpack_hmr')) {
+        
+        console.log(`🌐 HMR-DEBUG: Requête fetch HMR interceptée: ${url}`);
+        
+        // Stocker cette requête pour analyse
+        window.__hmrDebug.networkRequests.push({
+          time: new Date().toISOString(),
+          type: 'hmr-fetch',
+          url: url,
+          method: options?.method || 'GET'
+        });
+        
+        // Limiter la taille des requêtes stockées
+        if (window.__hmrDebug.networkRequests.length > 30) {
+          window.__hmrDebug.networkRequests.shift();
+        }
+        
+        // Surveiller le résultat de la requête HMR
+        return originalFetch.apply(window, arguments)
+          .then(response => {
+            // Vérifier si la requête a échoué
+            if (!response.ok) {
+              console.warn(`⚠️ HMR-DEBUG: Échec de requête HMR (${response.status}): ${url}`);
+              window.__hmrDebug.lastErrors.push({
+                time: new Date().toISOString(),
+                type: 'hmr-fetch-error',
+                url: url,
+                status: response.status
+              });
+            }
+            return response;
+          })
+          .catch(error => {
+            console.error(`❌ HMR-DEBUG: Erreur de fetch HMR: ${url}`, error);
+            window.__hmrDebug.lastErrors.push({
+              time: new Date().toISOString(),
+              type: 'hmr-fetch-exception',
+              url: url,
+              message: error.message
+            });
+            throw error;
+          });
+      }
     }
+    
+    // Comportement normal pour les requêtes non-HMR
     return originalFetch.apply(window, arguments);
   };
   
   // Utiliser un proxy pour intercepter fetch sans remplacer la méthode native
   try {
-    // Tenter d'intercepter fetch avec Proxy si supporté
-    if (typeof Proxy !== 'undefined') {
-      const proxiedFetch = new Proxy(originalFetch, {
-        apply: function(target, thisArg, args) {
-          return fetchInterceptor.apply(thisArg, args);
-        }
-      });
-      // On ne peut pas assigner à window.fetch directement, mais on peut l'utiliser dans notre code
-      console.log("✅ HMR-DEBUG: Surveillance fetch configurée via Proxy");
-    } else {
-      console.log("⚠️ HMR-DEBUG: Proxy non supporté, surveillance fetch limitée");
-    }
+    // Intercepter fetch pour toutes les requêtes HMR
+    window.fetch = function() {
+      return fetchInterceptor.apply(this, arguments);
+    };
+    console.log("✅ HMR-DEBUG: Surveillance fetch configurée");
   } catch (e) {
     console.warn("⚠️ HMR-DEBUG: Erreur lors de la configuration de la surveillance fetch:", e);
+  }
+  
+  // Utiliser aussi l'API Performance pour surveiller les requêtes réseau
+  if (window.PerformanceObserver) {
+    try {
+      const observer = new PerformanceObserver((list) => {
+        list.getEntries().forEach(entry => {
+          if (entry.name && (
+              entry.name.includes('.hot-update.') || 
+              entry.name.includes('webpack-hmr') ||
+              entry.name.includes('_next/webpack-hmr')
+            )) {
+            
+            const initiatorType = entry.initiatorType || 'unknown';
+            
+            // Analyser les requêtes hot-update
+            console.log(`📊 HMR-DEBUG: Ressource HMR chargée (${initiatorType}): ${entry.name}`);
+            
+            // Vérifier si l'entrée a un statut HTTP pour détecter les erreurs 404
+            if ('responseStatus' in entry && entry.responseStatus !== 200) {
+              console.warn(`⚠️ HMR-DEBUG: Statut HTTP ${entry.responseStatus} pour ${entry.name}`);
+              
+              window.__hmrDebug.lastErrors.push({
+                time: new Date().toISOString(),
+                type: 'resource-error',
+                url: entry.name,
+                status: entry.responseStatus
+              });
+            }
+          }
+        });
+      });
+      
+      // Observer les ressources réseau
+      observer.observe({ entryTypes: ['resource'] });
+      console.log("✅ HMR-DEBUG: Surveillance des ressources réseau configurée");
+    } catch (e) {
+      console.warn("⚠️ HMR-DEBUG: Erreur lors de la configuration de PerformanceObserver:", e);
+    }
   }
 
   // Surveillons également les messages webSocket (utilisés par le HMR)
@@ -233,12 +449,63 @@ if (typeof window !== 'undefined') {
       const wrappedListener = function(event) {
         if (event.data && typeof event.data === 'string') {
           try {
-            const data = JSON.parse(event.data);
-            if (data.type && (data.type.includes('webpack') || data.action === 'built' || data.action === 'building')) {
+            // Essayer de parser le JSON
+            let data;
+            try {
+              data = JSON.parse(event.data);
+            } catch (e) {
+              // Si ce n'est pas un JSON, vérifier simplement si c'est lié au HMR
+              if (event.data.includes('webpack') || 
+                  event.data.includes('hot') || 
+                  event.data.includes('hmr') || 
+                  event.data.includes('update')) {
+                console.log('📶 HMR-DEBUG: Message WebSocket non-JSON:', event.data.slice(0, 200));
+              }
+              return listener.apply(this, arguments);
+            }
+            
+            // Analyser les données JSON WebSocket
+            if (data.type && (
+                data.type.includes('webpack') || 
+                data.action === 'built' || 
+                data.action === 'building' ||
+                data.type === 'hash' ||
+                data.type === 'invalid' ||
+                data.type === 'still-ok' ||
+                data.type === 'hmr'
+              )) {
               console.log('📶 HMR-DEBUG: Événement WebSocket HMR:', data);
+              
+              // Stocker cet événement pour analyse
+              window.__hmrDebug.webpackHotUpdates.push({
+                time: new Date().toISOString(),
+                type: data.type || data.action,
+                data: data
+              });
+              
+              // Limiter la taille
+              if (window.__hmrDebug.webpackHotUpdates.length > 30) {
+                window.__hmrDebug.webpackHotUpdates.shift();
+              }
+              
+              // Vérifier les erreurs HMR
+              if (data.errors && data.errors.length > 0) {
+                console.error('❌ HMR-DEBUG: Erreurs webpack détectées:', data.errors);
+                
+                window.__hmrDebug.failedModules.push({
+                  time: new Date().toISOString(),
+                  type: 'webpack-errors',
+                  errors: data.errors
+                });
+                
+                // Stocker les erreurs pour analyse après rechargement
+                try {
+                  localStorage.setItem('hmr-debug-webpack-errors', JSON.stringify(data.errors));
+                } catch (e) {}
+              }
             }
           } catch (e) {
-            // Pas un JSON, ignorer
+            // Erreur de traitement, ignorer
           }
         }
         return listener.apply(this, arguments);
@@ -247,11 +514,97 @@ if (typeof window !== 'undefined') {
     }
     return originalAddEventListener.apply(this, arguments);
   };
+  
+  // Afficher un résumé après le chargement de la page
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      // Vérifier s'il y a des données de débogage du chargement précédent
+      try {
+        const lastReloadTime = localStorage.getItem('hmr-debug-last-reload-time');
+        if (lastReloadTime) {
+          const lastReloadPath = localStorage.getItem('hmr-debug-last-reload-path') || 'unknown';
+          console.log(`📊 HMR-DEBUG: Dernier rechargement à ${lastReloadTime} sur ${lastReloadPath}`);
+          
+          // Vérifier s'il y avait des problèmes
+          const potentialIssues = JSON.parse(localStorage.getItem('hmr-debug-potential-issues') || '[]');
+          if (potentialIssues.length > 0) {
+            console.warn('⚠️ HMR-DEBUG: Problèmes potentiels détectés:', potentialIssues);
+          }
+          
+          // Vérifier les erreurs webpack
+          const webpackErrors = JSON.parse(localStorage.getItem('hmr-debug-webpack-errors') || '[]');
+          if (webpackErrors.length > 0) {
+            console.error('❌ HMR-DEBUG: Erreurs webpack détectées:', webpackErrors);
+          }
+        }
+      } catch (e) {
+        console.warn('⚠️ HMR-DEBUG: Erreur lors de la récupération des données de débogage:', e);
+      }
+    }, 2000);
+  });
 
-  console.log('✅ HMR-DEBUG: Surveillance du rechargement activée');
+  console.log('✅ HMR-DEBUG: Surveillance complète du rechargement activée');
 }
+
+// Fonctions utilitaires pour aider à résoudre les problèmes HMR courants
+window.__hmrDebugGetStatus = function() {
+  if (!window.__hmrDebug) return 'Outil de débogage HMR non initialisé';
+  
+  return {
+    rechargements: window.__hmrDebug.reloadCount,
+    derniersErreurs: window.__hmrDebug.lastErrors.slice(-5),
+    updatesHMR: window.__hmrDebug.webpackHotUpdates.slice(-5),
+    modulesFailed: window.__hmrDebug.failedModules.slice(-3),
+    requêtesRéseau: window.__hmrDebug.networkRequests.slice(-5)
+  };
+};
+
+// Fonction pour vérifier si les WebSockets fonctionnent
+window.__hmrCheckWebsockets = function() {
+  const socketUrl = document.location.origin.replace(/^http/, 'ws') + '/_next/webpack-hmr';
+  console.log(`🔍 HMR-DEBUG: Test de connexion WebSocket à ${socketUrl}`);
+  
+  try {
+    const socket = new WebSocket(socketUrl);
+    
+    socket.onopen = () => {
+      console.log('✅ HMR-DEBUG: Connexion WebSocket établie avec succès!');
+      setTimeout(() => socket.close(), 2000);
+    };
+    
+    socket.onerror = (error) => {
+      console.error('❌ HMR-DEBUG: Erreur lors de la connexion WebSocket:', error);
+    };
+    
+    socket.onclose = (event) => {
+      console.log(`🔍 HMR-DEBUG: Connexion WebSocket fermée (code: ${event.code})`);
+    };
+    
+    return 'Test de connexion WebSocket lancé...';
+  } catch (e) {
+    console.error('❌ HMR-DEBUG: Exception lors du test WebSocket:', e);
+    return `Erreur: ${e.message}`;
+  }
+};
 
 export default function setupHMRDebug() {
   // Cette fonction peut être importée dans _app.js
+  if (typeof window !== 'undefined') {
+    console.log('🔧 HMR-DEBUG: Configuration active dans _app.js');
+    
+    // Vérifier si nous venons de recharger
+    setTimeout(() => {
+      const lastReloadTime = localStorage.getItem('hmr-debug-last-reload-time');
+      if (lastReloadTime) {
+        const now = new Date();
+        const lastReload = new Date(lastReloadTime);
+        const diffSeconds = (now - lastReload) / 1000;
+        
+        if (diffSeconds < 5) {
+          console.log(`🔄 HMR-DEBUG: Page rechargée il y a ${diffSeconds.toFixed(2)} secondes`);
+        }
+      }
+    }, 1000);
+  }
   return null;
 }
