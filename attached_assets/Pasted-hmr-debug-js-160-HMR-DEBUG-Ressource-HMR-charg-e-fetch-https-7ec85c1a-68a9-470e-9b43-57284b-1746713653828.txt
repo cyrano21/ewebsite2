@@ -1,0 +1,95 @@
+hmr-debug.js:160 📊 HMR-DEBUG: Ressource HMR chargée (fetch): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/50b78151c2dc0af9.webpack.hot-update.json
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:95
+MyApp.useEffect @ _app.js:111
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410Understand this warning
+hmr-debug.js:160 🔥 Message dev Next.js détecté [warn]: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:95
+MyApp.useEffect @ _app.js:111
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410Understand this warning
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:102
+MyApp.useEffect @ _app.js:111
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410Understand this warning
+hmr-debug.js:160 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:102
+MyApp.useEffect @ _app.js:111
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410Understand this warning
+hmr-debug.js:135 🔄 EVENT HMR: 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:111
+MyApp.useEffect @ _app.js:117
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410Understand this warning
+hmr-debug.js:160 🔥 Message dev Next.js détecté [log]: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:160
+MyApp.useEffect @ _app.js:111
+MyApp.useEffect @ _app.js:117
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410Understand this warning
+hmr-debug.js:135 🔄 EVENT HMR: 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:117
+MyApp.useEffect @ _app.js:117
+eval @ hmr-debug.js:420
+eval @ hmr-debug.js:410Understand this warning
+hmr-debug.js:160 📊 HMR-DEBUG: Ressource HMR chargée (script): https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev/_next/static/webpack/webpack.50b78151c2dc0af9.hot-update.js
+hmr-debug.js:135 🔄 EVENT HMR: [Fast Refresh] done in 1328ms
+overrideMethod @ hook.js:608
+console.<computed> @ hmr-debug.js:135
+MyApp.useEffect @ _app.js:117
+MyApp.useEffect @ _app.js:117
+reportHmrLatency @ report-hmr-latency.js:14
+handleApplyUpdates @ hot-reloader-client.js:351
+eval @ hot-reloader-client.js:366
+Promise.then
+tryApplyUpdatesWebpack @ hot-reloader-client.js:365
+handleSuccess @ hot-reloader-client.js:114
+processMessage @ hot-reloader-client.js:240
+eval @ hot-reloader-client.js:71
+handleMessage @ websocket.js:65Understand this warning
+hmr-debug.js:160 [Fast Refresh] done in 1328ms
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 NavItems: utilisateur chargé {userLoggedIn: true, role: 'admin', sellerStatus: 'N/A'}
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 Accès administrateur au tableau de bord vendeur
+hmr-debug.js:160 SalesChart - données reçues: (30) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+hmr-debug.js:160 SalesChart - données préparées: {labels: Array(7), salesData: Array(7), ordersData: Array(7)}
+hmr-debug.js:160 SalesChart - données reçues: (30) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+hmr-debug.js:160 SalesChart - données préparées: {labels: Array(7), salesData: Array(7), ordersData: Array(7)}
+5b6d41c8f3d086816edf7147d0e5be66.js:11 Try 7 https://extensions.aitopia.ai/ai/prompts {lang: 'fr', uuid_search: 'IhCeClN4wP40gq8IKJ6VQWZFRpuU2VRXgooQTO8AZfdp-_-p_RcdLBTorR8oOrMcwNmo', uuid_hopekey: '3fae33d611e671d8b7518d613fbbf989', v: '5.8.0', ri: 'fnmihdojmnkclgjpcoonokmkhjpjechg', …} POST 60000 TypeError: Failed to fetch
+    at _e.fetchWithTimeout (5b6d41c8f3d086816edf7147d0e5be66.js:11:2741)
+    at _e.apiCall (5b6d41c8f3d086816edf7147d0e5be66.js:11:9712)
+    at 5b6d41c8f3d086816edf7147d0e5be66.js:11:10355
+dashboard:1 Access to fetch at 'https://extensions.aitopia.ai/ai/prompts' from origin 'https://7ec85c1a-68a9-470e-9b43-57284b5658a3-00-33zksrp8rkfxr.janeway.replit.dev' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.Understand this error
+5b6d41c8f3d086816edf7147d0e5be66.js:11 
+            
+            
+           POST https://extensions.aitopia.ai/ai/prompts net::ERR_FAILED
+fetchWithTimeout @ 5b6d41c8f3d086816edf7147d0e5be66.js:11
+apiCall @ 5b6d41c8f3d086816edf7147d0e5be66.js:11
+(anonymous) @ 5b6d41c8f3d086816edf7147d0e5be66.js:11
+setTimeout
+(anonymous) @ 5b6d41c8f3d086816edf7147d0e5be66.js:11
+Promise.catch
+apiCall @ 5b6d41c8f3d086816edf7147d0e5be66.js:11
+(anonymous) @ 5b6d41c8f3d086816edf7147d0e5be66.js:11Understand this error
