@@ -547,20 +547,21 @@ if (typeof window !== 'undefined') {
 }
 
 // Fonctions utilitaires pour aider à résoudre les problèmes HMR courants
-window.__hmrDebugGetStatus = function() {
-  if (!window.__hmrDebug) return 'Outil de débogage HMR non initialisé';
-  
-  return {
-    rechargements: window.__hmrDebug.reloadCount,
-    derniersErreurs: window.__hmrDebug.lastErrors.slice(-5),
-    updatesHMR: window.__hmrDebug.webpackHotUpdates.slice(-5),
-    modulesFailed: window.__hmrDebug.failedModules.slice(-3),
-    requêtesRéseau: window.__hmrDebug.networkRequests.slice(-5)
+if (typeof window !== 'undefined') {
+  window.__hmrDebugGetStatus = function() {
+    if (!window.__hmrDebug) return 'Outil de débogage HMR non initialisé';
+    
+    return {
+      rechargements: window.__hmrDebug.reloadCount,
+      derniersErreurs: window.__hmrDebug.lastErrors.slice(-5),
+      updatesHMR: window.__hmrDebug.webpackHotUpdates.slice(-5),
+      modulesFailed: window.__hmrDebug.failedModules.slice(-3),
+      requêtesRéseau: window.__hmrDebug.networkRequests.slice(-5)
+    };
   };
-};
 
-// Fonction pour vérifier si les WebSockets fonctionnent
-window.__hmrCheckWebsockets = function() {
+  // Fonction pour vérifier si les WebSockets fonctionnent
+  window.__hmrCheckWebsockets = function() {
   const socketUrl = document.location.origin.replace(/^http/, 'ws') + '/_next/webpack-hmr';
   console.log(`🔍 HMR-DEBUG: Test de connexion WebSocket à ${socketUrl}`);
   
@@ -585,7 +586,8 @@ window.__hmrCheckWebsockets = function() {
     console.error('❌ HMR-DEBUG: Exception lors du test WebSocket:', e);
     return `Erreur: ${e.message}`;
   }
-};
+ };
+}
 
 export default function setupHMRDebug() {
   // Cette fonction peut être importée dans _app.js
