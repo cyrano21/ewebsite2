@@ -322,8 +322,8 @@ export default function AdminNavbar() {
                   </span>
                 )}
               </Dropdown.Toggle>
-              <Dropdown.Menu className={styles.notificationDropdown}>
-                <div className={styles.dropdownHeader}>
+              <Dropdown.Menu className={safeStyles.notificationDropdown || ''}>
+                <div className={safeStyles.dropdownHeader || ''}>
                   <h6 className="mb-0 fw-bold">
                     Avis en attente ({pendingReviewsCount})
                   </h6>
@@ -364,8 +364,8 @@ export default function AdminNavbar() {
                   </span>
                 )}
               </Dropdown.Toggle>
-              <Dropdown.Menu className={styles.notificationDropdown}>
-                <div className={styles.dropdownHeader}>
+              <Dropdown.Menu className={safeStyles.notificationDropdown || ''}>
+                <div className={safeStyles.dropdownHeader || ''}>
                   <h6 className="mb-0 fw-bold">
                     Vendeurs en attente ({pendingSellersCount})
                   </h6>
@@ -406,8 +406,8 @@ export default function AdminNavbar() {
                    </span>
                  )}
               </Dropdown.Toggle>
-              <Dropdown.Menu className={styles.notificationDropdown}>
-                 <div className={styles.dropdownHeader}>
+              <Dropdown.Menu className={safeStyles.notificationDropdown || ''}>
+                 <div className={safeStyles.dropdownHeader || ''}>
                     <h6 className="mb-0 fw-bold">Notifications</h6>
                     <Button 
                       variant="link" 
@@ -429,7 +429,7 @@ export default function AdminNavbar() {
                        <Dropdown.Item 
                          key={notification.id || idx} 
                          href="#" 
-                         className={`${styles.notificationItem} ${notification.read ? '' : styles.unread}`}
+                         className={`${safeStyles.notificationItem || ''} ${notification.read ? '' : safeStyles.unread || ''}`}
                          onClick={(e) => {
                            e.preventDefault();
                            console.log('Naviguer vers la notification:', notification);
