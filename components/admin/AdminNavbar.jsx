@@ -207,11 +207,14 @@ export default function AdminNavbar() {
     }
   }, [notifications]);
 
+  // Utiliser une référence sécurisée pour les styles
+  const safeStyles = styles || {};
+
   return (
     <Navbar
       expand="lg"
       fixed="top"
-      className={`${styles.adminNavbar} ${scrolled ? styles.scrolled : ''}`}
+      className={`${safeStyles.adminNavbar || ''} ${scrolled ? styles.scrolled : ''}`}
     >
       <Container fluid>
         <Navbar.Brand as={Link} href="/admin/dashboard" className={styles.brand}>
