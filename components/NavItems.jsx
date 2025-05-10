@@ -8,6 +8,7 @@ import { NavDropdown } from "react-bootstrap";
 import { clientAvatar } from "../utils/imageImports";
 import styles from "./NavItems.module.css";
 import { useRouter } from "next/router";
+import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 
 // Composant Link wrapper qui gère correctement les enfants
 const CustomLink = ({ href, className, children, ...props }) => {
@@ -174,7 +175,9 @@ const NavItems = () => {
                   <li><CustomLink href="/blog">Blog</CustomLink></li>
                   <li><CustomLink href="/about">À propos</CustomLink></li>
                   <li><CustomLink href="/contact">Contact</CustomLink></li>
-                  <li><CustomLink href="/wishlist">Liste de souhaits</CustomLink></li>
+                  <li>
+                    <CustomLink href="/wishlist">Liste de souhaits</CustomLink>
+                  </li>
                   <li><CustomLink href="/shop/compare">Comparer des produits</CustomLink></li>
                   {/* Afficher "Devenir vendeur" uniquement si l'utilisateur n'est pas déjà vendeur */}
                   {user && user.sellerStatus !== 'approved' && (
@@ -202,18 +205,22 @@ const NavItems = () => {
 
               {/* Icons for cart and wishlist */}
               <div className="d-flex align-items-center me-3">
-                <CustomLink href="/wishlist" className="position-relative me-4">
-                  <i className="icofont-heart-alt fs-5"></i>
-                  {wishlistCount > 0 && (
-                    <span className={styles.badgeCart}>{wishlistCount}</span>
-                  )}
-                </CustomLink>
-                <CustomLink href="/customer/cart" className="position-relative">
-                  <i className="icofont-cart-alt fs-5"></i>
-                  {cartCount > 0 && (
-                    <span className={styles.badgeCart}>{cartCount}</span>
-                  )}
-                </CustomLink>
+                <li>
+                  <CustomLink href="/wishlist" className="position-relative me-4">
+                    <i className="icofont-heart-alt fs-5"></i>
+                    {wishlistCount > 0 && (
+                      <span className={styles.badgeCart}>{wishlistCount}</span>
+                    )}
+                  </CustomLink>
+                </li>
+                <li>
+                  <CustomLink href="/customer/cart" className="position-relative">
+                    <i className="icofont-cart-alt fs-5"></i>
+                    {cartCount > 0 && (
+                      <span className={styles.badgeCart}>{cartCount}</span>
+                    )}
+                  </CustomLink>
+                </li>
               </div>
 
               {/* users when user available */}
