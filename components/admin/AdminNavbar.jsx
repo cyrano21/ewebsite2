@@ -234,7 +234,7 @@ export default function AdminNavbar() {
             <Nav.Link
               as={Link}
               href="/" 
-              className={`${styles.navLink}`}
+              className={`${safeStyles.navLink || ''}`}
               target="_blank"
               rel="noopener noreferrer"
             >
