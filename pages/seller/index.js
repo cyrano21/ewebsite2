@@ -12,17 +12,22 @@ export default function SellerIndex() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Seulement rediriger les utilisateurs normaux, pas les administrateurs
+    // Vérifier si l'utilisateur est authentifié
     if (status === 'authenticated') {
       // Si c'est un admin, on le laisse accéder directement à cette page
       if (session?.user?.role === 'admin') {
+        console.log('Accès administrateur à l\'espace vendeur');
         setLoading(false);
-      } else {
-        // Sinon on redirige vers le dashboard vendeur
+      } else if (session?.user?.sellerStatus === 'approved') {
+        // Si c'est un vendeur approuvé, on le redirige vers le dashboard
         router.push('/seller/dashboard');
+      } else {
+        // Sinon on le redirige vers la page pour devenir vendeur
+        router.push('/become-seller');
       }
     } else if (status === 'unauthenticated') {
-      router.push('/login?redirect=/seller/dashboard');
+      // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+      router.push('/login?redirect=/seller');
     }
   }, [status, router, session]);
 

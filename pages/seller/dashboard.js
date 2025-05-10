@@ -30,6 +30,8 @@ const SellerDashboard = () => {
         // Les administrateurs ont accès complet
         console.log('Accès administrateur au tableau de bord vendeur');
         setError(null); // Réinitialiser explicitement toute erreur pour les admins
+        // Charger les données du tableau de bord
+        fetchDashboardData();
       }
       // Sinon, vérifier le statut vendeur
       else if (session.user.sellerStatus !== 'approved') {
