@@ -602,7 +602,7 @@ const AdminDashboard = () => {
                 </div>
                 <h5>Produits</h5>
                 <p className="text-muted small">Gérer les produits, catégories et stocks</p>
-                <Button variant="primary" size="sm" as={Link} href="/admin/products">Accéder</Button>
+                <Button variant="primary" size="sm" onClick={() => router.push('/admin/products')}>Accéder</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -615,7 +615,7 @@ const AdminDashboard = () => {
                 </div>
                 <h5>Clients</h5>
                 <p className="text-muted small">Gérer les comptes clients et leurs informations</p>
-                <Button variant="success" size="sm" as={Link} href="/admin/customers">Accéder</Button>
+                <Button variant="success" size="sm" onClick={() => router.push('/admin/customers')}>Accéder</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -628,7 +628,7 @@ const AdminDashboard = () => {
                 </div>
                 <h5>Rapports</h5>
                 <p className="text-muted small">Consulter les rapports de ventes et statistiques</p>
-                <Button variant="info" size="sm" as={Link} href="/admin/reports">Accéder</Button>
+                <Button variant="info" size="sm" onClick={() => router.push('/admin/reports')}>Accéder</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -641,7 +641,7 @@ const AdminDashboard = () => {
                 </div>
                 <h5>Moniteur d'activité</h5>
                 <p className="text-muted small">Surveillez toutes les activités de la plateforme en temps réel</p>
-                <Button variant="primary" size="sm" as={Link} href="/admin/activity-monitor">Accéder</Button>
+                <Button variant="primary" size="sm" onClick={() => router.push('/admin/activity-monitor')}>Accéder</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -654,7 +654,7 @@ const AdminDashboard = () => {
                 </div>
                 <h5>Paramètres</h5>
                 <p className="text-muted small">Configuration du site et options générales</p>
-                <Button variant="warning" size="sm" as={Link} href="/admin/settings">Accéder</Button>
+                <Button variant="warning" size="sm" onClick={() => router.push('/admin/settings')}>Accéder</Button>
               </Card.Body>
             </Card>
           </Col>
