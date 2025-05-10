@@ -205,22 +205,22 @@ const NavItems = () => {
 
               {/* Icons for cart and wishlist */}
               <div className="d-flex align-items-center me-3">
-                <li>
-                  <CustomLink href="/wishlist" className="position-relative me-4">
+                <Link href="/wishlist" className="position-relative me-4" legacyBehavior>
+                  <a>
                     <i className="icofont-heart-alt fs-5"></i>
                     {wishlistCount > 0 && (
                       <span className={styles.badgeCart}>{wishlistCount}</span>
                     )}
-                  </CustomLink>
-                </li>
-                <li>
-                  <CustomLink href="/customer/cart" className="position-relative">
+                  </a>
+                </Link>
+                <Link href="/customer/cart" className="position-relative" legacyBehavior>
+                  <a>
                     <i className="icofont-cart-alt fs-5"></i>
                     {cartCount > 0 && (
                       <span className={styles.badgeCart}>{cartCount}</span>
                     )}
-                  </CustomLink>
-                </li>
+                  </a>
+                </Link>
               </div>
 
               {/* users when user available */}
