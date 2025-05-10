@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 // Composant Link wrapper qui gère correctement les enfants
 const CustomLink = ({ href, className, children, ...props }) => {
-  // Avec la nouvelle API de Link, nous n'avons plus besoin de distinguer les éléments ancrés
+  // Utilise l'API moderne de Link de Next.js
   return (
     <Link href={href} className={className} {...props}>
       {children}

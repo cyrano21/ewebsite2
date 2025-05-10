@@ -1,0 +1,94 @@
+ ✓ Compiled /api/admin/traffic-analytics in 221ms (1351 modules)
+ ✓ Compiled (1357 modules)
+ ⨯ Error: ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: (api-node)/./models/AdminActivityLog.js
+    at Object.set [as exports] (.next/server/webpack-api-runtime.js:104:21)
+    at eval (models/AdminActivityLog.js:158:14)
+    at (api-node)/./models/AdminActivityLog.js (.next/server/pages/api/admin/activity.js:32:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at eval (webpack-internal:///(api-node)/./pages/api/admin/activity.js:9:82)
+    at (api-node)/./pages/api/admin/activity.js (.next/server/pages/api/admin/activity.js:92:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at (api-node)/./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fadmin%2Factivity&preferredRegion=&absolutePagePath=.%2Fpages%2Fapi%2Fadmin%2Factivity.js&middlewareConfigBase64=e30%3D! (.next/server/pages/api/admin/activity.js:82:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at __webpack_exec__ (.next/server/pages/api/admin/activity.js:192:39)
+    at <unknown> (.next/server/pages/api/admin/activity.js:193:83)
+    at __webpack_require__.X (.next/server/webpack-api-runtime.js:134:21)
+    at <unknown> (.next/server/pages/api/admin/activity.js:193:47)
+    at Object.<anonymous> (.next/server/pages/api/admin/activity.js:196:3)
+  156 | const AdminActivityLog = mongoose.models.AdminActivityLog || mongoose.model('AdminActivityLog', AdminActivityLogSchema);
+  157 |
+> 158 | module.exports = AdminActivityLog;
+      |              ^
+  159 |
+ ⨯ Error: ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: (api-node)/./models/AdminActivityLog.js
+    at Object.set [as exports] (.next/server/webpack-api-runtime.js:104:21)
+    at eval (models/AdminActivityLog.js:158:14)
+    at (api-node)/./models/AdminActivityLog.js (.next/server/pages/api/admin/traffic-analytics.js:32:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at eval (webpack-internal:///(api-node)/./pages/api/admin/traffic-analytics.js:9:82)
+    at (api-node)/./pages/api/admin/traffic-analytics.js (.next/server/pages/api/admin/traffic-analytics.js:62:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at (api-node)/./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fadmin%2Ftraffic-analytics&preferredRegion=&absolutePagePath=.%2Fpages%2Fapi%2Fadmin%2Ftraffic-analytics.js&middlewareConfigBase64=e30%3D! (.next/server/pages/api/admin/traffic-analytics.js:52:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at __webpack_exec__ (.next/server/pages/api/admin/traffic-analytics.js:152:39)
+    at <unknown> (.next/server/pages/api/admin/traffic-analytics.js:153:83)
+    at __webpack_require__.X (.next/server/webpack-api-runtime.js:134:21)
+    at <unknown> (.next/server/pages/api/admin/traffic-analytics.js:153:47)
+    at Object.<anonymous> (.next/server/pages/api/admin/traffic-analytics.js:156:3)
+  156 | const AdminActivityLog = mongoose.models.AdminActivityLog || mongoose.model('AdminActivityLog', AdminActivityLogSchema);
+  157 |
+> 158 | module.exports = AdminActivityLog;
+      |              ^
+  159 |
+[API pending-reviews] Méthode: GET Session existe: true Role: admin
+[API pending-reviews] Connexion DB réussie
+ GET /api/auth/session 200 in 462ms
+[API pending-reviews] Nombre de produits avec avis en attente : 0
+[API pending-reviews] 0 avis en attente
+ GET /api/admin/pending-reviews 200 in 658ms
+[Activity] GET /api/admin/pending-reviews - User: 6808ceba46ea3f58ac26c135 (admin)
+ ✓ Compiled /_error in 451ms (3353 modules)
+ ✓ Compiled in 1ms (1357 modules)
+ GET /api/admin/stats 200 in 1313ms
+ GET /api/auth/session 200 in 500ms
+[API pending-reviews] Méthode: GET Session existe: true Role: admin
+[API pending-reviews] Connexion DB réussie
+[Activity] GET /api/admin/stats - User: 6808ceba46ea3f58ac26c135 (admin)
+ GET /api/auth/session 200 in 15ms
+[API pending-reviews] Nombre de produits avec avis en attente : 0
+[API pending-reviews] 0 avis en attente
+ GET /api/admin/pending-reviews 304 in 752ms
+ GET /api/admin/traffic-analytics 500 in 1797ms
+ GET /api/admin/activity?startDate=2025-04-10&endDate=2025-05-10&activityType=all&userType=all&limit=50 500 in 1799ms
+ GET /api/auth/session 200 in 8ms
+[Activity] GET /api/admin/traffic-analytics - User: 6808ceba46ea3f58ac26c135 (admin)
+ ⨯ Error: ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: (api-node)/./models/AdminActivityLog.js
+    at Object.set [as exports] (.next/server/webpack-api-runtime.js:104:21)
+    at eval (models/AdminActivityLog.js:158:14)
+    at (api-node)/./models/AdminActivityLog.js (.next/server/pages/api/admin/traffic-analytics.js:32:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at eval (webpack-internal:///(api-node)/./pages/api/admin/traffic-analytics.js:9:82)
+    at (api-node)/./pages/api/admin/traffic-analytics.js (.next/server/pages/api/admin/traffic-analytics.js:62:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at (api-node)/./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fadmin%2Ftraffic-analytics&preferredRegion=&absolutePagePath=.%2Fpages%2Fapi%2Fadmin%2Ftraffic-analytics.js&middlewareConfigBase64=e30%3D! (.next/server/pages/api/admin/traffic-analytics.js:52:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at __webpack_exec__ (.next/server/pages/api/admin/traffic-analytics.js:152:39)
+    at <unknown> (.next/server/pages/api/admin/traffic-analytics.js:153:83)
+    at __webpack_require__.X (.next/server/webpack-api-runtime.js:134:21)
+    at <unknown> (.next/server/pages/api/admin/traffic-analytics.js:153:47)
+    at Object.<anonymous> (.next/server/pages/api/admin/traffic-analytics.js:156:3)
+  156 | const AdminActivityLog = mongoose.models.AdminActivityLog || mongoose.model('AdminActivityLog', AdminActivityLogSchema);
+  157 |
+> 158 | module.exports = AdminActivityLog;
+      |              ^
+  159 |
+[Activity] GET /api/admin/activity - User: 6808ceba46ea3f58ac26c135 (admin)
+ ⨯ Error: ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: (api-node)/./models/AdminActivityLog.js
+    at Object.set [as exports] (.next/server/webpack-api-runtime.js:104:21)
+    at eval (models/AdminActivityLog.js:158:14)
+    at (api-node)/./models/AdminActivityLog.js (.next/server/pages/api/admin/activity.js:32:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at eval (webpack-internal:///(api-node)/./pages/api/admin/activity.js:9:82)
+    at (api-node)/./pages/api/admin/activity.js (.next/server/pages/api/admin/activity.js:92:1)
+    at __webpack_require__ (.next/server/webpack-api-runtime.js:33:42)
+    at (api-node)/./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fadmin%2Factivity&preferredRegion=&absolutePagePath=.%2Fpages%2Fapi%2Fadmin%2Factivity.js&middlewareConfigBase64=e30%3D! (.next/server/pages/api/admin/activity.js:82:1)
