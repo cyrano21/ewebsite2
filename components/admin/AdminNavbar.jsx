@@ -214,7 +214,7 @@ export default function AdminNavbar() {
     <Navbar
       expand="lg"
       fixed="top"
-      className={`${safeStyles.adminNavbar || ''} ${scrolled ? styles.scrolled : ''}`}
+      className={`${safeStyles.adminNavbar || ''} ${scrolled ? safeStyles.scrolled || '' : ''}`}
     >
       <Container fluid>
         <Navbar.Brand as={Link} href="/admin/dashboard" className={safeStyles.brand || ''}>
@@ -282,7 +282,7 @@ export default function AdminNavbar() {
                   key={group.id}
                   as={Link}
                   href={group.href}
-                  className={`${styles.navLink} ${isActive(group.href) ? styles.active : ''}`}
+                  className={`${safeStyles.navLink || ''} ${isActive(group.href) ? safeStyles.active || '' : ''}`}
                 >
                   <i className={`${group.icon} me-1`} />
                   {group.label}
@@ -291,23 +291,23 @@ export default function AdminNavbar() {
             ))}
           </Nav>
 
-          <div className={styles.actions}>
-            <div className={`${styles.searchContainer} ${searchVisible ? styles.visible : ''}`}>
-              <Form onSubmit={handleSearchSubmit} className={styles.searchForm}>
+          <div className={safeStyles.actions || ''}>
+            <div className={`${safeStyles.searchContainer || ''} ${searchVisible ? safeStyles.visible || '' : ''}`}>
+              <Form onSubmit={handleSearchSubmit} className={safeStyles.searchForm || ''}>
                 <InputGroup size="sm">
                   <Form.Control
                     placeholder="Rechercher..."
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
-                    className={styles.searchInput}
+                    className={safeStyles.searchInput || ''}
                     aria-label="Barre de recherche"
                   />
-                  <Button type="submit" variant="outline-secondary" className={styles.searchSubmit}>
+                  <Button type="submit" variant="outline-secondary" className={safeStyles.searchSubmit || ''}>
                     <i className="icofont-search-1" />
                   </Button>
                 </InputGroup>
               </Form>
-              <Button onClick={toggleSearch} className={styles.navActionBtn}>
+              <Button onClick={toggleSearch} className={safeStyles.navActionBtn || ''}>
                 <i className="icofont-search-1 fs-5" />
               </Button>
             </div>
@@ -436,7 +436,7 @@ export default function AdminNavbar() {
                          }}
                        >
                          <div className="d-flex align-items-start">
-                           <div className={`${styles.notificationIcon} ${getNotificationBgClass(notification.type)} me-3`}>
+                           <div className={`${safeStyles.notificationIcon || ''} ${getNotificationBgClass(notification.type)} me-3`}>
                              <i className={getNotificationIcon(notification.type)}/>
                            </div>
                            <div>
@@ -466,24 +466,24 @@ export default function AdminNavbar() {
             </Dropdown>
 
             <Dropdown align="end">
-              <Dropdown.Toggle as={Button} className={styles.userDropdown} id="dropdown-user">
-                <div className={styles.avatarContainer}>
+              <Dropdown.Toggle as={Button} className={safeStyles.userDropdown || ''} id="dropdown-user">
+                <div className={safeStyles.avatarContainer || ''}>
                     <Image
                         src={user?.photoURL || `https://ui-avatars.com/api/?name=${user?.displayName || 'Admin'}&background=random&size=40`}
                         roundedCircle
                         width={32}
                         height={32}
-                        className={styles.userAvatar}
+                        className={safeStyles.userAvatar || ''}
                         alt="Avatar utilisateur"
                     />
                 </div>
-                <span className={`${styles.userName} ms-2 d-none d-lg-inline`}>
+                <span className={`${safeStyles.userName || ''} ms-2 d-none d-lg-inline`}>
                   {user?.displayName || 'Admin User'}
                 </span>
                 <i className="icofont-simple-down ms-1 small text-muted d-none d-lg-inline" />
               </Dropdown.Toggle>
               <Dropdown.Menu style={{ minWidth: '180px' }}>
-                 <div className={styles.dropdownProfileHeader}>
+                 <div className={safeStyles.dropdownProfileHeader || ''}>
                     <Image
                         src={user?.photoURL || `https://ui-avatars.com/api/?name=${user?.displayName || 'Admin'}&background=random&size=64`}
                         roundedCircle
