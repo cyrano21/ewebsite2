@@ -313,7 +313,7 @@ export default function AdminNavbar() {
             </div>
 
             <Dropdown align="end">
-              <Dropdown.Toggle as={Button} className={styles.navActionBtn} id="dropdown-reviews">
+              <Dropdown.Toggle as={Button} className={safeStyles.navActionBtn || ''} id="dropdown-reviews">
                 <i className="icofont-star fs-5" />
                 {pendingReviewsCount > 0 && (
                   <span className="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
@@ -355,7 +355,7 @@ export default function AdminNavbar() {
             </Dropdown>
 
             <Dropdown align="end">
-              <Dropdown.Toggle as={Button} className={styles.navActionBtn} id="dropdown-sellers">
+              <Dropdown.Toggle as={Button} className={safeStyles.navActionBtn || ''} id="dropdown-sellers">
                 <i className="icofont-business-man fs-5" />
                 {pendingSellersCount > 0 && (
                   <span className="position-absolute top-0 start-100 translate-middle p-1 bg-warning border border-light rounded-circle">
@@ -397,7 +397,7 @@ export default function AdminNavbar() {
             </Dropdown>
 
             <Dropdown align="end">
-              <Dropdown.Toggle as={Button} className={styles.navActionBtn} id="dropdown-notifications">
+              <Dropdown.Toggle as={Button} className={safeStyles.navActionBtn || ''} id="dropdown-notifications">
                 <i className="icofont-notification fs-5" />
                  {unreadCount > 0 && (
                    <span className="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
