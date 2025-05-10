@@ -1,4 +1,3 @@
-
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import dbConnect from '../../../utils/dbConnect';
@@ -8,7 +7,7 @@ export default async function handler(req, res) {
   try {
     // Vérification d'authentification
     const session = await getServerSession(req, res, authOptions);
-    
+
     console.log('[API traffic-analytics] Session:', session ? 'Existe' : 'N\'existe pas');
     console.log('[API traffic-analytics] Role utilisateur:', session?.user?.role || 'Non défini');
 
@@ -38,7 +37,7 @@ export default async function handler(req, res) {
 
     // Préparer les filtres pour la requête MongoDB
     const filter = {};
-    
+
     if (startDate && endDate) {
       filter.createdAt = {
         $gte: new Date(startDate),
@@ -53,7 +52,7 @@ export default async function handler(req, res) {
     // Note: Ce code est un exemple. Dans une application réelle, vous auriez besoin
     // de créer un modèle spécifique pour le trafic ou d'utiliser un service d'analyse
     // comme Google Analytics, Matomo, etc.
-    
+
     // Pour cet exemple, nous utilisons AdminActivityLog pour simuler les données de trafic
     const logs = await AdminActivityLog.find(filter)
       .sort({ createdAt: -1 })
@@ -95,7 +94,7 @@ export default async function handler(req, res) {
     for (let i = 29; i >= 0; i--) {
       const date = new Date();
       date.setDate(today.getDate() - i);
-      
+
       trends.dates.push(date.toISOString().split('T')[0]);
       trends.visits.push(Math.floor(Math.random() * 500 + 100));
       trends.pageViews.push(Math.floor(Math.random() * 1500 + 300));

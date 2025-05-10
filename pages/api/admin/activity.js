@@ -1,4 +1,3 @@
-
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]';
 import connectDB from '../../../config/db';
@@ -12,20 +11,20 @@ export default async function handler(req, res) {
   try {
     // Vérification d'authentification avec next-auth
     const session = await getServerSession(req, res, authOptions);
-    
+
     console.log('[API activity] Session:', session ? 'Existe' : 'N\'existe pas');
     console.log('[API activity] Role utilisateur:', session?.user?.role || 'Non défini');
-    
+
     // Vérification que l'utilisateur est connecté
     if (!session) {
       return res.status(401).json({ success: false, message: 'Non authentifié' });
     }
-    
+
     // Vérification que l'utilisateur est un administrateur
     if (session.user.role !== 'admin') {
       return res.status(403).json({ success: false, message: 'Accès non autorisé' });
     }
-    
+
     // Vérification de la méthode HTTP
     if (req.method !== 'GET') {
       return res.status(405).json({ success: false, message: `Méthode ${req.method} non autorisée` });
@@ -54,26 +53,26 @@ export default async function handler(req, res) {
     const totalUsers = await User.countDocuments({});
     const totalSellers = await Seller.countDocuments({});
     const totalOrders = await Order.countDocuments({});
-    
+
     const recentRegistrations = await User.countDocuments({
       ...dateFilter
     });
-    
+
     const pendingOrders = await Order.countDocuments({
       status: 'pending'
     });
-    
+
     const newSellerApplications = await Seller.countDocuments({
       status: 'pending'
     });
 
     // Récupérer les logs d'activité récents
     const activityFilter = {};
-    
+
     if (activityType !== 'all') {
       activityFilter.activityType = activityType;
     }
-    
+
     if (userType !== 'all') {
       activityFilter.userType = userType;
     }

@@ -1,158 +1,223 @@
+
 import mongoose from 'mongoose';
 
-const adminActivityLogSchema = new mongoose.Schema({
-  admin: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  action: String,
-  target: String,
-  meta: mongoose.Schema.Types.Mixed,
-  createdAt: { type: Date, default: Date.now }
-});
+const { Schema } = mongoose;
 
-export default mongoose.models.AdminActivityLog || mongoose.model('AdminActivityLog', adminActivityLogSchema);
-
-
-// Schéma pour les logs d'activité administrative
-const AdminActivityLogSchema = new mongoose.Schema({
-  // Utilisateur concerné par l'activité
+const AdminActivityLogSchema = new Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User',
-    required: false // Peut être null pour les visiteurs anonymes
+    required: false
   },
-  
-  // Type d'utilisateur
-  userType: {
-    type: String,
-    enum: ['admin', 'seller', 'customer', 'visitor'],
-    required: true
-  },
-  
-  // Nom d'utilisateur ou identifiant
-  userName: {
+  username: {
     type: String,
     required: false
   },
-  
-  // Type d'activité
+  role: {
+    type: String,
+    enum: ['admin', 'seller', 'user', 'visitor'],
+    default: 'visitor'
+  },
+  action: {
+    type: String,
+    required: true
+  },
   activityType: {
     type: String,
-    enum: ['login', 'logout', 'view', 'search', 'purchase', 'cart_add', 'cart_remove', 
-           'registration', 'product_create', 'product_update', 'product_delete',
-           'review', 'order_status_change', 'payment', 'refund', 'wishlist',
-           'seller_application', 'admin_action'],
-    required: true
+    enum: ['auth', 'product', 'order', 'user', 'admin', 'review', 'payment', 'navigation', 'api', 'other'],
+    default: 'other'
   },
-  
-  // Description de l'activité
-  description: {
-    type: String,
-    required: true
+  details: {
+    type: Object,
+    default: {}
   },
-  
-  // Identifiant de l'objet concerné (produit, commande, etc.)
-  objectId: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: false
-  },
-  
-  // Type d'objet concerné
-  objectType: {
-    type: String,
-    enum: ['product', 'category', 'order', 'user', 'seller', 'review', 'cart', 'payment'],
-    required: false
-  },
-  
-  // Valeur avant modification (pour les mises à jour)
-  previousValue: {
-    type: mongoose.Schema.Types.Mixed,
-    required: false
-  },
-  
-  // Valeur après modification (pour les mises à jour)
-  newValue: {
-    type: mongoose.Schema.Types.Mixed,
-    required: false
-  },
-  
-  // Adresse IP
-  ipAddress: {
+  ip: {
     type: String,
     required: false
   },
-  
-  // Informations sur le navigateur/appareil
   userAgent: {
     type: String,
     required: false
   },
-
-  // Pays/région
-  location: {
+  resourceId: {
+    type: Schema.Types.ObjectId,
+    required: false
+  },
+  resourceType: {
     type: String,
     required: false
   },
-  
-  // Référent (d'où vient l'utilisateur)
+  successful: {
+    type: Boolean,
+    default: true
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now
+  },
+  path: {
+    type: String,
+    required: false
+  },
+  method: {
+    type: String,
+    enum: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'],
+    required: false
+  },
   referrer: {
     type: String,
     required: false
   },
-  
-  // URL visitée
-  url: {
-    type: String,
-    required: false
-  },
-  
-  // Méthode HTTP pour les requêtes API
-  method: {
-    type: String,
-    enum: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    required: false
-  },
-  
-  // Statut HTTP pour les requêtes API
   statusCode: {
     type: Number,
     required: false
   },
-  
-  // Temps d'exécution (en ms)
-  executionTime: {
+  responseTime: {
     type: Number,
     required: false
+  },
+  queryParams: {
+    type: Object,
+    default: {}
+  },
+  bodyParams: {
+    type: Object,
+    default: {}
+  },
+  errorMessage: {
+    type: String,
+    required: false
+  },
+  entityBefore: {
+    type: Object,
+    required: false
+  },
+  entityAfter: {
+    type: Object,
+    required: false
+  },
+  changes: [{
+    field: String,
+    oldValue: Schema.Types.Mixed,
+    newValue: Schema.Types.Mixed
+  }],
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: false
+    },
+    coordinates: {
+      type: [Number],
+      required: false
+    }
+  },
+  device: {
+    type: {
+      type: String,
+      enum: ['desktop', 'mobile', 'tablet', 'other'],
+      required: false
+    },
+    browser: {
+      type: String,
+      required: false
+    },
+    os: {
+      type: String,
+      required: false
+    }
+  },
+  session: {
+    type: String,
+    required: false
+  },
+  processingTime: {
+    type: Number,
+    required: false
+  },
+  importanceLevel: {
+    type: String,
+    enum: ['low', 'medium', 'high', 'critical'],
+    default: 'medium'
+  },
+  relatedActivities: [{
+    type: Schema.Types.ObjectId,
+    ref: 'AdminActivityLog'
+  }],
+  tags: [{
+    type: String
+  }],
+  securityLevel: {
+    type: String,
+    enum: ['normal', 'sensitive', 'critical'],
+    default: 'normal'
+  },
+  retentionPolicy: {
+    type: String,
+    enum: ['standard', 'extended', 'permanent'],
+    default: 'standard'
   }
-}, { 
-  timestamps: true,
-  // Création automatique d'index pour améliorer les requêtes
-  indexes: [
-    { createdAt: -1 },
-    { userId: 1 },
-    { userType: 1 },
-    { activityType: 1 },
-    { objectId: 1, objectType: 1 }
-  ]
+}, {
+  timestamps: true
 });
 
-// Création d'index spécifiques pour des requêtes courantes
-AdminActivityLogSchema.index({ createdAt: -1, activityType: 1 });
-AdminActivityLogSchema.index({ createdAt: -1, userType: 1 });
-AdminActivityLogSchema.index({ createdAt: -1, activityType: 1, userType: 1 });
+// Indexation pour améliorer les performances des requêtes
+AdminActivityLogSchema.index({ timestamp: -1 });
+AdminActivityLogSchema.index({ userId: 1, timestamp: -1 });
+AdminActivityLogSchema.index({ activityType: 1, timestamp: -1 });
+AdminActivityLogSchema.index({ 'details.productId': 1 }, { sparse: true });
+AdminActivityLogSchema.index({ 'details.orderId': 1 }, { sparse: true });
+AdminActivityLogSchema.index({ path: 1, timestamp: -1 });
 
-// Méthode pour formater les logs pour l'affichage
-AdminActivityLogSchema.methods.toDisplayFormat = function() {
-  return {
-    id: this._id,
-    user: this.userName || 'Anonyme',
-    userType: this.userType,
-    action: this.activityType,
-    details: this.description,
-    date: this.createdAt,
-    url: this.url
-  };
+// Méthode statique pour ajouter un log d'activité
+AdminActivityLogSchema.statics.logActivity = async function(activityData) {
+  try {
+    return await this.create(activityData);
+  } catch (error) {
+    console.error('Erreur lors de la journalisation de l\'activité:', error);
+    // Ne pas planter l'application si la journalisation échoue
+    return null;
+  }
 };
 
-// Création du modèle à partir du schéma
+// Méthode pour obtenir les tendances d'activité
+AdminActivityLogSchema.statics.getActivityTrends = async function(startDate, endDate, groupBy = 'day') {
+  const match = {};
+  if (startDate || endDate) {
+    match.timestamp = {};
+    if (startDate) match.timestamp.$gte = new Date(startDate);
+    if (endDate) match.timestamp.$lte = new Date(endDate);
+  }
+
+  let dateFormat;
+  switch (groupBy) {
+    case 'hour':
+      dateFormat = { hour: { $hour: '$timestamp' }, day: { $dayOfMonth: '$timestamp' }, month: { $month: '$timestamp' }, year: { $year: '$timestamp' } };
+      break;
+    case 'day':
+      dateFormat = { day: { $dayOfMonth: '$timestamp' }, month: { $month: '$timestamp' }, year: { $year: '$timestamp' } };
+      break;
+    case 'week':
+      dateFormat = { week: { $week: '$timestamp' }, year: { $year: '$timestamp' } };
+      break;
+    case 'month':
+      dateFormat = { month: { $month: '$timestamp' }, year: { $year: '$timestamp' } };
+      break;
+    default:
+      dateFormat = { day: { $dayOfMonth: '$timestamp' }, month: { $month: '$timestamp' }, year: { $year: '$timestamp' } };
+  }
+
+  return this.aggregate([
+    { $match: match },
+    { $group: {
+        _id: dateFormat,
+        count: { $sum: 1 }
+      }
+    },
+    { $sort: { '_id.year': 1, '_id.month': 1, '_id.day': 1, '_id.hour': 1, '_id.week': 1 } }
+  ]);
+};
+
 const AdminActivityLog = mongoose.models.AdminActivityLog || mongoose.model('AdminActivityLog', AdminActivityLogSchema);
 
-module.exports = AdminActivityLog;
+export default AdminActivityLog;
