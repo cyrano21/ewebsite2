@@ -92,7 +92,6 @@ export default function NavItems() {
           </div>
         </div>
       </div>
-
       {/* --- header-bottom --- */}
       <div className="header-bottom">
         <div className="container header-wrapper">
@@ -107,7 +106,7 @@ export default function NavItems() {
               margin: 0,
             }}
           >
-            <Link href="/">
+            <Link href="/" legacyBehavior>
               <Image
                 src={logo}
                 alt="Logo"
@@ -130,7 +129,7 @@ export default function NavItems() {
             <ul className={`lab-ul ${menuOpen ? "active" : ""}`}>
               {["/", "/shop", "/blog", "/about", "/contact"].map((p, i) => (
                 <li key={i}>
-                  <Link href={p}>
+                  <Link href={p} legacyBehavior>
                     {p === "/"
                       ? "Accueil"
                       : p === "/shop"

@@ -127,7 +127,6 @@ const SingleProduct = ({ product, related = [] }) => {
   return (
     <div className="shop-single padding-tb">
       <PageHeader title="Détails du produit" curPage="Détails" />
-
       <Container>
         <Row className="mb-5">
           {/* Image du produit */}
@@ -159,7 +158,7 @@ const SingleProduct = ({ product, related = [] }) => {
                   />
                 ) : (
                   // Si pas d'image, utiliser directement le placeholder sans essayer de charger une image
-                  <Image
+                  (<Image
                     src="/assets/images/shop/placeholder.jpg"
                     alt={product.name || 'Image produit non disponible'}
                     fill
@@ -167,7 +166,7 @@ const SingleProduct = ({ product, related = [] }) => {
                     className="w-100 h-100"
                     priority={true}
                     sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+                  />)
                 )}
               </div>
 
@@ -428,15 +427,15 @@ const SingleProduct = ({ product, related = [] }) => {
                           {product.specifications ? (
                             Array.isArray(product.specifications) ? (
                               // Si c'est un tableau d'objets avec propriétés key et value
-                              product.specifications.map((spec, i) => (
+                              (product.specifications.map((spec, i) => (
                                 <tr key={i}>
                                   <th>{spec.key}</th>
                                   <td>{spec.value}</td>
                                 </tr>
-                              ))
+                              )))
                             ) : (
                               // Si c'est un objet avec des paires clé-valeur
-                              Object.entries(product.specifications).map(([key, value], i) => (
+                              (Object.entries(product.specifications).map(([key, value], i) => (
                                 <tr key={i}>
                                   <th>{key}</th>
                                   <td>
@@ -445,7 +444,7 @@ const SingleProduct = ({ product, related = [] }) => {
                                       : value}
                                   </td>
                                 </tr>
-                              ))
+                              )))
                             )
                           ) : (
                             <tr>
@@ -480,7 +479,7 @@ const SingleProduct = ({ product, related = [] }) => {
                 {related.slice(0, 4).map((item) => (
                   <Col key={item._id} md={3} sm={6} className="mb-4">
                     <Card className="h-100 product-card shadow-sm">
-                      <Link href={`/shop/product/${item._id}`} passHref>
+                      <Link href={`/shop/product/${item._id}`} passHref legacyBehavior>
                         <div className="position-relative" style={{ height: '200px' }}>
                           <Image
                             src={item.image || '/assets/images/shop/placeholder.jpg'}

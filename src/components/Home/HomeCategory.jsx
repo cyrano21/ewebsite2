@@ -107,10 +107,10 @@ const HomeCategory = () => {
             <div className="row g-4 justify-content-center row-cols-md-3 row-cols-sm-2 row-cols-1">
               {categories.map((category, i) => (
                 <div className="col" key={i}>
-                  <Link 
+                  <Link
                     href={`/shop?category=${encodeURIComponent(category.name)}`}
                     className="category-item"
-                  >
+                    legacyBehavior>
                     <div className="category-inner">
                       <div className="category-thumb">
                         {/* Pour la compatibilité avec Next.js, utiliser Image au lieu de img */}
@@ -135,7 +135,7 @@ const HomeCategory = () => {
             </div>
           )}
           <div className="text-center mt-5">
-            <Link href="/shop" className="lab-btn">
+            <Link href="/shop" className="lab-btn" legacyBehavior>
               <span>{btnText}</span>
             </Link>
           </div>

@@ -32,10 +32,13 @@ const ProductPerformance = ({ products = [] }) => {
         return (
           <ListGroup.Item key={index} className="py-3 px-0 border-bottom">
             <div className="d-flex justify-content-between align-items-center mb-2">
-              <Link href={`/seller/products/${product._id}`}>
-                <a className="fw-medium text-truncate" style={{ maxWidth: '70%' }}>
-                  {product.name}
-                </a>
+              <Link
+                href={`/seller/products/${product._id}`}
+                className="fw-medium text-truncate"
+                style={{ maxWidth: '70%' }}>
+
+                {product.name}
+
               </Link>
               <Badge bg="light" text="dark">
                 {product.sales} ventes

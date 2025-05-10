@@ -15,10 +15,10 @@ const AppSection = () => {
                 vous offre une expérience d'achat fluide et des fonctionnalités exclusives.
               </p>
               <div className="app-buttons">
-                <Link href="#" className="app-btn">
+                <Link href="#" className="app-btn" legacyBehavior>
                   <i className="fab fa-google-play"></i> Google Play
                 </Link>
-                <Link href="#" className="app-btn">
+                <Link href="#" className="app-btn" legacyBehavior>
                   <i className="fab fa-apple"></i> App Store
                 </Link>
               </div>

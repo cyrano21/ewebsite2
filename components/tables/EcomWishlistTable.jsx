@@ -48,7 +48,7 @@ const EcomWishlistTable = ({
         </div>
         <h5>Votre liste de souhaits est vide</h5>
         <p className="text-muted">Parcourez notre catalogue et ajoutez des produits à votre liste de souhaits</p>
-        <Link href="/shop" passHref>
+        <Link href="/shop" passHref legacyBehavior>
           <Button variant="primary" className="mt-3">
             Continuer mes achats
           </Button>
@@ -87,7 +87,7 @@ const EcomWishlistTable = ({
                       )}
                     </div>
                     <div>
-                      <Link href={`/product/${item.slug}`} passHref>
+                      <Link href={`/product/${item.slug}`} passHref legacyBehavior>
                         <span className="product-title fw-medium text-decoration-none">
                           {item.name}
                         </span>
@@ -140,7 +140,6 @@ const EcomWishlistTable = ({
           </tbody>
         </Table>
       </div>
-
       <style jsx>{`
         .wishlist-table-container {
           margin-bottom: 2rem;

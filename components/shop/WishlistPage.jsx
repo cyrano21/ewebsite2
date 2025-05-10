@@ -350,7 +350,7 @@ const WishlistPage = () => {
                     <p className="mb-4 text-secondary">
                       Ajoutez des produits que vous aimez pour les retrouver facilement !
                     </p>
-                    <Link href="/shop" className="btn btn-primary">
+                    <Link href="/shop" className="btn btn-primary" legacyBehavior>
                       <i className="icofont-shopping-cart me-2"></i>
                       Découvrir nos produits
                     </Link>
@@ -457,7 +457,7 @@ const WishlistPage = () => {
                                   {/* Product Image */}
                                   <div className="flex-shrink-0 me-3">
                                     {item.img ? (
-                                      <Link href={`/shop/${item.id}`} aria-label={`Voir ${item.name}`}>
+                                      <Link href={`/shop/${item.id}`} aria-label={`Voir ${item.name}`} legacyBehavior>
                                         <img
                                           src={item.img}
                                           alt={item.name || 'Image produit'} // Provide default alt text
@@ -483,7 +483,10 @@ const WishlistPage = () => {
                                   </div>
                                   {/* Product Details */}
                                   <div className="flex-grow-1">
-                                    <Link href={`/shop/${item.id}`} className="product-name fw-semibold text-dark text-decoration-none mb-1 d-block">
+                                    <Link
+                                      href={`/shop/${item.id}`}
+                                      className="product-name fw-semibold text-dark text-decoration-none mb-1 d-block"
+                                      legacyBehavior>
                                       {item.name || "Produit sans nom"}
                                     </Link>
                                     {/* Category Badge */}

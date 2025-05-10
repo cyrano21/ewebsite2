@@ -80,7 +80,7 @@ const FavoriteShops = () => {
                       </div>
                       <Card.Text className="mb-3">{shop.description}</Card.Text>
                       <div className="d-flex gap-2">
-                        <Link href={`/shop?seller=${shop.id}`} passHref>
+                        <Link href={`/shop?seller=${shop.id}`} passHref legacyBehavior>
                           <Button variant="outline-primary" size="sm">
                             <i className="icofont-shopping-cart me-1"></i> Voir les produits
                           </Button>
@@ -104,7 +104,7 @@ const FavoriteShops = () => {
             <p className="text-muted mb-4">
               Explorez notre marketplace et ajoutez vos boutiques préférées à cette liste.
             </p>
-            <Link href="/shop" passHref>
+            <Link href="/shop" passHref legacyBehavior>
               <Button variant="primary">
                 Parcourir les boutiques
               </Button>
@@ -112,7 +112,6 @@ const FavoriteShops = () => {
           </div>
         )}
       </Container>
-
       <style jsx>{`
         .shop-card {
           transition: transform 0.3s ease, box-shadow 0.3s ease;

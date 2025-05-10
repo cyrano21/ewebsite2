@@ -91,7 +91,7 @@ const CategoryShowCase = () => {
 
                                             {/* content  */}
                                             <div className="course-content">
-                                                <Link href={`/shop/${_id || id}`}>
+                                                <Link href={`/shop/${_id || id}`} legacyBehavior>
                                                     <h5>{name}</h5>
                                                 </Link>
                                                 <div className="course-footer">

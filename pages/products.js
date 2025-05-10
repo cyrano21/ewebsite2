@@ -53,7 +53,6 @@ const Products = () => {
   return (
     <div className="products-page">
       <PageHeader title="Tous les Produits" curPage="Produits" />
-
       <Container className="py-5">
         <Row className="mb-4">
           <Col lg={8}>
@@ -173,7 +172,10 @@ const Products = () => {
                             <Rating value={product.rating || 0} />
                           </div>
                         </div>
-                        <Link href={`/shop/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                        <Link
+                          href={`/shop/${product.id}`}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                          legacyBehavior>
                           <Card.Title className="product-title">{product.name}</Card.Title>
                         </Link>
                         <Card.Text className="text-primary fw-bold">
@@ -206,7 +208,6 @@ const Products = () => {
           </Col>
         </Row>
       </Container>
-
       <style jsx>{`
         .product-card {
           transition: transform 0.3s ease, box-shadow 0.3s ease;

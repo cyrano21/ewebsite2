@@ -139,22 +139,22 @@ const Login = () => {
                   </button>
                 </li>
                 <li>
-                  <Link href="/" className="facebook">
+                  <Link href="/" className="facebook" legacyBehavior>
                     <i className="icofont-facebook"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="twitter">
+                  <Link href="/" className="twitter" legacyBehavior>
                     <i className="icofont-twitter"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="linkedin">
+                  <Link href="/" className="linkedin" legacyBehavior>
                     <i className="icofont-linkedin"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="instagram">
+                  <Link href="/" className="instagram" legacyBehavior>
                     <i className="icofont-instagram"></i>
                   </Link>
                 </li>

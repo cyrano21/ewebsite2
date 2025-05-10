@@ -220,9 +220,8 @@ const Sponsor = () => {
                                         ))
                                     ) : (
                                         // Afficher un message si aucun sponsor n'est disponible
-                                        <div style={{ padding: '20px', textAlign: 'center' }}>
-                                            Nos partenaires seront bientôt disponibles
-                                        </div>
+                                        (<div style={{ padding: '20px', textAlign: 'center' }}>Nos partenaires seront bientôt disponibles
+                                                                                    </div>)
                                     )}
                                 </div>
                                 

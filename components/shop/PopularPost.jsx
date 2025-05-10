@@ -44,10 +44,10 @@ const PopularPost = () => {
                 {postList.map((blog, i) => (
                     <li className="d-flex flex-wrap justify-content-between" key={i}>
                         <div className="post-thumb">
-                            <Link href={`/blog/${blog.id}`}><img src={`${blog.imgUrl}`} alt={`${blog.imgAlt}`} /></Link>
+                            <Link href={`/blog/${blog.id}`} legacyBehavior><img src={`${blog.imgUrl}`} alt={`${blog.imgAlt}`} /></Link>
                         </div>
                         <div className="post-content">
-                            <Link href={`/blog/${blog.id}`}><h6>{blog.title}</h6></Link>
+                            <Link href={`/blog/${blog.id}`} legacyBehavior><h6>{blog.title}</h6></Link>
                             <p>{blog.date}</p>
                         </div>
                     </li>

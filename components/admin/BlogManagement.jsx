@@ -538,15 +538,14 @@ const BlogManagement = () => {
 
   // --- Rendu ---
   return (
+    // Fin du div principal
     <div className={`${styles['blog-management-modern']} fade-in`}> {/* Appliquer style module */}
-
       {/* Notification */}
       {notification && (
         <Alert variant={notification.type} dismissible onClose={() => setNotification(null)} className={styles['notification-toast']}>
           {notification.message}
         </Alert>
       )}
-
       {/* En-tête */}
       <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
         <h2 className={`${styles['page-title']} mb-3 mb-sm-0`}><i className="icofont-page me-2"></i>Gestion du Blog</h2>
@@ -557,7 +556,6 @@ const BlogManagement = () => {
           <Button variant={activeView === 'stats' ? 'primary' : 'outline-primary'} onClick={() => setActiveView('stats')}><i className="icofont-chart-bar-graph me-1"></i> Stats</Button>
         </div>
       </div>
-
       {/* Dashboard Cards (Stats globales rapides) */}
       <Row className={`${styles['stats-cards']} mb-4`}>
          {/* ... (colonne total, catégories, mois courant) ... */}
@@ -578,7 +576,6 @@ const BlogManagement = () => {
          </Col>
          <Col md={4} className="mb-3"><Card className={`${styles['dashboard-card']} shadow-sm h-100`}><Card.Body className="d-flex align-items-center"><div className={`${styles['card-icon-bg']} ${styles.warning}`}><i className="icofont-ui-calendar"></i></div><div className="ms-3"><Card.Title className={styles['card-value']}>{stats.monthlyPublications[new Date().toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })] || 0}</Card.Title><Card.Text className={styles['card-label']}>Articles ce mois</Card.Text></div></Card.Body></Card></Col>
       </Row>
-
       {/* Contenu Principal (Conditionnel selon la vue) */}
       <Card className={`${styles['main-content-card']} shadow-sm`}>
         <Card.Body>
@@ -688,31 +685,34 @@ const BlogManagement = () => {
                    ) : (
                       <Row className={`${styles['blog-cards']} mt-3`}>
                           {paginatedBlogs.map(blog => ( // Afficher seulement les blogs paginés
-                            <Col key={blog._id} lg={4} md={6} className="mb-4">
-                               <Card className={`${styles['blog-card']} h-100 shadow-sm`}>
-                                   <div className={styles['blog-card-img-container']}>
-                                       <NextLink href={`/blog/${blog.slug || blog._id}`} passHref legacyBehavior><a> {/* Ajouter un lien vers la page blog */}
-                                          <Card.Img variant="top" src={blog.image || 'https://via.placeholder.com/300x200?text=Image'} className={styles['blog-card-img']} />
-                                       </a></NextLink>
-                                       {blog.isPublished ? <Badge pill bg="success" className={styles.statusBadge}>Publié</Badge> : <Badge pill bg="secondary" className={styles.statusBadge}>Brouillon</Badge>}
-                                   </div>
-                                   <Card.Body>
-                                      <Badge bg="primary" className="mb-2">{blog.category || 'Non classé'}</Badge>
-                                       <Card.Title className={styles['blog-card-title']}>
-                                           <NextLink href={`/blog/${blog.slug || blog._id}`} className="text-decoration-none text-dark">{blog.title}</NextLink>
-                                       </Card.Title>
-                                      <div className={`${styles['blog-card-meta']} small text-muted`}>
-                                         <span className="me-3"><i className="icofont-ui-user me-1"></i>{blog.author}</span>
-                                         <span><i className="icofont-calendar me-1"></i>{blog.displayDate || formatDateToFrench(blog.date)}</span>
-                                      </div>
-                                      {/* <Card.Text className={styles['blog-card-excerpt']}>{blog.content?.substring(0, 80)}...</Card.Text> */}
-                                   </Card.Body>
-                                   <Card.Footer className={`${styles['blog-card-footer']} bg-white border-top-0 pt-0`}>
-                                      <Button variant="primary" size="sm" onClick={() => handleOpenModal(blog)}><i className="icofont-edit me-1"></i></Button>
-                                      <Button variant="outline-danger" size="sm" onClick={() => handleDeleteBlog(blog._id, blog.title)}><i className="icofont-trash"></i></Button>
-                                   </Card.Footer>
-                               </Card>
-                            </Col>
+                            (<Col key={blog._id} lg={4} md={6} className="mb-4">
+                              <Card className={`${styles['blog-card']} h-100 shadow-sm`}>
+                                  <div className={styles['blog-card-img-container']}>
+                                      <NextLink href={`/blog/${blog.slug || blog._id}`} passHref legacyBehavior><a> {/* Ajouter un lien vers la page blog */}
+                                         <Card.Img variant="top" src={blog.image || 'https://via.placeholder.com/300x200?text=Image'} className={styles['blog-card-img']} />
+                                      </a></NextLink>
+                                      {blog.isPublished ? <Badge pill bg="success" className={styles.statusBadge}>Publié</Badge> : <Badge pill bg="secondary" className={styles.statusBadge}>Brouillon</Badge>}
+                                  </div>
+                                  <Card.Body>
+                                     <Badge bg="primary" className="mb-2">{blog.category || 'Non classé'}</Badge>
+                                      <Card.Title className={styles['blog-card-title']}>
+                                          <NextLink
+                                            href={`/blog/${blog.slug || blog._id}`}
+                                            className="text-decoration-none text-dark"
+                                            legacyBehavior>{blog.title}</NextLink>
+                                      </Card.Title>
+                                     <div className={`${styles['blog-card-meta']} small text-muted`}>
+                                        <span className="me-3"><i className="icofont-ui-user me-1"></i>{blog.author}</span>
+                                        <span><i className="icofont-calendar me-1"></i>{blog.displayDate || formatDateToFrench(blog.date)}</span>
+                                     </div>
+                                     {/* <Card.Text className={styles['blog-card-excerpt']}>{blog.content?.substring(0, 80)}...</Card.Text> */}
+                                  </Card.Body>
+                                  <Card.Footer className={`${styles['blog-card-footer']} bg-white border-top-0 pt-0`}>
+                                     <Button variant="primary" size="sm" onClick={() => handleOpenModal(blog)}><i className="icofont-edit me-1"></i></Button>
+                                     <Button variant="outline-danger" size="sm" onClick={() => handleDeleteBlog(blog._id, blog.title)}><i className="icofont-trash"></i></Button>
+                                  </Card.Footer>
+                              </Card>
+                            </Col>)
                          ))}
                       </Row>
                    )
@@ -773,7 +773,6 @@ const BlogManagement = () => {
 
         </Card.Body>
       </Card>
-
       {/* Modal d'édition/création (Logique interne pour Tiptap) */}
       {showModal && (
          <div className="modal show d-block" tabIndex="-1" role="dialog" style={{ background: 'rgba(0,0,0,0.3)' }}>
@@ -875,8 +874,7 @@ const BlogManagement = () => {
            </div>
          </div>
       )}
-
-    </div> // Fin du div principal
+    </div>
   );
 }; // Fin du composant BlogManagement
 

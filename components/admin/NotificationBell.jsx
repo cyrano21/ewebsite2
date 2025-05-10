@@ -155,7 +155,6 @@ const NotificationBell = () => {
           </Badge>
         )}
       </div>
-
       {showDropdown && (
         <div className={styles.notificationDropdown}>
           <div className={styles.notificationHeader}>
@@ -195,7 +194,10 @@ const NotificationBell = () => {
                     }
                   }}
                 >
-                  <Link href={notification.actionUrl || '#'} className={styles.notificationLink}>
+                  <Link
+                    href={notification.actionUrl || '#'}
+                    className={styles.notificationLink}
+                    legacyBehavior>
                     <div className="d-flex align-items-center">
                       <div className={styles.notificationIcon}>
                         <i className={getNotificationIcon(notification.type)}></i>

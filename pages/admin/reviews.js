@@ -579,7 +579,7 @@ const AdminReviews = () => {
             </p>
           </Col>
           <Col md="auto" className="d-flex align-items-center">
-            <Link href="/admin/review-analytics">
+            <Link href="/admin/review-analytics" legacyBehavior>
               <Button variant="outline-primary">
                 <FaChartBar className="me-2" /> Analyses avancées des avis
               </Button>
@@ -825,7 +825,6 @@ const AdminReviews = () => {
           </Card.Body>
         </Card>
       </Container>
-
       {/* Modale de suppression */}
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
@@ -857,7 +856,6 @@ const AdminReviews = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
       {/* Modale de rejet */}
       <Modal show={showRejectModal} onHide={() => setShowRejectModal(false)}>
         <Modal.Header closeButton>

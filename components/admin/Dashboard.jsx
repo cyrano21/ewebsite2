@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Button, ProgressBar } from 'react-bootstrap';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import PageHeader from '../../components/PageHeader';
 import axios from 'axios';
 import { useNotifications, NOTIFICATION_TYPES } from '../../contexts/NotificationContext';
 
 const AdminDashboard = () => {
+  const router = useRouter();
   const { addNotification } = useNotifications();
 
   // États pour les données dynamiques
@@ -396,7 +398,7 @@ const AdminDashboard = () => {
             <Card className="shadow-sm">
               <Card.Header className="bg-white d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">Produits les plus populaires</h5>
-                <Button variant="outline-primary" size="sm" as={Link} href="/admin/products">Voir tous les produits</Button>
+                <Button variant="outline-primary" size="sm" onClick={() => router.push('/admin/products')}>Voir tous les produits</Button>
               </Card.Header>
               <Card.Body>
                 {popularProducts.length > 0 ? (
@@ -453,10 +455,10 @@ const AdminDashboard = () => {
                             </div>
                           </td>
                           <td>
-                            <Button variant="outline-primary" size="sm" className="me-2" as={Link} href={`/admin/products/edit/${product.id || product._id}`}>
+                            <Button variant="outline-primary" size="sm" className="me-2" onClick={() => router.push(`/admin/products/edit/${product.id || product._id}`)}>
                               <i className="icofont-ui-edit"></i>
                             </Button>
-                            <Button variant="outline-info" size="sm" as={Link} href={`/shop/product/${product.id || product._id}`}>
+                            <Button variant="outline-info" size="sm" onClick={() => router.push(`/shop/product/${product.id || product._id}`)}>
                               <i className="icofont-eye-alt"></i>
                             </Button>
                           </td>
@@ -484,7 +486,7 @@ const AdminDashboard = () => {
                   <span className="badge bg-warning">{stats.pendingOrders}</span>
                 </div>
                 <p className="text-muted">Vous avez {stats.pendingOrders} commandes en attente de traitement.</p>
-                <Button variant="outline-warning" size="sm" as={Link} href="/admin/orders">Voir les commandes</Button>
+                <Button variant="outline-warning" size="sm" onClick={() => router.push('/admin/orders')}>Voir les commandes</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -497,7 +499,7 @@ const AdminDashboard = () => {
                   <span className="badge bg-danger">{stats.outOfStockProducts}</span>
                 </div>
                 <p className="text-muted">{stats.outOfStockProducts} produits sont actuellement en rupture de stock.</p>
-                <Button variant="outline-danger" size="sm" as={Link} href="/admin/products">Gérer le stock</Button>
+                <Button variant="outline-danger" size="sm" onClick={() => router.push('/admin/products')}>Gérer le stock</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -509,7 +511,7 @@ const AdminDashboard = () => {
             <Card className="shadow-sm">
               <Card.Header className="bg-white d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">Commandes récentes</h5>
-                <Button variant="outline-primary" size="sm" as={Link} href="/admin/orders">Voir toutes</Button>
+                <Button variant="outline-primary" size="sm" onClick={() => router.push('/admin/orders')}>Voir toutes</Button>
               </Card.Header>
               <Card.Body>
                 <Table responsive hover className="mb-0">
@@ -543,7 +545,7 @@ const AdminDashboard = () => {
                           <Button variant="link" size="sm" className="p-0 me-2" onClick={handleViewCartOrder}>
                             <i className="icofont-eye-alt text-primary"></i>
                           </Button>
-                          <Button variant="link" size="sm" className="p-0" as={Link} href="/admin/orders">
+                          <Button variant="link" size="sm" className="p-0" onClick={() => router.push('/admin/orders')}>
                             <i className="icofont-ui-edit text-success"></i>
                           </Button>
                         </td>
@@ -564,10 +566,10 @@ const AdminDashboard = () => {
                             </span>
                           </td>
                           <td>
-                            <Button variant="link" size="sm" className="p-0 me-2" as={Link} href={`/admin/orders/${order.id}`}>
+                            <Button variant="link" size="sm" className="p-0 me-2" onClick={() => router.push(`/admin/orders/${order.id}`)}>
                               <i className="icofont-eye-alt text-primary"></i>
                             </Button>
-                            <Button variant="link" size="sm" className="p-0" as={Link} href={`/admin/orders/edit/${order.id}`}>
+                            <Button variant="link" size="sm" className="p-0" onClick={() => router.push(`/admin/orders/edit/${order.id}`)}>
                               <i className="icofont-ui-edit text-success"></i>
                             </Button>
                           </td>

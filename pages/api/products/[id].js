@@ -32,8 +32,8 @@ export default async function handler(req, res) {
   }
   // 2) Sinon, recherche par legacyId ou slug
   if (!raw) {
-    raw = await Product.findOne({ legacyId: id }).populate('category').lean()
-       || await Product.findOne({ slug: id }).populate('category').lean();
+    raw = (await Product.findOne({ legacyId: id }).populate('category').lean())
+       || (await Product.findOne({ slug: id }).populate('category').lean());
   }
   // 3) Fallback statique
   if (!raw) {

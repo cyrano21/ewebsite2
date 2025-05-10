@@ -94,7 +94,7 @@ const Cart = ({ initialCartItems }: CartProps) => {
           <Col xs={12} lg={8}>
             {cartItems.length > 0 ? (
               // @ts-ignore - Ignorer les erreurs TypeScript pour l'utilisation du composant
-              <EcomCartTable products={cartItems} />
+              (<EcomCartTable products={cartItems} />)
             ) : (
               <div className="text-center p-5 bg-light rounded">
                 <h4>Votre panier est vide</h4>

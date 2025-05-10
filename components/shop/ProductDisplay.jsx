@@ -102,7 +102,8 @@ const ProductDisplay = ({ item }) => {
         {isAdmin && (
           <Link
             href={`/admin/products?edit=${id}`}
-            className="lab-btn bg-warning mb-3">
+            className="lab-btn bg-warning mb-3"
+            legacyBehavior>
             <i className="icofont-ui-edit me-1"></i>
             <span>Gérer ce produit</span>
           </Link>

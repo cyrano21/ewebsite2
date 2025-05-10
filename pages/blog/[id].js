@@ -326,9 +326,7 @@ export default function BlogPostPage() {
                 </Card>
 
                 <div className="post-navigation mt-4 d-flex flex-column flex-md-row gap-3">
-                  <Link
-                    href="/blog"
-                    className="prev-post flex-grow-1">
+                  <Link href="/blog" className="prev-post flex-grow-1" legacyBehavior>
                     <Card className="border-0 shadow-sm h-100 post-nav-card prev-card">
                       <Card.Body className="d-flex align-items-center p-3">
                         <div className="nav-icon me-3">
@@ -350,7 +348,7 @@ export default function BlogPostPage() {
                       {relatedPosts.map((post, index) => (
                         <Col md={4} key={index}>
                           <Card className="border-0 shadow-sm h-100 related-post-card">
-                            <Link href={`/blog/${post._id || post.id}`} className="img-link">
+                            <Link href={`/blog/${post._id || post.id}`} className="img-link" legacyBehavior>
                               <div className="related-post-img">
                                 <img 
                                   src={post.image || "/default-blog.jpg"} 
@@ -360,7 +358,10 @@ export default function BlogPostPage() {
                               </div>
                             </Link>
                             <Card.Body className="p-3">
-                              <Link href={`/blog/${post._id || post.id}`} className="text-decoration-none">
+                              <Link
+                                href={`/blog/${post._id || post.id}`}
+                                className="text-decoration-none"
+                                legacyBehavior>
                                 <h6 className="related-title mb-0">{post.title}</h6>
                               </Link>
                             </Card.Body>

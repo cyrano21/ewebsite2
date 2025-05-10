@@ -222,14 +222,12 @@ const AdvertisementManagement = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Gestion des Publicités</h1>
-      
       {/* Afficher les erreurs s'il y en a */}
       {error && (
         <Alert variant="danger" onClose={() => setError(null)} dismissible>
           {error}
         </Alert>
       )}
-      
       <Tabs activeKey={isEditing ? "edit" : "list"} id="advertisement-tabs" className="mb-4" onSelect={(k) => {
         if (k === "list" && isEditing) {
           setIsEditing(false);
@@ -314,7 +312,7 @@ const AdvertisementManagement = () => {
           <Card>
             <Card.Header className="d-flex justify-content-between align-items-center">
               <h3 className="mb-0">Analytique des Publicités</h3>
-              <Link href="/admin/advertisements/analytics">
+              <Link href="/admin/advertisements/analytics" legacyBehavior>
                 <Button variant="primary">
                   <i className="icofont-chart-bar-graph me-2"></i>
                   Voir les statistiques détaillées

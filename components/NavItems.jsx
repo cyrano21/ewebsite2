@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 const CustomLink = ({ href, className, children, ...props }) => {
   // Utilise l'API moderne de Link de Next.js
   return (
-    <Link href={href} className={className} {...props}>
+    <Link href={href} className={className} {...props} legacyBehavior>
       {children}
     </Link>
   );
@@ -142,9 +142,7 @@ const NavItems = () => {
           </div>
         </div>
       </div>
-
       {/* header top ends*/}
-
       {/* ---header bottom starts */}
       <div className="header-bottom">
         <div className="container">
@@ -181,7 +179,7 @@ const NavItems = () => {
                   {/* Afficher "Devenir vendeur" uniquement si l'utilisateur n'est pas déjà vendeur */}
                   {user && user.sellerStatus !== 'approved' && (
                     <li>
-                      <Link href="/become-seller" className="nav-link">
+                      <Link href="/become-seller" className="nav-link" legacyBehavior>
                         {user.sellerStatus === 'pending' ? 'Demande en cours' : 'Devenir vendeur'}
                       </Link>
                     </li>

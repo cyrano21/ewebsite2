@@ -24,7 +24,7 @@ const PageBreadcrumb = ({ items, className = '', ...rest }) => {
           linkAs={item.href && !item.active ? 'span' : undefined}
         >
           {item.href && !item.active ? (
-            <Link href={item.href}>
+            <Link href={item.href} legacyBehavior>
               {item.label}
             </Link>
           ) : (

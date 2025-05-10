@@ -197,7 +197,7 @@ const HomeCategory = () => {
             )}
           </div>
           <div className="text-center mt-5">
-            <Link href="/shop" className="lab-btn"><span>{btnText}</span></Link>
+            <Link href="/shop" className="lab-btn" legacyBehavior><span>{btnText}</span></Link>
           </div>
         </div>
       </div>

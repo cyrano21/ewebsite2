@@ -108,7 +108,7 @@ const ProductCards = ({ products, GridList }) => {
             <div className={`product-item modern ${GridList ? "product-card" : "list-view"}`}>
               {GridList ? (
                 // Mode Grille
-                <>
+                (<>
                   <div className="product-thumb position-relative hover-lift">
                     <div className="pro-thumb overflow-hidden rounded shine-effect">
                       {product.salePrice > 0 && product.salePrice < product.price && (
@@ -132,7 +132,10 @@ const ProductCards = ({ products, GridList }) => {
                         }}
                       />
                       <div className="product-action-link">
-                        <Link href={`/shop/product/${product.id}`} className="action-btn view-btn">
+                        <Link
+                          href={`/shop/product/${product.id}`}
+                          className="action-btn view-btn"
+                          legacyBehavior>
                           <i className="icofont-eye" />
                         </Link>
                         <button
@@ -168,7 +171,10 @@ const ProductCards = ({ products, GridList }) => {
                   </div>
                   <div className="product-content mt-3 pb-2">
                     <div className="d-flex justify-content-between align-items-start">
-                      <Link href={`/shop/product/${product.id}`} className="product-title">
+                      <Link
+                        href={`/shop/product/${product.id}`}
+                        className="product-title"
+                        legacyBehavior>
                         <h6 className="product-name text-truncate" style={{ maxWidth: "85%" }}>
                           {product.name}
                         </h6>
@@ -202,10 +208,10 @@ const ProductCards = ({ products, GridList }) => {
                       <p className="text-muted small mb-0 mt-1">Vendu par <span className="fw-medium">{product.seller}</span></p>
                     )}
                   </div>
-                </>
+                </>)
               ) : (
                 // Mode Liste
-                <div className="row align-items-center w-100">
+                (<div className="row align-items-center w-100">
                   <div className="col-md-3">
                     <div className="product-thumb position-relative">
                       <div className="pro-thumb overflow-hidden">
@@ -224,7 +230,7 @@ const ProductCards = ({ products, GridList }) => {
                   </div>
                   <div className="col-md-6">
                     <div className="product-content ps-md-3">
-                      <Link href={`/shop/product/${product.id}`}>
+                      <Link href={`/shop/product/${product.id}`} legacyBehavior>
                         <h5 className="product-title mb-2">{product.name}</h5>
                       </Link>
                       <div className="product-rating-row d-flex align-items-center mb-2">
@@ -238,7 +244,10 @@ const ProductCards = ({ products, GridList }) => {
                   <div className="col-md-3 text-end">
                     <h5 className="text-primary fw-bold mb-3">${product.price}</h5>
                     <div className="product-action-buttons d-flex flex-column gap-2">
-                      <Link href={`/shop/product/${product.id}`} className="btn btn-outline-primary btn-sm">
+                      <Link
+                        href={`/shop/product/${product.id}`}
+                        className="btn btn-outline-primary btn-sm"
+                        legacyBehavior>
                         <i className="icofont-eye me-1"></i> Voir détails
                       </Link>
                       <button
@@ -261,7 +270,7 @@ const ProductCards = ({ products, GridList }) => {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div>)
               )}
             </div>
           </div>

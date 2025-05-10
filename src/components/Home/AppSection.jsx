@@ -11,7 +11,7 @@ const AppSection = () => {
       <div className="app-section padding-tb">
           <div className="container">
               <div className="section-header text-center">
-                  <Link href="/signup" className="lab-btn mb-4"><span>{btnText}</span></Link>
+                  <Link href="/signup" className="lab-btn mb-4" legacyBehavior><span>{btnText}</span></Link>
                   <h2 className="title">{title}</h2>
                   <p>{desc}</p>
               </div>

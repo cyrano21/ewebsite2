@@ -356,7 +356,7 @@ const SellerOrders = () => {
                         </td>
                         <td>
                           <div className="d-flex">
-                            <Link href={`/seller/orders/${order._id}`} passHref>
+                            <Link href={`/seller/orders/${order._id}`} passHref legacyBehavior>
                               <Button variant="outline-primary" size="sm" className="me-2">
                                 <i className="icofont-eye me-1"></i> Détails
                               </Button>

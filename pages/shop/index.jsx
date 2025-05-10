@@ -43,249 +43,248 @@ const ShopMiniNav = () => {
   };
   
   return (
-  <nav
-    className="shop-mini-nav w-100 border-bottom"
-    style={{
-      fontSize: "0.96em",
-      background: "linear-gradient(90deg, #f8fafc 0%, #e9ecef 100%)",
-      boxShadow: "0 2px 8px 0 rgba(80,80,120,0.07)",
-      borderBottomLeftRadius: 12,
-      borderBottomRightRadius: 12,
-      zIndex: 10,
-      position: "relative",
-    }}
-  >
-    <div
-      className="container-fluid px-4 d-flex align-items-center justify-content-between"
-      style={{ minHeight: 26 }}
+    <nav
+      className="shop-mini-nav w-100 border-bottom"
+      style={{
+        fontSize: "0.96em",
+        background: "linear-gradient(90deg, #f8fafc 0%, #e9ecef 100%)",
+        boxShadow: "0 2px 8px 0 rgba(80,80,120,0.07)",
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
+        zIndex: 10,
+        position: "relative",
+      }}
     >
-      <div className="custom-dropdown position-relative">
-        <button 
-          className="d-flex align-items-center px-2 py-1 rounded-3 border-0 bg-transparent" 
-          type="button"
-          onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
-          style={{
-            cursor: "pointer",
-            transition: "box-shadow 0.18s, background 0.18s",
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = "#e3e6f1";
-            e.currentTarget.style.boxShadow = "0 2px 6px 0 rgba(80,80,120,0.08)";
-          }}
-          onMouseOut={(e) => {
-            if (!showCategoryDropdown) {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.boxShadow = "none";
-            }
-          }}
-        >
-          <i
-            className="icofont-navigation-menu me-2 text-primary"
-            style={{ fontSize: "1.15em" }}
-          ></i>
-          <span className="fw-semibold text-primary">Catégorie</span>
-          <i className="icofont-simple-down ms-2 small"></i>
-        </button>
-        {showCategoryDropdown && (
-          <ul 
-            className="position-absolute bg-white rounded shadow py-1 mt-1" 
-            style={{ 
-              minWidth: "200px", 
-              zIndex: 1000, 
-              listStyle: "none", 
-              padding: 0,
-              left: 0,
-              border: "1px solid #dee2e6" 
-            }}
-          >
-            <li>
-              <a 
-                className="d-block px-3 py-2 text-decoration-none" 
-                href="#" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleCategoryChange("all");
-                  setShowCategoryDropdown(false);
-                }}
-                style={{ color: "#212529" }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-              >
-                Tous les produits
-              </a>
-            </li>
-            <li>
-              <a 
-                className="d-block px-3 py-2 text-decoration-none" 
-                href="#" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleCategoryChange("clothing");
-                  setShowCategoryDropdown(false);
-                }}
-                style={{ color: "#212529" }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-              >
-                Vêtements
-              </a>
-            </li>
-            <li>
-              <a 
-                className="d-block px-3 py-2 text-decoration-none" 
-                href="#" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleCategoryChange("electronics");
-                  setShowCategoryDropdown(false);
-                }}
-                style={{ color: "#212529" }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-              >
-                Électronique
-              </a>
-            </li>
-            <li>
-              <a 
-                className="d-block px-3 py-2 text-decoration-none" 
-                href="#" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleCategoryChange("shoes");
-                  setShowCategoryDropdown(false);
-                }}
-                style={{ color: "#212529" }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-              >
-                Chaussures
-              </a>
-            </li>
-            <li>
-              <a 
-                className="d-block px-3 py-2 text-decoration-none" 
-                href="#" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleCategoryChange("accessories");
-                  setShowCategoryDropdown(false);
-                }}
-                style={{ color: "#212529" }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-              >
-                Accessoires
-              </a>
-            </li>
-            <li><div className="dropdown-divider my-1" style={{ borderTop: "1px solid #e9ecef" }}></div></li>
-            <li>
-              <a 
-                className="d-block px-3 py-2 text-decoration-none" 
-                href="#" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleCategoryChange("promotions");
-                  setShowCategoryDropdown(false);
-                }}
-                style={{ color: "#212529" }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
-              >
-                Promotions
-              </a>
-            </li>
-          </ul>
-        )}
-      </div>
-      <div className="d-none d-md-flex align-items-center" style={{ gap: 0 }}>
-        {/* BARRE DE RECHERCHE NAVBAR */}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const query = e.target.elements["shopnav-search"].value;
-            if (query.trim()) alert("Recherche : " + query);
-          }}
-          style={{ marginRight: 24, display: "flex", alignItems: "center" }}
-        >
-          <input
-            type="text"
-            name="shopnav-search"
-            placeholder="Rechercher..."
+      <div
+        className="container-fluid px-4 d-flex align-items-center justify-content-between"
+        style={{ minHeight: 26 }}
+      >
+        <div className="custom-dropdown position-relative">
+          <button 
+            className="d-flex align-items-center px-2 py-1 rounded-3 border-0 bg-transparent" 
+            type="button"
+            onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
             style={{
-              border: "1px solid #ced4da",
-              borderRadius: 20,
-              padding: "3px 12px 3px 32px",
-              fontSize: "0.95em",
-              height: 28,
-              background: "#fff",
-              outline: "none",
-              boxShadow: "none",
-              marginRight: 6,
-              minWidth: 140,
-            }}
-          />
-          <button
-            type="submit"
-            style={{
-              border: "none",
-              background: "transparent",
-              marginLeft: -32,
-              color: "#0d6efd",
               cursor: "pointer",
-              fontSize: 18,
-              padding: 0,
+              transition: "box-shadow 0.18s, background 0.18s",
             }}
-            aria-label="Rechercher"
-          >
-            <i className="icofont-search"></i>
-          </button>
-        </form>
-        {[
-          { href: "/", label: "Accueil" },
-          { href: "/favorite-shops", label: "Mes Boutiques Préférées" },
-          { href: "/products", label: "Produits" },
-          { href: "/wishlist", label: "Liste de souhaits" },
-          { href: "/shipping-info", label: "Infos de livraison" },
-          { href: "/become-seller", label: "Devenir vendeur" },
-          { href: "/order-tracking", label: "Suivi de commande" },
-          { href: "/checkout", label: "Paiement" },
-        ].map((item, idx, arr) => (
-          <React.Fragment key={item.label}>
-            <Link
-              href={item.href}
-              className="px-3 nav-link-mini"
-              style={{
-                color: "#2a3c5c",
-                fontWeight: 500,
-                textDecoration: "none",
-                transition: "color 0.18s, border 0.18s",
-                borderRight:
-                  idx < arr.length - 1 ? "1px solid #e1e4ea" : "none",
-                borderRadius: 0,
-                paddingTop: 7,
-                paddingBottom: 7,
-                position: "relative",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.color = "#0d6efd";
-                e.currentTarget.style.textDecoration = "underline";
-                e.currentTarget.style.background = "rgba(13,110,253,0.06)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.color = "#2a3c5c";
-                e.currentTarget.style.textDecoration = "none";
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = "#e3e6f1";
+              e.currentTarget.style.boxShadow = "0 2px 6px 0 rgba(80,80,120,0.08)";
+            }}
+            onMouseOut={(e) => {
+              if (!showCategoryDropdown) {
                 e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.boxShadow = "none";
+              }
+            }}
+          >
+            <i
+              className="icofont-navigation-menu me-2 text-primary"
+              style={{ fontSize: "1.15em" }}
+            ></i>
+            <span className="fw-semibold text-primary">Catégorie</span>
+            <i className="icofont-simple-down ms-2 small"></i>
+          </button>
+          {showCategoryDropdown && (
+            <ul 
+              className="position-absolute bg-white rounded shadow py-1 mt-1" 
+              style={{ 
+                minWidth: "200px", 
+                zIndex: 1000, 
+                listStyle: "none", 
+                padding: 0,
+                left: 0,
+                border: "1px solid #dee2e6" 
               }}
-              
             >
-              {item.label}
-            </Link>
-          </React.Fragment>
-        ))}
+              <li>
+                <a 
+                  className="d-block px-3 py-2 text-decoration-none" 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCategoryChange("all");
+                    setShowCategoryDropdown(false);
+                  }}
+                  style={{ color: "#212529" }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+                >
+                  Tous les produits
+                </a>
+              </li>
+              <li>
+                <a 
+                  className="d-block px-3 py-2 text-decoration-none" 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCategoryChange("clothing");
+                    setShowCategoryDropdown(false);
+                  }}
+                  style={{ color: "#212529" }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+                >
+                  Vêtements
+                </a>
+              </li>
+              <li>
+                <a 
+                  className="d-block px-3 py-2 text-decoration-none" 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCategoryChange("electronics");
+                    setShowCategoryDropdown(false);
+                  }}
+                  style={{ color: "#212529" }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+                >
+                  Électronique
+                </a>
+              </li>
+              <li>
+                <a 
+                  className="d-block px-3 py-2 text-decoration-none" 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCategoryChange("shoes");
+                    setShowCategoryDropdown(false);
+                  }}
+                  style={{ color: "#212529" }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+                >
+                  Chaussures
+                </a>
+              </li>
+              <li>
+                <a 
+                  className="d-block px-3 py-2 text-decoration-none" 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCategoryChange("accessories");
+                    setShowCategoryDropdown(false);
+                  }}
+                  style={{ color: "#212529" }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+                >
+                  Accessoires
+                </a>
+              </li>
+              <li><div className="dropdown-divider my-1" style={{ borderTop: "1px solid #e9ecef" }}></div></li>
+              <li>
+                <a 
+                  className="d-block px-3 py-2 text-decoration-none" 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCategoryChange("promotions");
+                    setShowCategoryDropdown(false);
+                  }}
+                  style={{ color: "#212529" }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#f8f9fa"}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = "transparent"}
+                >
+                  Promotions
+                </a>
+              </li>
+            </ul>
+          )}
+        </div>
+        <div className="d-none d-md-flex align-items-center" style={{ gap: 0 }}>
+          {/* BARRE DE RECHERCHE NAVBAR */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const query = e.target.elements["shopnav-search"].value;
+              if (query.trim()) alert("Recherche : " + query);
+            }}
+            style={{ marginRight: 24, display: "flex", alignItems: "center" }}
+          >
+            <input
+              type="text"
+              name="shopnav-search"
+              placeholder="Rechercher..."
+              style={{
+                border: "1px solid #ced4da",
+                borderRadius: 20,
+                padding: "3px 12px 3px 32px",
+                fontSize: "0.95em",
+                height: 28,
+                background: "#fff",
+                outline: "none",
+                boxShadow: "none",
+                marginRight: 6,
+                minWidth: 140,
+              }}
+            />
+            <button
+              type="submit"
+              style={{
+                border: "none",
+                background: "transparent",
+                marginLeft: -32,
+                color: "#0d6efd",
+                cursor: "pointer",
+                fontSize: 18,
+                padding: 0,
+              }}
+              aria-label="Rechercher"
+            >
+              <i className="icofont-search"></i>
+            </button>
+          </form>
+          {[
+            { href: "/", label: "Accueil" },
+            { href: "/favorite-shops", label: "Mes Boutiques Préférées" },
+            { href: "/products", label: "Produits" },
+            { href: "/wishlist", label: "Liste de souhaits" },
+            { href: "/shipping-info", label: "Infos de livraison" },
+            { href: "/become-seller", label: "Devenir vendeur" },
+            { href: "/order-tracking", label: "Suivi de commande" },
+            { href: "/checkout", label: "Paiement" },
+          ].map((item, idx, arr) => (
+            <React.Fragment key={item.label}>
+              <Link
+                href={item.href}
+                className="px-3 nav-link-mini"
+                style={{
+                  color: "#2a3c5c",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  transition: "color 0.18s, border 0.18s",
+                  borderRight:
+                    idx < arr.length - 1 ? "1px solid #e1e4ea" : "none",
+                  borderRadius: 0,
+                  paddingTop: 7,
+                  paddingBottom: 7,
+                  position: "relative",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.color = "#0d6efd";
+                  e.currentTarget.style.textDecoration = "underline";
+                  e.currentTarget.style.background = "rgba(13,110,253,0.06)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.color = "#2a3c5c";
+                  e.currentTarget.style.textDecoration = "none";
+                  e.currentTarget.style.background = "transparent";
+                }}
+                legacyBehavior>
+                {item.label}
+              </Link>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
   );
 };
 
@@ -1069,13 +1068,12 @@ function ShopPage(props) {
 
   // Composant pour les filtres (utilisé à la fois dans l'offcanvas et la sidebar)
   const FilterComponents = () => ( // eslint-disable-line no-unused-vars
-    <>
+    (<>
       <Search
         searchTerm={searchTerm}
         onSearchChange={handleSearchChange}
         onSearchSubmit={handleSearchSubmit}
       />
-
       <FilterSection title="Catégories" defaultOpen={true}>
         <ShopCategory
           filterItem={handleCategoryFilter}
@@ -1083,7 +1081,6 @@ function ShopPage(props) {
           selectedCategory={selectedCategory}
         />
       </FilterSection>
-
       <FilterSection title="Disponibilité">
         {FILTER_OPTIONS.availability.map((item) => (
           <CheckboxItem
@@ -1096,7 +1093,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Couleurs">
         <div className="widget-color d-flex flex-wrap gap-2 mt-3">
           {FILTER_OPTIONS.colorFamily.map((color) => (
@@ -1127,7 +1123,6 @@ function ShopPage(props) {
           ))}
         </div>
       </FilterSection>
-
       <FilterSection title="Marques">
         {FILTER_OPTIONS.brands.map((item) => (
           <CheckboxItem
@@ -1140,7 +1135,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Fourchette de prix">
         <div className="d-flex flex-column gap-2">
           <div className="mb-2 text-center fw-bold">
@@ -1194,7 +1188,6 @@ function ShopPage(props) {
           </div>
         </div>
       </FilterSection>
-
       <FilterSection title="Évaluation">
         {[5, 4, 3, 2, 1].map((rating) => (
           <div key={rating} className="mb-2">
@@ -1209,7 +1202,6 @@ function ShopPage(props) {
           </div>
         ))}
       </FilterSection>
-
       <FilterSection title="Type d'affichage">
         {FILTER_OPTIONS.displayType.map((item) => (
           <CheckboxItem
@@ -1222,7 +1214,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Livraison">
         {FILTER_OPTIONS.delivery.map((item) => (
           <CheckboxItem
@@ -1235,7 +1226,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Tailles">
         <div className="widget-size d-flex flex-wrap gap-2 mt-3">
           {FILTER_OPTIONS.sizes.map((size) => (
@@ -1256,7 +1246,6 @@ function ShopPage(props) {
           ))}
         </div>
       </FilterSection>
-
       <FilterSection title="Campagne">
         {FILTER_OPTIONS.campaign.map((item) => (
           <CheckboxItem
@@ -1269,7 +1258,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Garantie">
         {FILTER_OPTIONS.warranty.map((item) => (
           <CheckboxItem
@@ -1282,7 +1270,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Type de garantie">
         {FILTER_OPTIONS.warrantyType.map((item) => (
           <CheckboxItem
@@ -1295,7 +1282,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Certification">
         {FILTER_OPTIONS.certification.map((item) => (
           <CheckboxItem
@@ -1308,7 +1294,6 @@ function ShopPage(props) {
           />
         ))}
       </FilterSection>
-
       <FilterSection title="Tags">
         <Tags
           tags={allTags}
@@ -1316,11 +1301,9 @@ function ShopPage(props) {
           onTagClick={handleTagFilter}
         />
       </FilterSection>
-
       <FilterSection title="Produits populaires">
         <PopularPost products={products} />
       </FilterSection>
-
       {/* Bouton de réinitialisation de tous les filtres */}
       {(selectedCategory !== "All" ||
         selectedTag ||
@@ -1348,7 +1331,7 @@ function ShopPage(props) {
           Réinitialiser tous les filtres
         </Button>
       )}
-    </>
+    </>)
   );
 
   // Composant pour afficher les filtres actifs

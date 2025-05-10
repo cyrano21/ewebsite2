@@ -58,7 +58,11 @@ const MostViewedProducts = ({ products, loading, error }) => {
               </a>
             </Link>
             <div className={`${styles.productInfo} flex-grow-1 text-truncate me-2`}>
-              <Link href={`/shop/product/${product.id}`} className={`${styles.productName} text-decoration-none text-dark`} title={product.name}>
+              <Link
+                href={`/shop/product/${product.id}`}
+                className={`${styles.productName} text-decoration-none text-dark`}
+                title={product.name}
+                legacyBehavior>
                 {product.name}
               </Link>
             </div>

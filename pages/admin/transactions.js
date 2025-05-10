@@ -207,7 +207,6 @@ const TransactionsPage = () => {
   return (
     <AdminLayout>
       <PageHeader title="Transactions" curPage="Admin / Transactions" />
-      
       <Container fluid className="py-4">
         {/* Filtres */}
         <Card className="shadow-sm mb-4">
@@ -360,7 +359,10 @@ const TransactionsPage = () => {
                       </div>
                     </td>
                     <td>
-                      <Link href={`/admin/orders#${transaction.orderId}`} className="text-decoration-none">
+                      <Link
+                        href={`/admin/orders#${transaction.orderId}`}
+                        className="text-decoration-none"
+                        legacyBehavior>
                         {transaction.orderId}
                       </Link>
                       <small className="text-muted d-block">{transaction.items} article(s)</small>
@@ -407,7 +409,6 @@ const TransactionsPage = () => {
           </Card.Footer>
         </Card>
       </Container>
-
       {/* Modal de détails de transaction */}
       {selectedTransaction && (
         <div 

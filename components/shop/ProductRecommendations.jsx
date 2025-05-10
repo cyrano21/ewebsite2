@@ -174,7 +174,10 @@ const ProductRecommendations = ({ productId, limit = 4, title = "Recommandations
         {products.map((product) => (
           <div className="col-md-3 col-6 mb-3" key={product.id}>
             <div className="product-card h-100 border rounded p-2">
-              <Link href={`/shop/product/${product.id}`} className="d-block text-decoration-none">
+              <Link
+                href={`/shop/product/${product.id}`}
+                className="d-block text-decoration-none"
+                legacyBehavior>
                 <div className="product-image-container mb-2">
                   <img
                     src={product.img}

@@ -104,14 +104,13 @@ const DropshippingInfo = () => {
         </div>
         
         <div className="mt-5 text-center">
-          <Link href="/become-seller">
+          <Link href="/become-seller" legacyBehavior>
             <Button variant="primary" size="lg" className="px-5">
               Démarrer votre activité de dropshipping
             </Button>
           </Link>
         </div>
       </div>
-      
       <style jsx>{`
         .timeline-steps {
           display: flex;

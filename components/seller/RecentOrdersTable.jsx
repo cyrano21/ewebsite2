@@ -84,7 +84,7 @@ const RecentOrdersTable = ({ orders = [] }) => {
                 </Badge>
               </td>
               <td>
-                <Link href={`/seller/orders/${order._id}`} passHref>
+                <Link href={`/seller/orders/${order._id}`} passHref legacyBehavior>
                   <Button variant="outline-primary" size="sm">
                     <i className="icofont-eye me-1"></i> Détails
                   </Button>

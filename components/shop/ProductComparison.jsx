@@ -57,7 +57,6 @@ const ProductComparison = ({ products = [] }) => {
   return (
     <Container className="py-5 product-comparison">
       <h2 className="mb-4 text-center">Comparaison de produits</h2>
-      
       <div className="d-flex justify-content-end mb-3">
         <Button 
           variant="outline-secondary" 
@@ -67,7 +66,6 @@ const ProductComparison = ({ products = [] }) => {
           <i className="icofont-plus me-1"></i>Ajouter un produit
         </Button>
       </div>
-      
       <div className="table-responsive">
         <Table bordered hover className="comparison-table">
           <thead>
@@ -85,7 +83,10 @@ const ProductComparison = ({ products = [] }) => {
                         className="product-thumbnail"
                       />
                     </div>
-                    <Link href={`/shop/product/${product._id}`} className="mb-1 product-name">
+                    <Link
+                      href={`/shop/product/${product._id}`}
+                      className="mb-1 product-name"
+                      legacyBehavior>
                       {product.name}
                     </Link>
                     <div className="product-price fw-bold mb-2">
@@ -245,7 +246,6 @@ const ProductComparison = ({ products = [] }) => {
           </tbody>
         </Table>
       </div>
-      
       <Row className="mt-5">
         <Col className="text-center">
           <Button 
@@ -266,7 +266,6 @@ const ProductComparison = ({ products = [] }) => {
           </Button>
         </Col>
       </Row>
-      
       <style jsx global>{`
         .comparison-table th, .comparison-table td {
           vertical-align: middle;

@@ -154,12 +154,11 @@ const RecentlyViewedProducts = ({ currentProductId, limit = 4 }) => {
   return (
     <Container className="my-5 recently-viewed-products">
       <h2 className="mb-4">Récemment consultés</h2>
-
       <Row>
         {products.map((product) => (
           <Col key={product._id} xs={6} md={3} className="mb-4">
             <Card className="h-100 product-card shadow-sm">
-              <Link href={`/shop/product/${product._id}`} passHref>
+              <Link href={`/shop/product/${product._id}`} passHref legacyBehavior>
                 <div className="position-relative" style={{ height: '200px' }}>
                   <Image
                     src={product.image || '/assets/images/shop/placeholder.jpg'}

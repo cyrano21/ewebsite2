@@ -92,7 +92,7 @@ const Banner = () => {
               <ul className="lab-ul search-results">
                 {filteredProducts.map((product) => (
                   <li key={product.id} className="search-result-item">
-                    <Link href={`/shop/product/${product.id}`}>
+                    <Link href={`/shop/product/${product.id}`} legacyBehavior>
                       <div className="search-result-item-inner">
                         {product.img && (
                           <div className="search-result-thumbnail">

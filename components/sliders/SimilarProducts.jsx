@@ -98,7 +98,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card px-2">
       <Card className="h-100 border-0 shadow-sm">
-        <Link href={`/customer/ProductDetails?id=${product.id}`}>
+        <Link href={`/customer/ProductDetails?id=${product.id}`} legacyBehavior>
           <div className="product-image-container position-relative" style={{ height: '200px' }}>
             {product.images && product.images.length > 0 ? (
               <Image
@@ -129,10 +129,10 @@ const ProductCard = ({ product }) => {
         </Link>
         
         <Card.Body className="d-flex flex-column">
-          <Link 
+          <Link
             href={`/customer/ProductDetails?id=${product.id}`}
             className="product-title text-decoration-none"
-          >
+            legacyBehavior>
             <Card.Title className="h6 text-truncate mb-1">{product.name}</Card.Title>
           </Link>
           

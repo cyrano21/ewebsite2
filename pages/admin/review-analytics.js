@@ -774,11 +774,11 @@ const ReviewAnalytics = () => {
                         {selectedUser.recommendedProducts.map((product, i) => (
                           <tr key={i}>
                             <td>
-                              <Link 
+                              <Link
                                 href={`/shop/product/${product.slug}`}
-                                target="_blank" 
+                                target="_blank"
                                 rel="noopener noreferrer"
-                              >
+                                legacyBehavior>
                                 {product.name}
                               </Link>
                             </td>
@@ -880,11 +880,11 @@ const ReviewAnalytics = () => {
                       <tr key={product.slug || index}>
                         <td>{index + 1}</td>
                         <td>
-                          <Link 
+                          <Link
                             href={`/shop/product/${product.slug}`}
-                            target="_blank" 
+                            target="_blank"
                             rel="noopener noreferrer"
-                          >
+                            legacyBehavior>
                             {product.name}
                           </Link>
                         </td>

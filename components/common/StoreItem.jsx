@@ -51,7 +51,10 @@ const StoreItem = ({ store }) => {
         
         <p className="small text-muted mb-3">{store.description}</p>
         
-        <Link href={`/shop/store/${store.slug || store.id}`} className="stretched-link">
+        <Link
+          href={`/shop/store/${store.slug || store.id}`}
+          className="stretched-link"
+          legacyBehavior>
           <span className="sr-only">Voir la boutique</span>
         </Link>
       </Card.Body>

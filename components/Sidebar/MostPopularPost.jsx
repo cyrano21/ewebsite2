@@ -39,7 +39,7 @@ const MostPopularPost = () => {
       <ul className="widget-wrapper">
         {loading ? (
           // Afficher un indicateur de chargement
-          Array(4).fill().map((_, i) => (
+          (Array(4).fill().map((_, i) => (
             <li className="d-flex flex-wrap justify-content-between" key={i}>
               <div className="post-thumb placeholder-glow">
                 <div className="placeholder" style={{ width: '80px', height: '80px' }}></div>
@@ -51,13 +51,13 @@ const MostPopularPost = () => {
                 </div>
               </div>
             </li>
-          ))
+          )))
         ) : popularPosts.length > 0 ? (
           // Afficher les articles récupérés
-          popularPosts.map((post, i) => (
+          (popularPosts.map((post, i) => (
             <li className="d-flex flex-wrap justify-content-between" key={i}>
               <div className="post-thumb">
-                <Link href={`/blog/${post._id || post.id}`}>
+                <Link href={`/blog/${post._id || post.id}`} legacyBehavior>
                   <img 
                     src={post.image || defaultImage} 
                     alt={post.title} 
@@ -68,7 +68,7 @@ const MostPopularPost = () => {
                 </Link>
               </div>
               <div className="post-content">
-                <Link href={`/blog/${post._id || post.id}`}>
+                <Link href={`/blog/${post._id || post.id}`} legacyBehavior>
                   <h6>{post.title}</h6>
                 </Link>
                 <p>{new Date(post.date).toLocaleDateString('fr-FR', {
@@ -78,12 +78,12 @@ const MostPopularPost = () => {
                 })}</p>
               </div>
             </li>
-          ))
+          )))
         ) : (
           // Afficher des articles par défaut si aucun n'est trouvé
-          <li className="text-center py-3">
+          (<li className="text-center py-3">
             <p>Aucun article populaire disponible pour le moment.</p>
-          </li>
+          </li>)
         )}
       </ul>
     </div>
