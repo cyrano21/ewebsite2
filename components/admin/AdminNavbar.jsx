@@ -217,9 +217,9 @@ export default function AdminNavbar() {
       className={`${safeStyles.adminNavbar || ''} ${scrolled ? styles.scrolled : ''}`}
     >
       <Container fluid>
-        <Navbar.Brand as={Link} href="/admin/dashboard" className={styles.brand}>
+        <Navbar.Brand as={Link} href="/admin/dashboard" className={safeStyles.brand || ''}>
           <i className="icofont-dashboard fs-4 text-primary me-2" />
-          <span className={styles.brandText}>
+          <span className={safeStyles.brandText || ''}>
              <span className="fw-bold">Admin</span>
              <span className="d-none d-sm-inline ms-1">Panel</span>
           </span>
