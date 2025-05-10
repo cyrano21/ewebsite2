@@ -244,10 +244,10 @@ export default function AdminNavbar() {
 
             {NAV_GROUPS.map(group => (
               group.children ? (
-                <Dropdown key={group.id} as={Nav.Item} className={styles.navDropdown}>
+                <Dropdown key={group.id} as={Nav.Item} className={safeStyles.navDropdown || ''}>
                   <Dropdown.Toggle 
                     as={Nav.Link} 
-                    className={`${styles.navLink} ${isGroupActive(group) ? styles.active : ''}`}
+                    className={`${safeStyles.navLink || ''} ${isGroupActive(group) ? safeStyles.active || '' : ''}`}
                   >
                     <i className={`${group.icon} me-1`} />
                     {group.label}
@@ -258,13 +258,13 @@ export default function AdminNavbar() {
                     )}
                     <i className="icofont-simple-down ms-1 small"></i>
                   </Dropdown.Toggle>
-                  <Dropdown.Menu className={styles.menuDropdown}>
+                  <Dropdown.Menu className={safeStyles.menuDropdown || ''}>
                     {group.children.map(item => (
                       <Dropdown.Item 
                         key={item.href}
                         as={Link}
                         href={item.href}
-                        className={`${styles.dropdownItem} ${isActive(item.href) ? styles.active : ''}`}
+                        className={`${safeStyles.dropdownItem || ''} ${isActive(item.href) ? safeStyles.active || '' : ''}`}
                       >
                         <i className={`${item.icon} me-2`} />
                         {item.label}
